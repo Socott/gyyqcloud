@@ -35,7 +35,7 @@ if($cityid) {
 			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
 		}
 	} else {
-		$items = $CAT['item'];
+		 $CAT['item'] = $items;
 	}
 }
 
