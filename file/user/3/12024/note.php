@@ -1,0 +1,1 @@
+<?php exit;?>欢迎使用CLOUD网站管理系统www.gyycloud.com

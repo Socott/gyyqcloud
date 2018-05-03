@@ -1,0 +1,456 @@
+﻿<html>
+<head>
+<meta charset='utf-8'>
+<link rel='stylesheet' href='tradeMap.css'>
+</head>
+<body>
+	<div id='tradeMapContainer'>
+		<div class='leftShadow'>
+		</div>
+		<div class='currentTime'>
+			<p><span class='year'>0000</span>-<span class='month'>00</span>-<span class='day'>00</span></p>
+			<p><span class='hour'>00</span>:<span class='minute'>00</span>:<span class='second'>00</span></p>
+		</div>
+		<div class='statistics'>
+			<p class='title'><span class='sTime_month'>01</span>月第<span class='sTime_week'>1</span>周交易汇总</p>
+			<p class='item'>交易笔数:<span class='count'>0</span></p>
+			<p class='item'>交易金额:<span class='totalAmount'>0</span></p>
+		</div>
+	</div>
+	<script src='jquery.js'></script>
+    <script type="text/javascript">
+		var TradeMap=function(){
+			this.map=$('#tradeMapContainer');
+			this.cityList={
+				'beijing':{
+					'position':[2486,720],
+					'title':'北京',
+					'name':'beijing'
+				},
+				'wulumuqi':{
+					'position':[1250,305],
+					'title':'乌鲁木齐',
+					'name':'wulumuqi'
+				},
+				'lasa':{
+					'position':[1147,1117],
+					'title':'拉萨',
+					'name':'lasa'
+				},
+				'xining':{
+					'position':[1735,865],
+					'title':'西宁',
+					'name':'xining'
+				},
+				'lanzhou':{
+					'position':[1855,920],
+					'title':'兰州',
+					'name':'lanzhou'
+				},
+				'chengdu':{
+					'position':[1823,1174],
+					'title':'成都',
+					'name':'chengdu'
+				},
+				'kunming':{
+					'position':[1700,1510],
+					'title':'昆明',
+					'name':'kunming'
+				},
+				'guiyang':{
+					'position':[1934,1447],
+					'title':'贵阳',
+					'name':'guiyang'
+				},
+				'nanning':{
+					'position':[2000,1666],
+					'title':'南宁',
+					'name':'nanning'
+				},
+				'chongqing':{
+					'position':[1948,1263],
+					'title':'重庆',
+					'name':'chongqing'
+				},
+				'xian':{
+					'position':[2102,1008],
+					'title':'西安',
+					'name':'xian'
+				},
+				'yinchuan':{
+					'position':[2043,756],
+					'title':'银川',
+					'name':'yinchuan'
+				},
+				'huhehaote':{
+					'position':[2307,658],
+					'title':'呼和浩特',
+					'name':'huhehaote'
+				},
+				'taiyuan':{
+					'position':[2255,866],
+					'title':'太原',
+					'name':'taiyuan'
+				},
+				'shijiazhuang':{
+					'position':[2390,825],
+					'title':'石家庄',
+					'name':'shijiazhuang'
+				},
+				'zhengzhou':{
+					'position':[2350,1010],
+					'title':'郑州',
+					'name':'zhengzhou'
+				},
+				'wuhan':{
+					'position':[2358,1255],
+					'title':'武汉',
+					'lightning':[1948,1223],
+					'name':'wuhan'
+				},
+				'changsha':{
+					'position':[2270,1388],
+					'title':'长沙',
+					'name':'changsha'
+				},
+				'nanchang':{
+					'position':[2440,1380],
+					'title':'南昌',
+					'name':'nanchang'
+				},
+				'guangzhou':{
+					'position':[2315,1705],
+					'title':'广州',
+					'name':'guangzhou'
+				},
+				'aomen':{
+					'position':[2263,1757],
+					'title':'澳门',
+					'name':'aomen'
+				},
+				'xianggang':{
+					'position':[2328,1760],
+					'title':'香港',
+					'name':'xianggang'
+				},
+				'hefei':{
+					'position':[2521,1195],
+					'title':'合肥',
+					'name':'hefei'
+				},
+				'nanjing':{
+					'position':[2605,1195],
+					'title':'南京',
+					'name':'nanjing'
+				},
+				'hangzhou':{
+					'position':[2670,1300],
+					'title':'杭州',
+					'name':'hangzhou'
+				},
+				'shanghai':{
+					'position':[2750,1250],
+					'title':'上海',
+					'name':'shanghai'
+				},
+				'fuzhou':{
+					'position':[2620,1558],
+					'title':'福州',
+					'name':'fuzhou'
+				},
+				'shenyang':{
+					'position':[2790,645],
+					'title':'沈阳',
+					'name':'shenyang'
+				},
+				'changchun':{
+					'position':[2860,540],
+					'title':'长春',
+					'name':'changchun'
+				},
+				'haerbin':{
+					'position':[2895,450],
+					'title':'哈尔滨',
+					'name':'haerbin'
+				}	
+			}
+			this.subCityList={
+				'tongnan':{
+					'position':[3150,1485],
+					'title':'潼南',
+					'name':'tongnan'
+				},
+				'tongliang':{
+					'position':[3190,1542],
+					'title':'铜梁',
+					'name':'tongliang'
+				},
+				'dazu':{
+					'position':[3138,1585],
+					'title':'大足',
+					'name':'dazu'
+				},
+				'rongchang':{
+					'position':[3106,1652],
+					'title':'荣昌',
+					'name':'rongchang'
+				},
+				'bishan':{
+					'position':[3208,1610],
+					'title':'璧山',
+					'name':'bishan'
+				},
+				'jiangjin':{
+					'position':[3230,1690],
+					'title':'江津',
+					'name':'jiangjin'
+				},
+				'qijiang':{
+					'position':[3293,1735],
+					'title':'綦江',
+					'name':'qijiang'
+				},
+				'wansheng':{
+					'position':[3345,1745],
+					'title':'万盛',
+					'name':'wansheng'
+				},
+				'changshou':{
+					'position':[3370,1550],
+					'title':'长寿',
+					'name':'changshou'
+				},
+				'fuling':{
+					'position':[3416,1594],
+					'title':'涪陵',
+					'name':'fuling'
+				},
+				'zhongxian':{
+					'position':[3540,1450],
+					'title':'忠县',
+					'name':'zhongxian'
+				},
+				'qianjiang':{
+					'position':[3670,1620],
+					'title':'黔江',
+					'name':'qianjiang'
+				},
+				'wanzhou':{
+					'position':[3600,1345],
+					'title':'万州',
+					'name':'wanzhou'
+				},
+				'kaixian':{
+					'position':[3600,1270],
+					'title':'开县',
+					'name':'kaixian'
+				},
+				'fengjie':{
+					'position':[3798,1300],
+					'title':'奉节',
+					'name':'fengjie'
+				},
+				
+			}
+			this.init();
+		}
+		TradeMap.prototype={
+			init:function(){
+				this.drawAllCity();
+				this.drawTimeLine();
+				this.currentTime();
+			},
+			drawCity:function(city){
+				var x=city['position'][0];
+				var y=city['position'][1];
+				var cityName=city['name'];
+				var point='<div class="city '+cityName+'"><div class="falshLamp"></div><div class="bg_point"></div></div>';
+				point=$(point).css({
+					'left':x,
+					'top':y
+				}).appendTo(this.map).show();
+				this.flashLamp(point)
+			},
+			drawSubCity:function(city){
+				var x=city['position'][0];
+				var y=city['position'][1];
+				var cityName=city['name'];
+				var point='<div class="city subCity '+cityName+'"><div class="falshLamp"></div><div class="bg_point"></div></div>';
+				point=$(point).css({
+					'left':x,
+					'top':y
+				}).appendTo(this.map).show();
+			},
+			currentTime:function(){
+				var year=$('.year'),
+					month=$('.month'),
+					day=$('.day'),
+					hour=$('.hour'),
+					minute=$('.minute'),
+					second=$('.second');
+					(function(){
+						var date=new Date();
+						year.html(date.getFullYear())
+						month.html(date.getMonth()+1)
+						day.html(date.getDate())
+						hour.html(date.getHours())
+						minute.html(date.getMinutes()<=9?'0'+date.getMinutes():date.getMinutes())
+						second.html(date.getSeconds()<=9?'0'+date.getSeconds():date.getSeconds())
+						setTimeout(arguments.callee, 1000);//然后再延时1秒调用自己
+					})()
+			},
+			flashLamp:function(point){
+				var random=parseInt(Math.random()*5000);
+				setTimeout(function(){
+					point.find('.falshLamp').animate({
+							'opacity':0.7
+						},2500).animate({
+							'opacity':0
+						},2500)
+					setInterval(function(){
+						point.find('.falshLamp').animate({
+							'opacity':0.7
+						},2500).animate({
+							'opacity':0
+						},2500)
+					},5000)
+				},random)
+			},
+			drawAllCity:function(){
+				for(var i in this.cityList){
+					this.drawCity(this.cityList[i]);
+				}
+				for(var j in this.subCityList){
+					this.drawSubCity(this.subCityList[j]);
+				}
+			},
+			drawCurrentCity:function(startCity,endCity,tradeInfo,cb){
+				var that=this;
+				var count=0;
+				$('<div class="currentCity">'+startCity['title']+'</div><div class="highLignt"></div>').appendTo($('.'+startCity['name'])).animate({
+					'opacity':.6
+				},1000).queue(function(){
+					count++;
+					$(this).dequeue();
+					if(count===1){
+						that.drawCurrentTradeInfo($('.'+startCity['name']),tradeInfo,cb);
+					
+					}
+				}).delay(4000).fadeOut(1000,function(){
+					$(this).remove();
+				});
+				
+				setTimeout(function(){
+					$('<div class="currentCity">'+endCity['title']+'</div><div class="highLignt"></div>').appendTo($('.'+endCity['name'])).css({
+						'opacity':.6
+					}).delay(4000).fadeOut(1000,function(){
+						$(this).remove();
+					});
+
+				},1200)
+				
+			},
+			drawCurrentTradeInfo:function(startCitydom,tradeInfo,cb){
+				var that=this;
+				var tradeInfoNode=	'<div class="currenttradeInfo">'+
+										'<p><span>买家信息：</span>'+tradeInfo.tradeBuyer+'</p>'+
+										'<p><span>卖家信息：</span>'+tradeInfo.tradeSaler+'</p>'+
+										'<p><span>交易金额：</span>'+tradeInfo.tradeAmount+'</p>'+
+									'</div>'
+				$(tradeInfoNode).appendTo(startCitydom).delay(5000).fadeOut(1000);
+				setTimeout(function(){
+					that.drawLeftShadow();
+					$('<div class="timeLineTradeAmount"><span>￥ </span>'+tradeInfo.tradeAmount+'</div>').appendTo($('.timeLine')).animate({'left':3920},40000,function(){
+						$(this).remove();
+						if(cb){
+							cb();
+						}
+					})
+				},2000)
+				
+			},
+			drawTimeLine:function(){
+				$('<div class="timeLine"></div>').appendTo(this.map)
+			},
+			drawLeftShadow:function(){
+				$('.leftShadow').animate({
+					'opacity':1,
+					'left':0
+				},1000).animate({
+					'opacity':0,
+					'left':-100
+				},1000)
+			},
+			trade:function(startCity,endCity,tradeInfo,cb){
+				var that=this;
+				this.drawCurrentCity(startCity,endCity,tradeInfo,cb);
+			}
+		}
+		var tradeMap=new TradeMap();
+		var Statistics=function(){
+			this.count=0;
+			this.totalAmount=0;
+		}
+		Statistics.prototype={
+			init:function(){
+				this.setTime();
+				this.showCount();
+			},
+			setTime:function(){
+				$('.statistics').find('.sTime_month').html($('.currentTime').find('.month').html());
+				$('.statistics').find('.sTime_week').html(Math.ceil(($('.currentTime').find('.day').html()>>0)/7));
+			},
+			showCount:function(){
+				$('.statistics').find('.count').html(this.count);
+				$('.statistics').find('.totalAmount').html(this.totalAmount);
+			}
+		}
+		var statistics=new Statistics();
+		$.ajax({
+			url:'data.json',
+			type:'post',
+			dataType:'json',
+			cache:false,
+			success:function(data){
+				//console.log(1)
+				for (var i=0;i<data.data.length;i++){
+					var startCity=data.data[i][1];
+					var endCity=data.data[i][2];
+					var timeOut=(function(){
+						var m=data.data[i][0].split(':')[0]
+						var s=parseInt(data.data[i][0].split(':')[1])
+						return (m*60+s)*1000;
+					}())
+					var tradeInfo=data.data[i][3];
+					statistics.count++;
+					statistics.totalAmount+=tradeInfo.tradeAmount;
+					var timer=(function(a,b,c,d,i){
+						setTimeout(function(){
+							var sCity=tradeMap.cityList[a]||tradeMap.subCityList[a];
+							var eCity=tradeMap.cityList[b]||tradeMap.subCityList[b];
+							if(sCity&&eCity){
+								if(i===data.data.length-1){
+									tradeMap.trade(sCity,eCity,d,function(){
+										window.location.reload();
+									})
+									
+								}else{
+									tradeMap.trade(sCity,eCity,d)
+								}
+							}
+						},c)
+
+					}(startCity,endCity,timeOut,tradeInfo,i))
+				}
+				statistics.init();
+			},
+			error:function(e,a,b,c){
+				console.log(e);
+				console.log(a);
+				console.log(b);
+				console.log(c);
+			}
+		})
+    </script>
+</body>
+</html>

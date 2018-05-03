@@ -1,0 +1,166 @@
+body{
+	margin:0;
+	padding:0;
+padding-top:100px;
+	font-family:yahei;background-color:black;
+}
+#tradeMapContainer{
+	width:3960px;
+	height:2040px;
+	position:relative;
+	background:url(images/tradeMap.jpg);
+	overflow:hidden;
+}
+.city{
+	width:10px;
+	height:10px;
+	margin-left:-5px;
+	margin-top:-5px;
+	position:absolute;
+	display:none;
+}
+.bg_point{
+	position:absolute;
+	left:0;
+	top:0;
+	width:10px;
+	height:10px;
+	background:rgba(255,255,255,.5);
+	border-radius:5px;
+	z-index:2;
+}
+.subCity  .bg_point{
+	display:none !important;
+}
+.subCity .highLignt{
+	display:none !important;
+}
+.subCity .currentCity{
+	display:none !important;
+}
+.currentCity{
+	font:38px yahei;
+	color:#fff;
+	margin-left: -145px;
+    margin-top: -60px;
+    text-align: center;
+    width: 300px;
+	opacity:0;
+}
+.highLignt{
+	position:absolute;
+	top:-3px;
+	left:-3px;
+	z-index:-3px;
+	width:16px;
+	height:16px;
+	background:rgb(255,255,255);
+	border-radius:8px;
+	z-index:3;
+	opacity:0;
+}
+.falshLamp{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1;
+	width:0px;
+	height:0px;
+	margin-left:5px;
+	margin-top:5px;
+	background:#24ff00;
+	border-radius:20px;
+	box-shadow:0 0 20px 10px #24ff00;
+	opacity:0;
+}
+.currenttradeInfo{
+	position:absolute;
+	top:40px;
+	width:240px;
+	left:-200px;
+	color:#fff;
+	text-align:left;
+	font-size:20px;
+	border:2px solid #fff;
+	padding:6px;
+}
+.currenttradeInfo p{
+	margin:0;
+}
+.currenttradeInfo:after{
+	content:'';
+	display:block;
+	width:100%;
+	height:40px;
+	position:absolute;
+	top:-40;
+	left:0;
+	background:url(images/arrow.png) 150px center no-repeat;
+}
+.timeLine{
+	position:absolute;
+	bottom:95px;
+	left:0px;
+	width:100%;
+	height:2px ;
+	background:#364570;
+}
+.timeLineTradeAmount{
+	position:absolute;
+	top:-19px;
+	left:-130px;
+	background:url(images/timeLineTradeAmount.png) no-repeat top center;
+	height: 80px;
+    width: 200px;
+	font:24px yahei;
+	color:#fff;
+	text-align:center;
+	padding-top:40px;
+	white-space:nowrap;
+}
+.leftShadow{
+    box-shadow: 0 0 160px 40px #0f0;
+    height: 100%;
+    left: -100px;
+    position: absolute;
+    top: 0;
+    width: 0;
+    opacity: 0;
+	margin-left:-20px;
+}
+.currentTime{
+	position:absolute;
+	top:80px;
+	left:40px;
+}
+.currentTime>p:first-child{
+    color: #fff;
+    font-family: helvetica;
+    font-size: 100px;
+    font-weight: bold;
+}
+.currentTime>p:last-child{
+	color:#fff;
+	font-family:arila;
+	font-size:60px;
+	margin-top:-100px;
+}
+.statistics{
+	min-width:500px;
+	height:250px;
+	border:1px solid #fff;
+	color:#fff;
+	white-space:nowrap;
+	position:absolute;
+	top:1500px;
+	left:300px;
+	padding:0 15px;
+}
+.statistics .title{
+	font-size:60px;
+	margin:0;
+}
+.statistics .item{
+	font-size:53px;
+	margin:5px;
+}

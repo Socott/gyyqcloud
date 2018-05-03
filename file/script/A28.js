@@ -1,0 +1,1 @@
+document.write('<a href="http://www.longygo.com/api/redirect.php?aid=10" target="_blank"><img src="http://www.longygo.com/file/upload/201801/13/163030741.jpg" width="950" height="280" alt=""/></a>');

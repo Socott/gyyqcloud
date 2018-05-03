@@ -1,0 +1,1 @@
+var DTPath = "http://127.0.0.1/";var SKPath = "http://127.0.0.1/skin/default/";var MEPath = "http://127.0.0.1/member/";var DTEditor = "fckeditor";var CKDomain = "";var CKPath = "/";var CKPrex = "ckm_";

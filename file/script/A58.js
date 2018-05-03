@@ -1,0 +1,1 @@
+document.write('<a href="http://127.0.0.1/api/redirect.php?aid=42" target="_blank"><img src="http://r.longygo.com/v1/images/adver/3.jpg" width="1200" height="60" alt=""/></a>');
