@@ -1,138 +1,130 @@
-{template 'header'}
-<script type="text/javascript">var module_id= {$moduleid},item_id={$itemid},content_id='content',img_max_width={$MOD[max_width]};</script>
-<div class="m">
-<div class="left_box">		
-		<div class="pos"><span class="f_r"><a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid={$moduleid}&action=add&catid={$catid}" rel="nofollow"><img src="{DT_SKIN}image/btn_add.gif" width="81" height="20" alt="发布信息" style="margin-top:6px;"/></a></span>当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')} &raquo;</div>
-		<div class="b10 c_b"></div>
-		<table width="100%">
-		<tr>
-		<td width="10"> </td>
-		<td>
-			<table width="100%">
-			<tr>
-			<td colspan="3"><h1 class="title_trade" id="title">{$title}</h1></td>
-			</tr>
-			<tr>
-			<td width="250" valign="top">
-				<div id="mid_pos"></div>
-				<div id="mid_div" onmouseover="SAlbum();" onmouseout="HAlbum();" onclick="PAlbum(Dd('mid_pic'));">
-				<img src="{$albums[0]}" width="240" height="180" id="mid_pic"/><span id="zoomer"></span>
-				</div>
-				<div class="b5"></div>
-				<div>
-				{loop $thumbs $k $v}<img src="{$v}" width="60" height="60" onmouseover="if(this.src.indexOf('nopic60.gif')==-1)Album({$k}, '{$albums[$k]}');" class="{if $k}ab_im{else}ab_on{/if}" id="t_{$k}"/>{/loop}
-				</div>
-				<div class="b5"></div>
-				<div onclick="PAlbum(Dd('mid_pic'));" class="c_b t_c c_p"><img src="{DT_SKIN}image/ico_zoom.gif" width="16" height="16" align="absmiddle"/> 点击图片查看原图</div>
-			</td>
-			<td width="15"> </td>
-			<td valign="top">
-				<div id="big_div" style="display:none;"><img src="" id="big_pic"/></div>		
-				<table width="100%" cellpadding="5" cellspacing="5">
-				{if $n1 && $v1}
-				<tr>
-				<td class="f_dblue">{$n1}：</td>
-				<td>{$v1}</td>
-				</tr>
-				{/if}
-				{if $n2 && $v2}
-				<tr>
-				<td class="f_dblue">{$n2}：</td>
-				<td>{$v2}</td>
-				</tr>
-				{/if}
-				{if $n3 && $v3}
-				<tr>
-				<td class="f_dblue">{$n3}：</td>
-				<td>{$v3}</td>
-				</tr>
-				{/if}
-				<tr>
-				<td class="f_dblue">需求数量：</td>
-				<td>{$amount}</td>
-				</tr>
-				<tr>
-				<td class="f_dblue">价格要求：</td>
-				<td class="f_b f_orange">{$price}</td>
-				</tr>
-				<tr>
-				<td class="f_dblue">包装要求：</td>
-				<td>{$pack}</td>
-				</tr>
-				<tr>
-				<td class="f_dblue">所在地：</td>
-				<td>{area_pos($areaid, '')}</td>
-				</tr>
-				<tr>
-				<td class="f_dblue">有效期至：</td>
-				<td>{if $todate}{$todate}{else}长期有效{/if}{if $expired} <span class="f_red">[已过期]</span>{/if}</td>
-				</tr>
-				<tr>
-				<td class="f_dblue">最后更新：</td>
-				<td>{$editdate}</td>
-				</tr>
-				<tr>
-				<td width="80" class="f_dblue">浏览次数：</td>
-				<td><span id="hits">{$hits}</span></td>
-				</tr>
-				{if $username && !$expired}
-				<tr>
-				<td colspan="2"><img src="{DT_SKIN}image/btn_price.gif" alt="报价" class="c_p" onclick="Go('{$MOD[linkurl]}{rewrite('price.php?itemid='.$itemid)}');"/></td>
-				</tr>
-				{/if}
-				</table>
-			</td>
-			</tr>
-		</table>
-		</td>
-		<td width="10"> </td>
-		<td width="300" valign="top">		
-			<div class="contact_head">公司基本资料信息</div>
-			<div class="contact_body" id="contact">{template 'contact', 'chip'}</div>
-			{if !$username}
-			<br/>
-			&nbsp;<strong class="f_red">注意</strong>:发布人未在本站注册，建议优先选择<a href="{$MODULE[2][linkurl]}grade.php"><strong>{VIP}会员</strong></a>
-			{/if}
-		</td>
-		<td width="10"> </td>
-		</tr>
-		</table>
-		<div class="b10">&nbsp;</div>
-</div>
-</div>
+{template 'header-mall'}
+<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/css/productCenter/hongshanshan.css" rel="stylesheet" type="text/css">
+<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/css/demandDetail/clound_reset.css" rel="stylesheet" type="text/css">
+<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/css/demandDetail/yzzReleaseDetail.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/css/zoneOrgInfoStartlevel.css"/>
+<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/zhiliang/css/popup.css" />
+<input  type="hidden" id="inqEntId" value="600205"/>
+<input  type="hidden" value="" id="quoteEnpId"/>
+<!--顶部 start-->
+<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/newIndex/css/top.css" type="text/css" />
+<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/cloud1.0/css/common.css" rel="stylesheet" type="text/css" />
+<!--头部 end-->
+<!--外协需求 需求详情  begin-->
+<div class="details_box">
+	<div class="details_intro">
+		<p class=" f_left"><a href="inquiryHall.html">首页</a>&gt;</p>
+		<p class=" f_left" id="caigouClass">电子元器件>集成电路>其他IC</p>
+		&gt;不间断电源 </div>
+	<!--product display begin-->
+	<div class="indusMall_details">
+		<!--product display list left begin-->
 
-<div class="m">
-	<div class="b10">&nbsp;</div>
-	<div class="box_head">
-	<strong>详细说明</strong>
+		<div id="preview">
+			<div class="preview_box">
+				<div class="jqzoom" id="spec-n1"><img height="350" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/image/xuqiu.jpg" jqimg="/pages/industrialMall/image/xuqiu.jpg" width="500"></div>
+			</div>
+			<div id="spec-n5">
+				<div class="control" id="spec-left"><img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/image/left.gif"></div>
+				<div id="spec-list">
+					<ul class="list-h" style="width: 478px; overflow: hidden;">
+						<li><img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/image/xuqiu.jpg"/></li>
+					</ul>
+				</div>
+				<div class="control" id="spec-right"><img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/image/right.gif"></div>
+			</div>
+		</div>
+		<!--product display list left end-->
+		<div class="details_right">
+			<h1 class="details_tit" title="不间断电源">不间断电源 <a href="http://core.casicloud.com/zone/zone/zone/qltyAuthIndex.ht" target="_blank"></a> </h1>
+			<ul class="details_list">
+				<li> <span class="details_page f_left">采购分类：</span>
+					<p> 电子元器件>集成电路>其他IC </p>
+				</li>
+				<li> <span class="details_page f_left">付款方式：</span>
+					<p> 现金 </p>
+				</li>
+				<li> <span class="details_page f_left">附件：</span> <span class="f_left"> 无 </span> </li>
+			</ul>
+			<ul class="details_lists">
+				<li> <span class="details_page f_left" style="width: 90px;">报价企业数：</span> <span class=" f_left">0</span> </li>
+			</ul>
+			<ul class="details_list details_list_none">
+				<li> <span class="details_page f_left">发布日期：</span> <span class=" f_left"> 2018-04-16 </span> </li>
+				<li> <span class="details_page f_left">截止日期：</span> <span class=" f_left" id="deadline">2018-04-27</span> </li>
+				<li>
+					<div class="details_page f_left">还&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;剩：</div>
+					<div class="left price_intro"  style="font-size:16px;">
+						<span id="leftDay"><span id="remainingTime" style="color:red"></span>天</span> <span id="leftHour"><span id="remaininghour" style="color:red"></span>小时</span> </li>
+				<li class="details_prices">
+					<input type="button" value="我要报价" onclick="window.location.href='../../../case/login.html'" class="details_price"/>
+				</li>
+			</ul>
+		</div>
+		<div class="details_rightR">
+			<div class="details_link"> <img src="http://industry.casicloud.com/pages/industrialMall/image/indusMall_img003.png">
+				<div class="details_linkCon details_linkCon_link">
+					<h3>南昌三道信息产业有限公司<span id="showblack"></span>
+						<div class="authen" style="height: 34px;width:223px;margin:0 0 0 90px;">
+							<!-- 									<a href="#" id='a4' style="visibility:hidden"  class="a4"></a> -->
+							<a href="#" id="a1" style="visibility:hidden" class="a1"><span>实名认证</span></a> <a href="#" id="a2" style="visibility:hidden" class="a2"><span>实地认证</span></a>
+							<input id="levelOrgId" value="16028307" type="hidden">
+							<a id="level" style="width:26px;height:26px;float: left;"></a> <a class="u-a " href="http://core.casicloud.com/agreement/b2bAgreementAuthen/index.ht" target="_blank"></a> </div>
+					</h3>
+					<p><em>电话：</em><span>13750053417</span></p>
+					<p><em>传真：</em><span></span></p>
+					<p><em>联系人：</em><span>管理员</span></p>
+					<p><em>邮箱：</em><span><span title="13750053417@126.com">13750053417@126.com</span></span></p>
+					<p><em>地址：</em><span>南昌市青云谱区湖坊镇金顺村南通巷1号</span></p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="box_body" style="padding:0;">
-	{if $CP}{template 'property', 'chip'}{/if}
-	<div class="content c_b" id="content">{$content}</div>
-	{template 'comment', 'chip'}
+	<div class="details_goods">
+		<div class="details_goods_box">
+			<div class="details_select"> <span class="now1">需求详情<i></i></span> </div>
+			<div class="details_selectCon">
+				<div class="details_goods_select">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tbody>
+						<tr>
+							<td width="15%">产品名称</td>
+							<td width="15%">物资编码</td>
+							<td width="10%">采购数量</td>
+							<td width="10%">要求到货日期</td>
+							<td width="10%">物资描述</td>
+						</tr>
+						<tr>
+							<td>UPS</td>
+							<td>001122</td>
+							<td>1套</td>
+							<td>2018-04-20</td>
+							<td title="3K  补充描述:,国产进口:国产,物资类别编码:AO,物资类别名称:电子元器件-其它电子元器件,供应商同批次:,加严检测:,DPA标识:,检验方式:,下厂验收单位:,检验标准:"> 3K  补充描述:,国产进口:国产,物资类别编码:AO,物资类别名称:电子元器件-其它电子元器件,供... </td>
+						</tr>
+						</tbody>
+					</table>
+					<div> <span><b>需求描述：</b></span> </br>
+					</div>
+					<div class="details_goods_ask">
+						<div class="details_select_titName">需求描述</div>
+						<div class="details_refer_box">
+							<ul>
+								<li> <em>订单紧急程度：</em> <span> 普通 </span> </li>
+								<li> <em>是否复验筛选：</em> <span>否</span> </li>
+								<li> <em>是否DPA：</em> <span>否</span> </li>
+								<li> <em>是否下厂验收：</em> <span>否</span> </li>
+								<li> <em>发票类型 :</em> <span>无需发票</span> </li>
+								<li> <em>运费承担商 :</em> <span> 采购商 </span> </li>
+								<li> <em>收货地址 :</em> <span>0 </span> </li>
+								<li> <em title="军品/民品">军品/民品 </em> <span title="民品">民品 </span> </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
-<div class="m">
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}{$CAT[linkurl]}">更多&raquo;</a></span><strong>同类{$MOD[name]}</strong></div></div>
-	<div class="box_body">
-	<div class="thumb" style="padding:10px;"><!--{tag("moduleid=$moduleid&length=20&condition=status=3 and thumb<>''&catid=$catid&areaid=$cityid&pagesize=8&order=edittime desc&width=80&height=80&cols=8&template=thumb-table", -2)}-->
-	</div>
-	</div>
-</div>
-<div class="m">
-	<br/>
-	<center>
-	[ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
-	[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;
-	[ <a href="javascript:SendPage();">告诉好友</a> ]&nbsp;
-	[ <a href="javascript:Print();">打印本文</a> ]&nbsp;
-	[ <a href="javascript:SendReport();">违规举报</a> ]&nbsp;
-	[ <a href="javascript:window.close()">关闭窗口</a> ]
-	</center>
-	<br/>
-</div>
-<script type="text/javascript" src="{DT_STATIC}file/script/album.js"></script>
-{if $content}<script type="text/javascript" src="{DT_STATIC}file/script/content.js"></script>{/if}
-{template 'footer'}
+<!--底部 start-->
+{template 'footer-mall'}
+</body></html>
