@@ -75,12 +75,9 @@
 			jQuery("#foot_gz").hide();
 		}
 	})
-	
-
 	function getCookie(cookie_name){
 	    var allcookies = document.cookie;
 	    var cookie_pos = allcookies.indexOf(cookie_name);   //索引的长度
-	 
 	    // 如果找到了索引，就代表cookie存在，
 	    // 反之，就说明不存在。
 	    if (cookie_pos != -1)
@@ -93,7 +90,6 @@
 	        {
 	            cookie_end = allcookies.length;
 	        }
-	 
 	        var value = unescape(allcookies.substring(cookie_pos, cookie_end));         //这里就可以得到你想要的cookie的值了。。。
 	    }
 	    return value;
@@ -119,8 +115,6 @@
   <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/css/indus_top-18.01.18.css">
   <script>
 	jQuery(function(){
- 
-   
    $(function(){
 	   	  //回车触发搜索点击事件
 		  $("#searchKeyWord").keydown(function(event)
