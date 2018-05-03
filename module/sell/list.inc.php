@@ -24,20 +24,27 @@ if($cityid) {
 	$condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
 	$items = $db->count($table, $condition, $CFG['db_expires']);
 } else {
-	if($page == 1) {
-		$items = $db->count($table, $condition, $CFG['db_expires']);
-		if($items != $CAT['item']) {
-			$CAT['item'] = $items;
-			if($catid)
-			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
-		}
-	} else {
-		$items = $CAT['item'];
-	}
+//	if($page == 1) {
+//		$items = $db->count($table, $condition, $CFG['db_expires']);
+//		if($items != $CAT['item']) {
+//			$CAT['item'] = $items;
+//			if($catid)
+//			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
+//		}
+//	} else {
+//		$items = $CAT['item'];
+//	}
+    $items = $db->count($table, $condition, $CFG['db_expires']);
+    if($items != $CAT['item']) {
+        $CAT['item'] = $items;
+        if($catid)
+        $db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
+    }
 }
 $pagesize = $MOD['pagesize'];
 $offset = ($page-1)*$pagesize;
-$pages = listpages($CAT, $items, $page, $pagesize);
+//$pages = listpages($CAT, $items, $page, $pagesize);
+$pages = pages($items, $page, $pagesize);
 $tags = array();
 if($items) {
 	$result = $db->query("SELECT ".$MOD['fields']." FROM {$table} WHERE {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
