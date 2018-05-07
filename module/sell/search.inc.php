@@ -41,6 +41,18 @@ isset($order) && isset($dorder[$order]) or $order = 0;
 $order_select  = dselect($sorder, 'order', '', $order);
 $type_select = dselect($TYPE, 'typeid', $L['all_type'], $typeid);
 $tags = $PPT = array();//PPT
+
+//地区
+$sql = "select areaid,areaname from {$db->pre}area where parentid=0 order by areaid asc";
+$r = $db->query($sql);
+while ($row = $db->fetch_array($r)) {
+    $area_res[] = $row;
+}
+//配置文件
+$member_set = include DT_ROOT.'/file/setting/module-2.php';
+$com_size = explode('|', $member_set['com_size']);
+$com_type = explode('|', $member_set['com_type']);
+
 if($DT_QST) {
 	if($kw) {
 		if(strlen($kw) < $DT['min_kw'] || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');

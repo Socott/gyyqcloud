@@ -16,13 +16,11 @@
 <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/home2.css" />
 <link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/common.css" rel="stylesheet" type="text/css" />
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/jquery/jquery-1.10.2.min.js"></script>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/jquery/jquery-1.8.3.min.js"></script>
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/jquery.mScroll.js"></script> 
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/htyw_ul.js"  type="text/javascript"></script> 
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/js/global.js"></script>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/js/global.js"></script>
-<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/layer/layer.js"></script>
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/release/commodity.js"></script>
+<script src="{DT_STATIC}file/layer/layer.js"></script>
 <!-- 重庆工业云平台，云制造top页面 -->
 <div id="top_casi" >
   <!--云制造topbegin--> 
@@ -329,6 +327,7 @@
 	}
 	// 控制iframe显隐
 	function searchByClassification3(){
+		var cId;
 		var searchKeyWord=jQuery("#searchKeyWord").val().trim();
 		searchKeyWord=encodeURI(encodeURI(searchKeyWord));
 		var keyWord=$.trim($("#keyWord").val());
@@ -337,7 +336,7 @@
 		$("#capability_iframe").attr("src",'/inquiry/inquiryIframe.ht?name='+cId+'&sys_type='+sys_type+'&sys_model='+sys_model+'&sys_scale='
 				+sys_scale+'&orderField='+orderField+'&orderSeq='+orderSeq+"&isSrm="+isSrm+"&select="+searchKeyWord+"&state="+state
 				+"&keyword="+keyWord+"&province="+province + "&currentLevel=" + currentLevel);
-		addUrl();
+		//addUrl();
 	}
 	</script>
 	 

@@ -6,12 +6,14 @@
 	<div class="indusMall_proDetails">
 		<!--product display list left begin-->
 		<div id="preview">
-			<div class="jqzoom" id="spec-n1"> <img height="350" src="../../../../oby0yx23h.qnssl.com/upload/600203/600203_160129171429.jpeg_%3b%20filename_%3dutf-8%27%20%27600203_160129171429.jpeg" jqimg="https://oby0yx23h.qnssl.com//upload/600203/600203_160129171429.jpeg" width="500"> </div>
+			<div class="jqzoom" id="spec-n1"> <img height="350" src="{$albums[0]}" jqimg="https://oby0yx23h.qnssl.com//upload/600203/600203_160129171429.jpeg" width="500"> </div>
 			<div id="spec-n5">
 				<div class="control" id="spec-left"> <img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/image/left.gif"> </div>
 				<div id="spec-list">
 					<ul class="list-h" style="width: 478px; overflow: hidden;">
-						<li><img src="../../../../oby0yx23h.qnssl.com/upload/600203/600203_160129171429.jpeg_%3b%20filename_%3dutf-8%27%20%27600203_160129171429.jpeg"/></li>
+						{loop $thumbs $k $v}
+						<li><img src="{$v}"/></li>
+						{/loop}
 					</ul>
 				</div>
 				<div class="control" id="spec-right"> <img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/image/right.gif"> </div>
@@ -19,18 +21,18 @@
 		</div>
 		<!--product display list left end-->
 		<div class="proDetails_center">
-			<h2 class="proDetails_tits" title="防热隔热涂料制造及喷涂">防热隔热涂料制造及喷涂</h2>
+			<h2 class="proDetails_tits" title="{$title}">{$title}</h2>
 			<ul class="proDetails_lists">
-				<li> 价格： <span><i>面议</i></span> </li>
-				<li> 计量单位：<span class="num">kg</span> </li>
+				<li> 价格： <span><i>{if $price>0}{$price}{$DT[money_unit]}/{$unit}{else}面议{/if}</i></span> </li>
+				<li> 计量单位：<span class="num">{$unit}</span> </li>
 			</ul>
 			<p class="classify"> 能力分类：
-				制造>功能材料制备及成型<br>
+				{$res_p}<br>
 				<br/>
 			</p>
-			<div class="proDetails_service"> <a href="javascript:void(0)" class="link">在线联系</a> <a href="javascript:void(0)"  onclick="doLogin()"  class="inquiry">我要询价</a> </div>
+			<div class="proDetails_service"> <a href="javascript:void(0)" class="link">在线联系</a> <a href="javascript:void(0)"  onclick="priceQuery();"  class="inquiry">我要询价</a> </div>
 			<div class="proDetails_contact proDetails_contacts">
-				<p class="link">联系方式：<span> 153******** </span></p>
+				<p class="link">联系方式：<span> {$telephone_n} </span></p>
 				<p class="login"><a href="javascript:doLogin();">登录后查看完整信息</a></p>
 			</div>
 		</div>
@@ -38,7 +40,7 @@
 			<div class="proDetails_link">
 				<div class="proDetails_linkCon">
 					<h2 style="line-height: 162%;">企业信息</h2>
-					<h3 title="西安长峰机电研究所">西安长峰机电研究所 </h3>
+					<h3 title="{$company}">{$company}</h3>
 					<p class="authen" style="display: flex;">
 						<!-- 								   <a href="#" id='a4' style="visibility:hidden"  class="a4"></a> -->
 						<span> <a href="#" id='a1' style="display: none;"  class="a1"><img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/proDetails_link03.png" alt="" /></a> </span> <span> <a href="#" id='a2' style="display: none;" class="a2"><img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/proDetails_link04.png" alt="" /></a> </span>
@@ -47,10 +49,11 @@
 
 						<!-- 				<a href="#" id='a3' style="visibility:hidden"  class="a3">航天认证</a>  -->
 						<a class="u-a " href="http://core.casicloud.com/agreement/b2bAgreementAuthen/index.ht" target="_blank"></a> </p>
-					<p>所在地区：<span></span></p>
-					<p>注册时间：<span>2016-11-01</span></p>
-					<p>主营行业：<span>电气机械及器材制造业</span></p>
-					<p class="watch"> <a href="http://core.casicloud.com/industryMall/hall/companyHomePage.ht?companyId=600203">查看企业主页</a> </p>
+					<p>所在地区：<span>{$address}</span></p>
+					<p>注册时间：<span></span></p>
+					<p>主营行业：<span>{$company_info['business']}</span></p>
+					<!--<p class="watch"> <a href="http://core.casicloud.com/industryMall/hall/companyHomePage.ht?companyId=600203">查看企业主页</a> </p>-->
+					<p class="watch"> <a href="{$company_info['homepage']}">查看企业主页</a> </p>
 				</div>
 			</div>
 		</div>
@@ -75,5 +78,14 @@
 		</div>
 	</div>
 	<a style="widht:100%; height:140px;cursor:pointer;" id="releaseDetailAdInfo" class="adInfo"  data-adPositionId="10000089910004" data-adPlateId="2" data-typr="1"> <img alt="" src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/footer.jpg"> </a> </div>
+<script>
+	function priceQuery () {
+		layer.open({
+			type: 2,
+			content: "/sell/inquiry.php?itemid={$itemid}",
+			area: ['1000px', '800px']
+		});
+	}
+</script>
 {template 'cloudproduce/footer'}
 

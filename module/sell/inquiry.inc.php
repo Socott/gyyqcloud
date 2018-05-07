@@ -87,8 +87,11 @@ if($submit) {
 		}
 		//send sms
 	}
-	if($i == 1) $forward = $linkurl;
-	dalert(lang($L['inquiry_result'], array($i, $j)), $forward);
+	//if($i == 1) $forward = $linkurl;
+	//dalert(lang($L['inquiry_result'], array($i, $j)), $forward);
+    $msg = $j ? '提交成功' : '提交失败';
+    echo "<script>alert('{$msg}');window.parent.layer.closeAll();</script>";
+    exit;
 } else {
 	$itemid or dalert($L['inquiry_itemid'], 'goback');
 	$itemids = is_array($itemid) ? implode(',', $itemid) : $itemid;
