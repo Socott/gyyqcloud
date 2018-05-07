@@ -1,162 +1,90 @@
-<?php defined('IN_DESTOON') or exit('Access Denied');?><?php include template('header');?>
-<script type="text/javascript">var module_id= <?php echo $moduleid;?>,item_id=<?php echo $itemid;?>,content_id='content',img_max_width=<?php echo $MOD['max_width'];?>;</script>
-<div class="m">
-<div class="left_box">
-<div class="pos"><span class="f_r"><a href="<?php echo $MODULE['2']['linkurl'];?><?php echo $DT['file_my'];?>?mid=<?php echo $moduleid;?>&action=add&catid=<?php echo $catid;?>" rel="nofollow"><img src="<?php echo DT_SKIN;?>image/btn_add.gif" width="81" height="20" alt="发布信息" style="margin-top:6px;"/></a></span>当前位置: <a href="<?php echo $MODULE['1']['linkurl'];?>">首页</a> &raquo; <a href="<?php echo $MOD['linkurl'];?>"><?php echo $MOD['name'];?></a> &raquo; <?php echo cat_pos($CAT, ' &raquo; ');?> &raquo;</div>
-<div class="b10 c_b"></div>
-<table width="100%">
-<tr>
-<td width="10"> </td>
-<td>
-<table width="100%">
-<tr>
-<td colspan="3"><h1 class="title_trade" id="title"><?php echo $title;?></h1></td>
-</tr>
-<tr>
-<td width="250" valign="top">
-<div id="mid_pos"></div>
-<div id="mid_div" onmouseover="SAlbum();" onmouseout="HAlbum();" onclick="PAlbum(Dd('mid_pic'));">
-<img src="<?php echo $albums['0'];?>" width="240" height="180" id="mid_pic"/><span id="zoomer"></span>
+<?php defined('IN_DESTOON') or exit('Access Denied');?><?php include template('cloudproduce/header');?>
+<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/proDetails.css" rel="stylesheet" type="text/css">
+<!--外协能力 能力详情  begin-->
+<div class="proDetails_box">
+<div class="proDetails_intro"> 您的位置： <span><a href="../../../cosimcloud/index.html"> 首页</a>/</span> <a href="../../../cosimcloud/searchRelease.html">能力大厅</a>/ <span id="caigouClass">制造>功能材料制备及成型</span>/防热隔热涂料制造及喷涂 </div>
+<div class="indusMall_proDetails">
+<!--product display list left begin-->
+<div id="preview">
+<div class="jqzoom" id="spec-n1"> <img height="350" src="<?php echo $albums['0'];?>" jqimg="https://oby0yx23h.qnssl.com//upload/600203/600203_160129171429.jpeg" width="500"> </div>
+<div id="spec-n5">
+<div class="control" id="spec-left"> <img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/image/left.gif"> </div>
+<div id="spec-list">
+<ul class="list-h" style="width: 478px; overflow: hidden;">
+<?php if(is_array($thumbs)) { foreach($thumbs as $k => $v) { ?>
+<li><img src="<?php echo $v;?>"/></li>
+<?php } } ?>
+</ul>
 </div>
-<div class="b5"></div>
-<div>
-<?php if(is_array($thumbs)) { foreach($thumbs as $k => $v) { ?><img src="<?php echo $v;?>" width="60" height="60" onmouseover="if(this.src.indexOf('nopic60.gif')==-1)Album(<?php echo $k;?>, '<?php echo $albums[$k];?>');" class="<?php if($k) { ?>ab_im<?php } else { ?>ab_on<?php } ?>
-" id="t_<?php echo $k;?>"/><?php } } ?>
+<div class="control" id="spec-right"> <img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/image/right.gif"> </div>
 </div>
-<div class="b5"></div>
-<div onclick="PAlbum(Dd('mid_pic'));" class="c_b t_c c_p"><img src="<?php echo DT_SKIN;?>image/ico_zoom.gif" width="16" height="16" align="absmiddle"/> 点击图片查看原图</div>
-</td>
-<td width="15"> </td>
-<td valign="top">
-<div id="big_div" style="display:none;"><img src="" id="big_pic"/></div>
-<table width="100%" cellpadding="5" cellspacing="5">
-<?php if($brand) { ?>
-<tr>
-<td class="f_dblue">品牌：</td>
-<td><?php echo $brand;?></td>
-</tr>
-<?php } ?>
-<?php if($n1 && $v1) { ?>
-<tr>
-<td class="f_dblue"><?php echo $n1;?>：</td>
-<td><?php echo $v1;?></td>
-</tr>
-<?php } ?>
-<?php if($n2 && $v2) { ?>
-<tr>
-<td class="f_dblue"><?php echo $n2;?>：</td>
-<td><?php echo $v2;?></td>
-</tr>
-<?php } ?>
-<?php if($n3 && $v3) { ?>
-<tr>
-<td class="f_dblue"><?php echo $n3;?>：</td>
-<td><?php echo $v3;?></td>
-</tr>
-<?php } ?>
-<tr>
-<td class="f_dblue">单价：</td>
-<td class="f_b f_orange"><?php if($price>0) { ?><?php echo $price;?><?php echo $DT['money_unit'];?>/<?php echo $unit;?><?php } else { ?>面议<?php } ?>
-</td>
-</tr>
-<tr>
-<td class="f_dblue">起订：</td>
-<td class="f_b f_orange"><?php if($minamount) { ?><?php echo $minamount;?> <?php echo $unit;?><?php } ?>
-</td>
-</tr>
-<tr>
-<td class="f_dblue">供货总量：</td>
-<td class="f_b f_orange"><?php if($amount) { ?><?php echo $amount;?> <?php echo $unit;?><?php } ?>
-</td>
-</tr>
-<tr>
-<td class="f_dblue">发货期限：</td>
-<td>自买家付款之日起  <span class="f_b f_orange"><?php if($days) { ?><?php echo $days;?><?php } ?>
-</span> 天内发货</td>
-</tr>
-<tr>
-<td class="f_dblue">所在地：</td>
-<td><?php echo area_pos($areaid, ' ');?></td>
-</tr>
-<tr>
-<td class="f_dblue">有效期至：</td>
-<td><?php if($todate) { ?><?php echo $todate;?><?php } else { ?>长期有效<?php } ?>
-<?php if($expired) { ?> <span class="f_red">[已过期]</span><?php } ?>
-</td>
-</tr>
-<tr>
-<td class="f_dblue">最后更新：</td>
-<td><?php echo $editdate;?></td>
-</tr>
-<tr>
-<td width="80" class="f_dblue">浏览次数：</td>
-<td><span id="hits"><?php echo $hits;?></span></td>
-</tr>
-<?php if($username && !$expired) { ?>
-<tr>
-<td colspan="2">
-<?php if(SELL_ORDER && $price>0 && $minamount>0 && $amount>0 && $unit) { ?>
-<img src="<?php echo DT_SKIN;?>image/btn_tobuy.gif" alt="购买" class="c_p" onclick="Go('<?php echo $MOD['linkurl'];?><?php echo rewrite('buy.php?itemid='.$itemid);?>');"/>
-<?php } else { ?>
-<img src="<?php echo DT_SKIN;?>image/btn_inquiry.gif" alt="询价" class="c_p" onclick="Go('<?php echo $MOD['linkurl'];?><?php echo rewrite('inquiry.php?itemid='.$itemid);?>');"/>
-<?php } ?>
-</td>
-</tr>
-<?php } ?>
-</table>
-</td>
-</tr>
-</table>
-</td>
-<td width="10"> </td>
-<td width="300" valign="top">
-<div class="contact_head">公司基本资料信息</div>
-<div class="contact_body" id="contact"><?php include template('contact', 'chip');?></div>
-<?php if(!$username) { ?>
+</div>
+<!--product display list left end-->
+<div class="proDetails_center">
+<h2 class="proDetails_tits" title="<?php echo $title;?>"><?php echo $title;?></h2>
+<ul class="proDetails_lists">
+<li> 价格： <span><i><?php if($price>0) { ?><?php echo $price;?><?php echo $DT['money_unit'];?>/<?php echo $unit;?><?php } else { ?>面议<?php } ?>
+</i></span> </li>
+<li> 计量单位：<span class="num"><?php echo $unit;?></span> </li>
+</ul>
+<p class="classify"> 能力分类：
+<?php echo $res_p;?><br>
 <br/>
-&nbsp;<strong class="f_red">注意</strong>:发布人未在本站注册，建议优先选择<a href="<?php echo $MODULE['2']['linkurl'];?>grade.php"><strong><?php echo VIP;?>会员</strong></a>
-<?php } ?>
-</td>
-<td width="10"> </td>
-</tr>
-</table>
-<div class="b10">&nbsp;</div>
+</p>
+<div class="proDetails_service"> <a href="javascript:void(0)" class="link">在线联系</a> <a href="javascript:void(0)"  onclick="priceQuery();"  class="inquiry">我要询价</a> </div>
+<div class="proDetails_contact proDetails_contacts">
+<p class="link">联系方式：<span> <?php echo $telephone_n;?> </span></p>
+<p class="login"><a href="javascript:doLogin();">登录后查看完整信息</a></p>
 </div>
 </div>
-<div class="m">
-<div class="b10">&nbsp;</div>
-<div class="box_head">
-<strong>产品详细说明</strong>
-</div>
-<div class="box_body" style="padding:0;">
-<?php if($CP) { ?><?php include template('property', 'chip');?><?php } ?>
-<div class="content c_b" id="content"><?php echo $content;?></div>
-<?php include template('comment', 'chip');?>
-</div>
-</div>
-<?php if($username) { ?>
-<div class="m">
-<div class="b10">&nbsp;</div>
-<div class="box_head"><div><span class="f_r"><a href="<?php echo userurl($username, 'file=sell');?>">更多&raquo;</a></span><strong>本企业其它产品</strong></div></div>
-<div class="box_body">
-<div class="thumb" style="padding:10px;">
-<?php echo tag("moduleid=$moduleid&length=20&condition=status=3 and thumb<>'' and username='$username'&pagesize=8&order=edittime desc&width=80&height=80&cols=8&template=thumb-table");?>
+<div class="proDetails_right">
+<div class="proDetails_link">
+<div class="proDetails_linkCon">
+<h2 style="line-height: 162%;">企业信息</h2>
+<h3 title="<?php echo $company;?>"><?php echo $company;?></h3>
+<p class="authen" style="display: flex;">
+<!--    <a href="#" id='a4' style="visibility:hidden"  class="a4"></a> -->
+<span> <a href="#" id='a1' style="display: none;"  class="a1"><img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/proDetails_link03.png" alt="" /></a> </span> <span> <a href="#" id='a2' style="display: none;" class="a2"><img src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/proDetails_link04.png" alt="" /></a> </span>
+<input id="levelOrgId" type="hidden" value="600203"/>
+<a class="level3 zlrz" style="float: left;" href="http://core.casicloud.com/zone/zone/zone/qltyAuthIndex.ht" target="_blank"></a>
+<!-- <a href="#" id='a3' style="visibility:hidden"  class="a3">航天认证</a>  -->
+<a class="u-a " href="http://core.casicloud.com/agreement/b2bAgreementAuthen/index.ht" target="_blank"></a> </p>
+<p>所在地区：<span><?php echo $address;?></span></p>
+<p>注册时间：<span></span></p>
+<p>主营行业：<span><?php echo $company_info['business'];?></span></p>
+<!--<p class="watch"> <a href="http://core.casicloud.com/industryMall/hall/companyHomePage.ht?companyId=600203">查看企业主页</a> </p>-->
+<p class="watch"> <a href="<?php echo $company_info['homepage'];?>">查看企业主页</a> </p>
 </div>
 </div>
 </div>
-<?php } ?>
-<div class="m">
-<br/>
-<center>
-[ <a href="<?php echo $MOD['linkurl'];?>search.php" rel="nofollow"><?php echo $MOD['name'];?>搜索</a> ]&nbsp;
-[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;
-[ <a href="javascript:SendPage();">告诉好友</a> ]&nbsp;
-[ <a href="javascript:Print();">打印本文</a> ]&nbsp;
-[ <a href="javascript:SendReport();">违规举报</a> ]&nbsp;
-[ <a href="javascript:window.close()">关闭窗口</a> ]
-</center>
-<br/>
 </div>
-<script type="text/javascript" src="<?php echo DT_STATIC;?>file/script/album.js"></script>
-<?php if($content) { ?><script type="text/javascript" src="<?php echo DT_STATIC;?>file/script/content.js"></script><?php } ?>
-<?php include template('footer');?>
+<div class="proDetails_goods">
+<div class="details_select"> <span class="now1">能力详情<i class="details_bor"></i></span> <span>能力评价<i></i></span> <span>咨询留言<i></i></span> </div>
+<div class="details_selectCon">
+<div class="details_goods_select">
+<script type="text/plain" id="editor" style="width:100%;display:block;">
+<p>拥有多个涂料系列产品，以及专业喷涂车间，喷涂工艺成熟。</p>
+</script>
+</div>
+<div class="details_goods_select" style="display:none;"> </div>
+<div class="details_goods_select" style="display:none;">
+<div class="Btnn plbiaoqian">咨询留言</div>
+<dl class="www">
+<dt>
+<div class="masscon_b"> <a class="masscon_b1" href="javascript:doLogin()">我要留言</a> <a href="javascript:doLogin()">登录留言</a> </div>
+</dt>
+</dl>
+</div>
+</div>
+</div>
+<a style="widht:100%; height:140px;cursor:pointer;" id="releaseDetailAdInfo" class="adInfo"  data-adPositionId="10000089910004" data-adPlateId="2" data-typr="1"> <img alt="" src="http://ui.client.zomzone.com/gyyqcloud//industrialParkCloud/cocenter/pages/cloud1.0/yzz/images/footer.jpg"> </a> </div>
+<script>
+function priceQuery () {
+layer.open({
+type: 2,
+content: "/sell/inquiry.php?itemid=<?php echo $itemid;?>",
+area: ['1000px', '800px']
+});
+}
+</script>
+<?php include template('cloudproduce/footer');?>

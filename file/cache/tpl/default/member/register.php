@@ -13,11 +13,11 @@
 </meta>
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>航天云网 - 用户注册</title>
+<title>重庆工业云 - 用户注册</title>
 <meta name="keywords"
       content="工业互联网,智能制造,航天科工,先进制造业,工业4.0,工业大数据,智能工厂,智能生产,数字化工厂,中国制造2025,双创,工业服务,制造业服化,物联网,产业互联网,三哑改造,资源共享,能力协同,云制造,协同制造,MES,工业软件,智能化改造,云制造认证,云制造金融,CRP,CPDM"/>
 <meta name="description"
-      content="航天科工积极响应国家“中国制造2025”、“互联网+”、“大众创业、万众创新”等战略部署，创建了世界首批、中国首个工业互联网平台——航天云网，致力于打造“创新与创业相结合、线上与线下相结合、制造与服务相结合”新业态，为企业提供全网营销、供应链管理、智能制造解决方案、工业大数据和双创等全要素服务。"/>
+      content="航天科工积极响应国家“中国制造2025”、“互联网+”、“大众创业、万众创新”等战略部署，创建了世界首批、中国首个工业互联网平台——重庆工业云，致力于打造“创新与创业相结合、线上与线下相结合、制造与服务相结合”新业态，为企业提供全网营销、供应链管理、智能制造解决方案、工业大数据和双创等全要素服务。"/>
 <link href="http://uc.casicloud.com/resources/images/favicon.ico" rel="shortcut icon">
 <link rel="stylesheet" type="text/css" href="http://uc.casicloud.com/resources/css/cloudReset.css" />
 <link rel="stylesheet" type="text/css" href="http://uc.casicloud.com/resources/css/common.css" />
@@ -300,7 +300,7 @@ select{ height:40px; float:left; padding-left:0}
     </form>
   </div>
 </div>
-<div class="clound_footer_web" style="line-height:80px; text-align:center;"> <span>Copyright©2018航天云网,All Rights Reserved  京ICP备16012914号-12 京公网安备11010802022625</span> </div>
+<div class="clound_footer_web" style="line-height:80px; text-align:center;"> <span>Copyright©2018重庆工业云,All Rights Reserved  京ICP备16012914号-12 京公网安备11010802022625</span> </div>
 <script type="text/javascript" src="<?php echo DT_STATIC;?>file/script/guest.js"></script> 
 <script type="text/javascript">
 if(Dd('username').value == '') Dd('username').focus();

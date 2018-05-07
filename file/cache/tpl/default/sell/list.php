@@ -13,10 +13,10 @@
 <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/reset1.css"/>
 <link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/hongshanshan.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/zoneOrgInfoStartlevel.css"/>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="<?php echo DT_STATIC;?>file/layer/layer.js"></script>
+<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/jquery/jquery-1.10.2.min.js"></script>
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/js/global.js"></script>
-<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/js/layer/layer.js"></script>
-<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/js/zoneOrgInfoStartlevel.js"></script>
+<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/zoneOrgInfoStartlevel.js"></script>
 <script type="text/javascript">
     var indexUrl="http://core.casicloud.com";
     var fileCtx="https://oby0yx23h.qnssl.com/";
@@ -127,7 +127,7 @@ reger = new RegExp(content,"gm");
           <ul class="demandHall_ul">
         <li>
               <div class="demandHall_tit">
-            <div class="demandHall_titText" style="display: -webkit-inline-box;"> <a target="_blank" href="<?php echo $t['linkurl'];?>" title="<?php echo $t['title'];?>"> <?php echo $t['title'];?> </a> </div>
+            <div class="demandHall_titText" > <a target="_blank" href="<?php echo $t['linkurl'];?>" title="<?php echo $t['title'];?>"> <?php echo $t['title'];?> </a> </div>
             <div class="demandHall_icon"> </div>
             <div class="demandHall_time"> <span>发布时间：
              <?php echo timetodate($t['edittime'], 'Y-m-d');?> </span> <span>截止时间：<?php echo timetodate($t['edittime'], 'Y-m-d');?></span> </div>
@@ -162,6 +162,6 @@ reger = new RegExp(content,"gm");
   </div>
     </div>
 <input id="tenantid" type="hidden" name="tenantid" value=/>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/js/release/commodity.js"></script>
+<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/release/commodity.js"></script>
 </body>
 </html>
