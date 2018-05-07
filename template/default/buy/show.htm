@@ -247,7 +247,12 @@
 {template 'footer-mall'}
 <script type="text/javascript">
     function  offer() {
-        layer.msg(111);
+         layer.open({
+            type: 2,
+            title: '报价单',
+            area: ['893px', '600px'],
+            content: '/buy/price.php?itemid={$itemid}'
+        });
     }
 </script>
 </body>

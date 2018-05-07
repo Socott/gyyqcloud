@@ -3,6 +3,9 @@
 	    <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/css/new_search2810.css"  id="search_css"/>
 		<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/js/search.js"></script>
 	    <script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/js/jquery.qrcode.min.js"></script>
+    <link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{DT_STATIC}file/layer/layer.js"></script>
+    <script>
 	    <script type="text/javascript">
 	        function search() {
 	            var key = $('#key').val().trim();
@@ -246,7 +249,7 @@
                                                 <div><span class="company_famous" title="名企认证"></span></div><div><span class="company_cert" title="实名认证"></span></div></div>
                                         </div>
                                         <div class="unit_bottom">
-                                            <a href="#" target="_blank" onclick="Go('{$MOD[linkurl]}{rewrite('price.php?itemid='.$t[itemid])}');">立即报价</a>
+                                            <a href="#" value="{$t[itemid]}" onclick="offer(this);">立即报价</a>
                                         </div>
                                     </div>
                       </div>
@@ -351,6 +354,17 @@
     </div>
     <div class="wrapper clearfix">
         <script type="text/javascript">
+            //报价
+            function  offer(that) {
+                var itemid = $(that).attr("value");
+                layer.open({
+                    type: 2,
+                    title: '报价单',
+                    area: ['893px', '600px'],
+                    content: '/buy/price.php?itemid='+itemid
+                });
+            }
+
             function pastDemandSearch() {
                 if ($('#past_demand_search').prop('checked')) {
                     window.location.href = window.location.href.setQuery('expired', '1').setQuery('page', null);
