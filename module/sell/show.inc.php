@@ -12,6 +12,23 @@ if($item && $item['status'] > 2) {
 	include load('404.inc');
 }
 $CAT = get_cat($catid);
+
+//层级分类
+$sql = "select catname from {$db->pre}category where catid in({$CAT['arrparentid']}) order by catid asc";
+$r = $db->query($sql);
+while ($row = $db->fetch_array($r)) {
+    $res_p[] = $row['catname'];
+}
+$res_p[] = $CAT['catname'];
+$res_p = implode('>', $res_p);
+
+//联系方式
+$telephone_n = preg_replace('/\d{8}$/', '********', $telephone);
+
+//公司信息
+$sql = "select * from {$db->pre}company where username='{$username}'";
+$company_info = $db->get_one($sql);
+
 if(!check_group($_groupid, $CAT['group_show'])) include load('403.inc');
 $content_table = content_table($moduleid, $itemid, $MOD['split'], $table_data);
 $t = $db->get_one("SELECT content FROM {$content_table} WHERE itemid=$itemid");

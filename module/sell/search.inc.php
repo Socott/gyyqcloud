@@ -41,6 +41,18 @@ isset($order) && isset($dorder[$order]) or $order = 0;
 $order_select  = dselect($sorder, 'order', '', $order);
 $type_select = dselect($TYPE, 'typeid', $L['all_type'], $typeid);
 $tags = $PPT = array();//PPT
+
+//地区
+$sql = "select areaid,areaname from {$db->pre}area where parentid=0 order by areaid asc";
+$r = $db->query($sql);
+while ($row = $db->fetch_array($r)) {
+    $area_res[] = $row;
+}
+//配置文件
+$member_set = include DT_ROOT.'/file/setting/module-2.php';
+$com_size = explode('|', $member_set['com_size']);
+$com_type = explode('|', $member_set['com_type']);
+
 if($DT_QST) {
 	if($kw) {
 		if(strlen($kw) < $DT['min_kw'] || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');
@@ -68,59 +80,59 @@ if($DT_QST) {
 		}
 	}
 
-	$fds = $MOD['fields'];
-	$condition = '';
-	if($catid) $condition .= $CAT['child'] ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
-	if($areaid) $condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
-	if($thumb) $condition .= " AND thumb<>''";
-	if($vip) $condition .= " AND vip>0";
-	if($price) $condition .= " AND price>0 AND unit<>''";
-	if($minprice)  $condition .= " AND price>=$minprice";
-	if($maxprice)  $condition .= " AND price<=$maxprice";
-	if($typeid != 99) $condition .= " AND typeid=$typeid";
-	if($fromtime) $condition .= " AND edittime>=$fromtime";
-	if($totime) $condition .= " AND edittime<=$totime";
-	if($dfields[$fields] == 'content') {
-		if($keyword && $MOD['fulltext'] == 1) $condition .= " AND $dfields[$fields] LIKE '%$keyword%'";
-		$condition = str_replace('AND ', 'AND i.', $condition);
-		$condition = str_replace('i.content', 'd.content', $condition);
-		$condition = "i.status=3 AND i.itemid=d.itemid".$condition;
-		if($keyword && $MOD['fulltext'] == 2) $condition .= " AND MATCH(`content`) AGAINST('$kw'".(preg_match("/[+-<>()~*]/", $kw) ? ' IN BOOLEAN MODE' : '').")";
-		$table = $table.' i,'.$table_data.' d';
-		$fds = 'i.'.str_replace(',', ',i.', $fds);
-	} else {
-		if($keyword) $condition .= " AND $dfields[$fields] LIKE '%$keyword%'";
-		if($pptsql) $condition .= $pptsql;//PPT
-		$condition = "status=3".$condition;
-	}
-	$pagesize = $MOD['pagesize'];
-	$offset = ($page-1)*$pagesize;
-	$items = $db->count($table, $condition, $DT['cache_search']);
-	$pages = pages($items, $page, $pagesize);
-	if($items) {
-		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
-		$result = $db->query("SELECT $fds FROM {$table} WHERE {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
-		if($kw) {
-			$replacef = explode(' ', $kw);
-			$replacet = array_map('highlight', $replacef);
-		}
-		while($r = $db->fetch_array($result)) {
-			$r['adddate'] = timetodate($r['addtime'], 5);
-			$r['editdate'] = timetodate($r['edittime'], 5);
-			if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
-			$r['alt'] = $r['title'];
-			$r['title'] = set_style($r['title'], $r['style']);
-			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);
-			if($kw) $r['introduce'] = str_replace($replacef, $replacet, $r['introduce']);
-			$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
-			$tags[] = $r;
-		}
-		$db->free_result($result);
-		if($page == 1 && $kw) keyword($kw, $items, $moduleid);
-	}
+//	$fds = $MOD['fields'];
+//	$condition = '';
+//	if($catid) $condition .= $CAT['child'] ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+//	if($areaid) $condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
+//	if($thumb) $condition .= " AND thumb<>''";
+//	if($vip) $condition .= " AND vip>0";
+//	if($price) $condition .= " AND price>0 AND unit<>''";
+//	if($minprice)  $condition .= " AND price>=$minprice";
+//	if($maxprice)  $condition .= " AND price<=$maxprice";
+//	if($typeid != 99) $condition .= " AND typeid=$typeid";
+//	if($fromtime) $condition .= " AND edittime>=$fromtime";
+//	if($totime) $condition .= " AND edittime<=$totime";
+//	if($dfields[$fields] == 'content') {
+//		if($keyword && $MOD['fulltext'] == 1) $condition .= " AND $dfields[$fields] LIKE '%$keyword%'";
+//		$condition = str_replace('AND ', 'AND i.', $condition);
+//		$condition = str_replace('i.content', 'd.content', $condition);
+//		$condition = "i.status=3 AND i.itemid=d.itemid".$condition;
+//		if($keyword && $MOD['fulltext'] == 2) $condition .= " AND MATCH(`content`) AGAINST('$kw'".(preg_match("/[+-<>()~*]/", $kw) ? ' IN BOOLEAN MODE' : '').")";
+//		$table = $table.' i,'.$table_data.' d';
+//		$fds = 'i.'.str_replace(',', ',i.', $fds);
+//	} else {
+//		if($keyword) $condition .= " AND $dfields[$fields] LIKE '%$keyword%'";
+//		if($pptsql) $condition .= $pptsql;//PPT
+//		$condition = "status=3".$condition;
+//	}
+//	$pagesize = $MOD['pagesize'];
+//	$offset = ($page-1)*$pagesize;
+//	$items = $db->count($table, $condition, $DT['cache_search']);
+//	$pages = pages($items, $page, $pagesize);
+//	if($items) {
+//		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
+//		$result = $db->query("SELECT $fds FROM {$table} WHERE {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
+//		if($kw) {
+//			$replacef = explode(' ', $kw);
+//			$replacet = array_map('highlight', $replacef);
+//		}
+//		while($r = $db->fetch_array($result)) {
+//			$r['adddate'] = timetodate($r['addtime'], 5);
+//			$r['editdate'] = timetodate($r['edittime'], 5);
+//			if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+//			$r['alt'] = $r['title'];
+//			$r['title'] = set_style($r['title'], $r['style']);
+//			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);
+//			if($kw) $r['introduce'] = str_replace($replacef, $replacet, $r['introduce']);
+//			$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
+//			$tags[] = $r;
+//		}
+//		$db->free_result($result);
+//		if($page == 1 && $kw) keyword($kw, $items, $moduleid);
+//	}
 }
-$showpage = 1;
-$datetype = 5;
+//$showpage = 1;
+//$datetype = 5;
 $seo_file = 'search';
 include DT_ROOT.'/include/seo.inc.php';
 if($EXT['mobile_enable']) $head_mobile = $EXT['mobile_url'].($kw ? 'index.php?moduleid='.$moduleid.'&kw='.encrypt($kw, DT_KEY.'KW') : 'search.php?action=mod'.$moduleid);

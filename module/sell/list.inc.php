@@ -15,7 +15,54 @@ if($MOD['cat_property'] && $CAT['property']) {
 unset($CAT['moduleid']);
 extract($CAT);
 $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
+
 $condition = 'status=3';
+//星级
+if ($vip) $condition .= " AND vip=$vip";
+//分类
+if ($typeid && $typeid != '-1') $condition .= " AND typeid=$typeid";
+//搜索
+$input = trim($input);
+if ($input) $condition .= " and (locate('{$input}',company) or locate('{$input}',title))";
+
+$c_condition = '1';
+//公司类型
+if ($type && $type != '全部') {
+    $type = rtrim($type, ',');
+    $type = str_replace(',', "','", $type);
+    $c_condition .= " and type in('$type')";
+}
+//公司规模
+if ($size && $size != '全部') {
+    $size = rtrim($size, ',');
+    $size = str_replace(',', "','", $size);
+    $c_condition .= " and size in('$size')";
+}
+//所在地区
+if ($area) {
+    $sql = "select arrchildid from {$db->pre}area where areaid={$area}";
+    $r = $db->get_one($sql);
+    if ($r) $condition .= " and areaid in({$r})";
+}
+
+if ($c_condition != '1') {
+    $sql = "select username from {$db->pre}company where $c_condition";
+    $r = $db->query($sql);
+    while ($row = $db->fetch_array($r)) {
+        $res[] = $row['username'];
+    }
+
+    $res = implode("','", $res);
+    $condition .= " and username in('$res')";
+}
+
+//时间排序
+$createTimeOrder = $endtimeOrder = 'desc';
+
+if ($create_time) $createTimeOrder = $create_time;
+if ($endtime) $endtimeOrder = $endtime;
+$orderby = "editdate $createTimeOrder";
+
 if($catid)
 $condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
 if($cityid) {
@@ -24,23 +71,30 @@ if($cityid) {
 	$condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
 	$items = $db->count($table, $condition, $CFG['db_expires']);
 } else {
-	if($page == 1) {
-		$items = $db->count($table, $condition, $CFG['db_expires']);
-		if($items != $CAT['item']) {
-			$CAT['item'] = $items;
-			if($catid)
-			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
-		}
-	} else {
-		$items = $CAT['item'];
-	}
+//	if($page == 1) {
+//		$items = $db->count($table, $condition, $CFG['db_expires']);
+//		if($items != $CAT['item']) {
+//			$CAT['item'] = $items;
+//			if($catid)
+//			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
+//		}
+//	} else {
+//		$items = $CAT['item'];
+//	}
+    $items = $db->count($table, $condition, $CFG['db_expires']);
+    if($items != $CAT['item']) {
+        $CAT['item'] = $items;
+        if($catid)
+        $db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
+    }
 }
 $pagesize = $MOD['pagesize'];
 $offset = ($page-1)*$pagesize;
-$pages = listpages($CAT, $items, $page, $pagesize);
+//$pages = listpages($CAT, $items, $page, $pagesize);
+$pages = pages($items, $page, $pagesize);
 $tags = array();
 if($items) {
-	$result = $db->query("SELECT ".$MOD['fields']." FROM {$table} WHERE {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+	$result = $db->query("SELECT ".$MOD['fields']." FROM {$table} WHERE {$condition} ORDER BY ".$orderby." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);

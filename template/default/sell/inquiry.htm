@@ -1,6 +1,85 @@
-{template 'header'}
+<!DOCTYPE html>
+<html>
+<body style="padding-top: 0;"></body>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+	<style>
+
+		.m{ width:1200px; background-color:#FFF;margin-top:10px;}
+		.m_l_1 {width:890px; background-color:#FFF; margin-bottom:20px;}
+		.f_l{margin-bottom:20px;}
+		.m_r_1{ width:300px;}
+		.footer{clear:both}
+		.report{border:1px  solid #CCC;}
+		.report td{ font-size:14px; height:40px;padding:5px;background:#FFF;}
+		td input[type="text"],td input[type="password"],td select{ border:1px solid #CCC; padding-left:3px; height:30px;}
+		td {
+			padding: 5px !important;
+		}
+		.submit {
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			background: #ed6e00 !important;
+			color: #fff;
+			text-align: center;
+			font-size: 18px;
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+	<meta charset="utf-8">
+	<title>{if $seo_title}{$seo_title}{else}{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}{if $city_sitename}{$city_sitename}{else}{$DT[sitename]}{/if}{/if}</title>
+	{if $head_keywords}
+	<meta name="keywords" content="{$head_keywords}"/>
+	{/if}
+	{if $head_description}
+	<meta name="description" content="{$head_description}"/>
+	{/if}
+	{if $head_mobile}
+	<meta http-equiv="mobile-agent" content="format=html5;url={$head_mobile}">
+	{/if}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="{DT_STATIC}favicon.ico"/>
+	<link rel="bookmark" type="image/x-icon" href="{DT_STATIC}favicon.ico"/>
+	{if $head_canonical}
+	<link rel="canonical" href="{$head_canonical}"/>
+	{/if}
+	<link href="http://r.longygo.com/v1/css/base.css" type="text/css" rel="stylesheet" />
+	<link href="http://r.longygo.com/v1/css/common0816.css" type="text/css" rel="stylesheet" />
+	<link href="http://r.longygo.com/v1/css/index7560.css" type="text/css" rel="stylesheet" />
+	<!--{php if($moduleid==1){}-->
+	<link href="http://r.longygo.com/v1/css/gather.css" type="text/css" rel="stylesheet" />
+	<style type="text/css">
+		.notice .notice_bd {padding: 10px;height: 150px;overflow: hidden;}
+		.qy_data li{width: 33%;border-right: 1px solid #ddd;float: left;height: 96px;margin-top: 10px;}
+		.service li {float: left;width: 110px;margin: 15px 0 0 5px;}
+	</style>
+	<!--{php }}-->
+	<!--主导航栏开始-->
+	<style type="text/css">
+		.navCur {background: #ff500b none repeat scroll 0 0;}
+	</style>
+	<!--{php if($moduleid>1){}-->
+	<style type="text/css">
+		.main_nav .nav_r{ width:100%;}
+	</style>
+	<!--{php }}-->
+
+	{if !DT_DEBUG}<script type="text/javascript">window.onerror=function(){return true;}</script>{/if}
+	<script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
+	<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+	<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+	<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+	<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
+	{if $lazy}<script type="text/javascript" src="{DT_STATIC}file/script/jquery.lazyload.js"></script>{/if}
+	{if $JS}
+	{loop $JS $js}
+	<script type="text/javascript" src="{DT_STATIC}file/script/{$js}.js"></script>
+	{/loop}
+	{/if}
+</head>
 <div class="m">
-	<div class="nav">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a>{if $total==1} &raquo; <a href="{$MOD[linkurl]}{$list[0][linkurl]}">{$list[0][title]}</a>{/if} &raquo; 询价单</div>
 	<form method="post" action="{$MOD[linkurl]}inquiry.php" id="dform" onsubmit="return check();">
 	<input type="hidden" name="forward" value="{$forward}"/>
 	<input type="hidden" name="itemids" value="{$itemids}"/>
@@ -151,7 +230,7 @@
 	{/if}
 	<tr>
 	<td bgcolor="#F7F7F7"> </td>
-	<td bgcolor="#FFFFFF"><input type="submit" name="submit" value=" 发送{if $total==1}询价{else}批量询价{/if} "/>
+	<td bgcolor="#FFFFFF"><input type="submit" name="submit" class="submit" value=" 发送询价 "/>
 
 	{if $MG[inquiry_limit]}
 	&nbsp;&nbsp;&nbsp;今日可询价 <span class="f_b f_red">{$MG[inquiry_limit]}</span> 次
@@ -164,6 +243,7 @@
 	</table>
 	</form>
 </div>
+<div style="margin-bottom: 100px;"></div>
 {if !$_userid}<script type="text/javascript" src="{DT_STATIC}file/script/guest.js"></script>{/if}
 <script type="text/javascript">
 function check() {
@@ -171,8 +251,8 @@ function check() {
 	var f;
 	f = 'title';
 	l = Dd(f).value.length;
-	if(l < 5 || l > 50) {
-		Dmsg('标题应为5-50字，当前已输入'+l+'字', f);
+	if(l < 5 || l > 60) {
+		Dmsg('标题应为5-60字，当前已输入'+l+'字', f);
 		return false;
 	}
 	f = 'content';
@@ -221,4 +301,5 @@ function check() {
 	{/if}
 }
 </script>
-{template 'footer'}
+</body>
+</html>
