@@ -1,4 +1,9 @@
-{template 'header'}
+<script type="text/javascript" src="{DT_STATIC}lang/zh-cn/lang.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{DT_STATIC}file/layer/layer.js"></script>
 <div class="m">
 	<div class="nav">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; <a href="{$linkurl}">{$item[title]}</a> &raquo; 报价单</div>
 	<form method="post" action="{$MOD[linkurl]}price.php" id="dform" onsubmit="return check();">
@@ -141,7 +146,7 @@
 	<tr>
 	<td bgcolor="#F7F7F7"></td>
 	<td bgcolor="#FFFFFF">
-	<input type="submit" name="submit" value=" 发送报价 "/>
+	<input type="submit" onsubmit="check()" name="submit" value=" 发送报价 "/>
 
 	{if $MG[price_limit]}
 	&nbsp;&nbsp;&nbsp;今日可报价 <span class="f_b f_red">{$MG[price_limit]}</span> 次
@@ -156,6 +161,7 @@
 </div>
 {if !$_userid}<script type="text/javascript" src="{DT_STATIC}file/script/guest.js"></script>{/if}
 <script type="text/javascript">
+
 function check() {
 	var l;
 	var f;
@@ -209,6 +215,7 @@ function check() {
 		return false;
 	}
 	{/if}
-}
+
+
+    }
 </script>
-{template 'footer'}

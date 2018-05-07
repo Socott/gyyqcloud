@@ -1,1 +1,1 @@
-var DTPath = "http://127.0.0.1/";var SKPath = "http://127.0.0.1/skin/default/";var MEPath = "http://127.0.0.1/member/";var DTEditor = "fckeditor";var CKDomain = "";var CKPath = "/";var CKPrex = "ckm_";
+var DTPath = "http://www.gyyqcloud.com/";var SKPath = "http://www.gyyqcloud.com/skin/default/";var MEPath = "http://www.gyyqcloud.com/member/";var DTEditor = "fckeditor";var CKDomain = "";var CKPath = "/";var CKPrex = "ckm_";

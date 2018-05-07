@@ -87,12 +87,17 @@ if($submit) {
 			}
 		}
 	}
+	echo "<script>setTimeout(function(){
+        window.parent.layer.closeAll()
+        },1000);
+        </script>";
 	//send sms
 	if(send_message($item['username'], $title, $message, 2, $_username)) {
-		message($L['msg_price_success'], $linkurl);
+		message($L['msg_price_success']);
 	} else {
-		message($_userid ? $L['msg_price_member_failed'] : $L['msg_price_guest_failed'], $linkurl);
+		message($_userid ? $L['msg_price_member_failed'] : $L['msg_price_guest_failed']);
 	}
+
 } else {	
 	$iask = explode('|', trim($MOD['price_ask']));
 	$date = timetodate($DT_TIME + 5*86400, 3);

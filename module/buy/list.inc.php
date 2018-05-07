@@ -17,9 +17,69 @@ unset($CAT['moduleid']);
 extract($CAT);
 $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
 $condition = 'status=3';
-if($catid)
-$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+if($type && !$mode){//企业类型时;
+    global $db;
+    $r = $db -> query("select company from {$db->pre}company where type='$type'");
+    while($rs = $db->fetch_array($r)){
+        $companys[] = $rs;
+    }
+    foreach ($companys as $v){
+        $company .= ",'".$v['company']."'";
+    }
+    $company = substr($company,1);
+    $condition .= " AND company IN ($company)";
+}
+//经营方式
+if($mode && !$type){
+    $r = $db -> query("select company from {$db->pre}company where mode='$mode'");
+    while($rs = $db->fetch_array($r)){
+        $companys[] = $rs;
+    }
+    foreach ($companys as $v){
+        $company .= ",'".$v['company']."'";
+    }
+    $company = substr($company,1);
+    $condition .= " AND company IN ($company)";
+}
+if($type && $mode){
+    $r = $db -> query("select company from {$db->pre}company where mode='$mode'");
+    while($rs = $db->fetch_array($r)){
+        $companys[] = $rs;
+    }
+    foreach ($companys as $v){
+        $company .= ",'".$v['company']."'";
+    }
+    $r = $db -> query("select company from {$db->pre}company where mode='$mode'");
+    while($rs = $db->fetch_array($r)){
+        $companyss[] = $rs;
+    }
+    foreach ($companyss as $v){
+        $company .= ",'".$v['company']."'";
+    }
+    $company = substr($company,1);
+    $condition .= " AND company IN ($company)";
+}
+//分类
+if($catid) {$condition .= $CAT['child'] ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";}
 
+//企业规模
+if($size){
+    $r = $db -> query("select company from {$db->pre}company where size='$size'");
+    while($rs = $db->fetch_array($r)){
+        $companys[] = $rs;
+    }
+    foreach ($companys as $v){
+        $company .= ",'".$v['company']."'";
+    }
+    $company = substr($company,1);
+    $condition .= " AND company IN ($company)";
+}
+
+if($order){
+    $MOD['order'] = "addtime $order";
+}
+
+$cityid = $areaid;
 if($cityid) {
 	$areaid = $cityid;
 	$ARE = $AREA[$cityid];
@@ -43,9 +103,10 @@ $pagesize = $MOD['pagesize'];
 $offset = ($page-1)*$pagesize;
 $pages = listpages($CAT, $items, $page, $pagesize);
 $tags = array();
-//if($items) 
 
-{
+//if($items)
+
+//{
 	$result = $db->query("SELECT * FROM {$table} WHERE {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
@@ -56,8 +117,9 @@ $tags = array();
 		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
 		$tags[] = $r;
 	}
+
 	$db->free_result($result);
-}
+//}
 
 $showpage = 1;
 $datetype = 5;

@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('IN_DESTOON') or exit('Access Denied');
 if($DT_BOT || $_POST) dhttp(403);
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
@@ -29,6 +29,40 @@ $category_select = ajax_category_select('catid', $L['all_category'], $catid, $mo
 $area_select = ajax_area_select('areaid', $L['all_area'], $areaid);
 $order_select  = dselect($sorder, 'order', '', $order);
 $type_select = dselect($TYPE, 'typeid', $L['all_type'], $typeid);
+
+//所有分类
+$rs = $db -> query("select catname,catid from {$db->pre}category where moduleid=$moduleid and parentid=0 ");
+while ($r = $db->fetch_array($rs)){
+    $category[] = $r;
+}
+//地区
+$rs = $db -> query("select areaid,areaname from {$db->pre}area where parentid=0");
+while ($r = $db->fetch_array($rs)){
+    $area[] = $r;
+}
+//企业类型
+$rs = $db -> query("select distinct type from {$db->pre}company ");
+while ($r = $db->fetch_array($rs)){
+    if($r['type']){//去除空
+        $type[] = $r;
+    }
+}
+//经营模式
+$rs = $db -> query("select distinct mode from {$db->pre}company ");
+while ($r = $db->fetch_array($rs)){
+    if($r['mode']){//去除空
+        $l = explode(",",$r['mode']);
+        if(count($l) >1){
+            //...
+        }else{
+            $mode[] = $r;
+        }
+
+    }
+}
+
+
+
 $tags = array();
 if($DT_QST) {
 	if($kw) {
@@ -56,15 +90,17 @@ if($DT_QST) {
 			}
 		}
 	}
+
 	$fds = $MOD['fields'];
 	$condition = '';
-	if($catid) $condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+	if($catid) {$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";}
 	if($areaid) $condition .= ($ARE['child']) ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
 	if($thumb) $condition .= " AND thumb<>''";
 	if($vip) $condition .= " AND vip>0";
 	if($typeid != 99) $condition .= " AND typeid=$typeid";
 	if($fromtime) $condition .= " AND edittime>=$fromtime";
 	if($totime) $condition .= " AND edittime<=$totime";
+
 	if($dfields[$fields] == 'content') {
 		if($keyword && $MOD['fulltext'] == 1) $condition .= " AND $dfields[$fields] LIKE '%$keyword%'";
 		$condition = str_replace('AND ', 'AND i.', $condition);
@@ -103,7 +139,7 @@ if($DT_QST) {
 			$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
 			$tags[] = $r;
 		}
-		
+
 		$db->free_result($result);
 		if($page == 1 && $kw) keyword($kw, $items, $moduleid);
 	}
