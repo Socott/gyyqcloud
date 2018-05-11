@@ -56,7 +56,7 @@
 	<script type="text/javascript">
 	$(function(){
 		$(".bwIndex_apply", parent.document).find("div[class=showNum]").find("span").text("45");
-		$(".pagination").append("<div style='display: inline-block;margin-left: 10px;'><span>共计45条</span></div>");
+		$(".pagination").append("<div style='display: inline-block;margin-left: 10px;'><span>共计{$items}条</span></div>");
 		$(".item-commodity .text h2 a").each(function(){
         	var content = $("#searchKeyWord", parent.document).val().trim();
         	var bodyHtml = $(this).html().trim();
@@ -98,11 +98,11 @@
     
           <!-- 分页bar 开始-->
           
-        <div class="sj1210_fenye" style="width:100%">
+        <div class="sj1210_fenye" style="width:100%;height: 50px;">
         <div class="digg">
               <div class="page">
             <div class="pagination">
-             <div class="pages">{$pages}</div> 
+             <div class="pages">{$pages}</div>
             </div>
       </div>
           

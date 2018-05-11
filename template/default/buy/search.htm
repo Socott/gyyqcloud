@@ -5,17 +5,32 @@
     <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
     <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/popup7.css"/>
 	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/reset7.css"/>
+<style>
+    i{
+        background-color:#fff !important;
+    }
+</style>
 		<!--头部 end-->
-		<input type="hidden" id="classification">
-		<input type="hidden" id="industryids">
+    <form id="form" action="/buy/list.php" method="post" target="proIfram">
+        <!--企业分类-->
+		<input type="hidden" id="classifications" name="classification">
 		<!-- 企业类型 -->
-	    <input type="hidden" id="sys_type">
-	    <!-- 经营类型 -->
-	    <input type="hidden" id="sys_model">
+        <input type="hidden" id="classTypes" name="classType">
+	    <!-- 经营方式 -->
+	    <input type="hidden" id="classModes" name="classMode">
 	    <!-- 企业规模 -->
-	    <input type="hidden" id="sys_scale">
-	    
-	    <input type="hidden" id="isSrm">
+        <input type="hidden" id="classSizes" name="classSize">
+        <!-- 大客户认证 -->
+	    <input type="hidden" id="srm" name="srm">
+        <!--发布时间排序-->
+        <input type="hidden" id="order" name="order">
+        <!--所在地区-->
+        <input type="hidden" id="areaid" name="areaid">
+        <!--VIP-->
+        <input type="hidden" id="vip" name="vip" >
+        <!--是否实名-->
+        <input type="hidden" id="truename" name="truename" >
+
 		<!--主体内容 start-->
 		
 		<!--面包屑 start-->
@@ -36,38 +51,36 @@
                 </div>
                 <div class="classification-list">
 
-                    <div class="item i1 feilei">
+                    <div class="item i6 ">
                         <span class="fenlei">分类：</span>
                         <div class="text">
                             <div class="text-box" id="classBox">
-                                <a href="{DT_STATIC}list.php?catid=0" onclick="searchByClassification(this)" class="classification now">全部</a>                                            {loop $category  $v}
-                                 <a value="{$v[catid]}" onclick="searchByClassification(this)" href="{DT_STATIC}list.php?catid={$v[catid]}" class="classification">{$v[catname]}</a>
+                                <a href="#" value="-1" class="classification now">全部</a>
+                                {loop $category  $v}
+                                <a class="classification" href="#" value="{$v[catid]}">{$v[catname]}</a>
                                 {/loop}
                             </div>
                             <div class="but">
-                                <a href="javascript:void(0);" class="submit">确定</a>
+                                <a href="#" class="submit fenlei">确定</a>
                                 <a href="#" class="onoff">开启多选</a>
                             </div>
                         </div>
-
-                        <a class="button1" href="#">多选</a>
+                        <a href="#" class="button1">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
                     </div>
-
                     <div class="item i3">
                         <span>企业类型：</span>
                         <div class="text">
-                            <div class="text-box">
-                            	<a onclick="changeType(this);" value="0" class="now">全部</a>
-                                {loop $type $v}
-                                <a onclick="changeType(this);" value="{$v[type]}">{$v[type]}</a>
+                            <div class="text-box" id="classType">
+                            	<a  value="0" class="classType now">全部</a>
+                                {loop $com_type $k $v}
+                                <a class="classType" href="#" option="{$k}">{$v}</a>
                                 {/loop}
                             </div>
-
                             <div class="but">
-                                <a href="javascript:void(0);" class="submit">确定</a>
+                                <a href="javascript:void(0);" class="submit type">确定</a>
                                 <a href="#" class="onoff">开启多选</a>
                             </div>
                         </div>
@@ -77,32 +90,18 @@
                         </a>
 
                     </div>
-                    <!-- <div class="item i4">
-                        <span>认证：</span>
-                        <div class="text">
-                            <div class="text-box">
-                                <a href="#">认证</a>
-                                <a href="#">未认证</a>
-                            </div>
-                            <div class="but">
-                                <a href="#" class="submit">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
-                        </div>
-                        <a href="#" class="button1">多选</a>
 
-                    </div> -->
                     <div class="item i5">
                         <span>经营方式：</span>
                         <div class="text">
-                            <div class="text-box">
-                            	<a href="#" value="0" onclick="changeMode(this);" class="now">全部</a>
-                                {loop $mode $v}
-                                <a href="#" value="{$v[mode]}" onclick="changeMode(this);">{$v[mode]}</a>
+                            <div class="text-box" id="classMode">
+                                <a href="#"  class="mode now">全部</a>
+                                {loop $mode  $v}
+                                <a href="#" class="classMode">{$v[mode]}</a>
                                 {/loop}
                             </div>
                             <div class="but">
-                                <a href="#" class="submit">确定</a>
+                                <a href="#" class="submit mode">确定</a>
                                 <a href="#" class="onoff">开启多选</a>
                             </div>
                         </div>
@@ -112,20 +111,14 @@
                     <div class="item i6">
                         <span>企业规模：</span>
                         <div class="text">
-                            <div class="text-box">
-                                <a class="a now"  value="0" >全部</a>
-                                <a value="5人以下" class="a">5人以下</a>
-                                <a value="5-10人" class="a">5-10人</a>
-                                <a value="11-50人" class="a">11-50人</a>
-                                <a value="101-200人" class="a">51-100人</a>
-                                <a value="101-200人" class="a">101-200人</a>
-                                <a value="201-300人" class="a">201-300人</a>
-                                <a value="301-500人" class="a">301-500人</a>
-                                <a value="501-1000人" class="a">501-1000人</a>
-                                <a value="1000人以上" class="a">1000人以上</a>
+                            <div class="text-box" id="classSize">
+                                <a class="classSize now"  value="0" >全部</a>
+                               {loop $com_size $v}
+                                <a href="#"  class="classSize">{$v}</a>
+                                {/loop}
                             </div>
                             <div class="but">
-                                <a href="#" class="submit">确定</a>
+                                <a href="#" class="submit size">确定</a>
                                 <a href="#" class="onoff">开启多选</a>
                             </div>
                         </div>
@@ -141,9 +134,9 @@
                     <div class="item i7">
                         <span>大客户认证：</span>
                         <div class="text">
-                            <div class="text-box">
-                            	<a href="#" class="now">全部</a>
-                                <a href="javascript:;">航天晨光srm</a>
+                            <div class="text-box" id="customer">
+                            	<a href="#" class="customer now">全部</a>
+                                <a href="javascript:;" class="customer">航天晨光srm</a>
                              
                             </div>
                         </div>
@@ -159,46 +152,47 @@
                     <div class="div1">
                         <a href="javascript:void(0)" id="sumUp" class="a1" onclick="clearorder()">综合</a>
                         <a href="javascript:void(0)" class="a2" onclick="changeorder('createTime',this)"  value="asc"/>发布时间↓</a>
-                        <a href="javascript:void(0)" class="a3" onclick="changeorder('endtime',this)" value="asc">截止时间↓</a> 
+                       <!-- <a href="javascript:void(0)" class="a3" onclick="changeorder('endtime',this)" value="asc">截止时间↓</a> -->
                         <!--  <a href="javascript:void(0)" class="a4" onclick="changeorder('a.searchCount',this)" value="asc">热度↓</a> -->
-                        <input name="shiming" id="shiming" class="a4" autocomplete="off" type="checkbox" onClick="certification(this);">实名认证</input>
+                        <input name="shiming" id="shiming" class="a4" autocomplete="off" type="checkbox" >实名认证</input>
                         <!--suntao add city filter begin-->
                         <a class="allZone">
                             <span>所在地区</span>
                             <div class="zoneFilter">
-                                <p onclick="searchByZoneFilter(this)" value="0">所有地区</p>
+                                <p   ><span class="area" value="0">所有地区</span></p>
                                 <ul class="zonefilterList">
-
                                     {loop $area $v}
-                                    <li class="area" onclick="searchByZoneFilter(this)" value="{$v[areaid]}">{$v[areaname]}</li>
+                                    <li class="area"  value="{$v[areaid]}">{$v[areaname]}</li>
                                     {/loop}
                                 </ul>
                             </div>     
                         </a>
 						<!--suntao add city filter begin-->
 						<!-- select star begin -->
-						<a class="allStar">
+				<!--		<a class="allStar">
                             <span>质量认证</span>
-                            <div class="starFilter">
+                            <div class="starFilter" style="height: 190px;!important;">
                                 <ul class="starfilterList">
-                                    <li onclick="selectStar(this)" value="1">一星级</li>
-                                    <li onclick="selectStar(this)" value="2">二星级</li>
-                                    <li onclick="selectStar(this)" value="3">三星级</li>
-                                    <li onclick="selectStar(this)" value="4">四星级</li>
-                                    <li onclick="selectStar(this)" value="5">五星级</li>
+                                    <li onclick="selectVip(this)" value="1">一星级</li>
+                                    <li onclick="selectVip(this)" value="2">二星级</li>
+                                    <li onclick="selectVip(this)" value="3">三星级</li>
+                                    <li onclick="selectVip(this)" value="4">四星级</li>
+                                    <li onclick="selectVip(this)" value="5">五星级</li>
+                                    <li onclick="selectVip(this)" value="0">质量认证</li>
                                 </ul>
                             </div>     
-                        </a>
+                        </a>-->
                         <!-- select star end -->
                     </div>
                     <div class="div6" style="margin-left: 220px;">
-                        <input type="text" id="keyWord" value="" onkeydown="javascript:onkeyselect();" autocomplete="off" placeholder="在结果中搜索"/>
-                        <input type="submit" value="搜索" onclick="searchForKeyword()"/>
+                        <input type="text" id="keyWord" name="keyWord" value="" onkeydown="javascript:onkeyselect();" autocomplete="off" placeholder="在结果中搜索"/>
+                        <input type="submit" value="搜索" />
                     </div>
                 </div>
             </div>
+    </form>
             <div id="releaseHallList" style="width:1230px; margin:auto">
-<iframe id="capability_Imageiframe" name="proIfram" scrolling="no" style="width: 100%; height: 3453px;" border="0" src="/buy/list.php" frameborder="no"></iframe>
+<iframe id="capability_Imageiframe" name="proIfram" scrolling="no" style="width: 100%; height: 1780px;" border="0" src="/buy/list.php" frameborder="no"></iframe>
             </div>
 		</div>
 		<div class="popup" style="display:none;"></div>
@@ -212,66 +206,134 @@
 		<!--主体内容 end-->
  
    <script type="text/javascript">
-        var catid= 0;
-        var areaid =0;
-        var type = 0;
-        var mode = 0;
-        var size = 0;
-        var order= 0;
-       function searchByClassification(that) {
-           $(that).addClass('now').siblings().removeClass('now');
-           catid = $(that).attr("value");
-           setUrl(catid,areaid,type,mode,size,order);
-       }
-       function searchByZoneFilter(that) {
-           areaid = $(that).attr("value");
-           setUrl(catid,areaid,type,mode,size,order);
-       }
-        //企业类型
-        function  changeType(that) {
-            type =  $(that).attr("value");
-            setUrl(catid,areaid,type,mode,size,order);
-        }
-        //经营方式
-        function changeMode(that) {
-            mode = $(that).attr("value");
-            setUrl(catid,areaid,type,mode,size,order);
-        }
-        //企业规模
-        $(".a ").on('click',function () {
-            size = $(this).attr("value");
-            setUrl(catid,areaid,type,mode,size,order);
+       //分类,多选
+       $(".fenlei").on('click',function(){
+           var classification = '';
+            $("#classBox >.now").each(function(){
+                classification += ','+$(this).attr("value");
+            });
+            $("#classifications").val(classification);
+           submit();
+       });
+        //分类单选
+       $(".classification").on('click',function(){
+           var classification = $(this).attr("value");
+           $("#classifications").val(classification);
+           submit();
+       });
+
+       //企业类型，多选
+       $(".type").on('click',function(){
+           var classType = '';
+           $("#classType >.now").each(function(){
+               classType += $(this).text()+',';
+           });
+           $("#classTypes").val(classType);
+           submit();
+       });
+       //企业类型单选
+       $(".classType").on('click',function(){
+           var classType = $(this).text();
+           $("#classTypes").val(classType);
+           submit();
+       });
+
+       //经营方式多选
+       $(".mode").on('click',function(){
+           var classMode = '';
+           $("#classMode >.now").each(function(){
+               classMode += $(this).text()+',';
+           });
+           $("#classModes").val(classMode);
+           submit();
+       });
+       //经营方式单选
+       $(".classMode").on('click',function(){
+           var classMode = $(this).text();
+           $("#classModes").val(classMode);
+           submit();
+       });
+
+       //企业规模多选
+       $(".size").on('click',function(){
+           var classSize = '';
+           $("#classSize >.now").each(function(){
+               classSize += $(this).text()+',';
+           });
+           $("#classSizes").val(classSize);
+           submit();
+       });
+       //企业规模单选
+       $(".classSize").on('click',function(){
+           var classSize = $(this).text();
+           $("#classSizes").val(classSize);
+           submit();
+       });
+       //srm认证
+        $(".customer").on('click',function(){
+            var srm = $(this).text();
+            $("#srm").val(srm);
+            submit();
         });
-       //排序
-        function changeorder(orderField1, obj){
-            $(obj).addClass("now").siblings().removeClass('now');
-            var orderSeq1 = $(obj).attr('value');
-            var field = $(obj).text();
-            if(orderSeq1 == 'desc'){
-                field = field.replace('发布时间↑', '发布时间↓');
-                field = field.replace('热度↑', '热度↓');
-                field = field.replace('截止时间↑', '截止时间↓');
-                $(obj).text(field);
-                $(obj).attr('value','asc');
-                orderField=orderField1;
-                orderSeq=orderSeq1;
-                order = 'desc';
-                setUrl(catid,areaid,type,mode,size,order);
-            } else {
-                field = field.replace('发布时间↓', '发布时间↑');
-                field = field.replace('热度↓', '热度↑');
-                field = field.replace('截止时间↓', '截止时间↑');
-                $(obj).text(field);
-                $(obj).attr('value','desc');
-                orderField=orderField1;
-                orderSeq=orderSeq1;
-                order = 'asc';
-                setUrl(catid,areaid,type,mode,size,order);
-            }
-        }
-       function setUrl(catid=0,areaid=0,type=0) {
-           $("#capability_Imageiframe").attr("src", "/buy/list.php" + '?catid=' + catid+'&areaid='+areaid+'&type='+type+'&mode='+mode+'&size='+size+'&order='+order);
+       //发布时间排序
+       function changeorder(orderField1, obj){
+           $(obj).addClass("now").siblings().removeClass('now');
+           var orderSeq1 = $(obj).attr('value');
+           var field = $(obj).text();
+           if(orderSeq1 == 'desc'){
+               field = field.replace('发布时间↑', '发布时间↓');
+               field = field.replace('热度↑', '热度↓');
+               field = field.replace('截止时间↑', '截止时间↓');
+               $(obj).text(field);
+               $(obj).attr('value','asc');
+               orderField=orderField1;
+               orderSeq=orderSeq1;
+               order = 'desc';
+               $('#order').val(order);
+               submit();
+           } else {
+               field = field.replace('发布时间↓', '发布时间↑');
+               field = field.replace('热度↓', '热度↑');
+               field = field.replace('截止时间↓', '截止时间↑');
+               $(obj).text(field);
+               $(obj).attr('value','desc');
+               orderField=orderField1;
+               orderSeq=orderSeq1;
+               order = 'asc';
+               $('#order').val(order);
+               submit();
+           }
        }
+
+       //地区
+       $(".area").on('click',function () {
+           var areaid = $(this).val();
+           $("#areaid").val(areaid);
+           submit();
+       });
+       //vip等级
+       function selectVip(that) {
+           $(".allStar >span").text($(that).text());
+           var vip = $(that).val();
+           $("#vip").val(vip);
+           submit();
+       }
+        //实名认证
+       $("#shiming").change(function (){
+           if($("#shiming").is(":checked")){
+               $("#truename").val(1);
+               submit();
+           }else{
+               $("#truename").val(0);
+               submit();
+           }
+       });
+       //发送表单
+       function submit() {
+           var form = $("#form");
+           form.submit();
+       }
+
 
    </script>
 		<!--part7End-->

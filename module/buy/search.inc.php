@@ -40,13 +40,12 @@ $rs = $db -> query("select areaid,areaname from {$db->pre}area where parentid=0"
 while ($r = $db->fetch_array($rs)){
     $area[] = $r;
 }
-//企业类型
-$rs = $db -> query("select distinct type from {$db->pre}company ");
-while ($r = $db->fetch_array($rs)){
-    if($r['type']){//去除空
-        $type[] = $r;
-    }
-}
+
+$member_set = include DT_ROOT.'/file/setting/module-2.php';
+$com_size = explode('|', $member_set['com_size']);//企业规模
+$com_type = explode('|', $member_set['com_type']);//企业类型
+
+
 //经营模式
 $rs = $db -> query("select distinct mode from {$db->pre}company ");
 while ($r = $db->fetch_array($rs)){
