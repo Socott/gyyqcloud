@@ -5,7 +5,48 @@
 	    <script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/js/jquery.qrcode.min.js"></script>
     <link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="{DT_STATIC}file/layer/layer.js"></script>
-    <script>
+
+    <style>
+        .zoneFilter p {
+            height: 40px;
+            border-bottom: 1px solid #ddd;
+            line-height: 40px;
+            padding-left: 15px;
+            position: sticky;
+            z-index: 2;
+            background-color: #fff;
+        }
+        .zoneFilter {
+            position: absolute;
+            width: 350px;
+            height: 265px;
+            background: #fff;
+            top: 42px;
+            left: 0px;
+        }
+        .zoneFilter li{
+            float:left;
+            margin: 0px 8px;
+        }
+        .zoneFilter ul{
+            position: absolute;
+            z-index: 2;
+            background-color: #fff;
+        }
+        .empfilterList,.comTypefilterList{
+            position: absolute;
+            z-index: 2;
+            background-color: #fff;
+            width: 150px;
+        }
+        .rank{
+            left: 60px;
+            -webkit-filter: drop-shadow(32px 0 #FF0000);
+        }
+
+
+
+    </style>
 	    <script type="text/javascript">
 	        function search() {
 	            var key = $('#key').val().trim();
@@ -136,8 +177,8 @@
                     </div>
                 </div>
                 <div class="fr category_time">
-                    共找到&nbsp;<span class="highlight">999</span>&nbsp;件<span class="double_mark">“</span><span class="double_mark">”</span>相关求购信息
-                        （用时0.01秒）
+                    共找到&nbsp;<span class="highlight">{$items}</span>&nbsp;件<span class="double_mark">“</span><span class="double_mark">”</span>相关求购信息
+                        （用时{$usetime}秒）
                     </div>
             </div>
         </div>
@@ -147,12 +188,14 @@
             <div class="search_type_box">
                 <div class="buySearch_type_content clearfix">
                     <div class="left">
-                        <span><a id='category_all' href="searchr.html?q=all">全部：</a></span> 
+                        <span><a id='0' onclick="searchByCatFilter(this);" {if $catid == 0} style="color: #3077b9;" {/if} >全部：</a></span>
                     </div>
                     <div class="right" id="subscriptionCategory">
-                        <span data-id='10066983' data-value='电子元器件'>
-                        	<a  id='10066983' title='电子元器件' href="searchr.html?q=&amp;catename=%E7%94%B5%E5%AD%90%E5%85%83%E5%99%A8%E4%BB%B6&amp;order=&amp;asc=0">电子元器件</a>
-                        </span> 
+                        {loop $category $v}
+                        <span data-id='{$v[catid]}' data-value='{$v[catname]}' >
+                        	<a onclick="searchByCatFilter(this);" id='{$v[catid]}' {if $catid == $v[catid]} style="color: #3077b9;" {/if} title='{$v[catname]}' ">{$v[catname]}</a>
+                        </span>
+                        {/loop}
                     </div>
                     <div class="filter_more filter_more_move fr" id="sort_more"><i class="active"></i>更多</div>
                 </div>
@@ -169,27 +212,68 @@
                     <div class="flag">
                         <div class="course_rank" id="start">
                             <span class="ordertxt">发布时间</span>
-                                <i class="rank_top"></i><i class="rank_bottom"></i>
+                                <i class="rank_top {if $addtime == 'asc'}rank{/if}"></i>
+                                <i class="rank_bottom {if $addtime == 'desc'}rank{/if}"></i>
                         </div>
                     </div>
-                    <div class="flag">
+                   <!-- <div class="flag">
                         <div class="course_rank" id="end">
                             <span class="ordertxt">截止时间</span>
-                                <i class="rank_top"></i><i class="rank_bottom"></i>
+                                <i class="rank_top"></i><i class="rank_bottom rank"></i>
                         </div>
-                    </div>
+                    </div>-->
                     <div id="areas_filter" class="popup_button"><img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png"
                                                                      alt="" class="popup_arrow"><a
-                            href="javascript:;">所在地区</a></div>
+                            href="javascript:;">所在地区</a>
+                        <div class="zoneFilter" style="display: none;position:absolute;text-align: left;">
+                            <p onclick="searchByZoneFilter(this)" value="0" >所有地区</p>
+                            <ul class="zonefilterList">
+
+                                {loop $area $v}
+                                <li class="area {$v[areaid]}"   onclick="searchByZoneFilter(this)" value="{$v[areaid]}">{$v[areaname]}</li>
+                                {if $areaid == $v[areaid]}
+                                <script>
+                                    $("#areas_filter a").text($(".{$v[areaid]}").html());
+                                </script>
+                                {/if}
+                                {if $areaid == 0}
+                                <script>
+                                    $("#areas_filter a").text('所有地区');
+                                </script>
+                                {/if}
+                                {/loop}
+                            </ul>
+                        </div>
+
+                    </div>
+
                     <div id="emp_filter" class="popup_button">
                         <img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png" alt="" class="popup_arrow">
-                        <a href="javascript:;">企业规模</a>
+                        <a id="empfilter" href="javascript:;">企业规模</a>
+                         <ul class="empfilterList" style="display: none">
+                             <li onclick="searchByEmpfilter(this)">所有</li>
+                            {loop $com_size $v}
+                            <li onclick="searchByEmpfilter(this)">{$v}</li>
+                             {if $empfilter == $v}
+                                <script>$("#empfilter").html('{$v}')</script>
+                             {/if}
+                            {/loop}
+                         </ul>
                     </div>
                     <div id="comtype_filter" class="popup_button">
                         <img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png" alt="" class="popup_arrow">
-                        <a href="javascript:;">企业类型</a>
+                        <a id="comTypefilter" href="javascript:;">企业类型</a>
+                        <ul class="comTypefilterList" style="display: none">
+                            <li onclick="searchByComTypefilter(this)">所有</li>
+                            {loop $com_type $v}
+                            <li onclick="searchByComTypefilter(this)">{$v}</li>
+                            {if $comTypefilter == $v}
+                            <script>$("#comTypefilter").html('{$v}')</script>
+                            {/if}
+                            {/loop}
+                        </ul>
                     </div>
-                    <div id="busitype_filter" class="popup_button">
+                   <!-- <div id="busitype_filter" class="popup_button">
                         <img src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png" alt="" class="popup_arrow">
                         <a href="javascript:;">经营类型</a>
                     </div>
@@ -199,16 +283,17 @@
                     </div>
                     <div class="check_box">
                     	<input type="checkbox" id="past_demand_search" onClick="pastDemandSearch()"><label for="past_demand_search">过期需求</label>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </div>
+
     <div class="search_data">
         <div class="container">
             <div class="search_data_box clearfix">
                 <div class="search_mod fl">
-                    <div class="clearfix">                  <!--{php $tags=tag("moduleid=$moduleid&condition=status=3$dtype&catid=$catid&areaid=$cityid&pagesize=".$MOD[pagesize]."&page=$page&showpage=1&datetype=5&order=".$MOD[order]."&fields=".$MOD[fields]."&lazy=$lazy&template=null&debug=0");}-->
+                    <div class="clearfix">
                        {loop $tags $k $t}
                         <div class="mod_unit">
                                     <div class="mod_unit_box">
@@ -229,16 +314,16 @@
                                                     </div>
                                                     <div class="unit_content">
                                                         <span>分类：</span>
-                                                        <span title="其他">其他</span>
+                                                        <span title="{$t[catname][catname]}">{$t[catname][catname]}</span>
                                                     </div>
                                                     <div class="unit_content">
                                                         <span>地区：</span>
                                                         <span> {area_pos($t[areaid], '')}</span>
                                                     </div>
-                                                    <div class="unit_content">
+                                                  <!--  <div class="unit_content">
                                                         <span>报价企业：</span>
                                                         <span class="unit_label">0个</span>
-                                                    </div>
+                                                    </div>-->
                                                 </a>
                                             </div>
                                             <div class="unit_conname">
@@ -255,7 +340,33 @@
                       </div>
                          {/loop} 
                   </div>
-                    <div class="new_page"><span class="disable previous"></span><span class="current num">1</span><span class="num"><a href="searchr7009.html?q=&amp;detailtype=0&amp;page=1">2</a></span><span class="num"><a href="searchrc57a.html?q=&amp;detailtype=0&amp;page=2">3</a></span><span class="num"><a href="searchrff49.html?q=&amp;detailtype=0&amp;page=3">4</a></span><span class="num"><a href="searchr2365.html?q=&amp;detailtype=0&amp;page=4">5</a></span><span class="num"><a href="searchrec0b.html?q=&amp;detailtype=0&amp;page=5">6</a></span><span class="dots">...</span><span class="num"><a href="searchr9300.html?q=&amp;detailtype=0&amp;page=24">25</a></span><span class="next"><a href="searchr7009.html?q=&amp;detailtype=0&amp;page=1" data-rec="下一页"></a></span><span class="total total_page">共25页</span><span class="page_jump">到</span><input id='pageInput' class="pageInput" oldpage="" maxlength="5" type="text"><span class="page_jump">页</span><button type="button" class="pagebtn" id='pagebtn'>确定</button><script>HT.utils.pagination(25,$('#pageInput'), $('#pagebtn'));</script></div>
+                    {if $showpage && $pages}<div class='pages'>{$pages}</div>{/if}
+
+                    <div class="new_page"><span class="disable previous"></span>
+                        <?php for($pages=1;$pages<=$total;$pages++){?>
+                        {if $page == $pages}
+                            <span class="current num">{$pages}</span>
+                        {else}
+                        <span class="num"><a>{$pages}</a></span>
+                        {/if}
+
+                        <?php }?>
+                      <!--  <span class="current num">1</span>
+                        <span class="num"><a href="searchr7009.html?q=&amp;detailtype=0&amp;page=1">2</a></span>
+                        <span class="num"><a href="searchrc57a.html?q=&amp;detailtype=0&amp;page=2">3</a></span>
+                        <span class="num"><a href="searchrff49.html?q=&amp;detailtype=0&amp;page=3">4</a></span>
+                        <span class="num"><a href="searchr2365.html?q=&amp;detailtype=0&amp;page=4">5</a></span>
+                        <span class="num"><a href="searchrec0b.html?q=&amp;detailtype=0&amp;page=5">6</a></span>
+                        <span class="dots">...</span>
+                        <span class="num"><a href="searchr9300.html?q=&amp;detailtype=0&amp;page=24">25</a></span>-->
+                        <span class="next"><a  data-rec="下一页"></a></span>
+                        <span class="total total_page">共{$total}页</span>
+                        <span class="page_jump">到</span>
+                        <input id='pageInput' class="pageInput" oldpage="" maxlength="5" type="text">
+                        <span class="page_jump">页</span>
+                        <button type="button" class="pagebtn" id='pagebtn'>确定</button>
+                        <!--<script>HT.utils.pagination(25,$('#pageInput'), $('#pagebtn'));</script>-->
+                    </div>
                 </div>
                 <div class="search_ad fr">
                     <div>
@@ -292,7 +403,7 @@
             </div>
         </div>
     </div>
-    <div class="search_recommend">
+        <div class="search_recommend">
         <div class="container">
             <div class="search_recommend_box">
                 <div class="recommend_title">需求推荐</div>
@@ -352,8 +463,132 @@
             </div>
         </div>
     </div>
-    <div class="wrapper clearfix">
         <script type="text/javascript">
+            if({$areaid}){var areaid = {$areaid};}else{var areaid = 0;}//地区
+            if({$catid}){var catid = {$catid};}else{var catid = 0;}//分类
+            if('{$empfilter}' != ''){var empfilter = '{$empfilter}'}else{var empfilter='';}//企业规模
+            if('{$comTypefilter}' !=''){var comTypefilter = '{$comTypefilter}'}else{var comTypefilter='';}//企业类型
+            if('{$addtime}' == 'desc'){var addtime = 'desc';}else{var addtime = 'asc';}
+            if({$page} ){var page = {$page};}else{var page = 1;}
+
+            //图片切换
+            $(".popup_arrow").hover(function () {
+                var src = $(this).attr("src");
+                if(src == 'http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png'){
+                    $(this).attr("src","http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popup_arrow.png");
+                }else{
+                    $(this).attr("src","http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/images/popdown_arrow.png");
+                }
+            });
+            //地区显示隐藏
+            $("#areas_filter").hover(function () {
+                $(".zoneFilter").toggle();
+            });
+            //企业规模显示隐藏
+            $("#emp_filter").hover(function () {
+                $('.empfilterList').toggle();
+            });
+            //企业类型显示隐藏
+            $("#comtype_filter").hover(function () {
+                $('.comTypefilterList').toggle();
+            });
+            //发布时间
+            $("#start").on('click',function () {
+                if($('#start .rank_bottom').hasClass("rank")){
+                    $('#start .rank_bottom').removeClass("rank");
+                    $('#start .rank_top').addClass("rank");
+                    addtime = 'asc';
+                    setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+                }else{
+                    $('#start .rank_bottom').addClass("rank");
+                    $('#start .rank_top').removeClass("rank");
+                    addtime = 'desc';
+                    setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+                }
+            });
+            //截止时间
+            $("#end").on('click',function () {
+                if($('#end .rank_bottom').hasClass("rank")){
+                    $('#end .rank_bottom').removeClass("rank");
+                    $('#end .rank_top').addClass("rank");
+                    endtime = 'asc';
+                }else{
+                    $('#end .rank_bottom').addClass("rank");
+                    $('#end .rank_top').removeClass("rank");
+                    endtime = 'desc';
+                }
+            });
+            //上一页
+            $(".previous").on('click',function () {
+                page = parseInt({$page})-1;
+                if(page<1){
+                    layer.alert('已经是第一页!');
+                }else{
+                    setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+                }
+            });
+
+            //下一页
+            $(".next").on('click',function () {
+                page = parseInt({$page})+1;
+                if(page>10){
+                    layer.alert('已经是最后一页了!');
+                }else{
+                    setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+                }
+            });
+
+            //跳转页码
+            $("#pagebtn").on('click',function () {
+               page = parseInt($("#pageInput").val());
+               if(page>0 && page<{$total}){
+                   setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+               }else{
+                   layer.alert('页码有误请检查后重新输入!');
+               }
+            });
+
+            //页码
+            $(".num").on('click',function () {
+                page = $(this).text();
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+            });
+
+
+            //地区搜索
+            function searchByZoneFilter(that) {
+                $("#areas_filter a").html($(that).html());
+                areaid = $(that).attr("value");
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+
+            }
+            //分类搜索
+            function searchByCatFilter(that) {
+                catid = $(that).attr("id");
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+
+            }
+            //企业规模搜索
+            function searchByEmpfilter(that) {
+                empfilter = $(that).html();
+                if(empfilter == '所有'){
+                    empfilter = 0;
+                }
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+            }
+            //企业类型搜索
+            function searchByComTypefilter(that) {
+                comTypefilter = $(that).html();
+                if(comTypefilter == '所有'){
+                    comTypefilter = 0;
+                }
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+            }
+
+            function setUrl(areaid=0,catid = 0,empfilter=0,comTypefilter=0,addtime='desc',page=1) {
+                window.location.href = "index.php?areaid="+areaid+"&catid="+catid+"&empfilter="+empfilter+"&comTypefilter="+comTypefilter+"&addtime="+addtime+"&page="+page;
+            }
+
             //报价
             function  offer(that) {
                 var itemid = $(that).attr("value");
@@ -374,6 +609,8 @@
             }
 
             $(function () {
+
+
                 var $buySearchContent = $('.search_type_box .buySearch_type_content');
                 $buySearchContent.each(function () {
                     var $rightSpan = $(this).find('.right span');
@@ -427,7 +664,7 @@
             })
         </script>
  
-</div>
+
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/js/search/search.js"></script>
 <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/js/search_mobile.js"></script>
 {template 'footer-index'}
