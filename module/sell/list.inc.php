@@ -18,7 +18,7 @@ $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
 
 $condition = 'status=3';
 //星级
-if ($vip) $condition .= " AND vip=$vip";
+if ($vip && $vip !== '全部') $condition .= " AND vip=$vip";
 //分类
 if ($typeid && $typeid != '-1') $condition .= " AND typeid=$typeid";
 //搜索
@@ -42,7 +42,7 @@ if ($size && $size != '全部') {
 if ($area) {
     $sql = "select arrchildid from {$db->pre}area where areaid={$area}";
     $r = $db->get_one($sql);
-    if ($r) $condition .= " and areaid in({$r})";
+    if ($r['arrchildid']) $condition .= " and areaid in({$r['arrchildid']})";
 }
 
 if ($c_condition != '1') {
