@@ -127,7 +127,7 @@ if($submit) {
 				$touser = $t['username'];
 				$_title = $title;
 				$title = lang($L['trade_message_t6'], array($oid));
-				$url = $MODULE[2]['linkurl'].'trade.php?itemid='.$oid;
+				$url = $MODULE[2]['linkurl'].'trade_expertpool.php?itemid='.$oid;
 				$goods = '<a href="'.$linkurl.'" target="_blank" class="t"><strong>'.$_title.'</strong></a>';
 				$content = lang($L['trade_message_c6'], array(userurl($_username), $_username, timetodate($DT_TIME, 3), $goods, $oid, $amount, $url));
 				$content = ob_template('messager', 'mail');
@@ -152,7 +152,7 @@ if($submit) {
 } else {
 	if($action == 'show') {
 		$forward = isset($auth) ? decrypt($auth, DT_KEY.'TURL') : '';
-		$forward = $MODULE[2]['linkurl'].'trade.php?'.($forward ? $forward : 'action=order');
+		$forward = $MODULE[2]['linkurl'].'trade_expertpool.php?'.($forward ? $forward : 'action=order');
 	} else {
 		isset($cart) or $cart = array();
 		$lists = $tags = $data = array();

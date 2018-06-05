@@ -26,7 +26,7 @@ $fromtime = $fromdate ? strtotime($fromdate.' 0:0:0') : 0;
 $todate = isset($todate) && is_date($todate) ? $todate : '';
 $totime = $todate ? strtotime($todate.' 23:59:59') : 0;
 $sfields = array($L['by_auto'], $L['by_title'], $L['by_content'], $L['by_company'], $L['by_brand']);
-$dfields = array('keyword', 'title', 'content', 'company', 'brand');
+$dfields = array('title', 'content', 'company', 'brand');
 $sorder  = array($L['order'], $L['order_auto'], $L['price_dsc'], $L['price_asc'], $L['vip_dsc'], $L['vip_asc'], $L['amount_dsc'], $L['amount_asc'], $L['minamount_dsc'], $L['minamount_asc']);
 $dorder  = array($MOD['order'], '', 'price DESC', 'price ASC', 'vip DESC', 'vip ASC', 'amount DESC', 'amount ASC', 'minamount DESC', 'minamount ASC');
 if(!$MOD['fulltext']) unset($sfields[2], $dfields[2]);
@@ -39,7 +39,7 @@ $tags = array();
 $pid = 0;
 if($DT_QST) {
 	if($kw) {
-		//if(strlen($kw) < $DT['min_kw'] || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');
+		if(strlen($kw) < $DT['min_kw'] || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');
 		if(strlen($kw) < 1 || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');
 		if($DT['search_limit'] && $page == 1) {
 			if(($DT_TIME - $DT['search_limit']) < get_cookie('last_search')) message(lang($L['time_limit'], array($DT['search_limit'])), $MOD['linkurl'].'search.php');
@@ -70,7 +70,10 @@ if($DT_QST) {
 	if($areaid) $condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
 	if($thumb) $condition .= " AND thumb<>''";
 	if($vip) $condition .= " AND vip>0";
-	if($price) $condition .= " AND price>0 AND unit<>''";
+	if($vip) $condition .= " AND vip>0";
+	if($title) $condition .= " AND title like '%$title%'";
+	if($brand) $condition .= " AND brand like '%$brand%'";
+	if($level) $condition .= " AND level =$level";
 	if($minprice)  $condition .= " AND price>=$minprice";
 	if($maxprice)  $condition .= " AND price<=$maxprice";
 	if($fromtime) $condition .= " AND edittime>=$fromtime";
@@ -92,11 +95,11 @@ if($DT_QST) {
 	$offset = ($page-1)*$pagesize;
 	$items = $db->count($table, $condition, $DT['cache_search']);
 	$pages = pages($items, $page, $pagesize);
+
 	//if($items) 
-	
 	{
 		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
-		$result = $db->query("SELECT $fds,thumb,keyword FROM {$table} WHERE thumb<>'' and {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
+		$result = $db->query("SELECT * FROM {$table} WHERE {$condition} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
 		if($kw) {
 			$replacef = explode(' ', $kw);
 			$replacet = array_map('highlight', $replacef);
@@ -104,7 +107,7 @@ if($DT_QST) {
 		while($r = $db->fetch_array($result)) {
 			$r['adddate'] = timetodate($r['addtime'], 5);
 			$r['editdate'] = timetodate($r['edittime'], 5);
-			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+			////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
 			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);
@@ -115,6 +118,7 @@ if($DT_QST) {
 		if($page == 1 && $kw) keyword($kw, $items, $moduleid);
 	}
 }
+
 $showpage = 1;
 $datetype = 5;
 $seo_file = 'search';

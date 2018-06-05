@@ -1,8 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8">
-<title>专家池-已选择预约专家详情</title>
+ {template 'header-expertpool'}
 <!-- 页面样式 -->
 <link rel="stylesheet" type="text/css" href="http://expert.casicloud.com/resources/style/shop/professor/css/expertPondReset.css" />
 <link rel="stylesheet" type="text/css" href="http://expert.casicloud.com/resources/style/shop/professor/css/expertPondCommon.css" />
@@ -19,43 +15,7 @@
 
 <!-- public Header Begin --> 
 <!-- public Header Begin -->
-<div class="header">
-  <div class="headTop">
-    <div class="cWidth">
-      <div class="welcomeBox"> <span class="loginBefor"> <span>13637881118您好，欢迎来到重庆工业云！ </span><a href="http://cas.casicloud.com/logout?service=http://expert.casicloud.com/shopping_logout.htm" class="lightblue">[退出]</a> </span> </div>
-    </div>
-  </div>
-  <div class="headLink">
-    <div class="logoBox"> <img src="http://expert.casicloud.com/resources/style/shop/professor/images/expertPond_logo.jpg" usemap="#planetmap" />
-      <map name="planetmap" id="planetmap">
-        <area href="http://www.casicloud.com" shape="rect" coords="0,0,170,48" alt="云网">
-        <area href="http://expert.casicloud.com/index.htm" shape="rect" coords="180,14,300,42" alt="专家池">
-      </map>
-    </div>
-    <div class="searchBox">
-      <input type="text" value="" id="searchAll"/>
-      <a href="javascript:void(0);" class="searchBtn" onclick="searchAll()"></a> </div>
-    <ul class="navBox clearfix">
-      <li> <a href="http://expert.casicloud.com/index.htm" class="now">首页</a> </li>
-      <li> <a href="http://expert.casicloud.com/professorHelp.htm">专家助力</a>
-        <ul class="child">
-          <li> <a href="http://expert.casicloud.com/professor/professorService.htm">专家搜索</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/serviceForOne.htm">一对一服务</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/serviceSalon.htm">企业定制沙龙</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/ownTeam.htm">专属顾问团</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/enterpriseService.htm">企业服务动态</a> </li>
-        </ul>
-      </li>
-      <li> <a href="http://talent.casicloud.com/index.ht" >人才共享</a> </li>
-      <li> <a href="javascript:void(0);">个人服务中心</a>
-        <ul class="child">
-          <li> <a href="http://expert.casicloud.com/professor/myReserve.htm">我的预约</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/myCollect.htm">我的收藏</a> </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
+
 <!-- public Header End --> 
 {if $action == 'show'}
 <div class="m">

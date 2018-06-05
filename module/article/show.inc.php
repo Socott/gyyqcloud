@@ -21,7 +21,7 @@ while($r = $db->fetch_array($res)) {
 	$tags2[] = $r;
 }
 $content = $t['content'];
-//if($lazy) $content = img_lazy($content);
+////if($lazy) $content = img_lazy($content);
 $CP = $MOD['cat_property'] && $CAT['property'];
 if($CP) {
 	require DT_ROOT.'/include/property.func.php';
@@ -74,5 +74,8 @@ $template = 'show';
 if($MOD['template_show']) $template = $MOD['template_show'];
 if($CAT['show_template']) $template = $CAT['show_template'];
 if($item['template']) $template = $item['template'];
+if($moduleid==27)
+include template($template,"help");
+else
 include template($template, $module);
 ?>

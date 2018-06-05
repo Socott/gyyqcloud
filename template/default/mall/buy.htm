@@ -1,4 +1,22 @@
-{template 'header'}
+{template 'header-mall'}
+ <style>
+ .m{ width:1200px; margin:auto;}
+ .m *{ line-height:30px;}
+ table input, table select{ border:1px solid #ccc; margin:10px; background-color:#FFF;}
+ </style>
+ {if !DT_DEBUG}<script type="text/javascript">window.onerror=function(){return true;}</script>{/if}
+<script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
+{if $lazy}<script type="text/javascript" src="{DT_STATIC}file/script/jquery.lazyload.js"></script>{/if}
+{if $JS}
+{loop $JS $js}
+<script type="text/javascript" src="{DT_STATIC}file/script/{$js}.js"></script>
+{/loop}
+{/if}
+{php $searchid = ($moduleid > 3 && $MODULE[$moduleid]['ismenu'] && !$MODULE[$moduleid]['islink']) ? $moduleid : 5;}
 {if $action == 'show'}
 <div class="m">
 <div class="left_box">
@@ -7,8 +25,8 @@
 		&raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a>
 		&raquo; 提交订单
 	</div>
-	<div style="padding:80px;" class="t_c px14 f_b"><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/ok.gif" alt="" align="absmiddle"/>  订单提交成功！ 
-	&nbsp;&nbsp;&nbsp;<a href="{$MOD[linkurl]}" class="b">继续购物</a>&nbsp;&nbsp;&nbsp;<a href="{$forward}" class="b">支付订单</a></div>
+	<div style="padding:80px; text-align:center" class="t_c px14 f_b"><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/ok.gif" alt="" align="absmiddle"/>  订单提交成功！ 
+	&nbsp;&nbsp;&nbsp;<a href="{$MOD[linkurl]}" class="b">继续购物</a>&nbsp;&nbsp;&nbsp;<a href="{$forward}" class="b" target="_top">支付订单</a></div>
 	<meta http-equiv="refresh" content="5;URL={$forward}"/>
 </div>
 </div>
@@ -21,25 +39,20 @@
 		&raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a>
 		&raquo; 提交订单
 	</div>
-	<div class="b10">&nbsp;</div>
 	{if $lists}
 	<form method="post" action="{$MOD[linkurl]}buy.php" onsubmit="return check();">
 	<input type="hidden" name="submit" value="1"/>
-	<div>
-	<div class="f_r" style="padding:10px 50px 0 0;"><a href="{$MOD[linkurl]}cart.php" class="b">返回购物车重新挑选</a></div>
-	&nbsp;&nbsp;<img src="{DT_SKIN}image/buy_1.gif" width="160" height="30" alt=""/> 
-	</div>
-	<div style="margin:10px 40px 10px 40px;" class="c_b">
+	<div style="margin:10px 40px 10px 0px;" class="c_b">
 	<table cellpadding="6" cellspacing="1" width="100%" bgcolor="#E4E4E4">
 	<tr align="center" bgcolor="#EEEEEE">
-	<td width="60">图片</td>
+	<td>图片</td>
 	<td>商品</td>
-	<td width="60">库存</td>
-	<td width="60">价格</td>
-	<td width="100">数量</td>
-	<td width="80">快递</td>
-	<td width="60">运费</td>
-	<td width="90">小计</td>
+	<td>库存</td>
+	<td>价格</td>
+	<td>数量</td>
+	<td>快递</td>
+	<td>运费</td>
+	<td>小计</td>
 	</tr>
 	{loop $lists $i $t}
 	<tr align="center" bgcolor="{if $i%2==1}#F6F6F6{else}#FFFFFF{/if}">
@@ -47,7 +60,7 @@
 	<td align="left" style="line-height:24px;color:#666666;">
 	<a href="{$t[linkurl]}" target="_blank" class="b" title="{$t[alt]}">{$t[title]}</a><br/>
 	{if $t[vip]}<img src="{DT_SKIN}image/vip_{$t[vip]}.gif" alt="{VIP}" title="{VIP}:{$t[vip]}级" align="absmiddle"/> {/if}<a href="{userurl($t[username])}" target="_blank">{$t[company]}</a>
-	<div style="padding:3px 0 3px 0;">备注：<input type="text" name="post[{$t[key]}][note]" value="" size="20" style="border:#CCCCCC 1px solid;" maxlength="100" title="限100字以内"/>&nbsp;
+	<div>备注：<input type="text" name="post[{$t[key]}][note]" value="" size="20" style="border:#CCCCCC 1px solid;" maxlength="100" title="限100字以内"/>&nbsp;
 	{if $DT[im_web]}{im_web($t[username].'&mid='.$moduleid.'&itemid='.$t[itemid])}&nbsp;{/if}
 	{if $t[qq] && $DT[im_qq]}{im_qq($t[qq])}&nbsp;{/if}
 	{if $t[ali] && $DT[im_ali]}{im_ali($t[ali])}&nbsp;{/if}
@@ -112,7 +125,7 @@
 	</div>
 	<div class="b10">&nbsp;</div>
 	<div>&nbsp;&nbsp;<img src="{DT_SKIN}image/buy_2.gif" width="160" height="30" alt=""/></div>
-	<div style="padding:20px;margin:10px 40px 20px 40px;background:#F4F4F4;" class="c_b px13">
+	<div style="padding:20px;margin:10px 40px 20px 0px;background:#F4F4F4;" class="c_b px13">
 	<table cellpadding="10" cellspacing="0" width="100%">
 	<tr>
 	<td width="100"><span class="f_red">&nbsp;</span> 常用地址：</td>
@@ -287,4 +300,4 @@ function calculate() {
 {if $lists}calculate();{/if}
 </script>
 {/if}
-{template 'footer'}
+{template 'footer-index'}

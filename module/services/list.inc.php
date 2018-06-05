@@ -1,6 +1,6 @@
 <?php 
-defined('IN_DESTOON') or exit('Access Denied');$CAT['moduleid']=5; $moduleid=5;
-if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
+defined('IN_DESTOON') or exit('Access Denied');
+//if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
 if($MOD['list_html']) {
 	$html_file = listurl($CAT, $page);
@@ -40,11 +40,11 @@ $offset = ($page-1)*$pagesize;
 $pages = listpages($CAT, $items, $page, $pagesize);
 $tags = array();
 //if($items) {
-	$result = $db->query("SELECT ".$MOD['fields'].",thumb,keyword FROM {$table} WHERE thumb<>'' and {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+	$result = $db->query("SELECT * FROM {$table} WHERE thumb<>'' and {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
 		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];

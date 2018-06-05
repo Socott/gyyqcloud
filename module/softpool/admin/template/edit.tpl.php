@@ -139,7 +139,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 </table>
 </td>
 </tr>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_hid">*</span> 运费设置</td>
 <td>
 <table cellpadding="4" cellspacing="1" bgcolor="#FFFFFF">
@@ -195,7 +195,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 <span class="f_gray">&nbsp;填写示例：<span class="c_p" title="点击观看" onclick="Nexpress('0.00', '包邮');">包邮</span> / <span class="c_p" title="点击观看" onclick="Nexpress('500.00', '包邮');">满500包邮</span> / <span class="c_p" title="点击观看" onclick="Nexpress('10.00', '快递');">快递10元</span> / <span class="c_p" title="点击观看" onclick="Nexpress('500.00', '包邮');Dd('express_name_2').value = '快递';Dd('fee_start_2').value = '10.00';">快递10元，满500包邮</span></span>
 </td>
 </tr>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_hid">*</span> 货到付款</td>
 <td>
 <select name="post[cod]" id="cod">

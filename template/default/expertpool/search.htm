@@ -1,146 +1,128 @@
-{template 'header'}
-<div class="m">
-<div class="m_l_1 f_l">
-	<div class="left_box">		
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; <a href="{$MOD[linkurl]}search.php">搜索</a></div>
-		<div class="fsearch">
-			<form action="{$MOD[linkurl]}search.php" id="fsearch">
-			<input type="hidden" name="list" id="list" value="{$list}"/>
-			<table cellpadding="5" cellspacing="3">
-			<tr>
-			<td width="80" align="right">关 键 词：</td>
-			<td colspan="3"><input type="text" size="60" name="kw" value="{$kw}" class="pd3"/></td>
-			</tr>
-			<tr>
-			<td></td>
-			<td colspan="3">
-			{loop $sfields $k $v}
-			<input type="radio" name="fields" value="{$k}" id="fd_{$k}"{if $fields==$k} checked{/if}/><label for="fd_{$k}"> {$v}</label>&nbsp;
-			{/loop}			
-			</td>
-			</tr>
-			<tr>
-			<td align="right">商品分类：</td>
-			<td>{$category_select}</td>
-			<td align="right">所在地区：</td>
-			<td>{$area_select}</td>
-			</tr>
-			<tr>
-			<td align="right">单价范围：</td>
-			<td>
-			<input type="text" size="10" name="minprice" value="{$minprice}"/> ~ <input type="text" size="10" name="maxprice" value="{$maxprice}"/></td>
-			<td align="right">排序方式：</td>
-			<td>{$order_select}</td>
-			</tr>
-			</tr>
-			<tr>
-			<td></td>
-			<td colspan="3">
-			<input type="image" src="{DT_SKIN}image/btn_search.gif"/>&nbsp;&nbsp;
-			<a href="{$MOD[linkurl]}search.php"><img src="{DT_SKIN}image/btn_reset_search.gif"/></a>	
-			</td>
-			</tr>
-			</table>
-		{if $CP}
-		{loop $PPT $p}
-		<div class="ppt">
-			<table cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-			<td class="ppt_l" valign="top">按{$p[name]}</td>
-			<td class="ppt_r" valign="top">
-			<input type="hidden" name="ppt_{$p[oid]}" id="ppt_{$p[oid]}" value="{$p[select]}"/>
-			<a href="###" onclick="Dd('ppt_{$p[oid]}').value='';Dd('fsearch').submit();">{if $p[select]==''}<span>全部</span>{else}全部{/if}</a>
-			{loop $p[options] $o}
-			&nbsp;|&nbsp;<a href="###" onclick="Dd('ppt_{$p[oid]}').value='{$o}';Dd('fsearch').submit();">{if $p[select]==$o}<span>{$o}</span>{else}{$o}{/if}</a>
-			{/loop}
-			</td>
-			</tr>
-			</table>
-		</div>
-		{/loop}
-		{/if}
-		</form>
-		</div>
-		{if $tags}
-		<form method="post">
-		<div class="sell_tip" id="sell_tip" style="display:none;" title="双击关闭" ondblclick="Dh(this.id);">
-			<div>
-				<p>您可以</p>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/> 或 
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</div>
-		</div>		
-		<div class="img_tip" id="img_tip" style="display:none;">&nbsp;</div>
-		<div class="tool">
-			<table>
-			<tr height="30">
-			<td width="25" align="center" title="全选/反选"><input type="checkbox" onclick="checkall(this.form);"/><td>
-			<td>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</td>
-			<td align="right">&nbsp;</td>
-			</tr>
-			</table>
-		</div>
-		{if $page==1 && $kw}
-		{ad($moduleid,$catid,$kw,6)}
-		{load('m'.$moduleid.'_k'.urlencode($kw).'.htm')}
-		{/if}	
-		{template 'list-'.$module, 'tag'}
-		<div class="tool">
-			<table>
-			<tr height="30">
-			<td width="25" align="center">&nbsp;</td>
-			<td>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</td>
-			<td>&nbsp;</td>
-			</tr>
-			</table>
-		</div>
-		</form>
-		{else}
-		{template 'noresult', 'message'}
-		{/if}
-	</div>
+ {template 'header-expertpool'} 
+  <script type="text/javascript">
+        	//专家类别点击
+            function parentCategoryClk(obj){
+            	var id = jQuery(obj).attr("value");
+            	jQuery("#catid").val(id);
+				if(id==39139)
+				{
+					$("#category2").show();$("#category3").hide();
+				}
+				if(id==39140)
+				{
+					$("#category2").hide();$("#category3").show();
+				}
+            }
+            //行业领域点击
+            function categoryClk(obj){
+            	jQuery("#categorySpan [href]").removeClass();
+            	jQuery(obj).addClass('now');
+            	var id=jQuery(obj).attr("value")
+            	jQuery("#catid").val(id);
+            }
+            //专家职称点击
+            function dicClk(obj){
+            	var id=jQuery(obj).attr("value");
+            	jQuery("#level").val(id);
+            } 
+        </script>
+<!-- 当前位置 Begin -->
+<div class="expertPond_nowPos"> <span>您的位置：</span> <a href="#">首页</a>&nbsp;- <a href="#">专家助力</a> &nbsp;- <a>专家搜索</a> </div>
+<!-- 当前位置 End --> 
+
+<!-- 搜索专家筛选框Begin -->
+<form action="?" method="get" id="ListForm" >
+  <div class="expert-filter">
+    <ul class="filter-content">
+      <li id="li_pcat_id">
+        <h6 class="filter-title">专家类别：</h6>
+        <a href="javascript:void(0);"  onclick="parentCategoryClk(this);" class="now">全部</a> 
+        <a href="javascript:void(0);" value="39139" onClick="parentCategoryClk(this);">技术类</a> 
+        <a href="javascript:void(0);" value="39140" onClick="parentCategoryClk(this);">管理类</a>
+        <input type="hidden" id="catid" name="catid" value="">
+        <input type="hidden" id="searchAllParam" name="searchAllParam" value="">
+      </li>
+      {php $mid = $moduleid;}
+      <li id='category2'>
+        <h6 class="filter-title">行业领域：</h6>
+        <span id="categorySpan"><a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
+        {php $sub = get_maincat(39139, $mid, 1);}
+        {loop $sub $j $s}
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
+        {/loop}</span>
+      </li>
+      <li id='category3' style="display:none">
+        <h6 class="filter-title">行业领域：</h6>
+        <span id="categorySpan">
+        <a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
+        {php $sub = get_maincat(39140, $mid, 1);}
+        {loop $sub $j $s}
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
+        {/loop}
+        </span>
+      </li>
+      <li id="li_dic_id">
+        <h6 class="filter-title">专家职称：</h6>
+        <a href="javascript:void(0);" onClick="dicClk(this);">全部</a> 
+              {php  $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}
+              {loop $UNIT $j $s}
+        <a href="javascript:void(0);" value="{$j+1}" onClick="dicClk(this);">{$s}</a> {/loop}
+        <input name="level" type="hidden" id="level" value=""/>
+      </li>
+      <li>
+        <h6 class="filter-title">专家名称：</h6>
+        <input type="text" id="title" name="title" value="">
+      </li>
+      <li>
+        <h6 class="filter-title">职业标签：</h6>
+        <input type="text" id="brand" name="brand" value="">
+      </li>
+    </ul>
+    <!-- <input type="submit" value="搜索" class="filter-btn" style="cursor:pointer;"/> --> 
+    <a href="javascript:jQuery('#ListForm').submit();" class="filter-btn">搜索</a>
+    <input type="hidden" name="currentPage" id="currentPage"  value="1"/>
+  </div>
+</form>
+<!-- 搜索专家筛选框End --> 
+<!-- 专家查询列表Begin -->
+<div id="entList"> 
+  
+  <!-- 搜索结果 Begin -->
+  <div class="expert-search-result">
+    <div class="result-head">
+      <h5>搜索结果</h5>
+      <span class="result-num">共计{$items}条</span> </div>
+    <ul class="result-list clearfix">
+            <!--{php 
+        $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}--> 
+    {loop $tags $k $t}
+      <li> <a href="{$t[linkurl]}" class="result-img"> <img src="{$t[thumb]}"/> </a>
+        <div class="result-txt">
+          <h5 class="name">{$t[title]}</h5>
+          <span class="job">{$UNIT[$t[level]-1]}</span>
+          <p>所在地区：{area_pos($t[areaid], ' ', 2)}</p>
+          <p>职业标签： <span> {$t[brand]}</span> </p>
+          <p>类别领域{$t[tags]}</p>
+        </div>
+      </li>
+      {/loop}
+      	
+    </ul>
+    
+    <!-- 页码 Begin -->
+    <div class="expertPond_pageBox">{$pages}</div>
+    <!-- 页码 End --> 
+  </div>
+  <!-- 搜索结果 End --> 
 </div>
-<div class="m_n f_l">&nbsp;</div>
-<div class="m_r_1 f_l">
-	{if $kw}
-	<div class="box_head"><div><strong>相关搜索</strong></div></div>
-	<div class="box_body">
-		<div class="sch_site">
-			<ul>
-			{loop $MODULE $mod}{if $mod[moduleid]>3 && $mod[moduleid]!=$moduleid && !$mod[islink]}<li><a href="{$mod[linkurl]}search.php?kw={urlencode($kw)}">在 <span class="f_red">{$mod[name]}</span> 找 {$kw}</a></li>{/if}{/loop}
-			</ul>
-		</div>
-		<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and word<>'$kw' and keyword like '%$keyword%'&pagesize=10&order=total_search desc&template=list-search_relate", -2)}-->
-	</div>
-	<div class="b10">&nbsp;</div>
-	{/if}
-	<div class="sponsor">{ad($moduleid,$catid,$kw,7)}</div>
-	<div class="box_head"><div><strong>今日搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400&pagesize=10&order=today_search desc&key=today_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本周搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*7&pagesize=10&order=week_search desc&key=week_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本月搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*30&pagesize=10&order=month_search desc&key=month_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-</div>
-</div>
-{template 'footer'}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+                $('.expert-filter a').click(function() {
+                    $(this).addClass('now').siblings('a').removeClass('now');
+                });
+});
+</script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script> 
+{template 'footer-expertpool'}
+</body></html>

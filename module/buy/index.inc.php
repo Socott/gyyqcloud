@@ -1,6 +1,7 @@
 <?php
 defined('IN_DESTOON') or exit('Access Denied');
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
+$typeid=$_GET['typeid'];
 //所有分类
 global $db;
 $rs = $db -> query("select catid,catname from {$db->pre}category where moduleid=$moduleid and parentid=0");
@@ -48,7 +49,7 @@ if($addtime){
 $member_set = include DT_ROOT.'/file/setting/module-2.php';
 $com_size = explode('|', $member_set['com_size']);//企业规模
 $com_type = explode('|', $member_set['com_type']);//企业类型
-
+if ($typeid && $typeid != '-1') $condition .= " AND typeid=$typeid";
 //求购信息条数
 $t1 = microtime(true);
 $items = $db->count($table, $condition, $CFG['db_expires']);

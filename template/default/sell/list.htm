@@ -6,17 +6,17 @@
 	<meta charset="utf-8" />
 	<title>云制造</title>
 	<meta http-equiv="x-ua-compatible" content="IE=edge" />
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/industrialMall/newIndex/css/pages.css" />
-	<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
-	<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/industrialMall/css/clound.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/demandAbility.css"/>
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/reset1.css"/>
-	<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/hongshanshan.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/css/zoneOrgInfoStartlevel.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/industrialMall/newIndex/css/pages.css" />
+	<link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
+	<link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter/pages/industrialMall/css/clound.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/css/demandAbility.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/css/reset1.css"/>
+	<link href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/css/hongshanshan.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/css/zoneOrgInfoStartlevel.css"/>
 		<script src="{DT_STATIC}file/layer/layer.js"></script>
-	<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/jquery/jquery-1.10.2.min.js"></script>
-	<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/js/global.js"></script>
-	<script type="text/javascript" src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/zoneOrgInfoStartlevel.js"></script>
+	<script src="http://img1.gyyqcloud.com/cocenter/js/jquery/jquery-1.10.2.min.js"></script>
+	<script src="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/js/global.js"></script>
+	<script type="text/javascript" src="http://img1.gyyqcloud.com/cocenter/js/zoneOrgInfoStartlevel.js"></script>
 	<script type="text/javascript">
     var indexUrl="http://core.casicloud.com";
     var fileCtx="https://oby0yx23h.qnssl.com/";
@@ -137,7 +137,7 @@
               <div class="demandHall_name">
             <div class="demandHall_nameCon"> <a target="_blank" href="{$t[linkurl]}" title="{$t[company]}"> {$t[company]} </a> </div>
             <div class="demandHall_nameIcon">
-                  <div class="authen" style="height:34px;display:inline-block;margin-top:25px;margin-right: 46px;float:left;"> <a href="#" id='a1'   class="a1"><span>实名认证</span></a> <a href="#" id='a2'   class="a2"><span>实地认证</span></a> <a  class="famousCompany" style="float:left;" href="http://cocenter.casicloud.com/b2b/famousCompany/famousCompanyPurchase/index.ht" target="_blank"></a> <a class="u-a " href="http://core.casicloud.com/agreement/b2bAgreementAuthen/index.ht" target="_blank"></a> </div>
+                  <div class="authen" style="height:34px;display:inline-block;margin-top:25px;margin-right: 46px;float:left;"> <a href="#" id='a1'   class="a1"><span>实名认证</span></a> <a href="#" id='a2'   class="a2"><span>实地认证</span></a> <a  class="famousCompany" style="float:left;" href="#" target="_blank"></a> <a class="u-a " href="#" target="_blank"></a> </div>
                 </div>
           </div>
               <div class="demandHall_infor">
@@ -145,7 +145,7 @@
             <div class="demandHall_infor_con"> <span>还剩： <span name="leftHour"><span name="remainingTime" style="color: red;">2 天 6 小时</span></span></span> </div>
             <div style="text-overflow: ellipsis;width: 173px;overflow: hidden;white-space: nowrap;">交付地点：{$t[address]}</div>
           </div>
-              <div class="demandHall_btn"> <a href="{$t[linkurl]}" target="_blank" class="demandHall_btn2">查看详情</a> <a href="javascript:void(0)"   class="demandHall_btn1" onclick="window.top.doLogin();" style="margin-top: 15px;">我要报价</a> </div>
+              <div class="demandHall_btn"> <a href="{$t[linkurl]}" target="_blank" class="demandHall_btn2">查看详情</a> <a href="javascript:void(0)"   class="demandHall_btn1" onclick="top.priceQuery('{$t['itemid']}');" style="margin-top: 15px;">我要报价</a> </div>
             </li>
       </ul>
  	{/loop}	
@@ -164,6 +164,8 @@
   </div>
     </div>
 <input id="tenantid" type="hidden" name="tenantid" value=/>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/js/release/commodity.js"></script>
+<script src="http://img1.gyyqcloud.com/cocenter/js/release/commodity.js"></script>
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}style.css"/>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script> 
 </body>
 </html>

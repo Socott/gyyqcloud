@@ -1,17 +1,11 @@
 {template 'header', $module}
-<link rel="stylesheet" type="text/css" href="{DT_STATIC}{$MODULE[2][moduledir]}/image/index.css"/>
-<div id="warn">
-{if $_groupid == 4}
-	<div class="warn">尊敬的会员，您的帐号<span class="f_red">正在审核中..</span>，本站部分功能和服务可能受到一定的使用限制，{if $MOD[checkuser]==2}<a href="send.php?action=check" class="l">请点这里验证您的邮箱</a>，系统将自动审核{else}请稍候，等待网站审核<br/>完善的商业信息有助于获得别人的信任，结交潜在的商业伙伴，获取商业机会，增加系统审核通过的概率&nbsp;&nbsp;<a href="edit.php?tab=2" class="t">现在就去完善&raquo;</a>{/if}</div>
-{/if}
-{if $_groupid > 5 && !$_edittime}
-	<div class="warn">贵公司尚未完善详细资料！完善的商业信息有助于获得别人的信任，结交潜在的商业伙伴，获取商业机会&nbsp;&nbsp;<a href="edit.php?tab=2" class="t">现在就去完善&raquo;</a></div>
-{/if}
-{if $vip && $havedays < 30 && $havedays > 0}
-	<div class="warn">尊敬的{$MG[groupname]}，您的{VIP}服务将在 <strong class="f_red">{$havedays}</strong> 天后到期，为了不影响您的正常使用，请您尽快续费&nbsp;&nbsp;<a href="vip.php?action=renew" class="t">立即续费&raquo;</a></div>
-{/if}
-</div>
 
+
+<link rel="stylesheet" href="http://core.casicloud.com/static/assets/css/unifiedBackground.css">
+<script src="http://core.casicloud.com/pages/cloud6.0/htcloud/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript" src="http://core.casicloud.com/js/layer/layer.js"></script>
+<link rel="stylesheet" href="http://core.casicloud.com/js/layer/skin/layer.css" id="layui_layer_skinlayercss" style="">
+<div class="uf-indexfirst" style="height:150px;">
 <div class="iuser">
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
@@ -57,6 +51,139 @@
 </tr>
 </table>
 </div>
+  
+</div>
+<!--recommend zone begin-->
+<div class="uf-recommend">
+  <div class="uf-title"> <img src="http://core.casicloud.com/static/assets/img/shutiao.jpg"><span class="uf-titleIntro">推荐区</span> </div>
+  <div class="uf-wxyw">
+    <div class="uf-wxywLeft">外协业务</div>
+    <div class="uf-wxywRight">
+      <div class="uf-wxywRight-partone">
+        <div class="uf-wxywRight-partoneLeft"> <img src="http://core.casicloud.com/static/assets/img/uf-xuqiu.png">需求 </div>
+        <ul class="uf-wxywRight-partoneRight">
+        
+          {php $tags=tag("table=buy_6&length=44&condition=status>0 &areaid=$cityid&pagesize=6&order=rand()&cols=2&template=null&debug=0");}
+          {loop $tags $kk $tt}
+          <li> <a target="_blank" href"=/buy/{$tt[linkurl]}"><img src="{$tt[thumb]}" height="105px" width="105px"></a>
+            <p><a target="_blank" href="/buy/{$tt[linkurl]}">{mb_substr($tt[title],0,10,'utf-8')}</a></p>
+          </li>
+          {/loop} 
+          
+        </ul>
+      </div>
+      <div class="uf-wxywRight-parttwo">
+        <div class="uf-wxywRight-partoneLeft"> <img src="http://core.casicloud.com/static/assets/img/uf-fuwu.png">服务 </div>
+        <ul class="uf-wxywRight-partoneRight">
+          {php $tags=tag("table=services&length=44&condition=status>0 &areaid=$cityid&pagesize=6&order=rand()&cols=2&template=null&debug=0");}
+          {loop $tags $kk $tt}
+          <li> <a target="_blank" href="/services/{$tt[linkurl]}"><img src="{$tt[thumb]}" height="105px" width="105px"></a>
+            <p><a target="_blank" href="/services/{$tt[linkurl]}">{mb_substr($tt[title],0,10,'utf-8')}</a></p>
+          </li>
+          {/loop} 
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="uf-wgyw">
+    <div class="uf-wxywLeft">外购业务</div>
+    <div class="uf-wxywRight">
+      <div class="uf-wxywRight-partone">
+        <div class="uf-wxywRight-partoneLeft"> <img src="http://core.casicloud.com/static/assets/img/uf-caigou.png">采购 </div>
+        <ul class="uf-wxywRight-partoneRight">
+          {php $tags=tag("table=sell_5&length=44&condition=status>0 &areaid=$cityid&pagesize=6&order=rand()&cols=2&template=null&debug=0");}
+          {loop $tags $kk $tt}
+          <li> <a target="_blank" href"=/sell/{$tt[linkurl]}"><img src="{$tt[thumb]}" height="105px" width="105px"></a>
+            <p><a target="_blank" href="/sell/{$tt[linkurl]}">{mb_substr($tt[title],0,10,'utf-8')}</a></p>
+          </li>
+          {/loop} 
+        </ul>
+      </div>
+      <div class="uf-wxywRight-parttwo">
+        <div class="uf-wxywRight-partoneLeft"> <img src="http://core.casicloud.com/static/assets/img/uf-xiaoshou.png">销售 </div>
+        <ul class="uf-wxywRight-partoneRight">
+          {php $tags=tag("table=mall&length=44&condition=status>0 &areaid=$cityid&pagesize=6&order=rand()&cols=2&template=null&debug=0");}
+          {loop $tags $kk $tt}
+          <li> <a target="_blank" href"=/industry/{$tt[linkurl]}"><img src="{$tt[thumb]}" height="105px" width="105px"></a>
+            <p><a target="_blank" href="/industry/{$tt[linkurl]}">{mb_substr($tt[title],0,10,'utf-8')}</a></p>
+          </li>
+          {/loop} 
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--recommend zone end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="{DT_STATIC}{$MODULE[2][moduledir]}/image/index.css"/>
+<div id="warn">
+{if $_groupid == 4}
+	<div class="warn">尊敬的会员，您的帐号<span class="f_red">正在审核中..</span>，本站部分功能和服务可能受到一定的使用限制，{if $MOD[checkuser]==2}<a href="send.php?action=check" class="l">请点这里验证您的邮箱</a>，系统将自动审核{else}请稍候，等待网站审核<br/>完善的商业信息有助于获得别人的信任，结交潜在的商业伙伴，获取商业机会，增加系统审核通过的概率&nbsp;&nbsp;<a href="edit.php?tab=2" class="t">现在就去完善&raquo;</a>{/if}</div>
+{/if}
+{if $_groupid > 5 && !$_edittime}
+	<div class="warn">贵公司尚未完善详细资料！完善的商业信息有助于获得别人的信任，结交潜在的商业伙伴，获取商业机会&nbsp;&nbsp;<a href="edit.php?tab=2" class="t">现在就去完善&raquo;</a></div>
+{/if}
+{if $vip && $havedays < 30 && $havedays > 0}
+	<div class="warn">尊敬的{$MG[groupname]}，您的{VIP}服务将在 <strong class="f_red">{$havedays}</strong> 天后到期，为了不影响您的正常使用，请您尽快续费&nbsp;&nbsp;<a href="vip.php?action=renew" class="t">立即续费&raquo;</a></div>
+{/if}
+</div>
+
+
 <div class="icount">
 <table cellpadding="0" cellspacing="0">
 <tr>
@@ -94,25 +221,6 @@
 		<li>&nbsp;暂无消息</li>
 		{/if}
 		</ul>
-	</div>
-</div>
-
-<div class="ihead">
-	<strong>商务便笺</strong>
-</div>
-<div class="ibody">
-	<div class="inote">
-		<form method="post" action="index.php" onsubmit="return check();">
-		<table cellspacing="2" cellpadding="2" width="100%">
-		<tr>
-		<td colspan="2"><textarea name="note" id="note">{$note}</textarea></td>
-		</tr>
-		<tr>
-		<td width="80"><input type="submit" name="submit" value=" 更 新 " class="btn_g"/></td>
-		<td class="f_gray">[可记录一些文字备忘，限5000字]</td>
-		</tr>
-		</table>
-		</form>
 	</div>
 </div>
 {template 'footer', $module}

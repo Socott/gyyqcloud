@@ -1,75 +1,120 @@
-{template 'header'}
-<script type="text/javascript">var module_id= {$moduleid},item_id={$itemid},content_id='content',img_max_width={$MOD[max_width]};</script>
-<div class="m">
-<div class="m_l f_l">
-	<div class="left_box">		
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')} &raquo; </div>
-		<h1 class="title" id="title">{$title}</h1>
-		<div class="downinfo">
-		<table cellpadding="0" cellspacing="0" width="100%">
-		<tr>
-		<td width="90"><img src="{DT_PATH}file/ext/icon_{$fileext}.gif" alt="{$FILETYPE[$fileext]}"/></td>
-		<td width="180">
-		<ul>
-			<li>文件类型：{$FILETYPE[$fileext]}</li>
-			<li>文件大小：{$filesize}{$unit}</li>
-		</ul>
-		</td>
-		<td>
-		<ul>
-			<li>更新日期：{$adddate}</li>
-			<li>浏览次数：<span id="hits">{$hits}</span>&nbsp;&nbsp;&nbsp;下载次数：<span id="download">{$download}</a></li>
-		</ul>
-		</td>
-		<td width="110"><a href="#downurl"><img src="{DT_SKIN}image/btn_download.gif" alt="进入下载"/></a></td>
-		</tr>
-		</table>
-		</div>
-		{if $content}
-		<div class="left_head">详细介绍</div>
-		{if $CP}{template 'property', 'chip'}{/if}
-		<div class="content" id="content">{$content}</div>
-		<div class="b10">&nbsp;</div>
-		<center>
-		[ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
-		[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;
-		[ <a href="javascript:SendPage();">告诉好友</a> ]&nbsp;
-		[ <a href="javascript:Print();">打印本文</a> ]&nbsp;
-		[ <a href="javascript:SendReport();">违规举报</a> ]&nbsp;
-		[ <a href="javascript:window.close()">关闭窗口</a> ]
-		</center>
-		<br/>
-		{/if}
-		<div class="left_head">下载地址<a name="downurl"></a></div>
-		<div id="down">{template 'content', 'chip'}</div>
-		{template 'comment', 'chip'}
-	</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>云素材中心</title>
+<link rel="stylesheet" type="text/css" href="http://material.casicloud.com/styles/material/reset.css"/>
+<link rel="stylesheet" type="text/css" href="http://material.casicloud.com/styles/material/YSC.css"/>
+<script type="text/javascript" src="http://material.casicloud.com/js/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://material.casicloud.com/js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="http://material.casicloud.com/js/layer/layer.js"></script>
+</head>
+<body style="min-width:1230px;">
+<!--顶部 start-->
+<link rel="stylesheet" type="text/css" href="http://material.casicloud.com/pages/industrialMall/newIndex/css/page.css" />
+<link rel="stylesheet" type="text/css" href="http://material.casicloud.com/pages/cloud1.0/yzz/css/global.css" />
+<link rel="stylesheet" type="text/css" href="http://material.casicloud.com/pages/cloud1.0/yzz/css/home2.css" />
+<script src="http://material.casicloud.com/js/jquery.mScroll.js"></script> 
+<!-- 重庆工业互联网云平台，云制造top页面 -->
+<link href="http://material.casicloud.com/pages/cloud1.0/yzz/css/common.css" rel="stylesheet" type="text/css" />
+<link href="http://material.casicloud.com/pages/cloud1.0/css/common.17.9.5.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://material.casicloud.com/pages/cloud1.0/yzz/css/reset2.css">
+<link rel="stylesheet" href="http://material.casicloud.com/pages/cloud1.0/yzz/css/matter_top-18.01.18.css">
+<div id="top_casi">
+  <style tyle="text/css">
+#wdyw{cursor:pointer;}
+</style>
+  <script src="http://material.casicloud.com/js/htyw_ul.js"  type="text/javascript"></script> 
+  {template 'scene/header'}
+  <div class="g-matter-sch">
+    <div class="m-sch-ct" style="height:90px;">
+      <div class="u-logo-wrap"> <a href="http://material.casicloud.com/material/cloudMaterialCenter/list.ht" class="u-logo-index" style="background:url(http://img1.gyyqcloud.com/rjc/resources/style/soft/images/g_matter_top_logo_icon.png)"></a> <a href="http://material.casicloud.com/material/cloudMaterialCenter/list.ht" class="u-logo-area">云素材</a> </div>
+      <div class="u-sch-wrap">
+        <input type="hidden" id="selectType" value="素材"/>
+        <input type="text" class="u-sch-ipt" placeholder="请输入关键词" id="kw"  onkeydown="if(event.keyCode==13){ch();}" value=""/>
+        <a  id="search_v1" class="u-sch-btn">搜索</a> </div>
+    </div>
+  </div>
 </div>
-<div class="m_n f_l">&nbsp;</div>
-	<div class="m_r f_l">
-		{if $tag}
-		<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}search.php?kw={urlencode($tag)}" rel="nofollow">更多&raquo;</a></span><strong>相关{$MOD[name]}</strong></div></div>
-		<div class="box_body">
-		<!--{tag("moduleid=$moduleid&condition=status=3 and tag='$tag' and addtime>$addtime&areaid=$cityid&pagesize=5&order=addtime desc&template=list-down", -2)}-->
-		<!--{tag("moduleid=$moduleid&condition=status=3 and tag='$tag' and addtime<$addtime&areaid=$cityid&pagesize=5&order=addtime desc&template=list-down", -2)}-->
-		</div>
-		<div class="b10"></div>
-		{/if}
-		<div class="box_head"><div><strong>推荐{$MOD[name]}</strong></div></div>
-		<div class="box_body">
-		<!--{tag("moduleid=$moduleid&condition=status=3 and level>0&areaid=$cityid&pagesize=10&order=addtime desc&template=list-down")}-->
-		</div>
-		<div class="b10 c_b"> </div>
-		<div class="box_head"><div><strong>本类下载排行</strong></div></div>
-		<div class="box_body">
-		<div class="rank_list"><!--{tag("moduleid=$moduleid&condition=status=3&catid=$catid&areaid=$cityid&order=download desc&pagesize=10")}--></div>
-		</div>
-		<div class="b10 c_b"> </div>
-		<div class="box_head"><div><strong>总下载排行</strong></div></div>
-		<div class="box_body">
-		<div class="rank_list"><!--{tag("moduleid=$moduleid&condition=status=3&areaid=$cityid&order=download desc&pagesize=10")}--></div>
-		</div>
-	</div>
+<script language="javascript">
+	$("#search_v1").click(function(){
+		if($("#kw").val()!=""){
+			window.location="list.php?kw="+$("#kw").val();
+			}
+		})
+</script>
+<!-- 高新区top页面 -->
+
+<div class="ysc_con"> 
+  <!--crumbs begin -->
+  <div class="ysc_crumbs"> &nbsp; <a href="{$MODULE[1][linkurl]}">首页</a>&raquo;<a href="{$MOD[linkurl]}">{$MOD[name]}</a>&raquo; {cat_pos($CAT, ' &raquo; ')} &raquo; <span>{$title}</span> </div>
+  <!--crumbs end -->
+  <div class="ysc_con">
+    <div class="clearfix ysc_detail_thunBox"> 
+      <!--Left begin -->
+      <div class="foucsBox">
+        <div class="bigImg">
+          <div class="icons"> <a href="javascript:void(0)" class="icon1">{$hits}</a> <a href="javascript:void(0)" class="icon2">{$download}</a> <a href="javascript:void(0)" class="icon3">1</a> </div>
+          <img src="{$thumb}"/> </div>
+        <ul class="nav">
+          <li><img src="{$thumb}" /></li>
+        </ul>
+      </div>
+      <!--left end --> 
+      <!-- R  -->
+      <div class="descBox">
+        <h5 class="cap">{$title}</h5>
+        <p><span class="t">文件格式：</span>{$FILETYPE[$fileext]} </p>
+        <p><span class="t">文件大小：</span>{$filesize}{$unit}</p>
+        <p><span class="t">下载次数：</span>{$download}</p>
+        <p><span class="t">更新日期：{$adddate}</p>
+        <p><span class="t">上传企业：</span>贵阳鼎丰机电设备有限公司 </p>
+        <div class="clearfix btnBox"><a href="down.php?itemid={$itemid}" onclick="" class="download" style="width:120px;">下载</a></div>
+        <h4 class="table_tit">附件列表：</h4>
+        <div class="tableBox tab_tit clearfix"> <span class="name">文件名称</span> <span class="format">格式/版本</span> <span class="size">大小</span> </div>
+        <div class="tableBox">
+          <table class="table"  cellspacing="" cellpadding="">
+            <colgroup>
+            <col width="40%"/>
+            <col width="35%"/>
+            <col width="25%"/>
+            </colgroup>
+            <tr>
+              <td><p class="w190">{$title}</p></td>
+              <td><p>{$FILETYPE[$fileext]} {$FILETYPE[$fileext]}</p></td>
+              <td><p>{$filesize}{$unit}</p></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="ysc_detail_cutBox">
+      <ul class="capBox">
+        <li class="tit cur"><span>素材详情</span></li>
+        <!--li class="tit"><span>下载记录</span></li-->
+      </ul>
+      <div class="cutBox" style="padding:20px;">
+        <div class="con cur">
+          <h3 class="tit"></h3>
+          <p class="desc" style="padding:20px;">{$content}</p>
+        </div>
+        <div class="con" style="padding:20px;">{$content}
+        </div>
+      </div>
+    </div>
+    <div class="ysc_listBox">
+      <div class="clearfix cap"> <span>相关素材推荐</span> </div>
+      <div class="ysc_detail_listgroup">
+        <ul class="clearfix">
+           <!--{php $tags=tag("moduleid=$moduleid&condition=addtime>$addtime&areaid=$cityid&pagesize=5&order=addtime desc&template=null");}-->
+           {loop $tags $i $t}
+          <li> <a class="img" href="{$t[linkurl]}" target="_blank" > <img src="{$t[thumb]}"/> </a>
+            <div class="desc"> <a class="span" href="{$t[linkurl]}" target="_blank"   title="{$t[alt]}">{$t[title]}</a> <a onclick="collectRelatedShow('78')" id="collect78" class="star"></a> </div>
+          </li>
+         {/loop}
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-{if $content}<script type="text/javascript" src="{DT_STATIC}file/script/content.js"></script>{/if}
-{template 'footer'}
+</body>
+{template 'footer-index'}

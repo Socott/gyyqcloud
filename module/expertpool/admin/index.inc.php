@@ -25,7 +25,7 @@ if($_catids || $_areaids) require DT_ROOT.'/admin/admin_check.inc.php';
 
 if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
 	$sfields = array('模糊',  '专家名称', '专家品牌',  '简介', '计量单位', '关联名称', '公司名', '联系人', '联系电话', '联系地址', '电子邮件', '联系MSN', '联系QQ', '会员名', '编辑', 'IP', '属性名1', '属性名2', '属性名3', '属性值1', '属性值2', '属性值3', '快递1', '快递2', '快递3', '文件路径', '内容模板');
-	$dfields = array('keyword', 'title', 'brand', 'introduce', 'unit', 'relate_name', 'company', 'truename', 'telephone', 'address', 'email', 'msn', 'qq','username', 'editor', 'ip', 'n1', 'n2', 'n3', 'v1', 'v2', 'v3', 'express_name_1', 'express_name_2', 'express_name_3', 'filepath', 'template');
+	$dfields = array('keyword', 'title', 'areaid','brand', 'introduce', 'unit', 'relate_name', 'company', 'truename', 'telephone', 'address', 'email', 'msn', 'qq','username', 'editor', 'ip', 'n1', 'n2', 'n3', 'v1', 'v2', 'v3', 'express_name_1', 'express_name_2', 'express_name_3', 'filepath', 'template');
 	$sorder  = array('结果排序方式', '更新时间降序', '更新时间升序', '添加时间降序', '添加时间升序', VIP.'级别降序', VIP.'级别升序', '专家单价降序', '专家单价升序', '订单数量降序', '订单数量升序', '销售数量降序', '销售数量升序', '库存总量降序', '库存总量升序', '评论次数降序', '评论次数升序', '浏览人气降序', '浏览人气升序', '信息ID降序', '信息ID升序');
 	$dorder  = array($MOD['order'], 'edittime DESC', 'edittime ASC', 'addtime DESC', 'addtime ASC', 'vip DESC', 'vip ASC', 'price DESC', 'price DESC', 'orders DESC', 'orders ASC', 'sales DESC', 'sales ASC', 'amount DESC', 'amount ASC', 'comments DESC', 'comments ASC', 'hits DESC', 'hits ASC', 'itemid DESC', 'itemid ASC');
 

@@ -60,7 +60,15 @@ while ($r = $db->fetch_array($rs)){
     }
 }
 
-
+//企业类型
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_type'");
+$com_type=explode("|",$rs['item_value']);
+//企业规模
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_size'");
+$com_size=explode("|",$rs['item_value']);
+//经营方式
+//$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_mode'");
+//$com_mode=explode("|",$rs['item_value']);
 
 $tags = array();
 if($DT_QST) {

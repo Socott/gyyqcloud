@@ -2,7 +2,7 @@
 defined('IN_DESTOON') or exit('Access Denied');
 if($DT_BOT || $_POST) dhttp(403);
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
-if(!check_group($_groupid, $MOD['group_search'])) include load('403.inc');
+//if(!check_group($_groupid, $MOD['group_search'])) include load('403.inc');
 require DT_ROOT.'/include/post.func.php';
 include load('search.lang');
 $CP = $MOD['cat_property'] && $catid && $CAT['property'];
@@ -96,15 +96,15 @@ if($DT_QST) {
 	
 	{
 		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
-		$result = $db->query("SELECT $fds,thumb,keyword FROM {$table} WHERE thumb<>'' and {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
+		$result = $db->query("SELECT * FROM {$table} WHERE thumb<>'' and {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
 		if($kw) {
-			$replacef = explode(' ', $kw);
-			$replacet = array_map('highlight', $replacef);
+			//$replacef = explode(' ', $kw);
+			//$replacet = array_map('highlight', $replacef);
 		}
 		while($r = $db->fetch_array($result)) {
 			$r['adddate'] = timetodate($r['addtime'], 5);
 			$r['editdate'] = timetodate($r['edittime'], 5);
-			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+			////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
 			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);

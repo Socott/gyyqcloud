@@ -8,7 +8,7 @@ $CAT = get_cat($catid);
 $content_table = content_table($moduleid, $itemid, $MOD['split'], $table_data);
 $t = $db->get_one("SELECT content FROM {$content_table} WHERE itemid=$itemid");
 $content = $t['content'];
-if($lazy) $content = img_lazy($content);
+//if($lazy) $content = img_lazy($content);
 if($MOD['keylink']) $content = keylink($content, $moduleid);
 
 $CP = $MOD['cat_property'] && $CAT['property'];

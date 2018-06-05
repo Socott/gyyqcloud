@@ -1,120 +1,230 @@
-{template 'header'}
-<script type="text/javascript">var sh = '{$MOD[linkurl]}search.php?catid={$catid}';</script>
-<div class="m">
-<div class="m_l_1 f_l">
-	<div class="left_box">		
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')}</div>
-		<div class="category">
-			<p><img src="{DT_SKIN}image/arrow.gif" width="17" height="12" alt=""/> <strong>按行业浏览</strong></p>
-			<div>
-			<table width="100%" cellpadding="3">
-			{loop $maincat $k $v}
-			{if $k%$MOD[page_subcat]==0}<tr>{/if}
-			<td{if $v[catid]==$catid} class="f_b"{/if}><a href="{$MOD[linkurl]}{$v[linkurl]}">{set_style($v[catname],$v[style])}</a>{if !$cityid} <span class="f_gray px10">({$v[item]})</span>{/if}</td>
-			{if $k%$MOD[page_subcat]==($MOD[page_subcat]-1)}</tr>{/if}
-			{/loop}
-			</table>
-			</div>
+{template 'header-mall'}
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/css/productCenter/page.css" />
+    <link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
+ 
+	<script src="http://img1.gyyqcloud.com/cocenter/pages/js/jquery/jquery-1.10.2.min.js"></script>
+	<script src="http://img1.gyyqcloud.com/cocenter/pages/js/jquery.mScroll.js"></script>
+	<script src="http://img1.gyyqcloud.com/cocenter/pages/js/release/global.js"></script>
+	<script src="http://img1.gyyqcloud.com/cocenter/pages/js/moble.js" type="text/javascript"></script>
+	<script type="text/javascript" src="http://img1.gyyqcloud.com/cocenter/pages/js/layer/layer.js"></script>
+	<script type="text/javascript" src="http://img1.gyyqcloud.com/cocenter/pages/js/zoneOrgInfoStartlevel.js"></script>
+		<!--面包屑 start-->
+        <div class="crumbs">
+            <div class="block">
+                <a href="/industry/">首页</a><span id="leimu"> > 产品大厅</span>
 		</div>
-		{if $CP}
-		{loop $PPT $p}
-		<div class="ppt">
-			<table cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-			<td class="ppt_l" valign="top">按{$p[name]}</td>
-			<td class="ppt_r" valign="top">
-			{loop $p[options] $o}
-			<a href="###" onclick="Go(sh+'&ppt_{$p[oid]}={urlencode($o)}');">{$o}</a>&nbsp;|&nbsp;
-			{/loop}
-			</td>
-			</tr>
-			</table>
+        </div>
+        <!--面包屑 end-->
+        <!--搜索选项 start-->
+        <div class="cpzx-commodity-classification">
+            <div class="block">
+
+                <div class="classification-title">
+                    <span class="commdoity-name">商品分类</span>
+                    <a href="/member/my.php?mid=16&action=add" class="release">发布商品</a>
+                </div>
+                <div class="classification-list">
+                   <span class="fenlei">
+                    <div class="item i1 feilei">
+                        <span>分类：</span>
+                        <div class="text">
+                            <div class="text-box" id="classBox">
+					        <a href="#">全部</a>
+                            {loop $category $k $v} <a href="?catid={$v[catid]}"  class="classification" value="capabilityIframe" >{set_style($v[catname],$v[style])}</a> {/loop}	 
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="more" id="moreClass">
+                            <font>更多</font>
+                        </a>
+                    </div>
+                    
+                    </span>
+                   
+                    <div class="item i3">
+                        <span>企业类型：</span>
+                        <div class="text">
+                            <div class="text-box">
+                            	<a href="#">全部</a>
+                                {loop $com_type $t $v}
+                                <a value="{$v}">{$v}</a>
+                                {/loop}
+                            </div>
+                            <div class="but">
+                                <a href="javascript:void(0);" class="submit">确定</a>
+                                <a href="#" class="onoff">开启多选</a>
+                            </div>
+                        </div>
+                        <a href="#" class="button1">多选</a>
+                        <a href="javascript:;" class="more">
+                            <font>更多</font>
+                        </a>
+
+                    </div>
+                    <div class="item i5">
+                        <span>经营方式：</span>
+                        <div class="text">
+                            <div class="text-box">
+                            	<a href="#">全部</a>
+                                {loop $com_mode $t $v}
+                                <a onclick="changeType(this);" value="{$v}">{$v}</a>
+                                {/loop}
+                                <a href="#" title="4">其他类型</a>
+                            </div>
+                            <div class="but">
+                                <a href="#" class="submit">确定</a>
+                                <a href="#" class="onoff">开启多选</a>
+                            </div>
+                        </div>
+                        <a href="#" class="button1">多选</a>
+                      
+                    </div>
+                    <div class="item i6">
+                        <span>企业规模：</span>
+                        <div class="text">
+                            <div class="text-box">
+                            	<a href="#">全部</a>
+                                {loop $com_size $t $v}
+                                <a value="{$v}">{$v}</a>
+                                {/loop}
+                            </div>
+                            <div class="but">
+                                <a href="#" class="submit">确定</a>
+                                <a href="#" class="onoff">开启多选</a>
+                            </div>
+                        </div>
+                        <a class="button1" href="#">多选</a>
+                        <a href="javascript:;" class="more">
+                            <font>更多</font>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!--搜索选项 end-->
+		<div class="yzz_classify_list" style="overflow:hidden;width:1230px; margin:auto">
+<div class="cpzx-commodity-condition">
+               	<div class="clearfix" id="selectDiv" style="display:none;padding: 10px 0;background: #E6A743;border-top-left-radius: 20px;border-bottom-right-radius: 20px;">
+               		<span style="margin-left:42px;">搜索条件:</span>
+               		<span id="addItem">
+               		</span>
+               		<div style="float:right;">
+               			<span>共计<span id="parentTotalCount"></span>条搜索结果</span>
+               			<span style="margin:0 20px 0 100px;cursor:pointer;" onclick="cancelAll()">全部撤销</span>
+               		</div>
+               	</div>
+                <div class="block" style="margin-top:10px;">
+                    <div class="div1">
+                        <a href="javascript:void(0)" class="a1" style="cursor:default;">排序</a>
+                        <a href="javascript:void(0)" class="a2" onclick="changeorder('createtime',this)" value="asc">发布时间↓</a>
+                        <!-- select star begin -->
+						<a class="allStar">
+                            <span>质量认证</span>
+                            <div class="starFilter">
+                                <ul class="starfilterList">
+                                    <li onclick="selectStar(this)" value="1">一星级</li>
+                                    <li onclick="selectStar(this)" value="2">二星级</li>
+                                    <li onclick="selectStar(this)" value="3">三星级</li>
+                                    <li onclick="selectStar(this)" value="4">四星级</li>
+                                    <li onclick="selectStar(this)" value="5">五星级</li>
+                                </ul>
+                            </div>     
+                        </a>
+                        <!-- select star end -->
+                        <a href="javascript:void(0)" class="a3" onclick="changeorder('searchCount',this)" value="asc">热度↓</a>
+                        <a href="javascript:void(0)" class="a4" onclick="changeorder('price',this)" value="asc">价格↓</a>
+                    </div>
+                    <div class="div2">
+                        <input id="beginPrice" name="beginPrice" placeholder="￥最低价" type="text"> -
+                        <input id="endPrice" name="endPrice" placeholder="￥最高价" type="text">
+                        <input value="确定" onclick="searchByClassification3()" type="submit">
+                    </div>
+                    <div class="div5" style="margin-left:320px;">
+                        <a href="javascript:void(0)" class="a1 now" onclick="openImageList(this)"></a>
+                        <a href="javascript:void(0);" class="a2" onclick="openList(this)"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="releaseHallList" style="width:1230px; margin:auto">
+<div class="cpzx-commodity-list">
+
+      <div class="cpzx-warp-commodity commodity-list now"> 
+      
+    <div class="block" style="margin-top:-15px;">
+    
+    {loop $tags $k $t}
+      <div class="item-commodity">
+        <div class="img"> <a href="{$t[linkurl]}" target="_blank"> <img title="{$t[title]}" src="{imgurl($t[thumb])}" onError="this.src='http://img1.gyyqcloud.com/rjc/resources/style/common/images/thumb.jpg'" height="238px;" width="214px;" > </a> </div>
+    <div class="text">
+              <h2 title="{$t[title]}"> {mb_substr($t[title],0,10,'utf-8')}</h2>
+              <p class="p1" title="{$t[keyword]}">{mb_substr($t[keyword],0,30,'utf-8')}</p>
+              <div class="p2" style="text-overflow: ellipsis;width: 173px;overflow: hidden;white-space: nowrap;">所在地：{$t[address]}</div>
+              {if $t[fee]>0}
+              <p class="p121">{$t[fee]}</p>
+              {/if}
+              {if $t[fee]==0}
+              <p class="p121">价格面议</p>
+              {/if}
+              </a>
+              <div class="t1" style="position:relative;height:34px;">
+            <p> <a target="_blank" href="#" style="font-size:10px;" title="{$t[company]}"> <em>{$t[company]} </em> </a> </p>
+            <div class="authen" style="position:absolute;top:0;right:0;margin:0;height:32px;"> <a href="#" style="margin-bottom: 19px;display: inline-flex;" id='a1'  class="a1"><span>实名认证</span></a> <a class="level2 zlrz" style="margin-bottom: 19px;display: inline-flex;width:24px;height:24px;" href="#" target="_blank"></a> </div>
+          </div>
+            </div>
+      </div>
+	{/loop}	
+    
+          <!-- 分页bar 开始-->
+          
+        <div class="sj1210_fenye" style="width:100%">
+        <div class="digg">
+              <div class="page">
+            <div class="pagination">
+            {if $showpage && $pages}<div class="pages">{$pages}</div>{/if}
+            </div>
+      </div>
+          
+          <!-- 分页bar 结束--> 
+        </div>
+  </div>
+    </div>
+    </div>
+    </div>            </div>
 		</div>
-		{/loop}
-		{/if}
-		<div class="b10">&nbsp;</div>
-		<form method="post">
-		<div class="sell_tip" id="sell_tip" style="display:none;" title="双击关闭" ondblclick="Dh(this.id);">
-			<div>
-				<p>您可以</p>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/> 或 
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</div>
-		</div>
-		<div class="img_tip" id="img_tip" style="display:none;">&nbsp;</div>
-		<div class="tool">
-			<table>
-			<tr height="30">
-			<td width="25" align="center"><input type="checkbox" onclick="checkall(this.form);"/></td>
-			<td>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</td>
-			<td align="right">
-			<script type="text/javascript">var sh = '{$MOD[linkurl]}search.php?catid={$catid}';</script>
-			<input type="checkbox" onclick="Go(sh+'&vip=1');"/>{VIP}&nbsp;
-			<select onchange="Go(sh+'&day='+this.value)">
-			<option value="0">更新时间</option>
-			<option value="1">1天内</option>
-			<option value="3">3天内</option>
-			<option value="7">7天内</option>
-			<option value="15">15天内</option>
-			<option value="30">30天内</option>
-			</select>&nbsp;
-			<select onchange="Go(sh+'&order='+this.value)">
-			<option value="0">显示顺序</option>
-			<option value="2">价格由高到低</option>
-			<option value="3">价格由低到高</option>
-			<option value="4">{VIP}级别由高到低</option>
-			<option value="5">{VIP}级别由低到高</option>
-			<option value="6">供货量由高到低</option>
-			<option value="7">供货量由低到高</option>
-			<option value="8">起订量由高到低</option>
-			<option value="9">起订量由低到高</option>
-			</select>&nbsp;
-			</td>
-			</tr>
-			</table>
-		</div>
-		{if $page == 1}{ad($moduleid,$catid,$kw,6)}{/if}
-		{if $tags}{template 'list-'.$module, 'tag'}{/if}
-		<div class="tool">
-			<table>
-			<tr height="30">
-			<td width="25" align="center">&nbsp;</td>
-			<td>
-				<input type="submit" value="对比选中" onclick="this.form.action='{$MOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
-				<input type="submit" value="批量购买" onclick="this.form.action='{$MOD[linkurl]}cart.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
-			</td>
-			<td>&nbsp;</td>
-			</tr>
-			</table>
-		</div>
-		</form>
-		<br/>
-	</div>
-</div>
-<div class="m_n f_l">&nbsp;</div>
-<div class="m_r_1 f_l">
-	<div class="sponsor">{ad($moduleid,$catid,$kw,7)}</div>
-	<div class="box_head"><div><strong>本周搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*7&areaid=$cityid&pagesize=10&order=week_search desc&key=week_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>按地区浏览</strong></div></div>
-	<div class="box_body">
-		<table width="100%" cellpadding="3">
-		{php $mainarea = get_mainarea(0)}
-		{loop $mainarea $k $v}
-		{if $k%2==0}<tr>{/if}
-		<td><a href="{$MOD[linkurl]}search.php?areaid={$v[areaid]}&catid={$catid}" rel="nofollow">{$v[areaname]}</a></td>
-		{if $k%2==1}</tr>{/if}
-		{/loop}
-		</table>
-	</div>
-</div>
-</div>
-{template 'footer'}
+<script>
+			var cId = 0;
+			var rId = 0;
+			var kw = '';
+			var levelName=['一级分类','二级分类','三级分类','四级分类'];
+			// 排序
+			function changeorder(orderField1, obj){
+				$(obj).addClass("now").siblings().removeClass('now');
+				var orderSeq1 = $(obj).attr('value');
+				var field = $(obj).text();
+				if(orderSeq1 == 'desc'){
+					field = field.replace('发布时间↑', '发布时间↓');
+					field = field.replace('热度↑', '热度↓');
+					field = field.replace('价格↑', '价格↓');
+					$(obj).text(field);
+					$(obj).attr('value','asc');
+					orderField=orderField1;
+					orderSeq=orderSeq1;
+					searchByClassification3();
+				} else {
+					field = field.replace('发布时间↓', '发布时间↑');
+					field = field.replace('热度↓', '热度↑');
+					field = field.replace('价格↓', '价格↑');
+					$(obj).text(field);
+					$(obj).attr('value','desc');
+					orderField=orderField1;
+					orderSeq=orderSeq1;
+					searchByClassification3();
+				}
+			}
+</script>
+		<!--主体内容 end-->
+        <script src="http://img1.gyyqcloud.com/industry/js/commodity.js"></script>
+     
+{template 'cloudproduce/footer'}
+</html>

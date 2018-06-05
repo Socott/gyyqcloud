@@ -1,7 +1,9 @@
 <?php 
-defined('IN_DESTOON') or exit('Access Denied');$CAT['moduleid']=5; $moduleid=5;
-if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
+defined('IN_DESTOON') or exit('Access Denied');
+ 
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
+
+ 
 if($MOD['list_html']) {
 	$html_file = listurl($CAT, $page);
 	if(is_file(DT_ROOT.'/'.$MOD['moduledir'].'/'.$html_file)) d301($MOD['linkurl'].$html_file);
@@ -15,39 +17,21 @@ if($MOD['cat_property'] && $CAT['property']) {
 unset($CAT['moduleid']);
 extract($CAT);
 
-$maincat = get_maincat($child ? $catid : $parentid, $moduleid);
-$condition = 'status!=0';
-if(!empty($catid)) 
-$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
-if($cityid) {
-	$areaid = $cityid;
-	$ARE = $AREA[$cityid];
-	$condition .= $ARE['child'] ? " AND areaid IN (".$ARE['arrchildid'].")" : " AND areaid=$areaid";
-	$items = $db->count($table, $condition, $CFG['db_expires']);
-} else {
-	if($page == 1) {
-		$items = $db->count($table, $condition, $CFG['db_expires']);
-		if($items != $CAT['item']) {
-			$CAT['item'] = $items;
-			$db->query("UPDATE {$DT_PRE}category SET item=$items WHERE catid=$catid");
-		}
-	} else {
-		$items = $CAT['item'];
-	}
-}
+$items = $db->count("{$DT_PRE}company", "username in (select distinct username from {$DT_PRE}softpool)", $CFG['db_expires']);
 $pagesize = $MOD['pagesize'];
 $offset = ($page-1)*$pagesize;
 $pages = listpages($CAT, $items, $page, $pagesize);
 $tags = array();
+
 //if($items) {
-	$result = $db->query("SELECT ".$MOD['fields'].",thumb,keyword FROM {$table} WHERE thumb<>'' and {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+	$result = $db->query("SELECT * FROM {$DT_PRE}company WHERE  username in (select distinct username from {$DT_PRE}softpool) ORDER BY userid desc LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
-		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
+		//$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
 		$tags[] = $r;
 	}
 	$db->free_result($result);

@@ -43,7 +43,7 @@ if($items) {
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
 		if(strpos($r['linkurl'], '://') === false) $r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
@@ -58,10 +58,9 @@ $cols = 5;
 $seo_file = 'list';
 include DT_ROOT.'/include/seo.inc.php';
 if($EXT['mobile_enable']) $head_mobile = $EXT['mobile_url'].mobileurl($moduleid, $catid, 0, $page);
-if($help=='list-help')
-$template = 'list-help';
-else
 $template = $CAT['template'] ? $CAT['template'] : ($MOD['template_list'] ? $MOD['template_list'] : 'list');
-
+if($moduleid==27)
+include template($template,"help");
+else
 include template($template, $module);
 ?>

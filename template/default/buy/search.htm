@@ -1,10 +1,10 @@
 {template 'cloudproduce/header'}
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/industrialMall/newIndex/css/pages.css" />
-	<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
-    <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
-    <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/popup7.css"/>
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/reset7.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/industrialMall/newIndex/css/pages.css" />
+	<link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
+    <link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
+    <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/zone/qltyAuth/css/popup7.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/zone/qltyAuth/css/reset7.css"/>
 <style>
     i{
         background-color:#fff !important;
@@ -36,7 +36,7 @@
 		<!--面包屑 start-->
         <div class="crumbs">
             <div class="block">
-                <a href="../cosimcloud/index.html">首页</a><span id="leimu"> > 需求大厅</span>
+                <a href="/">首页</a><span id="leimu"> > 需求大厅</span>
 				
 		</div>
         </div>
@@ -55,17 +55,12 @@
                         <span class="fenlei">分类：</span>
                         <div class="text">
                             <div class="text-box" id="classBox">
-                                <a href="#" value="-1" class="classification now">全部</a>
+                                <a href="#" value="-1" class="classification {if $cateid==''}now{/if}">全部</a>
                                 {loop $category  $v}
-                                <a class="classification" href="#" value="{$v[catid]}">{$v[catname]}</a>
+                                <a class="classification {if $cateid==$v[catid]}now{/if}" href="#" value="{$v[catid]}">{$v[catname]}</a>
                                 {/loop}
                             </div>
-                            <div class="but">
-                                <a href="#" class="submit fenlei">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a href="#" class="button1">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
@@ -74,17 +69,12 @@
                         <span>企业类型：</span>
                         <div class="text">
                             <div class="text-box" id="classType">
-                            	<a  value="0" class="classType now">全部</a>
+                            	<a  value="0" class="classType {if $classType==''}now{/if}">全部</a>
                                 {loop $com_type $k $v}
-                                <a class="classType" href="#" option="{$k}">{$v}</a>
+                                <a class="classType {if $classType==$v}now{/if}" href="#" option="{$k}">{$v}</a>
                                 {/loop}
                             </div>
-                            <div class="but">
-                                <a href="javascript:void(0);" class="submit type">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a href="#" class="button1">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
@@ -95,34 +85,24 @@
                         <span>经营方式：</span>
                         <div class="text">
                             <div class="text-box" id="classMode">
-                                <a href="#"  class="mode now">全部</a>
+                                <a href="#"  class="mode {if $classMode==''}now{/if}">全部</a>
                                 {loop $mode  $v}
-                                <a href="#" class="classMode">{$v[mode]}</a>
+                                <a href="#" class="classMode {if $classMode==$v}now{/if}">{$v[mode]}</a>
                                 {/loop}
                             </div>
-                            <div class="but">
-                                <a href="#" class="submit mode">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a href="#" class="button1">多选</a>
                       
                     </div>
                     <div class="item i6">
                         <span>企业规模：</span>
                         <div class="text">
                             <div class="text-box" id="classSize">
-                                <a class="classSize now"  value="0" >全部</a>
+                                <a class="classSize {if $classSize==''}now{/if}"  value="0" >全部</a>
                                {loop $com_size $v}
-                                <a href="#"  class="classSize">{$v}</a>
+                                <a href="#"  class="classSize {if $classSize==$v}now{/if}">{$v}</a>
                                 {/loop}
                             </div>
-                            <div class="but">
-                                <a href="#" class="submit size">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a class="button1" href="#">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
@@ -131,17 +111,7 @@
 
 
 
-                    <div class="item i7">
-                        <span>大客户认证：</span>
-                        <div class="text">
-                            <div class="text-box" id="customer">
-                            	<a href="#" class="customer now">全部</a>
-                                <a href="javascript:;" class="customer">航天晨光srm</a>
-                             
-                            </div>
-                        </div>
-                        
-                    </div>
+ 
                 </div>
             </div>
         </div>

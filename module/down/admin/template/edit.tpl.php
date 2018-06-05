@@ -132,12 +132,12 @@ show_menu($menus);
 <td><input name="post[fileurl]" id="fileurl" type="text" size="60" value="<?php echo $fileurl;?>"/>&nbsp;&nbsp;<span onclick="Dfile(<?php echo $moduleid;?>, Dd('fileurl').value, 'fileurl', '<?php echo $MOD['upload'];?>');" class="jt">[上传]</span>&nbsp;&nbsp;<span onclick="if(Dd('fileurl').value) window.open(Dd('fileurl').value);" class="jt">[预览]</span>&nbsp;&nbsp;<span onclick="Dd('fileurl').value='';" class="jt">[删除]</span> <span id="dfileurl" class="f_red"></span></td>
 </tr>
 <tr>
-<td class="tl"><span class="f_red"> </span> 版本</td>
-<td class="tr"><?php echo version_select('post[version]',$version, 'id="version"');?><span id="dversion" class="f_red"></span></td>
+<td class="tl"><span class="f_red"> *</span> 文件版本</td>
+<td class="tr"><input name="post[version]" id="version" type="text" size="60" value="<?php echo $version;?>"/><span id="dversion" class="f_red"></span></td>
 </tr>
 <tr>
-<td class="tl"><span class="f_red"> </span> 格式</td>
-<td class="tr"><?php echo format_select('post[format]',$format, 'id="format"');?><span id="dformat" class="f_red"></span></td>
+<td class="tl"><span class="f_red"> *</span> 文件格式</td>
+<td class="tr"><input name="post[format]" id="format" type="text" size="60" value="<?php echo $format;?>"/><span id="dformat" class="f_red"></span></td>
 </tr>
 <?php } ?>
 <tr>

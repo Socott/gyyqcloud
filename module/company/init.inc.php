@@ -19,6 +19,7 @@ if(!$COM['edittime'] && !$MOD['openall']) {
 	include template('com-opening', 'message');
 	exit;
 }
+
 $domain = $COM['domain'];
 if($domain) {
 	if(!isset($preview) && !isset($update) && !isset($key)) {
@@ -106,10 +107,10 @@ if($COMGROUP['menu_d']) {
 	}
 	$_menu_show = implode(',', $_menu_show);
 } else {
-	$_menu_show = '1,1,1,0,0,0,0,0,0,0,0,0,0,0,0';
+	$_menu_show = '1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0';
 }
-$_menu_order = '0,10,20,30,40,50,60,70,80,90,100,110,120,130,140';
-$_menu_num = '1,16,30,30,10,30,1,12,12,12,12,30,12,1,1';
+$_menu_order = '0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180';
+$_menu_num = '1,16,30,30,10,30,1,12,12,12,12,30,12,1,1,1,1,1';
 $_menu_file = implode(',' , $MFILE);
 $_menu_name = implode(',' , $HMENU);
 
@@ -127,7 +128,7 @@ $_side_num = '1,5,10,1,1,5,5';
 $_side_file = implode(',' , $SFILE);
 $_side_name = implode(',' , $HSIDE);
 
-$HOME = get_company_setting($COM['userid'], '', 'CACHE');
+$HOME = get_company_setting($COM['userid']);
 
 //if(isset($HOME['menu_file'])) $HOME['menu_file'] = str_replace('credit', 'honor', $HOME['menu_file']);//For 3.x
 //if(isset($HOME['side_file'])) $HOME['side_file'] = str_replace('credit', 'honor', $HOME['side_file']);//For 3.x
@@ -147,7 +148,8 @@ $HMENU = $_HMENU;
 $MENU = array();
 $menuid = 0;
 foreach($HMENU as $k=>$v) {
-	if($menu_show[$k] && in_array($menu_file[$k], $MFILE)) {
+	if($menu_show[$k] && in_array($menu_file[$k], $MFILE)) 
+	{
 		$MENU[$k]['name'] = $menu_name[$k];
 		$MENU[$k]['linkurl'] = userurl($username, 'file='.$menu_file[$k], $domain);
 	}
@@ -194,6 +196,7 @@ if($file == 'homepage') {
 		}
 	}
 }
+
 $bannert = isset($HOME['bannert']) ? $HOME['bannert'] : 0;
 $banner = isset($HOME['banner']) ? $HOME['banner'] : '';
 $bannerf = isset($HOME['bannerf']) ? $HOME['bannerf'] : '';

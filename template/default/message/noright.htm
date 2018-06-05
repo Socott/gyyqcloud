@@ -1,4 +1,6 @@
-{template 'header'}
+{template 'header-index'}
+{php $css="style";}
+<link rel="stylesheet" type="text/css" href="/skin/default/style.css"/>
 <script type="text/javascript">
 var i = 30;
 </script>
@@ -22,7 +24,7 @@ var i = 30;
 var interval=window.setInterval(
 	function() {
 		if(i == 0) {
-			Go('{$MODULE[2][linkurl]}{if $_userid}grade.php{else}{$DT[file_login]}{/if}');
+			window.location=('{$MODULE[2][linkurl]}{if $_userid}grade.php{else}{$DT[file_login]}{/if}');
 			clearInterval(interval);
 		} else {
 			Dd('second').innerHTML = i;
@@ -31,4 +33,4 @@ var interval=window.setInterval(
 	}, 
 1000);
 </script>
-{template 'footer'}
+{template 'footer-index'}

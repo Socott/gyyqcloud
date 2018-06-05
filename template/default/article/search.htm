@@ -1,113 +1,338 @@
-{template 'header'}
-<div class="m">
-<div class="m_l_1 f_l">
-	<div class="left_box">
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; <a href="{$MOD[linkurl]}search.php">搜索</a></div>
-		<div class="fsearch">
-			<form action="{$MOD[linkurl]}search.php" id="fsearch">
-			<table cellpadding="5" cellspacing="3">
-			<tr>
-			<td width="80" align="right">关 键 词：</td>
-			<td><input type="text" size="60" name="kw" value="{$kw}" class="pd3"/></td>
-			</tr>
-			<tr>
-			<td></td>
-			<td>
-			{loop $sfields $k $v}
-			<input type="radio" name="fields" value="{$k}" id="fd_{$k}"{if $fields==$k} checked{/if}/><label for="fd_{$k}"> {$v}</label>&nbsp;
-			{/loop}			
-			</td>
-			</tr>
-			<tr>
-			<td align="right">所属分类：</td>
-			<td>
-			{$category_select}
-			</td>
-			</tr>
-			{if $DT[city]}
-			<tr>
-			<td align="right">所在地区：</td>
-			<td>
-			{$area_select}
-			</td>
-			</tr>
-			{/if}
-			<tr>
-			<td align="right">排序方式：</td>
-			<td>
-			{$order_select}
-			</td>
-			</tr>
-			<tr>
-			<td></td>
-			<td>
-			<input type="image" src="{DT_SKIN}image/btn_search.gif"/>&nbsp;&nbsp;
-			<a href="{$MOD[linkurl]}search.php"><img src="{DT_SKIN}image/btn_reset_search.gif"/></a>	
-			</td>
-			</tr>
-			</table>
-		{if $CP}
-		{loop $PPT $p}
-		<div class="ppt">
-			<table cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-			<td class="ppt_l" valign="top">按{$p[name]}</td>
-			<td class="ppt_r" valign="top">
-			<input type="hidden" name="ppt_{$p[oid]}" id="ppt_{$p[oid]}" value="{$p[select]}"/>
-			<a href="###" onclick="Dd('ppt_{$p[oid]}').value='';Dd('fsearch').submit();">{if $p[select]==''}<span>全部</span>{else}全部{/if}</a>
-			{loop $p[options] $o}
-			&nbsp;|&nbsp;<a href="###" onclick="Dd('ppt_{$p[oid]}').value='{$o}';Dd('fsearch').submit();">{if $p[select]==$o}<span>{$o}</span>{else}{$o}{/if}</a>
-			{/loop}
-			</td>
-			</tr>
-			</table>
-		</div>
-		{/loop}
-		{/if}
-			</form>
-		</div>
-		{if $tags}
-		<div class="catlist">{template 'list-cat', 'tag'}</div>
-		{else}
-		{template 'noresult', 'message'}
-		{/if}
-	</div>
+{template 'header-top'}
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/res/css/new_news.css" />
+
+{template 'header-search-inc'}
+<div class="news_menu">
+    <div class="container">
+        <div class="new_cates" id="cates">
+            <i></i><a href="/">主页</a><span><i></i><a href="search.php?kw=">新闻中心</a></span>
+            </div>
+    </div>
 </div>
-<div class="m_n f_l">&nbsp;</div>
-<div class="m_r_1 f_l">
-	{if $kw}
-	<div class="box_head"><div><strong>相关搜索</strong></div></div>
-	<div class="box_body">
-		<div class="sch_site">
-			<ul>
-			{loop $MODULE $mod}{if $mod[moduleid]>3 && $mod[moduleid]!=$moduleid && !$mod[islink]}<li><a href="{$mod[linkurl]}search.php?kw={urlencode($kw)}">在 <span class="f_red">{$mod[name]}</span> 找 {$kw}</a></li>{/if}{/loop}
-			</ul>
-		</div>
-		<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and word<>'$kw' and keyword like '%$keyword%'&pagesize=10&order=total_search desc&template=list-search_relate", -2)}-->
-	</div>
-	<div class="b10">&nbsp;</div>
-	{/if}
-	<div class="sponsor">{ad($moduleid,$catid,$kw,7)}</div>
-	<div class="box_head"><div><strong>今日搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400&pagesize=10&order=today_search desc&key=today_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本周搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*7&pagesize=10&order=week_search desc&key=week_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本月搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*30&pagesize=10&order=month_search desc&key=month_search&template=list-search_rank")}-->
-		</div>		
-	</div>
+<div class="nav_news" id="nav_news">
+    <div class="container">
+        <ul class="news_cats" id="tab_list">
+        {loop $maincat $k $v}
+        	<li{if $v[catid]==$catid} class="active"  {/if}>
+        		<a href="{$MOD[linkurl]}{$v[linkurl]}" id="tab_0" >{set_style($v[catname],$v[style])}</a>
+        	</li>
+        {/loop}
+        </ul>
+    </div>
+    <div class="nav_shadow"></div>
 </div>
+
+<div class="wrapper clearfix">
+    <div class="content" id="content">
+        <div class="container">
+            <ul class="news_list">
+            
+             {loop $tags $i $t}
+                    <li>
+                        <div class="left_box">
+                            <a href="{$t[linkurl]}" target="_blank"><img src="{$t[thumb]}" onerror="this.remove()" /></a>
+                        </div>
+                        <div class="right_box">
+                            <div class="news_title"><a href="{$t[linkurl]}" target="_blank" title='{$t[title]}' class="title">{$t[title]}</a></div>
+                            <div class="news_text">
+                                <a href="{$t[linkurl]}" target="_blank"><p class="desc">{dsubstr($t[introduce],200,"...")} </p></a>
+                            </div>
+                            <div class="bottom_btn">
+                                <div class="left_link">
+                                    <!--a href='tag/tags.html' title="歼-15" target="_blank">歼-15</a>
+                                    <a href='tag/tags.html' title="南海阅兵" target="_blank">南海阅兵</a-->
+                                
+                                    <span class="time">{timetodate($t[addtime], 'Y-m-d')}</span>
+                                </div>
+                                <div class="news_list_share clearfix" id="news_share" spm="news.share.110774">
+                                    <div class="share fr share_container">
+                                        <div class="fl mr_10 share_icon"> &nbsp;</div>
+                                        <div class="bdsharebuttonbox fl">
+                                            <a href="javascript:void(0)" class="bds_weixin" data-cmd="" title="分享到微信"></a>
+                                            <div id="code" class="code" >
+                                                <div id="shareCodeTop_1" class="shareCodeTop"></div>
+                                                <div></div>
+                                            </div>
+                                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                                            <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  {/loop}
+      
+                </ul>
+                <div class="new_page">{$pages}</div>
+                
+                <div class="news_ad news_list_ad">
+				    <div class="place_ad">
+				        <a href="../workbench/index.html" target="_blank" spm="news.ad">
+				            <img src="http://img1.gyyqcloud.com/res/images/news/news_new_ad_banner1.jpg" alt="体验测评">
+				        </a>
+				    </div>
+				    <div class="place_news">
+				        <div class="place_news_title"><a href="javascript:;" target="_blank">热门推荐</a></div>
+				        <ul class="place_news_list place_news_list1">
+			           <!--{php $tags=tag("table=article_21&moduleid=$moduleid&length=44&condition=status>0 and thumb<>'' &areaid=$cityid&pagesize=5&order=rand()&cols=2&template=null&debug=0");}-->
+                            {loop $tags $i $t}
+                            <li><span class="newLight">{$i+1}</span><a href="{$t[linkurl]}" target="_blank">{$t[title]}</a></li>
+                            {/loop}
+		                </ul>
+				    </div>
+    <div class="place_ad">
+        <a href="../workbench/pxzx/index.html" target="_blank" spm="news.ad">
+            <img src="http://img1.gyyqcloud.com/res/images/news/news_ad_banner2.png" alt="自动化人才培养平台">
+        </a>
+    </div>
+    <div class="place_news">
+        <div class="place_news_title"><a href="javascript:;" target="_blank">推荐阅读</a></div>
+        <ul class="place_news_list place_news_list2">
+			           <!--{php $tags=tag("table=article_21&moduleid=$moduleid&length=44&condition=status>0 and thumb<>'' &areaid=$cityid&pagesize=5&order=rand()&cols=2&template=null&debug=0");}-->
+                            {loop $tags $i $t}
+                            <li><span class="newLight"></span><a href="{$t[linkurl]}" target="_blank">{$t[title]}</a></li>
+                            {/loop}
+                </ul>
+    </div>
+    <div class="place_ad">
+        <a href="../workbench/cwfw/index.html" target="_blank" spm="news.ad">
+            <img src="http://img1.gyyqcloud.com/res/images/news/news_ad_banner3.png" alt="财务服务">
+        </a>
+    </div>
+    <div class="place_news">
+        <div class="place_news_title"><a href="#"
+                                         target="_blank">视频新闻</a></div>
+        <ul class="news_video clearfix">
+           		
+			           <!--{php $tags=tag("table=article_21&moduleid=$moduleid&length=44&condition=status>0 and thumb<>'' &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}-->
+                {loop $tags $i $t}
+                <li>
+                        <a href="{$t[linkurl]}" target="_blank" title="{$t[title]}">
+                            <div class="video_box">
+                                <div class="video_img">
+                                    <img src="{$t[thumb]}" alt="video_img">
+                                </div>
+                                <div class="video_name">
+                                    <span title="{$t[title]}">{$t[title]}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                   {/loop}
+                    
+                </ul>
+    </div>
 </div>
-{template 'footer'}
+<div class="phone_ad">
+    <div class="container">
+        <div class="phone_module">
+            <div class="phone_module_title">相关新闻</div>
+            </div>
+        <div class="phone_ads">
+            <a href="../workbench/index.html" target="_blank" spm="news.ad">
+                <img src="http://img1.gyyqcloud.com/res/images/news/news_ad_banner1.png" alt="体验测评">
+            </a>
+        </div>
+        <div class="phone_module">
+            <div class="phone_module_title">热门推荐</div>
+            <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110765.html" target="_blank">
+                                        <img src="../upload/100957780562407270/1.png" alt="这样的高精密加工，不服不行！">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110765.html" target="_blank">这样的高精密加工，不服不行！</a></div>
+                                    <div><span>2018-04-13</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110764.html" target="_blank">
+                                        <img src="../upload/100957780562407271/1.png" alt="一台进口机床高达千万，底气从何而来？">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110764.html" target="_blank">一台进口机床高达千万，底气从何而来？</a></div>
+                                    <div><span>2018-04-13</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110742.html" target="_blank">
+                                        <img src="../upload/100957780562407334/105014_1.jpg" alt="大数据驱动国家治理的未来图景">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110742.html" target="_blank">大数据驱动国家治理的未来图景</a></div>
+                                    <div><span>2018-04-11</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        <div class="phone_ads">
+            <a href="../workbench/pxzx/index.html" target="_blank" spm="news.ad">
+                <img src="http://img1.gyyqcloud.com/res/images/news/news_ad_banner2.png" alt="自动化人才培养平台">
+            </a>
+        </div>
+        <div class="phone_module">
+            <div class="phone_module_title">推荐阅读</div>
+            <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110772.html" target="_blank">
+                                        <img src="../upload/100957780562407256/1.png" alt="德国轴承是如何制造的？生产过程也太先进了">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110772.html" target="_blank">德国轴承是如何制造的？生产过程也太先进了</a></div>
+                                    <div><span>2018-04-16</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110771.html" target="_blank">
+                                        <img src="../upload/100957780562407258/101532_1.jpg" alt="新华三：守护数字化转型的尖兵">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110771.html" target="_blank">新华三：守护数字化转型的尖兵</a></div>
+                                    <div><span>2018-04-16</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="phone_news_list">
+                            <div class="row">
+                                <div class="col-xs-3 phone_img">
+                                    <a href="110770.html" target="_blank">
+                                        <img src="../upload/100957780562407263/1_2.jpg" alt="重庆工业互联网云平台四川公司助力打造四川智造人才网">
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 phone_text">
+                                    <div><a href="110770.html" target="_blank">重庆工业互联网云平台四川公司助力打造四川智造人才网</a></div>
+                                    <div><span>2018-04-16</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        <div class="phone_ads">
+            <a href="../workbench/cwfw/index.html" target="_blank" spm="news.ad">
+                <img src="http://img1.gyyqcloud.com/res/images/news/news_ad_banner3.png" alt="财务服务">
+            </a>
+        </div>
+        <div class="phone_module">
+            <div class="phone_module_title">
+                <a href="list7b0a.html?cat=%E4%BA%91%E5%88%B6%E9%80%A0%E8%A7%86%E8%A7%89"
+                   target="_blank">视频新闻</a>
+            </div>
+            <div class="phone_news_video">
+                <div class="row">
+                    <div class="col-xs-6 phone_video">
+                                <div class="phone_video_img">
+                                    <a href="110774.html" target="_blank">
+                                        <img src="../upload/100957780562407254/2.png" alt="超近距离！直击歼-15滑跃升空！">
+                                    </a>
+                                </div>
+                                <div class="phone_video_text"><a href="110774.html" target="_blank">超近距离！直击歼-15滑跃升空！</a></div>
+                            </div>
+                        <div class="col-xs-6 phone_video">
+                                <div class="phone_video_img">
+                                    <a href="110773.html" target="_blank">
+                                        <img src="../upload/100957780562407255/1.png" alt="扳手是如何制造的，用了十几年你不一定见过">
+                                    </a>
+                                </div>
+                                <div class="phone_video_text"><a href="110773.html" target="_blank">扳手是如何制造的，用了十几年你不一定见过</a></div>
+                            </div>
+                        <div class="col-xs-6 phone_video">
+                                <div class="phone_video_img">
+                                    <a href="110772.html" target="_blank">
+                                        <img src="../upload/100957780562407256/1.png" alt="德国轴承是如何制造的？生产过程也太先进了">
+                                    </a>
+                                </div>
+                                <div class="phone_video_text"><a href="110772.html" target="_blank">德国轴承是如何制造的？生产过程也太先进了</a></div>
+                            </div>
+                        <div class="col-xs-6 phone_video">
+                                <div class="phone_video_img">
+                                    <a href="110765.html" target="_blank">
+                                        <img src="../upload/100957780562407270/1.png" alt="这样的高精密加工，不服不行！">
+                                    </a>
+                                </div>
+                                <div class="phone_video_text"><a href="110765.html" target="_blank">这样的高精密加工，不服不行！</a></div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var screenWidth=window.screen.width;
+    if(screenWidth<760){
+        var videoMsg=$('.phone_video .phone_video_text>a')
+        limitVideoWords(videoMsg);
+        var showMsg = $('.phone_module .phone_text a');
+        limitWords(showMsg);
+    }
+    function limitWords(target){
+        target.each(function(){
+            var text = $(this).text();
+            if(text.length > 27){
+                var nowText = text.trim().substring(0,27) +'...';
+                $(this).html(nowText);
+            }else{
+                var nowText = text.trim();
+                $(this).html(nowText);
+            }
+        })
+    }
+
+    function limitVideoWords(target){
+        target.each(function(){
+            var text = $(this).text();
+            if(text.length > 19){
+                var nowText = text.trim().substring(0,16) +'...';
+                $(this).html(nowText);
+            }else{
+                var nowText = text.trim();
+                $(this).html(nowText);
+            }
+        })
+    }
+</script>
+
+
+</div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{template 'footer-index'}

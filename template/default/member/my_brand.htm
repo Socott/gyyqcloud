@@ -35,6 +35,10 @@
 <td class="tl"><span class="f_red">*</span> {$MOD[name]}名称</td>
 <td class="tr"><input name="post[title]" type="text" id="title" size="50" value="{$title}"/> <span id="dtitle" class="f_red"></span></td>
 </tr>
+<tr>
+<td class="tl"><span class="f_red"></span> {$MOD[name]}首字拼音大写</td>
+<td class="tr"><input name="post[spell]" type="text" id="spell" size="50" value="{$spell}"/> <span id="dtitle" class="f_red"></span></td>
+</tr>
 {if $action=='add' && $could_color}
 <tr>
 <td class="tl">标题颜色</td>

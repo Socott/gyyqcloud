@@ -64,6 +64,10 @@ show_menu($menus);
 <td><input name="post[amount]" type="text" size="10" value="<?php echo $amount;?>" id="amount"/> <input name="post[unit]" type="text" size="2" value="年" id="unit" title="计量单位"/> <span id="damount" class="f_red"></span></td>
 </tr>
 <tr>
+<td class="tl"><span class="f_red">*</span> 所在地区</td>
+<td><?php echo ajax_area_select('post[areaid]', '请选择', $areaid);?>&nbsp;<span id="dareaid" class="f_red"></span></td>
+</tr>
+<tr>
 <td class="tl"><span class="f_hid">*</span> 职业标签</td>
 <td><input name="post[brand]" type="text" size="30" value="<?php echo $brand;?>"/></td>
 </tr>

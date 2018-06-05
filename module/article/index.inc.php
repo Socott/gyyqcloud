@@ -12,5 +12,8 @@ $seo_file = 'index';
 include DT_ROOT.'/include/seo.inc.php';
 $destoon_task = "moduleid=$moduleid&html=index";
 if($EXT['mobile_enable']) $head_mobile = $EXT['mobile_url'].mobileurl($moduleid, 0, 0, $page);
+if($moduleid==27)
+include template($MOD['template_index'] ? $MOD['template_index'] : 'index', "help");
+else
 include template($MOD['template_index'] ? $MOD['template_index'] : 'index', $module);
 ?>

@@ -59,13 +59,13 @@
 {else}
 <div class="head" id="head">
 	<div class="head_m">
-		<div class="head_logo"><a href="{$MODULE[2][linkurl]}"><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/logo.png" alt="商务中心"/></a></div>
+		<div class="head_logo"><a href="/"><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/logo.png" alt="商务中心"/></a></div>
 		<div class="head_main">
 		<ul>
 		{if $_userid}
 		<li class="menu_1" id="menu_0" onClick="c(0);">会员服务</li>
-		<li class="menu_2" id="menu_1" onClick="c(1);">信息管理</li>
-		<li class="menu_2" id="menu_2" onClick="c(2);">交易管理</li>
+		<li class="menu_2" id="menu_1" onClick="c(1);">我是供应方</li>
+		<li class="menu_2" id="menu_2" onClick="c(2);">我是需求方</li>
 		<li class="menu_2" id="menu_3" onClick="c(3);">店铺管理</li>
 		{/if}
 		<li class="menu_2"><a href="{DT_PATH}">网站首页</a></li>
@@ -112,7 +112,7 @@
 	<div class="side_body" id="b_0">
 		<ul>
 			{if $MG[inbox_limit]>-1 || $show_menu}
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="message"><span class="f_r"><a href="message.php?action=send" class="m">发信</a></span><a href="message.php" class="{if $MG[inbox_limit]>-1}n{else}f{/if}">站内信件</a>{if $_message}<em>{$_message}</em>{/if}</li>
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="message"><span class="f_r"><a href="message.php?action=send" class="m">发信</a></span><a href="message.php" class="{if $MG[inbox_limit]>-1}n{else}f{/if}">站内信</a>{if $_message}<em>{$_message}</em>{/if}</li>
 			{/if}
 
 			{if $MG[chat] || $show_menu}
@@ -134,11 +134,11 @@
 			{/if}
 
 			{if $MG[sms] || $show_menu}
-			{if $DT[sms]}<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="sms"><span class="f_r"><a href="sms.php?action=add" class="m">发送</a></span><a href="sms.php" class="{if $MG[sms]}n{else}f{/if}">手机短信</a></li>{/if}
+			{if $DT[sms]}<!--li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="sms"><span class="f_r"><a href="sms.php?action=add" class="m">发送</a></span><a href="sms.php" class="{if $MG[sms]}n{else}f{/if}">手机短信</a></li-->{/if}
 			{/if}
 
 			{if $MG[mail] || $show_menu}
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="mail"><span class="f_r"><a href="sendmail.php" class="m">电邮</a></span><a href="mail.php" class="{if $MG[mail]}n{else}f{/if}">邮件订阅</a></li>
+			<!--li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="mail"><span class="f_r"><a href="sendmail.php" class="m">电邮</a></span><a href="mail.php" class="{if $MG[mail]}n{else}f{/if}">邮件订阅</a></li-->
 			{/if}
 			{if $MG[spread] || $show_menu}
 			<!--li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="spread"><span class="f_r"><a href="spread.php?action=add" class="m">购买</a></span><a href="spread.php" class="{if $MG[spread]}n{else}f{/if}">排名推广</a></li-->
@@ -174,7 +174,8 @@
 			{elseif $v==18}
 			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);"  id="mid_{$v}"><span class="f_r"><a href="{$DT[file_my]}?mid={$v}&job=group&action=add" class="m">创建</a></span><a href="{$DT[file_my]}?mid={$v}" class="{if in_array($v, $MYMODS)}n{else}f{/if}">{$MODULE[$v][name]}管理</a></li>
 			{else}
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);"  id="mid_{$v}"><span class="f_r"><a href="{$DT[file_my]}?mid={$v}&action=add" class="m">发布</a></span><a href="{$DT[file_my]}?mid={$v}" class="{if in_array($v, $MYMODS)}n{else}f{/if}">{$MODULE[$v][name]}管理</a></li>
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);"  id="mid_{$v}" style="{if in_array($v, $MYMODS)}{else}display:none;{/if}"><span class="f_r"><a href="{$DT[file_my]}?mid={$v}&action=add" class="m">发布</a></span><a href="{$DT[file_my]}?mid={$v}" class="{if in_array($v, $MYMODS)}n{else}f{/if}">{$MODULE[$v][name]}管理</a></li>
+
 			{/if}
 		{/loop}
 		</ul>
@@ -198,13 +199,13 @@
 			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="group"><span class="f_r"><a href="group.php?action=order" class="m">买家</a></span><a href="group.php" class="{if $_userid}n{else}f{/if}">团购订单</a></li>
 			{/if}
 
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="record"><span class="f_r"><a href="record.php?action=pay" class="m">站内</a></span><a href="record.php" class="{if $_userid}n{else}f{/if}">{$DT[money_name]}流水</a></li>
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="record"><span class="f_r"><a href="record.php?action=pay" class="m">站内</a></span><a href="record.php" class="{if $_userid}n{else}f{/if}">支付</a></li>
 
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="charge"><span class="f_r"><a href="charge.php?action=pay" class="m">充值</a></span><a href="charge.php?action=record" class="{if $_userid}n{else}f{/if}">充值记录</a></li>
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="charge"><span class="f_r"><a href="charge.php?action=pay" class="m">充值</a></span><a href="charge.php?action=record" class="{if $_userid}n{else}f{/if}">充值</a></li>
 
 			<!--li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="deposit"><span class="f_r"><a href="deposit.php?action=add" class="m">增资</a></span><a href="deposit.php" class="{if $_userid}n{else}f{/if}">保 证 金</a></li-->
 
-			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="cash"><span class="f_r"><a href="cash.php" class="m">提现</a></span><a href="cash.php?action=record" class="{if $_userid}n{else}f{/if}">{$DT[money_name]}提现</a></li>
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="cash"><span class="f_r"><a href="cash.php" class="m">提现</a></span><a href="cash.php?action=record" class="{if $_userid}n{else}f{/if}">提现</a></li>
 
 			<!--li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="credit"><span class="f_r"><a href="credit.php?action=buy" class="m">购买</a></span><a href="credit.php" class="{if $_userid}n{else}f{/if}">{$DT[credit_name]}管理</a></li-->
 

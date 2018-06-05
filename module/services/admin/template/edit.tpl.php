@@ -25,8 +25,8 @@ show_menu($menus);
 </tr>
 <tr>
 <td class="tl"><span class="f_red">*</span> 服务价格</td>
-<td>
-<table cellpadding="4" cellspacing="1" bgcolor="#FFFFFF">
+<td><input name="post[step][p1]" type="text" size="10" value="<?php echo $p1;?>" id="p1" onblur="Dstep();"/>
+<table cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" style="display:none">
 <tr bgcolor="#EFF5FB" align="center">
 <td width="90">数量</td>
 <td width="90">价格</td>
@@ -36,7 +36,7 @@ show_menu($menus);
 </tr>
 <tr bgcolor="#FFFFFF" align="center">
 <td><input name="post[step][a1]" type="text" size="10" value="<?php echo $a1;?>" id="a1"/></td>
-<td><input name="post[step][p1]" type="text" size="10" value="<?php echo $p1;?>" id="p1" onblur="Dstep();"/></td>
+<td></td>
 <td></td>
 <td id="p_a_1"></td>
 <td id="p_p_1"></td>
@@ -59,9 +59,9 @@ show_menu($menus);
 <span class="f_gray">&nbsp;填写示例：<span class="c_p" title="点击观看" onclick="Dd('a1').value=1;Dd('p1').value=1000;Dd('a2').value=100;Dd('p2').value=900;Dd('a3').value=500;Dd('p3').value=800;Dstep();">阶梯价格</span> / <span class="c_p" title="点击观看" onclick="Dd('a1').value=1;Dd('p1').value=1000;Dd('a2').value=Dd('p2').value=Dd('a3').value=Dd('p3').value='';Dstep();">非阶梯价格</span></span>
 </td>
 </tr>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_red">*</span> 服务库存</td>
-<td><input name="post[amount]" type="text" size="10" value="<?php echo $amount;?>" id="amount"/> <input name="post[unit]" type="text" size="2" value="<?php echo $unit;?>" id="unit" title="计量单位"/> <span id="damount" class="f_red"></span></td>
+<td><input name="post[amount]" type="text" size="10" value="9999" id="amount"/> <input name="post[unit]" type="text" size="2" value="次" id="unit" title="计量单位"/> <span id="damount" class="f_red"></span></td>
 </tr>
 <tr>
 <td class="tl"><span class="f_hid">*</span> 服务品牌</td>
@@ -85,16 +85,12 @@ var property_admin = 1;
 	<input type="hidden" name="post[thumb]" id="thumb" value="<?php echo $thumb;?>"/>
 	<input type="hidden" name="post[thumb1]" id="thumb1" value="<?php echo $thumb1;?>"/>
 	<input type="hidden" name="post[thumb2]" id="thumb2" value="<?php echo $thumb2;?>"/>
-	<table width="360">
+	<table>
 	<tr align="center" height="120" class="c_p">
 	<td width="120"><img src="<?php echo $thumb ? $thumb : DT_SKIN.'image/waitpic.gif';?>" width="100" height="100" id="showthumb" title="预览图片" alt="" onclick="if(this.src.indexOf('waitpic.gif') == -1){_preview(Dd('showthumb').src, 1);}else{Dalbum('',<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb').value, true);}"/></td>
-	<td width="120"><img src="<?php echo $thumb1 ? $thumb1 : DT_SKIN.'image/waitpic.gif';?>" width="100" height="100" id="showthumb1" title="预览图片" alt="" onclick="if(this.src.indexOf('waitpic.gif') == -1){_preview(Dd('showthumb1').src, 1);}else{Dalbum(1,<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb1').value, true);}"/></td>
-	<td width="120"><img src="<?php echo $thumb2 ? $thumb2 : DT_SKIN.'image/waitpic.gif';?>" width="100" height="100" id="showthumb2" title="预览图片" alt="" onclick="if(this.src.indexOf('waitpic.gif') == -1){_preview(Dd('showthumb2').src, 1);}else{Dalbum(2,<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb2').value, true);}"/></td>
 	</tr>
 	<tr align="center" class="c_p">
 	<td><span onclick="Dalbum('',<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb').value, true);" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_upload.gif" width="12" height="12" title="上传"/></span>&nbsp;&nbsp;<img src="<?php echo $MODULE[2]['linkurl'];?>image/img_select.gif" width="12" height="12" title="选择" onclick="selAlbum('');"/>&nbsp;&nbsp;<span onclick="delAlbum('', 'wait');" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_delete.gif" width="12" height="12" title="删除"/></span></td>
-	<td><span onclick="Dalbum(1,<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb1').value, true);" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_upload.gif" width="12" height="12" title="上传"/></span>&nbsp;&nbsp;<img src="<?php echo $MODULE[2]['linkurl'];?>image/img_select.gif" width="12" height="12" title="选择" onclick="selAlbum(1);"/>&nbsp;&nbsp;<span onclick="delAlbum(1, 'wait');" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_delete.gif" width="12" height="12" title="删除"/></span></td>
-	<td><span onclick="Dalbum(2,<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb2').value, true);" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_upload.gif" width="12" height="12" title="上传"/></span>&nbsp;&nbsp;<img src="<?php echo $MODULE[2]['linkurl'];?>image/img_select.gif" width="12" height="12" title="选择" onclick="selAlbum(2);"/>&nbsp;&nbsp;<span onclick="delAlbum(2, 'wait');" class="jt"><img src="<?php echo $MODULE[2]['linkurl'];?>image/img_delete.gif" width="12" height="12" title="删除"/></span></td>
 	</tr>
 	</table>
 	<span id="dthumb" class="f_red"></span>
@@ -112,7 +108,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 	include DT_ROOT.'/api/swfupload/editor.inc.php';
 }
 ?>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_hid">*</span> 可选属性</td>
 <td>
 <table cellpadding="4" cellspacing="1" bgcolor="#FFFFFF">
@@ -195,7 +191,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 <span class="f_gray">&nbsp;填写示例：<span class="c_p" title="点击观看" onclick="Nexpress('0.00', '包邮');">包邮</span> / <span class="c_p" title="点击观看" onclick="Nexpress('500.00', '包邮');">满500包邮</span> / <span class="c_p" title="点击观看" onclick="Nexpress('10.00', '快递');">快递10元</span> / <span class="c_p" title="点击观看" onclick="Nexpress('500.00', '包邮');Dd('express_name_2').value = '快递';Dd('fee_start_2').value = '10.00';">快递10元，满500包邮</span></span>
 </td>
 </tr>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_hid">*</span> 货到付款</td>
 <td>
 <select name="post[cod]" id="cod">
@@ -209,7 +205,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 <td class="tl"><span class="f_red">*</span> 会员名</td>
 <td><input name="post[username]" type="text"  size="20" value="<?php echo $username;?>" id="username"/> <a href="javascript:_user(Dd('username').value);" class="t">[资料]</a> <span id="dusername" class="f_red"></span></td>
 </tr>
-<tr>
+<tr style="display:none">
 <td class="tl"><span class="f_hid">*</span> 会员推荐产品</td>
 <td>
 <input type="radio" name="post[elite]" value="1" <?php if($elite == 1) echo 'checked';?>/> 是&nbsp;&nbsp;&nbsp;
@@ -259,7 +255,7 @@ if($MOD['swfu'] && DT_EDITOR == 'fckeditor') {
 </form>
 <?php load('clear.js'); ?>
 <?php if($action == 'add') { ?>
-<form method="post" action="?">
+<form method="post" action="?" style="display:none">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="file" value="<?php echo $file;?>"/>
 <input type="hidden" name="action" value="<?php echo $action;?>"/>

@@ -1,5 +1,5 @@
 {template 'header-top'}
-<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/res/css/new_news.css" />
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/res/css/new_news.css" />
 
 {template 'header-search-inc'}
 
@@ -66,11 +66,11 @@
             <div class="news_info clearfix">
                 <div class="right_info">
                     <span class="time"><span class="time_text">发布时间：</span>{$adddate}</span>
-                    <span class="source">来源：<span class="source_detail">金属加工</span></span>
+                    <span class="source">来源：<span class="source_detail">{$copyfrom}</span></span>
                 </div>
                 <div class="key_words">
                     <span>关键字：</span>
-                    <a href='/news/tag/%E6%99%BA%E8%83%BD%E5%8C%96%E6%94%B9%E9%80%A0/' title="智能化改造" target="_blank">智能化改造</a>
+                    <a href='/news/search.php?kw={$tag}' title="{$tag}" target="_blank">{$tag}</a>
                     </div>
                 </div>
             <div class="content" id="content">
@@ -104,11 +104,7 @@
             </div>
         </div>
         <div class="news_ad news_list_ad">
-    <div class="place_ad">
-        <a href="/workbench/index.html" target="_blank" spm="news.ad">
-            <img src="https://cdn.htres.cn/res/images/news/news_new_ad_banner1.jpg" alt="体验测评">
-        </a>
-    </div>
+   
     <div class="place_news">
         <div class="place_news_title"><a href="javascript:;" target="_blank">热门推荐</a></div>
         <ul class="place_news_list place_news_list1">
@@ -118,11 +114,7 @@
             {/loop}
          </ul>
     </div>
-    <div class="place_ad">
-        <a href="/workbench/pxzx/" target="_blank" spm="news.ad">
-            <img src="https://cdn.htres.cn/res/images/news/news_ad_banner2.png" alt="自动化人才培养平台">
-        </a>
-    </div>
+    
     <div class="place_news">
         <div class="place_news_title"><a href="javascript:;" target="_blank">推荐阅读</a></div>
         <ul class="place_news_list place_news_list2">
@@ -133,251 +125,28 @@
                 
                 </ul>
     </div>
-    <div class="place_ad">
-        <a href="/workbench/cwfw/" target="_blank" spm="news.ad">
-            <img src="https://cdn.htres.cn/res/images/news/news_ad_banner3.png" alt="财务服务">
-        </a>
-    </div>
+    
     <div class="place_news">
-        <div class="place_news_title"><a href="/news/list?cat=%E4%BA%91%E5%88%B6%E9%80%A0%E8%A7%86%E8%A7%89"
-                                         target="_blank">视频新闻</a></div>
+        <div class="place_news_title"><a href="#"  target="_blank">视频新闻</a></div>
         <ul class="news_video clearfix">
-            <li>
-                        <a href="/news/110863.html" target="_blank" title="从沙子到CPU的制造过程，大开眼界！">
-                            <div class="video_box">
-                                <div class="video_img">
-                                    <img src="https://i1.htres.cn/100957780562407009/2.png" alt="video_img">
-                                </div>
-                                <div class="video_name">
-                                    <span title="从沙子到CPU的制造过程，大开眼界！">从沙子到CPU的制造过程，大开眼界！</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+           		
+			           <!--{php $tags=tag("table=article_21&moduleid=$moduleid&length=44&condition=status>0 and thumb<>'' &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}-->
+                {loop $tags $i $t}
                 <li>
-                        <a href="/news/110864.html" target="_blank" title="宝马 MINI 工厂的机器人装配工">
+                        <a href="{$t[linkurl]}" target="_blank" title="{$t[title]}">
                             <div class="video_box">
                                 <div class="video_img">
-                                    <img src="https://i1.htres.cn/100957780562407008/3.png" alt="video_img">
+                                    <img src="{$t[thumb]}" alt="video_img">
                                 </div>
                                 <div class="video_name">
-                                    <span title="宝马 MINI 工厂的机器人装配工">宝马 MINI 工厂的机器人装配工</span>
+                                    <span title="{$t[title]}">{$t[title]}</span>
                                 </div>
                             </div>
                         </a>
                     </li>
-                <li>
-                        <a href="/news/110862.html" target="_blank" title="澳科学家研制“超级海绵”，可吸附海洋中的泄漏石油">
-                            <div class="video_box">
-                                <div class="video_img">
-                                    <img src="https://i1.htres.cn/100957780562407010/1.png" alt="video_img">
-                                </div>
-                                <div class="video_name">
-                                    <span title="澳科学家研制“超级海绵”，可吸附海洋中的泄漏石油">澳科学家研制“超级海绵”，可吸附海洋中的泄漏石油</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                <li>
-                        <a href="/news/110858.html" target="_blank" title="滑板的轮子既耐磨又有弹性，原来是因为……">
-                            <div class="video_box">
-                                <div class="video_img">
-                                    <img src="https://i1.htres.cn/100957780562407031/3.png" alt="video_img">
-                                </div>
-                                <div class="video_name">
-                                    <span title="滑板的轮子既耐磨又有弹性，原来是因为……">滑板的轮子既耐磨又有弹性，原来是因为……</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+                   {/loop}
+                    
                 </ul>
-    </div>
-</div>
-<div class="phone_ad">
-    <div class="container">
-        <div class="phone_module">
-            <div class="phone_module_title">相关新闻</div>
-            <div class="phone_news_list">
-                        <div class="row">
-                            <div class="col-xs-3 phone_img">
-                                <a href="/news/107205.html" target="_blank">
-                                    <img src="http://i1.htres.cn/247835553359982591/33.jpg" alt="转型找死不转型等死，工业4.0能救中小企业吗？">
-                                </a>
-                            </div>
-                            <div class="col-xs-9 phone_text">
-                                <div><a href="/news/107205.html" target="_blank">转型找死不转型等死，工业4.0能救中小企业吗？</a></div>
-                                <div><span>2017-02-23</span></div>
-                            </div>
-                        </div>
-                    </div>
-                <div class="phone_news_list">
-                        <div class="row">
-                            <div class="col-xs-3 phone_img">
-                                <a href="/news/107450.html" target="_blank">
-                                    <img src="http://i1.htres.cn/238681598239436799/164518.jpg" alt="你可能买的是“假”德系车，看中国工业如何造钢轨">
-                                </a>
-                            </div>
-                            <div class="col-xs-9 phone_text">
-                                <div><a href="/news/107450.html" target="_blank">你可能买的是“假”德系车，看中国工业如何造钢轨</a></div>
-                                <div><span>2017-03-20</span></div>
-                            </div>
-                        </div>
-                    </div>
-                <div class="phone_news_list">
-                        <div class="row">
-                            <div class="col-xs-3 phone_img">
-                                <a href="/news/107471.html" target="_blank">
-                                    <img src="http://i1.htres.cn/238005140420554751/133319.png" alt="哈工大研发首款机器人核心部件将投产！">
-                                </a>
-                            </div>
-                            <div class="col-xs-9 phone_text">
-                                <div><a href="/news/107471.html" target="_blank">哈工大研发首款机器人核心部件将投产！</a></div>
-                                <div><span>2017-03-22</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        <div class="phone_ads">
-            <a href="/workbench/index.html" target="_blank" spm="news.ad">
-                <img src="https://cdn.htres.cn/res/images/news/news_ad_banner1.png" alt="体验测评">
-            </a>
-        </div>
-        <div class="phone_module">
-            <div class="phone_module_title">热门推荐</div>
-            <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110852.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407042/1.png" alt="以前从未见过，深海中居然可以焊接，让人大开眼界">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110852.html" target="_blank">以前从未见过，深海中居然可以焊接，让人大开眼界</a></div>
-                                    <div><span>2018-04-25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110853.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407041/1.png" alt="用纸壳手工制作的密码箱，它的工作原理搞懂了！">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110853.html" target="_blank">用纸壳手工制作的密码箱，它的工作原理搞懂了！</a></div>
-                                    <div><span>2018-04-25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110851.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407043/1.png" alt="实拍电路板雕刻过程">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110851.html" target="_blank">实拍电路板雕刻过程</a></div>
-                                    <div><span>2018-04-25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        <div class="phone_ads">
-            <a href="/workbench/pxzx/" target="_blank" spm="news.ad">
-                <img src="https://cdn.htres.cn/res/images/news/news_ad_banner2.png" alt="自动化人才培养平台">
-            </a>
-        </div>
-        <div class="phone_module">
-            <div class="phone_module_title">推荐阅读</div>
-            <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110877.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562406969/675-1P42514535ME.jpg" alt="2018智慧中国峰会重磅嘉宾抢先看">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110877.html" target="_blank">2018智慧中国峰会重磅嘉宾抢先看</a></div>
-                                    <div><span>2018-04-27</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110876.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562406970/20180427104008_1448.jpg" alt="新技术新产品引擎发力，助推2018年中国国际铝工业展新看点">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110876.html" target="_blank">新技术新产品引擎发力，助推2018年中国国际铝工业展新看点</a></div>
-                                    <div><span>2018-04-27</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="phone_news_list">
-                            <div class="row">
-                                <div class="col-xs-3 phone_img">
-                                    <a href="/news/110875.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562406973/1.png" alt="深度：HIT电池产业化现状分析">
-                                    </a>
-                                </div>
-                                <div class="col-xs-9 phone_text">
-                                    <div><a href="/news/110875.html" target="_blank">深度：HIT电池产业化现状分析</a></div>
-                                    <div><span>2018-04-27</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        <div class="phone_ads">
-            <a href="/workbench/cwfw/" target="_blank" spm="news.ad">
-                <img src="https://cdn.htres.cn/res/images/news/news_ad_banner3.png" alt="财务服务">
-            </a>
-        </div>
-        <div class="phone_module">
-            <div class="phone_module_title">
-                <a href="/news/list?cat=%E4%BA%91%E5%88%B6%E9%80%A0%E8%A7%86%E8%A7%89"
-                   target="_blank">视频新闻</a>
-            </div>
-            <div class="phone_news_video">
-                <div class="row">
-                    <div class="col-xs-6 phone_video">
-                                <div class="phone_video_img">
-                                    <a href="/news/110863.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407009/2.png" alt="从沙子到CPU的制造过程，大开眼界！">
-                                    </a>
-                                </div>
-                                <div class="phone_video_text"><a href="/news/110863.html" target="_blank">从沙子到CPU的制造过程，大开眼界！</a></div>
-                            </div>
-                        <div class="col-xs-6 phone_video">
-                                <div class="phone_video_img">
-                                    <a href="/news/110864.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407008/3.png" alt="宝马 MINI 工厂的机器人装配工">
-                                    </a>
-                                </div>
-                                <div class="phone_video_text"><a href="/news/110864.html" target="_blank">宝马 MINI 工厂的机器人装配工</a></div>
-                            </div>
-                        <div class="col-xs-6 phone_video">
-                                <div class="phone_video_img">
-                                    <a href="/news/110862.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407010/1.png" alt="澳科学家研制“超级海绵”，可吸附海洋中的泄漏石油">
-                                    </a>
-                                </div>
-                                <div class="phone_video_text"><a href="/news/110862.html" target="_blank">澳科学家研制“超级海绵”，可吸附海洋中的泄漏石油</a></div>
-                            </div>
-                        <div class="col-xs-6 phone_video">
-                                <div class="phone_video_img">
-                                    <a href="/news/110858.html" target="_blank">
-                                        <img src="https://i1.htres.cn/100957780562407031/3.png" alt="滑板的轮子既耐磨又有弹性，原来是因为……">
-                                    </a>
-                                </div>
-                                <div class="phone_video_text"><a href="/news/110858.html" target="_blank">滑板的轮子既耐磨又有弹性，原来是因为……</a></div>
-                            </div>
-                        </div>
-            </div>
-        </div>
     </div>
 </div>
 <script>
@@ -554,17 +323,17 @@
     /*关键字转码*/
     
     /*百度分享*/
-    var desc = 'SMART IOT产品是一款连接INDICS工业互联网平台的工业物联网网关，提供采集、转换、处理和传输不同厂商品牌工业设备数据、工厂OT组网和通信协议转化等功能模块。并将工业数据与云制造应用、工业大数据应用无缝集成，为生产制造企业提供了工业设备连接并使用INDICS云平台服务的便捷方式。标准系列产品具备良好的通用性和扩展性。通过丰富的接口和可配置的软件功能，接入多种设备与协议。适用于单台设备及传感';
+    var desc = '{$introduce}';
     
     var title=$('.detail .title').text().trim();
     desc = desc.length > 120 ? (desc.substr(0, 117) + '...') : desc;
     window._bd_share_config = {
         "common": {
             "bdSnsKey": {},
-            "bdText": title + "（重庆工业云-国家工业互联网）",
+            "bdText": title + "（重庆工业互联网云平台-国家工业互联网）",
             "bdMini": "2",
             "bdMiniList": false,
-            "bdPic": "http://cdn.htres.cn/res/images/news_default_pic.jpg",
+            "bdPic": "http://www.gyyqcloud.com/shop/images/company_default.jpg",
             "bdDesc": desc,
             "bdStyle": "0",
             "bdSize": "16"

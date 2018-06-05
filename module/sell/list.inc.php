@@ -18,7 +18,7 @@ $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
 
 $condition = 'status=3';
 //星级
-if ($vip && $vip !== '全部') $condition .= " AND vip=$vip";
+if ($vip) $condition .= " AND vip=$vip";
 //分类
 if ($typeid && $typeid != '-1') $condition .= " AND typeid=$typeid";
 //搜索
@@ -42,7 +42,7 @@ if ($size && $size != '全部') {
 if ($area) {
     $sql = "select arrchildid from {$db->pre}area where areaid={$area}";
     $r = $db->get_one($sql);
-    if ($r['arrchildid']) $condition .= " and areaid in({$r['arrchildid']})";
+    if ($r) $condition .= " and areaid in({$r})";
 }
 
 if ($c_condition != '1') {
@@ -98,7 +98,7 @@ if($items) {
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
 		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];

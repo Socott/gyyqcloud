@@ -40,6 +40,7 @@ if(isset($homepage) && check_name($homepage)) {
 if($username) {
 	include DT_ROOT.'/module/'.$module.'/init.inc.php';
 } else {
+	
 	if(strpos($DT_URL, $MOD['linkurl']) === false) dhttp(404);
 	if($DT['safe_domain']) {
 		$safe_domain = explode('|', $DT['safe_domain']);

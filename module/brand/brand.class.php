@@ -17,7 +17,7 @@ class brand {
 		$this->table_data = $table_data;
 		$this->split = $MOD['split'];
 		$this->db = &$db;
-		$this->fields = array('catid','level','title','style','fee','introduce','areaid','thumb','homepage','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
+		$this->fields = array('catid','level','spell','title','style','fee','introduce','areaid','thumb','homepage','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
     }
 
     function brand($moduleid) {

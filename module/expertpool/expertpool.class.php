@@ -76,6 +76,7 @@ class expertpool {
 		$post['fee_step_3'] = dround($post['fee_step_3']);
 		$post['cod'] = intval($post['cod']);
 		$post['level'] = intval($post['level']);
+		$post['areaid'] = intval($post['areaid']);
 		$post['content'] = stripslashes($post['content']);
 		$post['content'] = save_local($post['content']);
 		if($MOD['clear_link']) $post['content'] = clear_link($post['content']);
@@ -206,6 +207,7 @@ class expertpool {
 		$linkurl = itemurl($item);
 		if($linkurl != $item['linkurl']) $update .= ",linkurl='$linkurl'";
 		$member = $item['username'] ? userinfo($item['username']) : array();
+		unset($item['areaid']);
 		if($member) $update .= update_user($member, $item);
 		if($update) $this->db->query("UPDATE {$this->table} SET ".(substr($update, 1))." WHERE itemid=$itemid");
 	}

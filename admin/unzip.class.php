@@ -1,6 +1,6 @@
 <?php
 /*
-	[Destoon B2B System] Copyright (c) 2008-2016 Destoon.COM
+	[Gyyq Cloud System] Copyright (c) 2008-2016 Gyyqcloud.COM
 	This is NOT a freeware, use is subject to license.txt
 */
 defined('IN_DESTOON') or exit('Access Denied');

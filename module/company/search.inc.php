@@ -70,7 +70,7 @@ $condition=" 1=1 ";
 			$replacet = array_map('highlight', $replacef);
 		}
 		while($r = $db->fetch_array($result)) {
-			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+			////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 			if($kw) $r['company'] = str_replace($replacef, $replacet, $r['company']);
 			$tags[] = $r;
 		}

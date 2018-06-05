@@ -20,6 +20,10 @@ show_menu($menus);
 <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level);?> <?php echo dstyle('post[style]', $style);?> <br/><span id="dtitle" class="f_red"></span></td>
 </tr>
 <tr>
+<td class="tl"><span class="f_hid">*</span> <?php echo $MOD['name'];?>首字拼音大写</td>
+<td><input name="post[spell]" type="text" id="spell" size="60" value="<?php echo $spell;?>"/></td>
+</tr>
+<tr>
 <td class="tl"><span class="f_red">*</span> 品牌LOGO</td>
 <td><input name="post[thumb]" id="thumb" type="text" size="60" value="<?php echo $thumb;?>"/>&nbsp;&nbsp;<span onclick="Dthumb(<?php echo $moduleid;?>,<?php echo $MOD['thumb_width'];?>,<?php echo $MOD['thumb_height'];?>, Dd('thumb').value);" class="jt">[上传]</span>&nbsp;&nbsp;<span onclick="_preview(Dd('thumb').value);" class="jt">[预览]</span>&nbsp;&nbsp;<span onclick="Dd('thumb').value='';" class="jt">[删除]</span><span id="dthumb" class="f_red"></span></td>
 </tr>

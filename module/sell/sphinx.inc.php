@@ -39,7 +39,7 @@ if($DT_QST) {
 		while($r = $db->fetch_array($result)) {
 			$r['adddate'] = timetodate($r['addtime'], 5);
 			$r['editdate'] = timetodate($r['edittime'], 5);
-			if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
 			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);

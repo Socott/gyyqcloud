@@ -1,10 +1,9 @@
 {template 'cloudproduce/header'}
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/industrialMall/newIndex/css/pages.css" />
-	<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
-    <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
-    <link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/popup7.css"/>
-	<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/cocenter/pages/zone/qltyAuth/css/reset7.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/industrialMall/newIndex/css/pages.css" />
+	<link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/global.css" type="text/css" />
+    <link rel="stylesheet" href="http://img1.gyyqcloud.com/cocenter//pages/industrialMall/css/clound.css" type="text/css" /> 
+    <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/cocenter/pages/zone/qltyAuth/css/popup7.css"/>
 		<!--头部 end-->
 <style>
 	.text-box i {
@@ -31,7 +30,7 @@
 		<!--面包屑 start-->
         <div class="crumbs">
             <div class="block">
-                <a href="../cosimcloud/index.html">首页</a><span id="leimu"> > 能力大厅</span>
+                <a href="/">首页</a><span id="leimu"> > 能力大厅</span>
 				
 		</div>
         </div>
@@ -50,13 +49,10 @@
                         <span>分类：</span>
                         <div class="text">
                             <div class="text-box" id="classBox" dname="typeid">
-				                <a value="-1" class="classification" onclick="return false;">全部</a>
-			                    <a value="0" class="classification" onclick="return false;">供应</a>
-			                    <a value="1" class="classification" onclick="return false;">提供服务</a>
-			                    <a value="2" class="classification" onclick="return false;">供应二手</a>
-			                    <a value="3" class="classification" onclick=" return false;">提供加工</a>
-			                    <a value="4" class="classification" onclick=" return false;">提供合作</a>
-			                    <a value="5" class="classification" onclick=" return false;">库存</a>
+                                <a href="#" value="-1" class="classification {if $cateid==''}now{/if}">全部</a>
+                                {loop $category  $v}
+                                <a class="classification {if $cateid==$v[catid]}now{/if}" href="#" value="{$v[catid]}">{$v[catname]}</a>
+                                {/loop}
                             </div>
                         </div>
                     </div>
@@ -93,13 +89,7 @@
                                 <!--<a href="#">事业单位</a>-->
                                 <!--<a href="#">其他</a>-->
                             </div>
-
-                            <div class="but">
-                                <a href="javascript:void(0);" class="submit a">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a href="#" class="button1">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
@@ -148,12 +138,7 @@
 	                                <a href="javascript:;">{$size_v}</a>
 	                            {/loop}
                             </div>
-                            <div class="but">
-                                <a href="#" class="submit a">确定</a>
-                                <a href="#" class="onoff">开启多选</a>
-                            </div>
                         </div>
-                        <a class="button1" href="#">多选</a>
                         <a href="javascript:;" class="more">
                             <font>更多</font>
                         </a>
@@ -228,7 +213,17 @@
  
    
 		<!--part7End-->
-  
+<script src="{DT_STATIC}file/layer/layer.js"></script>
+            <script type="text/javascript">
+	        function priceQuery (id) {
+		        layer.open({
+			        type: 2,
+			        content: "/sell/inquiry.php?itemid=" + id,
+			        area: ['1000px', '600px']
+		        });
+		        return false;
+	        }
+			</script>
 {template 'cloudproduce/footer'}
 <script>
 	$('[dname="typeid"] a').on('click', function(){

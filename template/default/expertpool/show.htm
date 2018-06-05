@@ -1,76 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>专家池-专家详情</title>
-<link rel="stylesheet" type="text/css" href="http://expert.casicloud.com/resources/style/shop/professor/css/expertPondReset.css" />
-<link rel="stylesheet" type="text/css" href="http://expert.casicloud.com/resources/style/shop/professor/css/expertPondCommon.css" />
-<link rel="stylesheet" type="text/css" href="http://expert.casicloud.com/resources/style/shop/professor/css/expertPond.css" />
-<script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
-<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
-<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
-<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
-<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
-</head>
-<body>
-
-<!-- public Header Begin --> 
-<!-- public Header Begin -->
-<div class="header">
-  <div class="headTop">
-    <div class="cWidth">
-      <div class="welcomeBox"> <span class="loginBefor"> <span>13637881118您好，欢迎来到重庆工业云！ </span><a href="http://cas.casicloud.com/logout?service=http://expert.casicloud.com/shopping_logout.htm" class="lightblue">[退出]</a> </span> </div>
-    </div>
-  </div>
-  <div class="headLink">
-    <div class="logoBox"> <img src="http://expert.casicloud.com/resources/style/shop/professor/images/expertPond_logo.jpg" usemap="#planetmap" />
-      <map name="planetmap" id="planetmap">
-        <area href="http://www.casicloud.com" shape="rect" coords="0,0,170,48" alt="云网">
-        <area href="http://expert.casicloud.com/index.htm" shape="rect" coords="180,14,300,42" alt="专家池">
-      </map>
-    </div>
-    <div class="searchBox">
-      <input type="text" value="" id="searchAll"/>
-      <a href="javascript:void(0);" class="searchBtn" onclick="searchAll()"></a> </div>
-    <ul class="navBox clearfix">
-      <li> <a href="http://expert.casicloud.com/index.htm" class="now">首页</a> </li>
-      <li> <a href="http://expert.casicloud.com/professorHelp.htm">专家助力</a>
-        <ul class="child">
-          <li> <a href="http://expert.casicloud.com/professor/professorService.htm">专家搜索</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/serviceForOne.htm">一对一服务</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/serviceSalon.htm">企业定制沙龙</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/ownTeam.htm">专属顾问团</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/enterpriseService.htm">企业服务动态</a> </li>
-        </ul>
-      </li>
-      <li> <a href="http://talent.casicloud.com/index.ht" >人才共享</a> </li>
-      <li> <a href="javascript:void(0);">个人服务中心</a>
-        <ul class="child">
-          <li> <a href="http://expert.casicloud.com/professor/myReserve.htm">我的预约</a> </li>
-          <li> <a href="http://expert.casicloud.com/professor/myCollect.htm">我的收藏</a> </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
-<!-- public Header End --> 
-
-<!-- public Header End --> 
-
-<!-- 专家详情 Begin -->
+ {template 'header-expertpool'} <!-- 专家详情 Begin -->
+ <style>.txtShow a{ color:#FFF;}</style>
 <div class="expert_expertDetail">
   <div class="banner">
     <div class="cWidth">
-      <div class="imgShow"> <img src="{$albums[0]}" onError="this.src='http://expert.casicloud.com/resources/style/shop/professor/images/default_head.jpg'" alt="img" /> <span class="bgPos"></span> </div>
+      <div class="imgShow"> <img src="{substr($albums[0],0,-11)}"  alt="img" /> <span class="bgPos"></span> </div>
       <!--{php 
                     $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}-->
       <div class="txtShow">
         <p class="name">{$title}</p>
-        <p>所在地区：北京市 北京市</p>
-        <p>类别领域：</p>
+        <p>所在地区：{area_pos($areaid, ' ', 2)}</p>
+        <p>类别领域：{cat_pos($CAT, ' ',2)}</p>
         <div class="mark">
           <h6>职业标签：</h6>
-          <span>{$brand} </span> <span>北京航空材料研究院博士 </span> </div>
+          <span>{$brand} </span></div>
         <p>从业工龄：{$amount}年</p>
         <p>专家职称：{$UNIT[$level-1]}</p>
         <div class="btn"> <a onclick= "BuyNow()" >约见TA</a> <a  href="javascript:SendFav();"  class="collect" >点击收藏</a> </div>
@@ -79,22 +21,29 @@
   </div>
   
   <!-- 当前位置 Begin -->
-  <div class="expertPond_nowPos"> <span>您的位置：</span> <a href="http://expert.casicloud.com/index.htm;">首页</a>&nbsp;- <a href="http://expert.casicloud.com/professorHelp.htm">专家助力</a>&nbsp;- <a href="javascript:void(0);">专家详情</a> </div>
+  <div class="expertPond_nowPos"> <span>您的位置：</span> <a href="/expertpool/">首页</a>&nbsp;- <a href="search.php?kw=">专家助力</a>&nbsp;- <a href="javascript:void(0);">专家详情</a> </div>
   <!-- 当前位置 End -->
   <div class="detailContent">{$content}</div>
 </div>
 <!-- 专家详情 End --> 
 <!-- 服务动态 End --> 
-{template 'footer2'}
+{template 'footer-expertpool'}
 </body>
 </html>
 <script type="text/javascript">var module_id= {$moduleid},item_id={$itemid},content_id='content',img_max_width={$MOD[max_width]};</script>
-<input type="text" value="{$a1}" size="4" class="cc_inp" id="amount" onkeyup="Malter('', {$a1}, {$amount});"/>
+<input type="hidden" value="{$a1}" size="4" class="cc_inp" id="amount" onkeyup="Malter('', {$a1}, {$amount});"/>
 <div id="destoon_space" style="display:none">
   <div class="mall_c" style="display:;" id="c_detail"></div>
   <div class="mall_c" style="display:none;" id="c_comment"></div>
   <div class="mall_c" style="display:none;" id="c_order"></div>
 </div>
+<link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
+<script src="{DT_STATIC}file/layer/layer.js"  type="text/javascript" ></script>
+<script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
 <script type="text/javascript" src="{DT_STATIC}file/script/album.js"></script>
 {if $content}<script type="text/javascript" src="{DT_STATIC}file/script/content.js"></script>{/if}
 <script type="text/javascript">
@@ -102,8 +51,8 @@ var mallurl = '{$MOD[linkurl]}';
 var mallid = {$itemid};
 var n_c = {$comments};
 var n_o = {$orders};
-var c_c = Dd('c_comment').innerHTML;
-var c_o = Dd('c_order').innerHTML;
+var c_c = "";
+var c_o = "";
 var s_s = {'1':0,'2':0,'3':0};
 var m_l = {
 	no_comment:'暂无评论',

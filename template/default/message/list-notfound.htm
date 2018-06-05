@@ -1,4 +1,6 @@
-{template 'header'}
+{template 'header-index'}
+{php $css="style";}
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}{$css}.css"/>
 <script type="text/javascript">var i=30;</script>
 <div class="m">
 	<div class="warn">
@@ -12,7 +14,7 @@
 			<form action="{$MOD[linkurl]}search.php">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="25" name="kw"/> 
 			<input type="submit" value="搜索"/>
-			<input type="button" value="高级" onclick="Go('{$MOD[linkurl]}search.php');"/>
+			<input type="button" value="高级" onclick="window.location=('{$MOD[linkurl]}search.php');"/>
 			</form>
 		</div>
 	</div>
@@ -21,13 +23,13 @@
 var interval=window.setInterval(
 	function() {
 		if(i==0) {
-			Go('{$MOD[linkurl]}');
+			window.location=('{$MOD[linkurl]}');
 			clearInterval(interval);
 		} else {
-			Dd('second').innerHTML=i;
+			$('#second').html(i);
 			i--;
 		}
 	}, 
 1000);
 </script>
-{template 'footer'}
+{template 'footer-index'}

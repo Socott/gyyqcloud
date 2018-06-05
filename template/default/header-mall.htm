@@ -11,110 +11,26 @@
 <meta name="format-detection" content="telephone=no,email=no,adress=no">
 <title>资源共享_一站式工业品采购,一站式销售平台，工业品共享中心</title>
 <meta name="keywords" content="工业品共享中心，工业品采供，工业物资，机械配件，仪器仪表，劳保防护，机电设备,五金机电,五金批发,b2b,采购,工业用品,mro，机械,五金,安防,仪器仪表,电工,电子,机床,数控刀具,设备,工业品,MRO,通信,传媒,广电,交通,工业采购。" />
-<meta name="description" content="重庆工业云平台工业品共享中心是国内首家工业品智能制造线上工厂，致力于优质工业产品的线上采购，汇集全球优质品牌供应商，方便采购人员的一站式采购机械、五金、电线、电缆、管材、电工、电子、安防、仪器仪表、照明、通信、交通等多个行业性工业品。">
-<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/newIndex/css/global.css" />
-<link rel="stylesheet" type="text/css" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/newIndex/css/page.css" />
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/js/jquery/jquery-1.8.3.min.js"></script>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/js/jquery.mScroll.js"></script>
-<script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/js/industrialMall/newIndex/industrial.js"></script>
-<style type="text/css">
-.number i {
-	color: #fb7e04;
-	font-size: 28px;
-	font-family: 'Impact';
-	position: static;
-	top: 45px;
-	left: 25px;
-}
-</style>
-<script type="text/javascript">
-		$(function() {
-			//alert(111)
-			$(".st-sort-right1").click(function(){
-				$(this).parent().parent().next().show();
-				$(this).parent().parent().hide();
-			});
-			$(".st-sort-left2").click(function(){
-				$(this).parent().parent().prev().show();
-				$(this).parent().parent().hide();
-			});
-			
-			$(".st-sort-right2").click(function(){
-				if($(this).parent().parent().next().html()){
-					$(this).parent().parent().next().show();
-					$(this).parent().parent().hide();
-				}
-				return false;
-			});
-			$(".st-sort-left3").click(function(){
-				$(this).parent().parent().prev().show();
-				$(this).parent().parent().hide();
-			});
-			
-		})
-	</script>
+<meta name="description" content="重庆工业互联网云平台工业品共享中心是国内首家工业品智能制造线上工厂，致力于优质工业产品的线上采购，汇集全球优质品牌供应商，方便采购人员的一站式采购机械、五金、电线、电缆、管材、电工、电子、安防、仪器仪表、照明、通信、交通等多个行业性工业品。">
+<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/global.css" />
+<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/page.css" />
+<script src="http://img1.gyyqcloud.com/industry/js/jquery/jquery-1.8.3.min.js"></script>
+<script src="http://img1.gyyqcloud.com/industry/js/jquery.mScroll.js"></script>
+<script src="http://img1.gyyqcloud.com/industry/js/industrialMall/newIndex/industrial.js"></script>
 </head>
-<body style="min-width:1230px;">
-<link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/industrialMall/newIndex/css/top.css" type="text/css" />
-<link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/cloud1.0/css/common.css" rel="stylesheet" type="text/css" />
+<body>
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/top.css" type="text/css" />
+<link href="http://img1.gyyqcloud.com/industry/pages/cloud1.0/css/common.css" rel="stylesheet" type="text/css" />
 <link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
 <script src="{DT_STATIC}file/layer/layer.js"  type="text/javascript" ></script>
-<script>
-	var url=window.location.host;
-	jQuery(function(){
-		var cookie_val = getCookie("_type_cashTicket_imall");
-		if(cookie_val=="gz"){
-			jQuery("#top_gz").show();
-			jQuery("#foot_gz").show();
-			jQuery("#top_casi").hide();
-			jQuery("#foot_casi").hide();
-		}else{
-			jQuery("#top_casi").show();
-			jQuery("#foot_casi").show();
-			jQuery("#top_gz").hide();
-			jQuery("#foot_gz").hide();
-		}
-	})
-	function getCookie(cookie_name){
-	    var allcookies = document.cookie;
-	    var cookie_pos = allcookies.indexOf(cookie_name);   //索引的长度
-	    // 如果找到了索引，就代表cookie存在，
-	    // 反之，就说明不存在。
-	    if (cookie_pos != -1)
-	    {
-	        // 把cookie_pos放在值的开始，只要给值加1即可。
-	        cookie_pos += cookie_name.length + 1;      //这里容易出问题，所以请大家参考的时候自己好好研究一下
-	        var cookie_end = allcookies.indexOf(";", cookie_pos);
-	 
-	        if (cookie_end == -1)
-	        {
-	            cookie_end = allcookies.length;
-	        }
-	        var value = unescape(allcookies.substring(cookie_pos, cookie_end));         //这里就可以得到你想要的cookie的值了。。。
-	    }
-	    return value;
-	}
-</script>
-<style>
-.header2 .industralMall_logo {
-    display: block;
-    width: 301px;
-    height: 46px;
-    float: left;
-}
-</style>
-<!-- 重庆工业云平台，云制造top页面 -->
-<div id="top_casi" >
-  <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/js/htyw_ul.js"  type="text/javascript">
-</script>
+<script src="http://img1.gyyqcloud.com/industry/js/htyw_ul.js"  type="text/javascript"></script>
   <!--云制造topbegin-->
-  <link href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/css/common.17.9.5.css" rel="stylesheet" type="text/css" />
-  <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/js/masonry-docs.min.js"></script>
-  <script src="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/js/yzz-head.js"></script>
-  <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/css/reset.css">
-  <link rel="stylesheet" href="http://ui.client.zomzone.com/gyyqcloud/industrialParkCloud/industry/pages/before/css/indus_top-18.01.18.css">
-  <script>
-
+<link href="http://img1.gyyqcloud.com/industry/pages/before/css/common.17.9.5.css" rel="stylesheet" type="text/css" />
+<script src="http://img1.gyyqcloud.com/industry/pages/before/js/masonry-docs.min.js"></script>
+<script src="http://img1.gyyqcloud.com/industry/pages/before/js/yzz-head.js"></script>
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/before/css/reset.css">
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/before/css/indus_top-18.01.18.css">
+<script>
    $(function(){
 	   	  //回车触发搜索点击事件
 		  $("#searchKeyWord").keydown(function(event)
@@ -150,28 +66,55 @@
 	        
 	        $("#selectType").val( $(".g-indus-sch .u-sch-types li[class='z-crt']").text());
 	      });
+		  $("#search_v1").click(function(){
+		  	   if($("#kw").val()==""){return;}
+		  	   if($("#selectType").val()=="供应产品")
+			   {
+			       window.location="search.php?kw="+encodeURI($("#kw").val())
+			   }else
+			   {
+			    window.location="/buy/search.php?kw="+encodeURI($("#kw").val())
+			   }
+		  });
 	    })
 </script>
+<div id="top_casi" >
   <!--头部第一部分 开始-->
   <!-- header logout Begin -->
-  <div class="g-indus-header"> <a href="http://os.casicloud.com/" class="m-header-home">云首页</a>
+  <div class="g-indus-header"> <a href="/" class="m-header-home">云首页</a>
     <ul class="m-header-r">
-      <li class="u-down-wrap"> <a href="http://kf.casicloud.com/">客户服务</a> </li>
-      <li> <a href="javascript:doLogin();">登录</a> </li>
-      <li> <a href="http://uc.casicloud.com/user/reg_cloud.ht?systemId=100" class="u-to-reg">免费注册</a> </li>
+
+                  {if $_userid}
+                    <li>
+                        <a>{$_truename},欢迎来到重庆工业互联网云平台!</a>
+                    </li>
+                    <li>
+                        <a href="{$MODULE[2][linkurl]}">个人中心</a>
+                    </li>
+                    <li>
+                       <a href="{$MODULE[2][linkurl]}logout.php">退出</a>
+                    </li>
+                    {else}
+                    <li>
+                        <a>欢迎来到重庆工业互联网云平台!</a>
+                    </li>
+                    <li><a href="javascript:" target="_blank" id="new_username" class="right_line" style="display: none"></a></li>
+                    <li>
+                        <a href="/member/login.php" id="login" onClick="login();">登录</a>
+                    </li>
+                    <li id="register">
+                        <a href="/member/register.php" target="_blank"  class="u-to-reg">免费注册</a>
+                    </li>
+                    {/if}
     </ul>
   </div>
-  <!-- header logout Begin -->
-  <!--头部第一部分 结束-->
-  <!--头部第二部分 开始-->
   <div class="header2" style="padding-top:0px;height:90px;">
     <div class="block">
       <div class="industralMall_logo">
-        <!-- logo/search Begin -->
         <div class="g-indus-sch">
           <div class="m-sch-ct">
-            <div class="u-logo-wrap"> <a href="http://os.casicloud.com/" class="u-logo-index"></a> <a href="industryMall/hall/industryIndex.html" class="u-logo-area">资源共享</a> </div>
-            <a class="u-cart-wrap" href="http://cas.casicloud.com/login?service=http%3A%2F%2Findustry.casicloud.com%2F%2Fj_spring_cas_security_check%3Fspring-security-redirect%3D%2FindustryMall%2Fdemand%2FindustryShoppingcart%2Flist.ht"> <i class="u-cart-icon"></i>购物车<i class="u-cart-num" id="amount"></i> </a>
+            <div class="u-logo-wrap"> <a href="/" class="u-logo-index"></a> <a href="/industry/" class="u-logo-area">资源共享</a> </div>
+            <a class="u-cart-wrap" href="cart.php"> <i class="u-cart-icon"></i>购物车<i class="u-cart-num" id="amount"></i> </a>
             <div class="u-sch-wrap">
               <ul class="u-sch-types">
                 <li class="z-crt" style="width:92px;">采购需求</li>
@@ -179,16 +122,13 @@
               </ul>
               <div class="u-sch-ct">
                 <input type="hidden" id="selectType" value="采购需求"/>
-                <input type="text" class="u-sch-ipt" placeholder="请输入关键词" id="searchKeyWord"  value=""/>
+                <input type="text" class="u-sch-ipt" placeholder="请输入关键词" id="kw" name="kw"  value=""/>
                 <a id="search_v1" class="u-sch-btn">搜索</a>
-                <div class="u-sch-tips"> <a href="javascript:void(0);">发电机</a> <a href="javascript:void(0);">电源</a> <a href="javascript:void(0);">电能表</a> <a href="javascript:void(0);">电站</a> <a href="javascript:void(0);">变电站</a>
-                  <!-- <a href="javascript:void(0);">无人机</a> -->
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- logo/search Begin -->
       </div>
     </div>
   </div>
@@ -196,10 +136,8 @@
     <ul class="m-nav-ct">
       <li> <a href="javascript:void(0);" class="z-all" id="all_v1">全部产品分类</a> </li>
       <li> <a href="/industry/" id="index_v1">首页</a> </li>
-      <li> <a href="/industry/list.php" id="release_v1">产品中心</a> </li>
+      <li> <a href="/industry/search.php?kw=" id="release_v1">产品中心</a> </li>
       <li> <a href="/buy/" id="inqId">采购中心</a> </li>
-      <li> <a href="industryMall/barter/IndsutryGood/leaseMall.html" id="barter_v1">易物中心</a> </li>
-      <li> <a href="industryMall/lease/leaseReception/leaseSearch.html" id="lease_v1">租赁中心</a> </li>
       <li class="u-nav-new"></li>
     </ul>
   </div>

@@ -1,6 +1,6 @@
 <?php 
 defined('IN_DESTOON') or exit('Access Denied');
-if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
+//if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
 if($MOD['list_html']) {
 	$html_file = listurl($CAT, $page);
@@ -17,7 +17,7 @@ extract($CAT);
 $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
 
 $condition = 'status=3';
-$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid>=$catid";
 if($cityid) {
 	$areaid = $cityid;
 	$ARE = $AREA[$cityid];
@@ -34,16 +34,26 @@ if($cityid) {
 		$items = $CAT['item'];
 	}
 }
+if($kw)
+{
+	$condition .=" and keyword like '%{$kw}%'";
+}
+	
 $pagesize = $MOD['pagesize'];
 $offset = ($page-1)*$pagesize;
 $pages = listpages($CAT, $items, $page, $pagesize);
 $tags = array();
+
+
+$order=!empty($order)?$order:"addtime";
+$orderSeq=!empty($orderSeq)?$orderSeq:"desc";
+$MOD['order']=$order." ".$orderSeq;
 if($items) {
-	$result = $db->query("SELECT ".$MOD['fields']." FROM {$table} WHERE {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+	$result = $db->query("SELECT * FROM {$table} WHERE {$condition} ORDER BY ".$MOD['order']." LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
 		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];

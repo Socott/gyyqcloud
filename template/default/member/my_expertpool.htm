@@ -101,6 +101,10 @@ var property_admin = 0;
 </tbody>
 {/if}
 <tr>
+<td class="tl"><span class="f_red">*</span> 所在地区</td>
+<td><?php echo ajax_area_select('post[areaid]', '请选择', $areaid);?>&nbsp;<span id="dareaid" class="f_red"></span></td>
+</tr>
+<tr>
 <td class="tl">专家标签</td>
 <td class="tr"><input name="post[brand]" type="text" size="30" value="{$brand}"/></td>
 </tr>

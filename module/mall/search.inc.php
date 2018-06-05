@@ -96,15 +96,15 @@ if($DT_QST) {
 	
 	{
 		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
-		$result = $db->query("SELECT $fds,thumb,keyword FROM {$table} WHERE thumb<>'' and {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
+		$result = $db->query("SELECT * FROM {$table} WHERE thumb<>'' and {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);
 		if($kw) {
-			$replacef = explode(' ', $kw);
-			$replacet = array_map('highlight', $replacef);
+			//$replacef = explode(' ', $kw);
+			//$replacet = array_map('highlight', $replacef);
 		}
 		while($r = $db->fetch_array($result)) {
 			$r['adddate'] = timetodate($r['addtime'], 5);
 			$r['editdate'] = timetodate($r['edittime'], 5);
-			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+			////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
 			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);
@@ -115,6 +115,23 @@ if($DT_QST) {
 		if($page == 1 && $kw) keyword($kw, $items, $moduleid);
 	}
 }
+//企业类型
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_type'");
+$com_type=explode("|",$rs['item_value']);
+//企业规模
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_size'");
+$com_size=explode("|",$rs['item_value']);
+//经营方式
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_mode'");
+$com_mode=explode("|",$rs['item_value']);
+//所有分类
+$category="";
+$parentid=$catid?$catid:0;
+$rs = $db -> query("select catname,catid from {$db->pre}category where moduleid=$moduleid and parentid=$parentid ");
+while ($r = $db->fetch_array($rs)){
+    $category[] = $r;
+}
+
 $showpage = 1;
 $datetype = 5;
 $seo_file = 'search';

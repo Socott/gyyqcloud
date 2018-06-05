@@ -1,23 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title id="tname">重庆工业云登录</title>
-<link href="http://cas.casicloud.com:80/css/images/favicon.ico" rel="shortcut icon">
-<meta name="keywords" content="重庆工业云">
-<meta name="description" content="重庆工业云">
+<title id="tname">重庆工业互联网云平台登录</title>
+<meta name="keywords" content="重庆工业互联网云平台">
+<meta name="description" content="重庆工业互联网云平台">
 <META HTTP-EQUIV="pragma" CONTENT="no-cache">
-<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
-<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
-<META HTTP-EQUIV="expires" CONTENT="0">
-<link rel="stylesheet" type="text/css" href="http://cas.casicloud.com:80/pages/cloud6.0/css/loginRegister.css"/>
-<link rel="stylesheet" type="text/css" href="http://cas.casicloud.com:80/pages/cloud6.0/css/reset.css"/>
-<link rel="stylesheet" type="text/css" href="http://cas.casicloud.com:80/css/login/global.css?v20180408"/>
-<link rel="stylesheet" type="text/css" href="http://cas.casicloud.com:80/css/login/login.css?v20180408"/>
-<script language="JavaScript" type="text/javascript" src="http://cas.casicloud.com:80/pages/cloud6.0/js/jquery-1.8.3.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="http://cas.casicloud.com:80/pages/cloud6.0/js/jquery.placeholder.js"></script>
-<script language="JavaScript" type="text/javascript" src="http://cas.casicloud.com:80/js/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/res/css/loginRegister.css"/>
+		<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/res/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/res/css/global07c1.css"/>
+		<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/res/css/login07c1.css"/>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/jquery-1.8.3.min.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/jquery.placeholder.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/layer.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/jquery.cookie.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/global.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/login.js"></script>
+		<script language="JavaScript" type="text/javascript" src="http://img1.gyyqcloud.com/res/js/des.js"></script>
+		
+		<style>
+		.login-box .login-from { padding-top: 0px; }
+		.login-footer { padding-bottom: 50px; }
+		.feedbackMsg{ display: none; }
+		.form-list{ padding-bottom: 20px; padding-left: 0px; }
+		.form-list-mobile { padding-bottom: 25px; color:#999; }
+		.displayCode{ display:none; }
+		.errorM{ color:red; }
+		.login_topright { float: right; width: 360px; }
+		.login_topright ul li { float: left; width: 65px; font-family: "simsun"; font-size: 12px; color: #676767; padding-top: 5px; }
+		
+		</style>
+
+
+
+
 <script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
 <script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
 <script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
@@ -28,10 +45,9 @@
 $(function(){
  
 		$("#logo").addClass("kj-logo");
-		$("#bg").addClass("kj-bg");
 		$("#logo").addClass("htyw-logo");
 		$("#header").addClass("login-head");
-		$(".gyyName").html("重庆工业云");
+		$(".gyyName").html("重庆工业互联网云平台");
 		$("#logo").attr('href', 'http://www.gyyqcloud.com');
 		$("#bg").addClass("htyw-bg");
 })
@@ -91,7 +107,7 @@ $(function(){
                 <label for="cookietime"> 记住我</label>
                 <input type="checkbox" name="goto" value="1" id="goto"{if $MOD[login_goto]} checked{/if}/>
                 <label for="goto">进入商务室</label>
-                <label class="r clearfix"><a href="http://uc.casicloud.com/user/findPwd.ht" spm="login.form_new">忘记密码</a></label>
+                <label class="r clearfix"><a href="send.php?forward={urlencode($forward)}" spm="login.form_new">忘记密码</a></label>
               </div>
               <div class="button">
                 <input type="submit" name="submit" value=" 登 录 "/>
@@ -108,7 +124,7 @@ $(function(){
   <div class="login_line"></div>
   <div class="login-footer">
     <div class="block">
-      <div class="coypright"> <span id="yw" > Copyright©2018 重庆工业云,All Rights Reserved 渝ICP备18001657号</span> </div>
+      <div class="coypright"> <span id="yw" > Copyright©2018 重庆工业互联网云平台&nbsp;&nbsp;All Rights Reserved 渝ICP备18001657号</span> </div>
     </div>
   </div>
 </div>

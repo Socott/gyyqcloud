@@ -41,7 +41,11 @@ isset($order) && isset($dorder[$order]) or $order = 0;
 $order_select  = dselect($sorder, 'order', '', $order);
 $type_select = dselect($TYPE, 'typeid', $L['all_type'], $typeid);
 $tags = $PPT = array();//PPT
-
+//所有分类
+$rs = $db -> query("select catname,catid from {$db->pre}category where moduleid=$moduleid and parentid=0 ");
+while ($r = $db->fetch_array($rs)){
+    $category[] = $r;
+}
 //地区
 $sql = "select areaid,areaname from {$db->pre}area where parentid=0 order by areaid asc";
 $r = $db->query($sql);
@@ -119,7 +123,7 @@ if($DT_QST) {
 //		while($r = $db->fetch_array($result)) {
 //			$r['adddate'] = timetodate($r['addtime'], 5);
 //			$r['editdate'] = timetodate($r['edittime'], 5);
-//			if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+//			//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 //			$r['alt'] = $r['title'];
 //			$r['title'] = set_style($r['title'], $r['style']);
 //			if($kw) $r['title'] = str_replace($replacef, $replacet, $r['title']);

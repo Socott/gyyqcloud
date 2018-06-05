@@ -1,6 +1,6 @@
 <?php 
 defined('IN_DESTOON') or exit('Access Denied');$CAT['moduleid']=5; $moduleid=5;
-if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
+//if(!$CAT || $CAT['moduleid'] != $moduleid) include load('404.inc');
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
 if($MOD['list_html']) {
 	$html_file = listurl($CAT, $page);
@@ -45,7 +45,7 @@ $tags = array();
 	while($r = $db->fetch_array($result)) {
 		$r['adddate'] = timetodate($r['addtime'], 5);
 		$r['editdate'] = timetodate($r['edittime'], 5);
-		//if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+		////if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
 		$r['alt'] = $r['title'];
 		$r['title'] = set_style($r['title'], $r['style']);
 		$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
@@ -53,6 +53,23 @@ $tags = array();
 	}
 	$db->free_result($result);
 //}
+//企业类型
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_type'");
+$com_type=explode("|",$rs['item_value']);
+//企业规模
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_size'");
+$com_size=explode("|",$rs['item_value']);
+//经营方式
+$rs = $db -> get_one("select item_value from {$db->pre}setting where item=2 and item_key='com_mode'");
+$com_mode=explode("|",$rs['item_value']);
+//所有分类
+$category="";
+$parentid=$catid?$catid:0;
+$rs = $db -> query("select catname,catid from {$db->pre}category where moduleid=$moduleid and parentid=$parentid ");
+while ($r = $db->fetch_array($rs)){
+    $category[] = $r;
+}
+
 $showpage = 1;
 $datetype = 5;
 $seo_file = 'list';
