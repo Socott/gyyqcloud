@@ -1,394 +1,237 @@
+{php $CSS = array('index');}
 {template 'header-mall'}
-<script src="http://img1.gyyqcloud.com/industry/js/industrialMall/jquery.mScroll.m.js"></script>
-<div class="banner-home" >
-  <div class="foucs">
-        <div class="frame">
-              {php $adtags=tag("table=ad&condition=pid=76&areaid=$cityid&pagesize=5&template=null&debug=0");}
-      {loop $adtags $i $t}
-          <div class="child" onClick="location.href='{$t[url]}'" style="background-image:url({$t[image_src]}) ; height:474px; overflow:hidden"></div>
-          {/loop}	 
+<link href="http://img4.taojindi.com/front/css/gather.css" type="text/css" rel="stylesheet"/>
+<!--右侧浮层开始-->
+<div class="right_layer"></div>
+<!--右侧浮层结束-->
+<!--求购首屏开始-->
+<div class="gather_top_mod wrap clearfix">
+  <div class="cp_top_mod_l">
+    <!--焦点图开始-->
+    <div class="gather_banner">
+      <ul class="rslides">
+        <!--{php $tags=tag("table=ad&condition=pid=28&pagesize=10&template=null");}-->
+        {loop $tags $i $t}
+        <li>
+          <a href="{$t[url]}" target="_blank" title=""><img src="{$t[image_src]}" alt=""></a>
+          <div style="position:absolute; right:0px; bottom:0px;">
+            <img src="http://r.longygo.com/v1/images/pclog.png" style="width:29px; height:16px;">
+          </div>
+        </li>
+        {/loop}
+      </ul>
+    </div>
+    <!--焦点图结束-->
+    <!--促销图开始-->
+    <div class="cp_promotion clearfix">
+      <ul>
+        <li ><a href="/mall/list-30370.html" target="_blank"><img src="http://r.longygo.com/v1/images/centerImg_306.jpg"></a></li>
+        <li ><a href="/mall/list-30658.html" target="_blank"><img src="http://r.longygo.com/v1/images/centerImg_307.jpg"></a></li>
+        <li ><a href="/mall/list-31141.html" target="_blank"><img src="http://r.longygo.com/v1/images/centerImg_308.jpg"></a></li>
+        <li style="margin-right:0px;"><a href="/mall/list-31746.html" target="_blank"><img src="http://r.longygo.com/v1/images/centerImg_309.jpg"></a></li>
+      </ul>
+    </div>
+    <!--促销图结束-->
+  </div>
+  <!--右侧开始-->
+  <div class="gather_top_mod_r gather_mod">
+    <div class="cp_top_mod_r">
+      <div class="hd pr">
+        <h2>产品动态</h2>
+        <div class="calendar clearfix">
+          <div class="year"><span id="localYear">{$year} </span><br><span id="localMonth">{$month}</span></div>
+          <div class="day"><span id="localDay">{$date}</span></div>
         </div>
-    <div class="nav"> 
-    {loop $adtags $i $t}<i class="now"></i>{/loop}	 
+      </div>
+      <div class="sum_box mt10 ml20">
+        <div class="gray3 lh30"><i class="icon sj_icon"></i>新增商品</div>
+        <div class="digital orange">{$goods_count_add}</div>
+      </div>
+      <div class="sum_box mt10 ml20">
+        <div class="gray3 lh30"><i class="icon sp_icon"></i>商品总数</div>
+        <div class="digital orange">{$goods_count_total}</div>
+      </div>
+      <div class="hd border_t mt20"><h2>最新发布产品</h2></div>
+      <div class="text_list p10" style="overflow:hidden;height:152px;">
+        <ul id="scrollBuy">
+          <!--{php $tags=tag("table=mall&condition=status=3&areaid=$cityid&pagesize=17&order=orders desc&template=null&debug=0");}-->
+          {loop $tags $i $t}
+          <li><a href="{$t[linkurl]}" target="_blank">{dsubstr($t[title],32,"...")}</a></li>
+          {/loop}
+        </ul>
+      </div>
     </div>
   </div>
+  <!--右侧结束-->
 </div>
-<script type="text/javascript">
-	$(function() {
-		
-		/*已入驻企业数字滚动效果start*/
-		numshow(".corpo-home .check .tit span");
-		/*已入驻企业数字滚动效果 end*/
-		
-		/*banner-home切换 start*/
-		$(".banner-home .foucs .frame").mScroll({
-			auto: 1, //自动开始
-			direction: "h", //h横向,v纵向
-			dtype: "left", //正反方向
-			isfocus: 1, //是否作为焦点图
-			minsize: 1, //最小数量
-			speed: 500, //滚动速度
-			easing: "", //渐变缓冲类型
-			delay: 5000, //自动滚动延迟
-			nav: ".banner-home .foucs .nav i", //导航
-			prev: null, //前一个按钮
-			next: null, //后一个按钮
-			cycle: 1, //是否循环
-			touch: 0 //是否开启触摸事件
-		});
-		/*banner-home切换 end*/
-			
-		/*友情链接切换 start*/
-		$(".frienlink-home .frame").mScroll({
-			auto: 1, //自动开始
-			direction: "h", //h横向,v纵向
-			dtype: "left", //正反方向
-			isfocus: 1, //是否作为焦点图
-			minsize: 6, //最小数量
-			speed: 500, //滚动速度
-			easing: "", //渐变缓冲类型
-			delay: 5000, //自动滚动延迟
-			nav: null, //导航
-			prev: ".frienlink-home .a.prev", //前一个按钮
-			next: ".frienlink-home .a.next", //后一个按钮
-			cycle: 1, //是否循环
-			touch: 0 //是否开启触摸事件
-		});
-		/*友情链接切换 end*/
-  	});
-
-		 
-		//数字初始化效果
-			function numshow(e) {
-				var stv1;
-				var x = parseInt($(e).attr("alt"));
-				var y = 0;
-				x = "" + x;
-				var arr = [];
-
-				for (var i = 0; i < x.length; i++) {
-					var elem = $("<i></i>");
-
-					arr[i] = elem.text(x.charAt(i));
-				}
-
-				if (x >= 100) {
-					var z = parseInt(x / 100);
-					var t = 10;
-				} else {
-					var z = 1;
-					t = 150;
-				}
-				var stv1 = setInterval(function () {
-					y = y + z;
-					$(e).text(y);
-					if (y + z >= x) {
-						/*$(e).text(x);*/
-						$(e).html("");
-						for (var i = 0; i < arr.length; i++) {
-							arr[i].appendTo(".corpo-home .check .tit span.number");
-						}
-						$(e).css({
-							letterSpacing: 'normal'
-							, left: 14
-						});
-						clearInterval(stv1);
-					}
-				}, t);
-			}
-	</script>
-<!--banner-home 结束-->
-<div class="body">
-<!--强势入驻 开始-->
-<div class="corpo-home" style="padding-bottom:0">
-  <div class="block">
-    <div class="main-nav" style="height:467px; top:-515px;">
-      <div class="list" style="height:467px;">
-      
-				{php $mid = $moduleid;}
-                {php $cat_arr=array();}
-				{php $child = get_maincat(0, $mid, 1);}
-                
-        {loop $child $i $c}
-        {php $sub = get_maincat($c[catid], $mid, 1);}	
-        <div class="item i{$i+1}"><i></i> <a class="a" href="{$MODULE[$mid][linkurl]}{$c[linkurl]}" title="{$c[catname]}"> {$c[catname]} <span></span></a>
-          <div class="child-nav">
-          
-          {loop $sub $j $s}
-            <div class="item1"> <span> <a href="{$MODULE[$mid][linkurl]}{$s[linkurl]}">{$s[catname]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> </span>
-              <div class="item-list"> 
-               {php $subthire = get_maincat($s[catid], $mid, 1);}	
-               {loop $subthire $jj $sj}
-              <a href="{$MODULE[$mid][linkurl]}{$sj[linkurl]}">{$sj[catname]}</a> 
-              {/loop}
-              </div>
-            </div>
-            {php array_push($cat_arr,$s[catid]);}
-  		  {/loop}
- 
-          </div>
-      </div>
+<!--求购首屏结束-->
+<!--热门商品开始-->
+<div class="cp_hot wrap">
+  <div class="gather_mod_hd clearfix">
+    <h2><i class="icon hot_icon"></i>热门商品</h2>
+    <a href="javascript:change()" class="fr">换一批</a>
+  </div>
+  <div class="cp_list">
+    <ul class="clearfix">
+      <input type="hidden" value="5" id="hotCount"/>
+      <input type="hidden" value="1" id="hotVar"/>
+      <!--{php $tags=tag("table=mall&condition=status=3 and thumb<>''&areaid=$cityid&pagesize=5&order=RAND()&template=null");}-->
+      {loop $tags $i $t}
+      <input type="hidden" value="80" id="hotVar"/>
+      <li id="hotProd{$i}" style="display:block"  {if $i==4}class="last"{/if}>
+        <div class="pic"><a href="{$t[linkurl]}" target="_blank"> <img src="{$t[thumb]}"></a></div>
+        <div class="price orange">
+          {if $t[price]>0}
+          ￥<span class="f20">{$t[price]}</span>
+          {else}
+          <span class="f20">面议</span>
+          {/if}
+        </div>
+        <div class="text"><a href="{$t[linkurl]}" target="_blank">{dsubstr($t[title],52,"...")}</a></div>
+        <div class="company"><a href="/index.php?homepage={$t[username]}"><i class="icon zuan_icon"></i>{$t[company]}</a></div>
+      </li>
       {/loop}
-      
-      </div>
+    </ul>
+  </div>
+</div>
+<!--热门商品结束-->
+{php $mid = 16;}
+{php $cat_arr=array();}
+{php $child = get_maincat(0, $mid, 1);}
+{loop $child $ikey $c}
+{php array_push($cat_arr,$c[catid]);}
+<!--{php $if=$ikey+1;$adfloor=tag("table=ad&condition=pid=(select pid from gyy_ad_place where name='商城楼层".$if."F')&pagesize=10&template=null&debug=0");}-->
+{loop $adfloor $i $t}
+<div class="ad_wrap pr">
+  <a href="{$t[url]}" target="_blank">
+    <img class="lazy" src="{$t[image_src]}" alt="" style="display: inline;" width="1200">
+  </a>
+  <div style="position:absolute; right:0px; bottom:0px;"><img src="http://r.longygo.com/v1/images/pclog.png"></div>
+</div>
+{/loop}
+<!--------{$ikey+1}F开始-------->
+<div class="cp_main_mod wrap">
+  <div class="cp_main_mod_hd clearfix">
+    <h2><span class="orange">{$ikey+1}F</span>{$c[catname]}</h2>
+  </div>
+  <div class="cp_main_mod_bd clearfix">
+    <div class="cp_main_mod_l">
+      {php $sub = get_maincat($c[catid], $mid, 1);}
+      {loop $sub $j $s}
+      {if ($j<=5)}
+      <dl {if (($j+1)==5)}class="noborder"{/if}>
+        <dt><a href='{$se[linkurl]}' title='{$s[catname]}' target='_blank' class='blue'>{$s[catname]}</a></dt>
+        <dd>
+          {php $sub_end = get_maincat($s[catid], $mid, 1);}
+          {loop $sub_end $t $se}
+          <a href="{$se[linkurl]}" target="_blank">{$se[catname]}</a>
+          {php array_push($cat_arr,$se[catid]);}
+          {/loop}
+        </dd>
+      </dl>
+      {/if}
+      {php array_push($cat_arr,$s[catid]);}
+      {/loop}
     </div>
-    <div class="check" style="top:-515px;">
-      <div class="tit"><span class="number" alt="1523074">1523074</span><b style="float: right; padding-right: 19px; color: #fff;  margin-top: 55px;">家</b></div>
-      <div class="box now">
-        <div class="img"> <img src="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/image/check-icon.jpg"> </div>
-        <div class="but"> <a class="a1" href="/member/login.php">登录</a> <a href="/member/register.php">注册</a> </div>
-      </div>
-    </div>
-    <a target="_blank" href="#" style="position:static;">
-    <div class="check-info"> </div>
-    </a>
-    <!--div class="notice">
-      <div class="tabs"> <span class="now"><a target="_blank" href="#">公告</a></span> <span><a target="_blank" href="#">动态</a></span> </div>
-      <div class="switch-item">
-        <ul class="now">
-                      {php $tags2=tag("table=article_21&condition=1=1 &areaid=$cityid&order=rand()&pagesize=4&template=null&debug=0");}
-                      {loop $tags2 $i $t}
-                      <li>
-                       <a href="/news/{$t[linkurl]}" class="pull-left" target="_blank" title=" {$t[title]}"> {$t[title]}</a> 
-                      </li>
-					  {/loop}
-        </ul>
-        <ul>
-                      {php $tags2=tag("table=article_21&condition=1=1 &areaid=$cityid&order=rand()&pagesize=4&template=null&debug=0");}
-                      {loop $tags2 $i $t}
-                      <li>
-                       <a href="/news/{$t[linkurl]}" class="pull-left" target="_blank" title=" {$t[title]}"> {$t[title]}</a> 
-                      </li>
-					  {/loop}
-        </ul>
-      </div>
-    </div-->
-    <!--div class="imgbox"> <a href="http://www.inindustrial.com.cn/"> <img src="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/image/kjds1.jpg" /> </a> <a href="http://imall.casicloud.com/ecweb/casicacptbill/buyers/billpage/billpage.htm"> <img src="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/image/hlwjr2.jpg" /> </a> <a href="http://imall.casicloud.com/ecweb/casicbase/shoptemplate/specialSpace.htm"> <img src="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/image/httg3.jpg" /> </a> </div-->
-    <!-- suntao modify banner link end -->
-    <div class="left-corpo">
-      <div class="table-cell"> <i><img src="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/image/Reco-icon.png" /></i>
-        <h2>企业/品牌推荐</h2>
-        <h3><br />
-        </h3>
-      </div>
-    </div>
-    <div class="right-corpo">
-      <div class="right-top">
-      {php $adtags=tag("table=ad&condition=pid=82&areaid=$cityid&pagesize=2&template=null&debug=0");}
-      {loop $adtags $i $t}
-        <div class="box"> <i><img src="{$t[image_src]}" /></i>
-          <div class="text">
-            <div class="table-cell">
-              <h2><a target="_blank" href="{$t[url]}">{$t[title]}</a></h2>
-              <h3>{$t[introduce]}</h3>
-              <p>{$t[image_alt]}</p>
-            </div>
+    <div class="cp_main_mod_r cp_list" id="con_gyp_1">
+      <ul class="clearfix">
+        {php $id_str=implode(',',$cat_arr);}
+        <!--{php $tags=tag("table=mall&condition=status=3 and catid in (".$id_str.") and  thumb<>''&pagesize=8&order=RAND()&template=null&debug=0");}-->
+        {loop $tags $i $t}
+        <li {if ($i==7)}class="last"{/if}>
+          <div class="pic"><a href="{$t[linkurl]}" target="_blank"><img class="lazy" src="{$t[thumb]}" data-original="{$t[thumb]}"/></a></div>
+          <div class="price orange">
+            {if $t[price]>=1}
+            ￥<span class="f20">{$t[price]}</span>
+            {/if}
+            {if $t[price]<1}
+            <span class="f20">面议</span>
+            {/if}
           </div>
-        </div>
+          <div class="text"><a href="{$t[linkurl]}" target="_blank">{dsubstr($t[title],52,"...")}</a></div>
+          <div class="company"><a href="/index.php?homepage={$t[username]}" target="_blank"><i class="icon "></i>{$t[company]}</a></div>
+        </li>
         {/loop}
-
-    </div>
-    <div class="right-bottom"> 
-      {php $adtags=tag("table=ad&condition=pid=83&areaid=$cityid&pagesize=6&template=null&debug=0");}
-      {loop $adtags $i $t}<div class="table-cell"><a href="{$t[url]}" class="a{$i+1}"><img src="{$t[image_src]}" /></a></div>{/loop}       
+      </ul>
     </div>
   </div>
 </div>
-</div>
-<!--强势入驻 结束-->
-<!--采购招标 开始-->
-<div class="purchase-home" style="margin-top:20px;">
-  <div class="block">
-    <div class="tit">
-      <h2>采购招标</h2>
-      <span><i></i></span> </div>
-    <div class="box">
-      <div class="left">
-        <div class="tabs"> <span class="now first">最新采购需求</span> <span>临近过期</span> <!--span>最新成交</span--> <a href="/buy/" class="more">more+</a> </div>
-        <div class="table">
-          <table class="now">
-            <tr>
-              <td width="180">发布日期</td>
-              <td width="220">求购产品名称</td>
-              <td width="100">数量</td>
-              <td width="110">距报价截止</td>
-              <td width="150"></td>
-            </tr>
-                    {php $tags=tag("table=buy_6&length=44&condition=status>0 &areaid=$cityid&pagesize=7&order=rand()&cols=2&template=null&debug=0");}
-                    {loop $tags $kk $tt}
-            <tr>
-              <td>{timetodate($tt[addtime],'Y年m月d日')}</td>
-              <td>{$tt[title]} </td>
-              <td>{$tt[amount]} </td>
-              <td><span>还剩 <span name="leftDay"><span name="remainingTime" style="color: red;">{php   echo floor(($tt[totime]-time())/86400);}</span>天</span> </td>
-              <td style="display: none;"><span name="deadline">2018-04-23</span></td>
-              <td><a href="/buy/{$tt[linkurl]}">查看详情 >></a></td>
-            </tr>
-            {/loop} 
-          </table>
-          <table>
-            <tr>
-              <td width="180">发布日期</td>
-              <td width="220">求购产品名称</td>
-              <td width="100">数量</td>
-              <td width="110">距报价截止</td>
-              <td width="150"></td>
-            </tr>
-              {php $tags=tag("table=buy_6&length=44&condition=totime>NOW()-INTERVAL 15 HOUR and status>0 &areaid=$cityid&pagesize=7&order=rand()&cols=2&template=null&debug=0");}
-                    {loop $tags $kk $tt}
-            <tr>
-              <td>{timetodate($tt[addtime],'Y年m月d日')}</td>
-              <td>{$tt[title]}</td>
-              <td>{$tt[amount]}</td>
-              <td><span>还剩 <span name="leftHour"><span name="remaininghour" style="color: red;">{php   echo floor(($tt[totime]-time())/3600);}</span>小时</span></span> </td>
-              <td style="display: none;"><span name="deadline">2018-04-17</span></td>
-              <td><a href="/buy/{$tt[linkurl]}">查看详情 >></a></td>
-            </tr>
-            {/loop} 
-          </table>
-          <table style="display:none">
-            <tr>
-              <td width="150">发布日期</td>
-              <td width="220">求购产品名称</td>
-              <td width="130">承接单位</td>
-              <td width="110">成交日期</td>
-              <td width="150"></td>
-            </tr>
-            
-            <tr>
-              <td>2018年04月08日</td>
-              <td title="Oracle软件采购">Oracle软件采购 </td>
-              <td title="北京华宇时创科技有限公司">北京华宇时创科技.. </td>
-              <td>2018-04-17</td>
-              <td style="display: none;"><span name="deadline">2018-04-14</span></td>
-              <td><a href="javascript:openInquiryDetail(40000010995607)">查看详情 >></a></td>
-            </tr>
-            
-          </table>
-        </div>
-      </div>
-      <div class="right">
-        <div class="tabs"> <span class="now first">招标公告</span> <a href="/news/list.php?catid=39166" class="more">more+</a> </div>
-        <div class="con">
-          <table class="now">
-            <tr>
-              <td width="335">项目名称</td>
-              <td width="75">发布日期</td>
-            </tr>
-             {php $tags2=tag("table=article_21&condition=1=1 and catid=39166&areaid=$cityid&order=rand()&pagesize=7&template=null&debug=0");}
-             {loop $tags2 $i $t}
-            <tr>
-              <td><a href="/news/{$t[linkurl]}">{$t[title]} </a></td>
-              <td>{timetodate($t[addtime],'Y/m/d')}</td>
-            </tr>
-            {/loop}
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--采购招标 结束-->
 
-<!--发布需求 结束-->
-<!--产品中心 开始-->
-<div class="product-home" style="margin-top:20px;">
-  <div class="block">
-    <div class="tit">
-      <h2>产品中心</h2>
-      <a href="industryMall/hall/releaseHall.html">查看更多 >></a>
-      <div class="tabs">
-      
-        {loop $child $i $c}
-        {if $i<7}
-      	<span {if $i==0}class="now"{/if}>{$c[catname]}</span>
-        {/if}
-        {/loop}
-        
-      </div>
-    </div>
-    <div class="product-list">
-    {loop $child $i $c}
-    {php $id_str=implode(',',$cat_arr);}
-    {if $i<7}
-      <!--{$c[catname]}-->
-        <div class="item now">
-          <div class="item-top">
-            <div class="img1"> <a href="#" onclick="javascript:void(0);"> <img src="https://oby0yx23h.qnssl.com//image/carousel/07101631165610063"> </a> </div>
-            <div class="foucs">
-              <div class="frame">
-                <div class="scroll" style="height: 100%; width: 100000px;">
-              {php $adtags=tag("table=ad&condition=pid=85&areaid=$cityid&pagesize=2&template=null&debug=0");}
-              {loop $adtags $i $t}
-                  <div class="child" style="width: 451px;"> <a href="{$t[url]}"> <img src="{$t[image_src]}"> </a> </div>
-               {/loop}   
-                </div>
-              </div>
-              <div class="nav">{loop $adtags $i $t}<i {if $i==0}class="now"{/if}></i>{/loop} </div>
-            </div>
- 
-			{php $tagsp1=tag("table=mall&condition=status=3 and catid not in (".$id_str.") and  thumb<>''&pagesize=3&order=RAND()&template=null&debug=0");}
-			{php $tagsp2=tag("table=mall&condition=status=3 and catid not in (".$id_str.") and  thumb<>''&pagesize=4&order=RAND()&template=null&debug=0");}
-            {loop $tagsp1 $i $t}
-            <div class="product-item {if $i==2}after{/if}"> <a href="{$t[linkurl]}"> <i><img src="{$t[thumb]}" {if $i==2}style="width:203px; height:192px;"{/if}></i>
-              <div class="text">
-                <h2>{dsubstr($t[title],26,"...")}</h2>
-                <p> {if $t[price]>=1}￥{$t[price]}{/if}
-                    {if $t[price]<1}面议{/if} 
-                 </p>
-              </div>
-              </a> </div>
-             {/loop}
-              
-              
-          </div>
-          <div class="item-bottom">
-            <div class="img2"> 
-              {php $adtags=tag("table=ad&condition=pid=84&areaid=$cityid&pagesize=9&template=null&debug=0");}
-              {loop $adtags $i $t}<a href="{$t[url]}"><img src="{$t[image_src]}" {if $i==0}style="width:200px; height:190px;"{/if}{if $i==3}style="width:203px; height:192px;"{/if}></a> {/loop}
-            
-            </div>
 
-			{loop $tagsp2 $i $t}
-            <div class="product-item {if $i==3}after{/if}{if $i==0}first{/if}"> <a href="{$t[linkurl]}"> <i><img src="{$t[thumb]}"></i>
-              <div class="text">
-                <h2>{dsubstr($t[title],26,"...")}</h2>
-                <p> {if $t[price]>=1}￥{$t[price]}{/if}
-                    {if $t[price]<1}面议{/if} 
-                 </p>
-              </div>
-              </a> 
-             </div>
-             {/loop} 
-              
-          </div>
-        </div>
 
-        {/if}
-        {/loop}
+<!--------{$ikey+1}F结束-------->
+{/loop}
 
-      
-    </div>
-  </div>
-</div>
-<!--产品中心 结束-->
-<div class="frienlink-home">
-  <div class="block">
-    <div class="tit">
-      <h2>友情链接</h2>
-    </div>
-    <div class="foucs">
-      <div class="frame">
-             {php $links=tag("table=link&condition=1=1 and typeid=22&areaid=$cityid&order=rand()&pagesize=10&template=null&debug=0");}
-             {loop $links $i $t}<div class="child {if $k==0}first{/if}"> <a href="{$t[linkurl]}"><img src="{$t[thumb]}" /></a> </div>{/loop}
-      </div>
-      <div class="a prev"><i></i></div>
-      <div class="a next"><i></i></div>
-      <div class="cover"></div>
-    </div>
-  </div>
-</div>
-<!--友情链接 结束-->
-{template 'cloudproduce/footer'}
-</body>
-</html>
+<!--底部开始-->
+<script src="http://img4.taojindi.com/front/js/jquery-1.8.3.min.js"></script>
+<script src="/front/js/common.js?20160714"></script>
+<script src="http://img4.taojindi.com/front/js/banner.js"></script>
+<script src="http://img4.taojindi.com/front/js/SuperSlide.js?s=2014"></script>
+<!--底部结束-->
+<script src="/front/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("img.lazy").lazyload({threshold : 100});
+        var today=new Date();
+        var month=today.getMonth()+1;
+        var year = today.getFullYear();
+        var day = today.getDate();
+        $("#localYear").html(year);
+        $("#localMonth").html(month);
+        $("#localDay").html(day);
+        var count = $("#hotCount").val();
+        for(var i=0; i<count; i++){
+            $("#hotProd"+i).css('display','none');
+        }
+        if(count > 5){
+            for(var i=0; i<5; i++){
+                $("#hotProd"+i).css('display','block');
+            }
+        }else{
+            for(var i=0; i<count; i++){
+                $("#hotProd"+i).css('display','block');
+            }
+        }
+    });
+    function change(){
+        var count = $("#hotCount").val()*1;
+        var hotVar = $("#hotVar").val()*1;
+        for(var i=0; i<count; i++){
+            $("#hotProd"+i).css('display','none');
+        }
+        if(count>5*hotVar){
+            var limit = hotVar+1;
+            for(var i=5*hotVar; i<5*limit; i++){
+                $("#hotProd"+i).css('display','block');
+            }
+            $("#hotVar").val(hotVar+1);
+            if(count <= 5*(hotVar+1)){
+                $("#hotVar").val(0);
+            }
+        }else{
+            for(var i=0; i<count; i++){
+                $("#hotProd"+i).css('display','block');
+            }
+        }
+    }
+    /*求购供应滚动*/
+    $(function(){
+        var $this = $("#scrollBuy");
+        var scrollTimer;
+        $this.hover(function(){
+            clearInterval(scrollTimer);
+        },function(){
+            scrollTimer = setInterval(function(){
+                scrollBuys( $this );
+            }, 1500 );
+        }).trigger("mouseleave");
+    });
+    function scrollBuys(obj){
+        var lineHeight = obj.find("li:first").height(); //获取行高
+        obj.animate({ "marginTop" : -lineHeight +"px" }, 600 , function(){
+            obj.css({marginTop:0}).find("li:first").appendTo(obj); //appendTo能直接移动元素
+        });
+    }
+</script>
+
+{template 'footer-mall'}

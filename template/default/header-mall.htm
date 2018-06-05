@@ -1,143 +1,381 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="renderer" content="webkit">
-<meta name="author" content="www.fractal-technology.com">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="format-detection" content="telephone=no,email=no,adress=no">
-<title>资源共享_一站式工业品采购,一站式销售平台，工业品共享中心</title>
-<meta name="keywords" content="工业品共享中心，工业品采供，工业物资，机械配件，仪器仪表，劳保防护，机电设备,五金机电,五金批发,b2b,采购,工业用品,mro，机械,五金,安防,仪器仪表,电工,电子,机床,数控刀具,设备,工业品,MRO,通信,传媒,广电,交通,工业采购。" />
-<meta name="description" content="重庆工业互联网云平台工业品共享中心是国内首家工业品智能制造线上工厂，致力于优质工业产品的线上采购，汇集全球优质品牌供应商，方便采购人员的一站式采购机械、五金、电线、电缆、管材、电工、电子、安防、仪器仪表、照明、通信、交通等多个行业性工业品。">
-<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/global.css" />
-<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/page.css" />
-<script src="http://img1.gyyqcloud.com/industry/js/jquery/jquery-1.8.3.min.js"></script>
-<script src="http://img1.gyyqcloud.com/industry/js/jquery.mScroll.js"></script>
-<script src="http://img1.gyyqcloud.com/industry/js/industrialMall/newIndex/industrial.js"></script>
+    <meta charset="utf-8">
+    <title>{if $seo_title}{$seo_title}{else}{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}{if $city_sitename}{$city_sitename}{else}{$DT[sitename]}{/if}{/if}</title>
+    {if $head_keywords}
+    <meta name="keywords" content="{$head_keywords}"/>
+    {/if}
+    {if $head_description}
+    <meta name="description" content="{$head_description}"/>
+    {/if}
+    {if $head_mobile}
+    <meta http-equiv="mobile-agent" content="format=html5;url={$head_mobile}">
+    {/if}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="{DT_STATIC}favicon.ico"/>
+    <link rel="bookmark" type="image/x-icon" href="{DT_STATIC}favicon.ico"/>
+    {if $head_canonical}
+    <link rel="canonical" href="{$head_canonical}"/>
+    {/if}
+    <link href="http://r.longygo.com/v1/css/base.css" type="text/css" rel="stylesheet" />
+    <link href="http://r.longygo.com/v1/css/common0816.css" type="text/css" rel="stylesheet" />
+    <link href="http://r.longygo.com/v1/css/index7560.css" type="text/css" rel="stylesheet" />
+    <!--{php if($moduleid==1){}-->
+    <link href="http://r.longygo.com/v1/css/gather.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+        .notice .notice_bd {padding: 10px;height: 150px;overflow: hidden;}
+        .qy_data li{width: 33%;border-right: 1px solid #ddd;float: left;height: 96px;margin-top: 10px;}
+        .service li {float: left;width: 110px;margin: 15px 0 0 5px;}
+    </style>
+    <!--{php }}-->
+    <!--主导航栏开始-->
+    <style type="text/css">
+        .navCur {background: #ff500b none repeat scroll 0 0;}
+    </style>
+    <!--{php if($moduleid>1){}-->
+    <style type="text/css">
+        .main_nav .nav_r{ width:100%;}
+    </style>
+    <!--{php }}-->
+
+    {if !DT_DEBUG}<script type="text/javascript">window.onerror=function(){return true;}</script>{/if}
+    <script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
+    <script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+    <script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+    <script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+    <script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
+    {if $lazy}<script type="text/javascript" src="{DT_STATIC}file/script/jquery.lazyload.js"></script>{/if}
+    {if $JS}
+    {loop $JS $js}
+    <script type="text/javascript" src="{DT_STATIC}file/script/{$js}.js"></script>
+    {/loop}
+    {/if}
 </head>
 <body>
-<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/industrialMall/newIndex/css/top.css" type="text/css" />
-<link href="http://img1.gyyqcloud.com/industry/pages/cloud1.0/css/common.css" rel="stylesheet" type="text/css" />
-<link href="{DT_STATIC}file/layer/theme/default/layer.css" rel="stylesheet" type="text/css" />
-<script src="{DT_STATIC}file/layer/layer.js"  type="text/javascript" ></script>
-<script src="http://img1.gyyqcloud.com/industry/js/htyw_ul.js"  type="text/javascript"></script>
-  <!--云制造topbegin-->
-<link href="http://img1.gyyqcloud.com/industry/pages/before/css/common.17.9.5.css" rel="stylesheet" type="text/css" />
-<script src="http://img1.gyyqcloud.com/industry/pages/before/js/masonry-docs.min.js"></script>
-<script src="http://img1.gyyqcloud.com/industry/pages/before/js/yzz-head.js"></script>
-<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/before/css/reset.css">
-<link rel="stylesheet" href="http://img1.gyyqcloud.com/industry/pages/before/css/indus_top-18.01.18.css">
-<script>
-   $(function(){
-	   	  //回车触发搜索点击事件
-		  $("#searchKeyWord").keydown(function(event)
-		  {
-			  var e = e || window.event;//兼容IE&FireFox
-	          if (event.keyCode == "13")
-	          {//keyCode=13是回车键
-	        	  $("#search_v1").click();
-	          }
-	      });
-	   	  var searchType = '';
-	   	  //搜索类型样式及隐藏input更改
-	   	  if(searchType == "供应产品")
-	   	  {
-	   		$('.g-indus-sch .u-sch-types li').eq('1').addClass('z-crt').siblings('li').removeClass('z-crt');
-	   		$("#selectType").val("供应产品");
-	   	  }
-	      // 切换搜索类型
-	      function setInit(){
-	        $('.g-indus-sch .u-sch-types .z-crt').removeClass('z-click');
-	        $('.g-indus-sch .u-sch-types').css({'height':0,'borderBottom':'0 none'});
-	      };
-	      $('.g-indus-sch .u-sch-types .z-crt').live('click',function(){
-	        $(this).addClass('z-click');
-	        var obj=$('.g-indus-sch .u-sch-types');
-	        obj.css({'height':obj[0].scrollHeight-40,'borderBottom': '1px solid #ddd'});
-	      });
-	      $('.g-indus-sch .u-sch-types').mouseleave(setInit)
-	      $('.g-indus-sch .u-sch-types li').live('click',function(){
-	        if($(this).is('.z-crt')) return;
-	        $(this).addClass('z-crt').siblings('li').removeClass('z-crt');
-	        setInit();
-	        
-	        $("#selectType").val( $(".g-indus-sch .u-sch-types li[class='z-crt']").text());
-	      });
-		  $("#search_v1").click(function(){
-		  	   if($("#kw").val()==""){return;}
-		  	   if($("#selectType").val()=="供应产品")
-			   {
-			       window.location="search.php?kw="+encodeURI($("#kw").val())
-			   }else
-			   {
-			    window.location="/buy/search.php?kw="+encodeURI($("#kw").val())
-			   }
-		  });
-	    })
+<div id="MyMoveAd" style="background:#ffffff;height:1px;overflow:hidden; width:1200px; margin:0 auto;">
+    <a href="http://r.longygo.com/v1/paid/paid_show.html" target="_blank"><img src="http://r.longygo.com/v1/images/top_adef1a.jpg" border="0"/></a>
+</div>
+<script type="text/javascript">
+    {if $head_mobile && $EXT[mobile_goto]}
+    GoMobile('{$head_mobile}');
+    {/if}
+        var intervalId = null;
+        function slideAd(id,nStayTime,sState,nMaxHth,nMinHth){
+            this.stayTime=nStayTime*2000 || 3000;
+            this.maxHeigth=nMaxHth || 600;
+            this.minHeigth=nMinHth || 2.5;
+            this.state=sState || "down" ;
+            var obj = document.getElementById(id);
+            if(intervalId != null)window.clearInterval(intervalId);
+            function openBox(){
+                var h = obj.offsetHeight;
+                obj.style.height = ((this.state == "down") ? (h + 9) : (h - 9))+"px";
+                if(obj.offsetHeight>this.maxHeigth){
+                    window.clearInterval(intervalId);
+                    intervalId=window.setInterval(closeBox,this.stayTime);
+                }
+                if (obj.offsetHeight<this.minHeigth){
+                    window.clearInterval(intervalId);
+                    obj.style.display="none";
+                }
+            }
+            function closeBox(){
+                slideAd(id,this.stayTime,"up",nMaxHth,nMinHth);
+            }
+            intervalId = window.setInterval(openBox,15);
+        }
+    //slideAd('MyMoveAd', 1.5);
 </script>
-<div id="top_casi" >
-  <!--头部第一部分 开始-->
-  <!-- header logout Begin -->
-  <div class="g-indus-header"> <a href="/" class="m-header-home">云首页</a>
-    <ul class="m-header-r">
-
-                  {if $_userid}
-                    <li>
-                        <a>{$_truename},欢迎来到重庆工业互联网云平台!</a>
-                    </li>
-                    <li>
-                        <a href="{$MODULE[2][linkurl]}">个人中心</a>
-                    </li>
-                    <li>
-                       <a href="{$MODULE[2][linkurl]}logout.php">退出</a>
-                    </li>
-                    {else}
-                    <li>
-                        <a>欢迎来到重庆工业互联网云平台!</a>
-                    </li>
-                    <li><a href="javascript:" target="_blank" id="new_username" class="right_line" style="display: none"></a></li>
-                    <li>
-                        <a href="/member/login.php" id="login" onClick="login();">登录</a>
-                    </li>
-                    <li id="register">
-                        <a href="/member/register.php" target="_blank"  class="u-to-reg">免费注册</a>
-                    </li>
-                    {/if}
-    </ul>
-  </div>
-  <div class="header2" style="padding-top:0px;height:90px;">
-    <div class="block">
-      <div class="industralMall_logo">
-        <div class="g-indus-sch">
-          <div class="m-sch-ct">
-            <div class="u-logo-wrap"> <a href="/" class="u-logo-index"></a> <a href="/industry/" class="u-logo-area">资源共享</a> </div>
-            <a class="u-cart-wrap" href="cart.php"> <i class="u-cart-icon"></i>购物车<i class="u-cart-num" id="amount"></i> </a>
-            <div class="u-sch-wrap">
-              <ul class="u-sch-types">
-                <li class="z-crt" style="width:92px;">采购需求</li>
-                <li style="width:92px;">供应产品</li>
-              </ul>
-              <div class="u-sch-ct">
-                <input type="hidden" id="selectType" value="采购需求"/>
-                <input type="text" class="u-sch-ipt" placeholder="请输入关键词" id="kw" name="kw"  value=""/>
-                <a id="search_v1" class="u-sch-btn">搜索</a>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="top_bar">
+    <div class="top_bar_wrap clearfix">
+        <div class="login fl ml20"  id="destoon_member">您好，欢迎来到龙易购 <span style="padding-left: 15px;">&nbsp;</span>
+            <a href="/member/login.php" rel="nofollow" class="gray3" target="_blank">请登录</a>
+            <a href="/member/register.php" target="_blank" rel="nofollow" class="orange ml10">免费注册</a>
         </div>
-      </div>
+        <div class="login fl ml20" id="loginHeaderDiv" style="display:none;">
+			<span>您好 <a style="color:#f38a03;" href='http://www.taojindi.com/member/loadCompInfo.do' target='_blank' rel="nofollow"><span id="userNameSpan"></span></a>，欢迎来到龙易购！
+		  <a href="/member/my.php" target="_blank" class="blue">商务中心</a>&nbsp;&nbsp;&nbsp;
+			<a href="/member/logout.php" rel="nofollow" class="blue ml10">安全退出</a>
+        </div>
+        <div class="nav fr">
+            <ul>
+                <li class="item myselect">
+                    <a href="/member/my.php" class="father father_border">我的龙易购<i class="ico arrow"></i></a>
+                    <div class="child clearfix">
+                        <dl>
+                            <dt>采购</dt>
+                            <dd><a href="/member/my.php?mid=6&action=add" target="_blank" rel="nofollow">发布求购</a></dd>
+                            <dd><a href="/member/message.php?action=outbox&typeid=2" target="_blank" rel="nofollow">收到的报价</a></dd>
+                            <dd><a href="/member/message.php?action=outbox&typeid=1" target="_blank" rel="nofollow">发出的询价</a></dd>
+                        </dl>
+                        <dl class="ml20">
+                            <dt>销售</dt>
+                            <dd><a href="/member/my.php?mid=16&action=add" target="_blank" rel="nofollow">发布产品</a></dd>
+                            <dd><a href="/member/message.php?action=inbox&typeid=1" target="_blank" rel="nofollow">精选求购</a></dd>
+                            <dd><a href="/member/message.php?action=inbox&typeid=1" target="_blank" rel="nofollow">收到的询盘</a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="item"><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" rel="nofollow" target="_blank" class="father">买家直达</a></li>
+                <li class="item"><a href="http://r.longygo.com/v1/goldShop/index.html" rel="nofollow" target="_blank" class="father">皇冠店铺</a></li>
+                <!--li class="item"><a href="http://r.longygo.com/v1/paid/paid_show0ad4.html" rel="nofollow" target="_blank" class="father">龙金宝</a></li-->
+                <!-- <li class="item"><a href="http://tjr.taojindi.com/" rel="nofollow" target="_blank" class="father">我要贷款</a></li> -->
+                <li class="item help">
+                    <a href="/news/list.php?catid=23509&help=list-help" target="_blank" rel="nofollow" class="father father_border">帮助中心<i class="ico arrow"></i></a>
+                    <div class="child clearfix">
+                        <dl>
+                            <dd><a href="/news/list.php?catid=23510&help=list-help" target="_blank" rel="nofollow">买家入门</a></dd>
+                            <dd><a href="/news/list.php?catid=23511&help=list-help" target="_blank" rel="nofollow">卖家入门</a></dd>
+                            <dd><a href="/news/list.php?catid=23512&help=list-help" target="_blank" rel="nofollow">常见问题</a></dd>
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <div class="g-indus-nav" style="display:block">
-    <ul class="m-nav-ct">
-      <li> <a href="javascript:void(0);" class="z-all" id="all_v1">全部产品分类</a> </li>
-      <li> <a href="/industry/" id="index_v1">首页</a> </li>
-      <li> <a href="/industry/search.php?kw=" id="release_v1">产品中心</a> </li>
-      <li> <a href="/buy/" id="inqId">采购中心</a> </li>
-      <li class="u-nav-new"></li>
-    </ul>
-  </div>
+</div>
+<!--图片公告开始-->
+<!-- <script type="text/javascript">	
+slideAd('MyMoveAd',3);
+</script>   -->
+<!--图片公告结束-->
+<div>
+
+    <!--{php $tagsad_1=tag("table=ad&condition=pid=30&pagesize=1&template=null");}-->
+    {loop $tagsad_1 $i $t}
+    <div class="top_wrap wrap top_ad pr"><a href="{$t[url]}" target="_blank"><img src="{$t[image_src]}"></a>
+        <div style="position:absolute; right:0px; bottom:0px;"><img src="http://r.longygo.com/v1/images/pclog.png" style="width:29px; height:16px;"></div><a href="javascript:;" class="close_ad_ico"></a>
+    </div>
+    {/loop}
+
+    <div class="wrap header clearfix">
+        <div class="logo fl">
+            <a href="http://www.longygo.com" class="main_logo">龙易购</a>
+            <div class="line"></div>
+            <div class="sub_logo fl mt5"><img src="http://r.longygo.com/v1/images/sub_logob82a.png"></div>
+        </div>
+        <div class="search fr">
+            <div class="search_nav">
+                <a href="javascript:selType('prod', 'P');" class="cur" id="serTypeP">产品</a> <span class="gray9">|</span>
+                <a href="javascript:selType('buy', 'B');" id="serTypeB">求购</a> <span class="gray9">|</span>
+                <a href="javascript:selType('comp', 'C');" id="serTypeC">企业</a>
+            </div>
+            <div class="search_keywords mt5">
+                <div class="focus_input">
+                    <i class="search_ico"></i>
+                    <input type="text" class="focus_text" id="search_input">
+                    <label for="search_input">请输入关键字</label>
+                </div>
+                <a href="javascript:searchKeyWord();" class="submit">搜索</a>
+                <a href="/member/my.php?mid=16&action=add" target="_blank" class="release">发布产品</a>
+                <a href="/member/my.php?mid=6&action=add" target="_blank" rel="nofollow" class="release">发布求购</a>
+                <input type="hidden" value="prod" id="searchType">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function selType(type, id) {
+        document.getElementById("searchType").value = type;
+        $("#serTypeP").removeAttr("class");
+        $("#serTypeB").removeAttr("class");
+        $("#serTypeC").removeAttr("class");
+        $("#serType"+id).attr("class", "cur");
+    }
+    function searchKeyWord() {
+        var q = document.getElementById("search_input").value;
+        if (q != "" && q != "请输入关键字")
+        {
+            var searchType = document.getElementById("searchType").value;
+            var isIe=(document.all)?true:false;
+            if (searchType == "prod")
+            {
+                if(isIe) {
+                    var linka = document.createElement('a');
+                    linka.href="/mall/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
+                    document.body.appendChild(linka);
+                    linka.click();
+                } else
+                    window.location.href = "/mall/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
+            } else if (searchType == "comp") {
+                if(isIe) {
+                    var linka = document.createElement('a');
+                    linka.href="/company/search.php?kw="+encodeURIComponent(q)+"&vip=0&type=0&catid=0&mode=0&size=0&mincapital=&maxcapital=&areaid=0&x=27&y=5";
+                    document.body.appendChild(linka);
+                    linka.click();
+                } else
+                    window.location.href = "/company/search.php?kw="+encodeURIComponent(q)+"&vip=0&type=0&catid=0&mode=0&size=0&mincapital=&maxcapital=&areaid=0&x=27&y=5";
+            } else {
+                if(isIe) {
+                    var linka = document.createElement('a');
+                    linka.href="/buy/search.php?kw="+encodeURIComponent(q)+"&fields=0&fromdate=&todate=&catid=0&typeid=&areaid=0&x=0&y=0";
+                    document.body.appendChild(linka);
+                    linka.click();
+                } else
+                    window.location.href = "/buy/search.php?kw="+encodeURIComponent(q)+"&fields=0&fromdate=&todate=&catid=0&typeid=&areaid=0&x=0&y=0";
+            }
+        }
+    }
+</script>
+<!--菜单-banner-->
+<div class="top_mod mt10">
+    <!--主导航栏开始-->
+    <div class="main_nav wrap clearfix">
+        <!--{php if($moduleid==1){}-->
+        <div class="nav_l fl">
+            <i class="icon_0"></i>
+            <span>全部商品分类</span>
+        </div>
+        <!--{php }}-->
+
+        <div class="nav_r fl">
+            <ul>
+                <!--{php if($moduleid>1){}-->
+                <li><a href="/" target="_blank">首页</a></li>
+                <!--{php }}-->
+                <li {if ($moduleid==16)}class="navCur"{/if}><a href="/mall/" target="_blank">产品大全</a></li>
+                <li {if ($moduleid==4)}class="navCur"{/if}><a href="/company/" target="_blank">企业大全</a></li>
+                <li {if ($moduleid==6)}class="navCur"{/if}><a href="/buy/" target="_blank">求购大全</a></li>
+                <li {if ($moduleid==8)}class="navCur"{/if}><a href="/exhibit/" target="_blank">展览展会</a></li>
+                <li><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" target="_blank">订单直通车</a></li>
+                <li><a href="http://r.longygo.com/v1/goldShop/index.html" target="_blank">皇冠店铺</a></li>
+                <li><a href="http://www.gyyqcloud.com/" target="_blank">工业云服务</a></li>
+                <li><a href="http://www.cqdzgx.gov.cn/h-col-123.html" target="_blank">供应链金融</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--主导航栏结束-->
+    {if $moduleid==1}
+    <div class="clearfix wrap">
+        <!--左侧导航开始-->
+        <div class="top_sidemenu fl">
+            <div class="cate_menu">
+                <ul class="nav_sub_l">
+                    {php $mid = 16;}
+                    {php $child = get_maincat(0, $mid, 1);}
+                    {loop $child $i $c}
+                    {if $i<10 && $c[child]}
+                    <li>
+                        <a class="title"><i class="icon_{$i+1}"></i><span>{$c[catname]}</span><em class="arrow"></em></a>
+                        <div class="list_item hide">
+                            <div class="list_wrap">
+                                {php $sub = get_maincat($c[catid], $mid, 1);}
+                                {loop $sub $j $s}
+                                <div  {if ($j+1)%2==0} class="item_r" {/if}{if ($j+1)%2!=0}  class="item_l" {/if}>
+                                <dl>
+                                    <dt><a href="/mall/{$s[linkurl]}" target="_blank">{$s[catname]}</a></dt>
+                                    <dd>
+                                        {php $sub_end = get_maincat($s[catid], $mid, 1);}
+                                        {loop $sub_end $t $se}
+                                        <a href="/mall/{$se[linkurl]}" target="_blank">{$se[catname]}</a>
+                                        {/loop}
+                                    </dd>
+                                </dl>
+                            </div>
+                            {/loop}
+                        </div>
+            </div>
+            </li>
+            {/if}
+            {/loop}
+            </ul>
+        </div>
+    </div>
+    <div class="top_center">
+        <div class="banner clearfix">
+            <ul class="rslides">
+                <!--{php $tagsad_2=tag("table=ad&condition=pid=14&pagesize=10&template=null");}-->
+                {loop $tagsad_2 $i $t}
+                <li>
+                    <a href="{$t[url]}" target="_blank" title=""><img src="{$t[image_src]}" alt=""></a>
+                    <div style="position:absolute; right:0px; bottom:0px;">
+                        <img src="http://r.longygo.com/v1/images/pclog.png" style="width:29px; height:16px;">
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+
+        <div class="qy_data" style="height: 118px;">
+            <ul class="clearfix">
+                <li>
+                    <div class="box">
+                        <span class="gray3 f18">新增企业</span><br><span class="orange"><em class="f28">2,116</em>家</span>
+                    </div>
+                </li>
+                <li class="qy">
+                    <div class="box">
+                        <span class="gray3 f18">合作园区</span><br><span class="orange"><em class="f28">4</em>个</span>
+                    </div>
+                </li>
+                <li class="zs noborder">
+                    <div class="box">
+                        <span class="gray3 f18">企业总数</span><br><span class="orange"><em class="f22">278,216</em>个</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+
+    </div>
+    <div class="top_right" style="height:409px;">
+        <div class="first">
+
+
+
+        </div>
+        <div class="service">
+            <ul class="clearfix">
+                <li><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" target="_blank"><i class="hjsp_ico"></i>订单直通车</a></li>
+                <li><a href="http://r.longygo.com/v1/goldShop/index.html" target="_blank"><i class="dkfw_ico"></i>皇冠店铺</a></li>
+                <li><a href="http://r.longygo.com/v1/jiaMeng/index.html" target="_blank"><i class="wtj_ico"></i>工业云服务</a></li>
+                <li><a href="/adver/f-index.html" target="_blank"><i class="ggfw_ico"></i>广告服务</a></li>
+            </ul>
+        </div>
+        <div class="notice">
+            <ul class="hd clearfix">
+                <li id="notice1" onMouseOver="setTab('notice',1,3)" class="hover">最新供应</li>
+                <li id="notice2" onMouseOver="setTab('notice',2,3)" class="center">公告</li>
+                <li id="notice3" onMouseOver="setTab('notice',3,3)">卖家入门</li>
+            </ul>
+            <div class="notice_bd" id="con_notice_1">
+                <ul class="infoList">
+                    <!--{php $tagsnews_1=tag("table=mall&condition=status=3&areaid=$cityid&pagesize=17&order=orders desc&template=null&debug=0");}-->
+                    {loop $tagsnews_1 $i $t}
+                    <li><a href="/mall/{$t[linkurl]}" target="_blank"><i class="gong_ico"></i>{dsubstr($t[title],32,"...")}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <div class="notices_bd" id="con_notice_2" style="display:none;">
+                <ul class="infoList">
+                    <!--{php $tagsnews_2=tag("table=article_21&condition=level=1 and catid=23515&areaid=$cityid&pagesize=7&order=itemid desc&template=null&debug=0");}-->
+                    {loop $tagsnews_2 $i $t}
+                    <li><a href="/news/{$t[linkurl]}" target="_blank">{dsubstr($t[title],32,"...")}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <div class="notices_bd" id="con_notice_3" style="display:none;">
+                <ul class="infoList">
+                    <!--{php $tagsnews_3=tag("table=article_21&condition=catid in(23510,23511,23512,23513)&areaid=$cityid&pagesize=7&order=itemid desc&template=null&debug=0");}-->
+                    {loop $tagsnews_3 $i $t}
+                    <li><a href="/news/{$t[linkurl]}&help=show-help" target="_blank">{dsubstr($t[title],32,"...")}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--右侧结束-->
+</div>
+{/if}
+</div>
+<script type="text/javascript" src="/lang/zh-cn/lang.js"></script>
+<script src="http://r.longygo.com/v1/js/jquery-1.8.3.min.js"></script>
+<script src="http://r.longygo.com/v1/js/common.js?20160714"></script>
+<script src="http://r.longygo.com/v1/js/banner.js"></script>
+<script src="http://r.longygo.com/v1/js/SuperSlide.js?s=2014"></script>
+<script src="http://r.longygo.com/v1/js/index.js?v=201606"></script>
+<script src="http://r.longygo.com/v1/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<!--底部-->
