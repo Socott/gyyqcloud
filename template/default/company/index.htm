@@ -1,60 +1,212 @@
 {php $CSS = array('catalog');}
-{template 'header'}
-<div class="m">
-<div class="m_l f_l">
-	<div class="left_box">		
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a></div>
-		<div class="category">
-			<p><img src="{DT_SKIN}image/arrow.gif" width="17" height="12" alt=""/> <strong>按地区浏览</strong></p>
-			<div>
-			<table width="100%" cellpadding="3">
-			{php $mainarea = get_mainarea(0)}
-			{loop $mainarea $k $v}
-			{if $k%10==0}<tr>{/if}
-			<td><a href="{$MOD[linkurl]}search.php?areaid={$v[areaid]}" rel="nofollow">{$v[areaname]}</a></td>
-			{if $k%10==9}</tr>{/if}
-			{/loop}
-			</table>
+{template 'header-mall'}
+<link href="http://img4.taojindi.com/front/css/gather.css" type="text/css" rel="stylesheet" />
+<!--主导航栏结束-->
+<!--求购首屏开始-->
+<div class="gather_top_mod wrap clearfix">
+	<div class="cp_top_mod_l">
+		<!--焦点图开始-->
+		<div class="gather_banner">
+			<ul class="rslides">
+				<!--{php $tags=tag("table=ad&condition=pid=26&pagesize=10&template=null");}-->
+				{loop $tags $i $t}
+				<li> <a href="{$t[url]}"  target="_blank" title=""><img src="{$t[image_src]}" alt=""></a>
+					<div style="position:absolute; right:0px; bottom:0px;"> <img src="http://r.longygo.com/v1/images/pclog.png" style="width:29px; height:16px;"> </div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+		<!--焦点图结束-->
+		<!--促销图开始-->
+		<div class="qy_data">
+			<ul class="clearfix">
+				<li>
+					<div class="box"> <span class="gray3 f18">新增企业</span><br>
+						<span class="orange"><em class="f28">2,116</em>家</span> </div>
+				</li>
+				<li class="qy">
+					<div class="box"> <span class="gray3 f18">合作园区</span><br>
+						<span class="orange"><em class="f28">4</em>个</span> </div>
+				</li>
+				<li class="zs noborder">
+					<div class="box"> <span class="gray3 f18">企业总数</span><br>
+						<span class="orange"><em class="f22">278,216</em>家</span> </div>
+				</li>
+			</ul>
+		</div>
+		<!--促销图结束-->
+	</div>
+	<!--右侧开始-->
+	<div class="gather_top_mod_r gather_mod">
+		<div class="cp_top_mod_r">
+			<div class="hd">
+				<h2> <i class="icon sj_icon"></i>公告 </h2>
+			</div>
+			<div class="text_list p10">
+				<ul>
+					<!--{php $tags=tag("table=article_21&condition=level=1 and catid=23515&areaid=$cityid&pagesize=4&order=itemid desc&template=null&debug=0");}-->
+					{loop $tags $i $t}
+					<li><a href="/news/{$t[linkurl]}" target="_blank">{dsubstr($t[title],32,"...")}</a></li>
+					{/loop}
+				</ul>
+			</div>
+			<div class="hd border_t mt5">
+				<h2> <i class="icon jr_icon"></i>最新加入企业 </h2>
+			</div>
+			<div class="text_list p10" style="overflow:hidden;height:180px;">
+				<ul id="scrollBuy">
+					<!--{php $tags=tag("table=company&condition=thumb<>''&pagesize=20&order=RAND()&template=null");}-->
+					{loop $tags $i $t}
+					<li><a href="{$t[linkurl]}" target="_blank">{$t[company]}</a></li>
+					{/loop}
+				</ul>
 			</div>
 		</div>
-		{if $page == 1}{ad($moduleid,$catid,$kw,6)}{/if}
+	</div>
+	<!--右侧结束-->
+</div>
+<!--求购首屏结束-->
+<!--热门商品开始-->
+<div class="qy_recommend wrap">
+	<div class="gather_mod_hd clearfix">
+		<h2> <i class="icon tj_icon"></i>推荐企业 </h2>
+		<!--a href="javascript:change()" class="fr">换一批</a--> </div>
+	<div class="qy_list">
+		<ul class="clearfix">
+			<input type="hidden" id="comCount" value="10" />
+			<input type="hidden" id="comVar" value="1" />
+			<!--{php $tags=tag("table=company&condition=thumb<>'' and username in('rddj','cqyanlian','leerjia','guoen','leerjia','dalong','smite','ckzn','bste','jsys','fndmc','szks','lgkj','yuhuglass') and thumb!='/shop/images/company_default.jpg' &pagesize=10&order=RAND()&template=null");}-->
+			{loop $tags $i $t}
+			<li id="remCompany{$i}" style="display:block" {if ($i==4||$i==9)}class="last"{/if}>
+				<div class="pic"> <a href="{$t[linkurl]}" target="_blank"><img src="{$t[thumb]}"></a> </div>
+				<div class="text">主营业务：{dsubstr($t[business],52,"...")}</div>
+				<div class="company"> <a href="{$t[linkurl]}" target="_blank">{$t[company]}</a> </div>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+</div>
+<!--热门商品结束-->
 
-		<div style="padding:12px 10px 10px 15px;background:#F1F1F1;"><img src="{DT_SKIN}image/arrow.gif" width="17" height="12" alt=""/> <strong>按行业浏览</strong></div>
-		<div class="catalog" style="border:none;padding:0;">
-			{php $mid = 4;}
-			{template 'catalog', 'chip'}
+{php $mid = 4;}
+{php $child = get_maincat(0, $mid, 1); $floor=0;}
+{loop $child $ikey $c}
+
+<!--{php $if=$ikey+1;$adfloor=tag("table=ad&condition=pid=(select pid from lsg_ad_place where name='黄页楼层".$if."F')&pagesize=10&template=null&debug=0");}-->
+{loop $adfloor $i $t}
+<div class="ad_wrap pr">
+	<a href="{$t[url]}" target="_blank">
+		<img class="lazy" src="{$t[image_src]}" alt="" style="display: inline;" width="1200">
+	</a>
+	<div style="position:absolute; right:0px; bottom:0px;"><img src="http://r.longygo.com/v1/images/pclog.png"></div>
+</div>
+{/loop}
+
+
+<div class="qy_main_mod wrap">
+	<div class="qy_main_mod_hd clearfix">
+		<h2> <span class="orange">{$if}F</span>{$c[catname]}</h2>
+	</div>
+	<div class="qy_main_mod_bd clearfix">
+		<div class="qy_main_mod_l">
+
+			{php $sub = get_maincat($c[catid], $mid, 1);}
+			{loop $sub $j $s}
+			{if ($j<=5)}
+			<dl {if ($j==5)}class="noborder"{/if}>
+				<dt><a href='/company/list-{$s[catid]}.html' title='{$s[catname]}' target='_blank' class='blue'>{$s[catname]}</a></dt>
+				<dd>
+					{php $sub_end = get_maincat($s[catid], $mid, 1);}
+					{loop $sub_end $t $se}
+					<a href="{$se[linkurl]}" target="_blank">{$se[catname]}</a>
+					{/loop}
+				</dd>
+			</dl>
+			{/if}
+			{/loop}
+
+		</div>
+		<div class="qy_main_mod_r qy_list">
+			<ul class="clearfix">
+				<!--{php $tags=tag("table=company&condition=thumb<>'' and thumb!='/shop/images/company_default.jpg' and (catid like '%,".$c[catid].",%' or catids like '%,".$c[catid].",%') &pagesize=8&order=userid desc&template=null&debug=0");}-->
+				{loop $tags $i $t}
+				<li {if ($i==7)}class="last"{/if}>
+					<div class="pic"> <a href="{$t[linkurl]}" target="_blank"> <img class="lazy" src="{$t[thumb]}" data-original="{$t[thumb]}"/> </a> </div>
+					<div class="text">主营业务：{dsubstr($t[business],52,"...")}</div>
+					<div class="company"> <a href="{$t[linkurl]}" target="_blank">{$t[company]}</a> </div>
+				</li>
+				{/loop}
+			</ul>
 		</div>
 	</div>
 </div>
-<div class="m_n f_l">&nbsp;</div>
-<div class="m_r f_l">
-	{if $MOD[page_irec]}
-	<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?vip=1')}" rel="nofollow">更多&raquo;</a></span><strong>名企推荐</strong></div></div>
-	<div class="box_body li_dot f_gray">
-	<!--{tag("moduleid=$moduleid&condition=level>0 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_irec]."&order=vip desc&template=list-com")}-->
-	</div>
-	<div class="b10"> </div>
-	{/if}
-	{if $MOD[page_ivip]}
-	<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?vip=1')}" rel="nofollow">更多&raquo;</a></span><strong>最新{VIP}</strong></div></div>
-	<div class="box_body li_dot f_gray">
-	<!--{tag("moduleid=$moduleid&condition=vip>0 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_ivip]."&order=fromtime desc&template=list-com")}-->
-	</div>
-	<div class="b10"> </div>
-	{/if}
-	{if $MOD[page_inews]}
-	<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('news.php?page=1')}">更多&raquo;</a></span><strong>企业新闻</strong></div></div>
-	<div class="box_body li_dot f_gray">
-	<!--{tag("table=news&condition=status=3 and level>0&pagesize=".$MOD[page_inews]."&datetype=2&order=addtime desc&target=_blank")}-->
-	</div>
-	<div class="b10"> </div>
-	{/if}
-	{if $MOD[page_inew]}
-	<div class="box_head"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?page=1')}" rel="nofollow">更多&raquo;</a></span><strong>最新加入</strong></div></div>
-	<div class="box_body li_dot f_gray">
-	<!--{tag("moduleid=$moduleid&condition=groupid>5 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_inew]."&order=userid desc&template=list-com")}-->
-	</div>
-	{/if}
-</div>
-</div>
-{template 'footer'}
+
+
+
+
+
+
+{/loop}
+<script src="http://img4.taojindi.com/front/js/jquery-1.8.3.min.js"></script>
+<script src="http://img4.taojindi.com/front/js/common.js?20160714"></script>
+<script src="http://img4.taojindi.com/front/js/banner.js"></script>
+<script src="http://img4.taojindi.com/front/js/SuperSlide.js?s=2014"></script>
+<script src="http://img4.taojindi.com/front/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("img.lazy").lazyload({threshold : 100});
+        var count = $("#comCount").val();
+        for (var i = 0; i < count; i++) {
+            $("#remCompany" + i).css('display', 'none');
+        }
+        if (count > 5) {
+            for (var i = 0; i < 5; i++) {
+                $("#remCompany" + i).css('display', 'block');
+            }
+        } else {
+            for (var i = 0; i < count; i++) {
+                $("#remCompany" + i).css('display', 'block');
+            }
+        }
+    });
+    function change() {
+        var count = $("#comCount").val() * 1;
+        var hotVar = $("#comVar").val() * 1;
+        for (var i = 0; i < count; i++) {
+            $("#remCompany" + i).css('display', 'none');
+        }
+        if (count > 5 * hotVar) {
+            var limit = hotVar + 1;
+            for (var i = 5 * hotVar; i < 5 * limit; i++) {
+                $("#remCompany" + i).css('display', 'block');
+            }
+            $("#comVar").val(hotVar + 1);
+            if (count <= 5 * (hotVar + 1)) {
+                $("#comVar").val(0);
+            }
+        } else {
+            for (var i = 0; i < count; i++) {
+                $("#remCompany" + i).css('display', 'block');
+            }
+        }
+    }
+    /*最新公司滚动*/
+    $(function(){
+        var $this = $("#scrollBuy");
+        var scrollTimer;
+        $this.hover(function(){
+            clearInterval(scrollTimer);
+        },function(){
+            scrollTimer = setInterval(function(){
+                scrollBuys( $this );
+            }, 1500 );
+        }).trigger("mouseleave");
+    });
+    function scrollBuys(obj){
+        var lineHeight = obj.find("li:first").height(); //获取行高
+        obj.animate({ "marginTop" : -lineHeight +"px" }, 600 , function(){
+            obj.css({marginTop:0}).find("li:first").appendTo(obj); //appendTo能直接移动元素
+        })
+    }
+</script>
+{template 'footer-mall'}
