@@ -51,9 +51,15 @@
     <script type="text/javascript" src="{DT_STATIC}file/script/{$js}.js"></script>
     {/loop}
     {/if}
+<style type="text/css">
+.main_nav .nav_r {width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ff500b;}
+.main_nav .nav_r li a {color: #000;font-size: 16px;padding: 0 20px;height: 40px;line-height: 40px;display: block;}
+.main_nav {background: none;}
+.navCur a,.navCur a:hover{ color:#FFF!important}
+</style>
 </head>
 <body>
-<div id="MyMoveAd" style="background:#ffffff;height:1px;overflow:hidden; width:1200px; margin:0 auto;">
+<div id="MyMoveAd" style="background:#ffffff;height:0px;overflow:hidden; width:1200px; margin:0 auto;">
     <a href="http://r.longygo.com/v1/paid/paid_show.html" target="_blank"><img src="http://r.longygo.com/v1/images/top_adef1a.jpg" border="0"/></a>
 </div>
 <script type="text/javascript">
@@ -89,19 +95,19 @@
 </script>
 <div class="top_bar">
     <div class="top_bar_wrap clearfix">
-        <div class="login fl ml20"  id="destoon_member">您好，欢迎来到龙易购 <span style="padding-left: 15px;">&nbsp;</span>
+        <div class="login fl ml20"  id="destoon_member">您好，欢迎来到工业云平台 <span style="padding-left: 15px;">&nbsp;</span>
             <a href="/member/login.php" rel="nofollow" class="gray3" target="_blank">请登录</a>
             <a href="/member/register.php" target="_blank" rel="nofollow" class="orange ml10">免费注册</a>
         </div>
         <div class="login fl ml20" id="loginHeaderDiv" style="display:none;">
-			<span>您好 <a style="color:#f38a03;" href='http://www.taojindi.com/member/loadCompInfo.do' target='_blank' rel="nofollow"><span id="userNameSpan"></span></a>，欢迎来到龙易购！
+			<span>您好 <a style="color:#f38a03;" href='http://www.taojindi.com/member/loadCompInfo.do' target='_blank' rel="nofollow"><span id="userNameSpan"></span></a>，欢迎来工业云平台！
 		  <a href="/member/my.php" target="_blank" class="blue">商务中心</a>&nbsp;&nbsp;&nbsp;
 			<a href="/member/logout.php" rel="nofollow" class="blue ml10">安全退出</a>
         </div>
         <div class="nav fr">
             <ul>
                 <li class="item myselect">
-                    <a href="/member/my.php" class="father father_border">我的龙易购<i class="ico arrow"></i></a>
+                    <a href="/member/my.php" class="father father_border">我的云网<i class="ico arrow"></i></a>
                     <div class="child clearfix">
                         <dl>
                             <dt>采购</dt>
@@ -117,10 +123,6 @@
                         </dl>
                     </div>
                 </li>
-                <li class="item"><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" rel="nofollow" target="_blank" class="father">买家直达</a></li>
-                <li class="item"><a href="http://r.longygo.com/v1/goldShop/index.html" rel="nofollow" target="_blank" class="father">皇冠店铺</a></li>
-                <!--li class="item"><a href="http://r.longygo.com/v1/paid/paid_show0ad4.html" rel="nofollow" target="_blank" class="father">龙金宝</a></li-->
-                <!-- <li class="item"><a href="http://tjr.taojindi.com/" rel="nofollow" target="_blank" class="father">我要贷款</a></li> -->
                 <li class="item help">
                     <a href="/news/list.php?catid=23509&help=list-help" target="_blank" rel="nofollow" class="father father_border">帮助中心<i class="ico arrow"></i></a>
                     <div class="child clearfix">
@@ -144,16 +146,14 @@ slideAd('MyMoveAd',3);
 
     <!--{php $tagsad_1=tag("table=ad&condition=pid=30&pagesize=1&template=null");}-->
     {loop $tagsad_1 $i $t}
-    <div class="top_wrap wrap top_ad pr"><a href="{$t[url]}" target="_blank"><img src="{$t[image_src]}"></a>
+    <div class="top_wrap wrap top_ad pr" style="display:none"><a href="{$t[url]}" target="_blank"><img src="{$t[image_src]}"></a>
         <div style="position:absolute; right:0px; bottom:0px;"><img src="http://r.longygo.com/v1/images/pclog.png" style="width:29px; height:16px;"></div><a href="javascript:;" class="close_ad_ico"></a>
     </div>
     {/loop}
 
     <div class="wrap header clearfix">
         <div class="logo fl">
-            <a href="http://www.longygo.com" class="main_logo">龙易购</a>
-            <div class="line"></div>
-            <div class="sub_logo fl mt5"><img src="http://r.longygo.com/v1/images/sub_logob82a.png"></div>
+            <div class="sub_logo fl mt5"><img src="{if $MODULE[$moduleid][logo]}{DT_SKIN}image/logo_{$moduleid}.gif{elseif $DT[logo]}{$DT[logo]}{else}{DT_SKIN}image/logo.gif{/if}"></div>
         </div>
         <div class="search fr">
             <div class="search_nav">
@@ -193,7 +193,7 @@ slideAd('MyMoveAd',3);
             {
                 if(isIe) {
                     var linka = document.createElement('a');
-                    linka.href="/mall/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
+                    linka.href="/industry/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
                     document.body.appendChild(linka);
                     linka.click();
                 } else
@@ -234,14 +234,14 @@ slideAd('MyMoveAd',3);
                 <!--{php if($moduleid>1){}-->
                 <li><a href="/" target="_blank">首页</a></li>
                 <!--{php }}-->
-                <li {if ($moduleid==16)}class="navCur"{/if}><a href="/mall/" target="_blank">产品大全</a></li>
+                <li {if ($moduleid==16)}class="navCur"{/if}><a href="/industry/" target="_blank">找工业品</a></li>
                 <li {if ($moduleid==4)}class="navCur"{/if}><a href="/company/" target="_blank">企业大全</a></li>
-                <li {if ($moduleid==6)}class="navCur"{/if}><a href="/buy/" target="_blank">求购大全</a></li>
-                <li {if ($moduleid==8)}class="navCur"{/if}><a href="/exhibit/" target="_blank">展览展会</a></li>
-                <li><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" target="_blank">订单直通车</a></li>
-                <li><a href="http://r.longygo.com/v1/goldShop/index.html" target="_blank">皇冠店铺</a></li>
-                <li><a href="http://www.gyyqcloud.com/" target="_blank">工业云服务</a></li>
-                <li><a href="http://www.cqdzgx.gov.cn/h-col-123.html" target="_blank">供应链金融</a></li>
+                <li {if ($moduleid==5)}class="navCur"{/if}><a href="/buy/" target="_blank">需求大厅</a></li>
+                <li {if ($moduleid==6)}class="navCur"{/if}><a href="/sell/" target="_blank">能力大厅</a></li>
+                <li {if ($moduleid==8)}class="navCur"{/if}><a href="/services/" target="_blank">找服务</a></li>
+                <li><a href="/softpool/" target="_blank">软件库</a></li>
+                <li><a href="/expertpool/" target="_blank">专家库</a></li>
+                <li><a href="/sucai/" target="_blank">素材库</a></li>
             </ul>
         </div>
     </div>
