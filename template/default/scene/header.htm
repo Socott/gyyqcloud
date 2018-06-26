@@ -1,0 +1,77 @@
+<link href="/favicon.ico" rel="shortcut icon" />
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/res/scenes/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/res/scenes/assets/css/base.css" />
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/res/scenes/assets/css/custom.css?20170811" />
+<script type="text/javascript" src="http://img1.gyyqcloud.com/res/scenes/assets/js/jquery-3.1.1.min.js"></script>
+<script src="http://img1.gyyqcloud.com/res/js/common.js"></script>
+<style>.pull-left{ line-height:30px;}</style>
+<div class="header" spm="index.topbar">
+    <div class="navbar" data-animate-options="{'animate':'fadeIn','delay':0}">
+        <div class="container">
+            <div class="pull-left">
+                <ul class="az-horizontal-nav">
+                   {if $_userid}
+                    <li id="business">
+                        <span>{$_truename},欢迎来到重庆工业互联网云平台!</span>
+                    </li>
+                    <li>
+                        <a href="{$MODULE[2][linkurl]}">个人中心</a>
+                    </li>
+                    <li>
+                       <a href="{$MODULE[2][linkurl]}logout.php">退出</a>
+                    </li>
+                    {else}
+                    <li id="business">
+                        <span>欢迎来到重庆工业互联网云平台!</span>
+                    </li>
+                    <li><a href="javascript:" target="_blank" id="new_username" class="right_line" style="display: none"></a></li>
+                    <li>
+                        <a href="/member/login.php" id="login" onclick="login();">登录</a>
+                    </li>
+                    <li id="register">
+                        <a href="/member/register.php" target="_blank">免费注册</a>
+                    </li>
+                    {/if}
+                </ul>
+            </div>
+            <div class="pull-right">
+                <ul class="az-horizontal-nav">
+                    <li class="dropdown my_yunwang">
+                        <span>我的云网</span>
+                        <div class="az-dropdown-content shopping" id="shopping">
+  			                            <table>
+			                                <tbody>
+			                                <tr><th>我是买家</th><th>我是卖家</th></tr>
+			                                <tr>
+			                                    <td><a href="/member/trade.php?action=order" target="_blank">已买到的产品</a></td>
+			                                    <td><a href="/member/trade.php" target="_blank">已卖出的产品</a></td>
+			                                </tr>
+			                                <tr>
+			                                    <td><a href="/member/my.php?mid=6&action=add" target="_blank">发布询价单</a></td>
+			                                    <td><a href="/member/my.php?mid=16&amp;action=add" target="_blank">发布产品</a></td>
+			                                </tr>
+			                                <tr>
+			                                    <td><a href="/member/trade_softpool.php" target="_blank">我的软件池</a></td>
+			                                    <td><a href="/member/trade_services.php" target="_blank">我的服务</a></td>
+			                                </tr>
+			                                </tbody>
+			                            </table>
+                        </div>
+                    </li>
+                    <li class="dropdown hidden-sm">
+                        <span>客户服务中心</span>
+                        <div class="az-dropdown-content service">
+                          {php $helplist = get_maincat(39159, 27, 1);}
+                            {loop $helplist $i $c}
+                            {if $i<=4}
+                                <a href="/help/{$c[linkurl]}" class="eif-header-nav-one">{$c[catname]}</a>
+                            {/if}
+                            {/loop}
+                        </div>
+                    </li>
+  
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

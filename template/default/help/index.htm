@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>客服中心详情页</title>
+<link rel="stylesheet" href="http://kf.casicloud.com/css/kw_reset.css">
+<link rel="stylesheet" href="http://kf.casicloud.com/css/kw_sell.css">
+<link href="http://kf.casicloud.com/css/common.17.9.5.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://kf.casicloud.com/js/jquery-1.8.3.min.js"></script>
+<script src="http://kf.casicloud.com/js/common.js"></script>
+<script type="text/javascript" async="async" charset="utf-8" src="http://bj-trail.ntalker.com/trail/trail/userinfo.php?action=getregion&amp;siteid=yw_1000&amp;userid=yw_1000_ISME9754_guest50E3CDA6-0A76-81&amp;callback=trail_getregion_1ACB0BD0"></script> 
+</head>
+<body>
+<style>
+	*{font-family: "Microsoft YaHei";font-size: 12px;}
+	.clearfix {*zoom: 1;}
+.clearfix:after {
+    content: "\00A0";
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;}
+    
+</style>
+
+      {php $mid = $moduleid;}
+      {php $child = get_maincat(0, $mid, 1);}
+<div class="kw_header">
+  <div class="casicloud_block">
+    <div class="kw_logo"> <a href="javascript:void(0);" style="font-size: 28px;color: #323232;">客户服务中心</a> </div>
+  </div>
+</div>
+<div class="kw_nav">
+  <div class="casicloud_block">
+    <div class="nav"> {loop $child $i $c}<a href="{$MODULE[$mid][linkurl]}{$c[linkurl]}">{$c[catname]}  </a> {/loop}</div>
+  </div>
+</div>
+<div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
+<div class="detail">
+  <div class="detail_nav">
+    <div class="detail_navTop">
+      <div class="detail_navTop_tit"> 常见问题 </div>
+      <div class="detail_navCon">
+
+      {loop $child $i $c}
+       {php $sub = get_maincat($c[catid], $mid, 1);}	
+        <div class="detail_navList">
+          <div class="detail_navList_tit active"  href="{$MODULE[$mid][linkurl]}{$c[linkurl]}" > {$c[catname]} </div>
+          <ul class="detail_ul" style="display: none;">
+          {loop $sub $j $s}
+            <li class=""> <a href="{$MODULE[$mid][linkurl]}{$s[linkurl]}">{$s[catname]}</a> </li>
+          {/loop}
+          </ul>
+        </div>
+        {/loop}
+      
+      </div>
+    </div>
+  </div>
+  <div class="detail_con" style="border-top:none">
+    <div class="detail_conTit">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')}</div>
+    <div class="question">
+      <ul>
+      	{loop $tags $i $t}
+        <li> <a href="{$t[linkurl]}">{$t[title]}</a></li>
+        {/loop}
+      </ul>
+      <div class="new_page">{$pages}</div>
+    </div>
+  </div>
+</div>
+
+<!--底部 start--> 
+<!-- public footer Begin --> 
+{template 'footer-help'}
+<!-- public footer End -->
+</body>
+</html>

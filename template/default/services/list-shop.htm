@@ -1,0 +1,69 @@
+{template 'header-services'}
+<link href="https://rjc.casicloud.com/resources/style/system/front/default/css/index.css" type="text/css" rel="stylesheet" />
+<link href="https://rjc.casicloud.com/resources/style/system/front/default/css/goods.css" type="text/css" rel="stylesheet" />
+<link href="https://rjc.casicloud.com/resources/style/system/front/default/css/goodshidden.css" type="text/css" rel="stylesheet" />
+<link href="https://rjc.casicloud.com/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="https://rjc.casicloud.com/resources/js/jcarousellite_1.0.1.min.js"></script>
+<div class="main"> 
+  <!--热门分类start-->
+  <div class="Hot_cf">
+    <div class="softPond_nowPos">热门分类: <span><a href="javascript:void(0);" id="sc_search_1" sc="1">软件</a></span> </div>
+    <div class="Hot_cf_main"> 
+     {loop $tags $k $t}
+      <div class="{if ($k+1%2==0)}Hot_cf_main_list_c{else} Hot_cf_main_list {/if}"> 
+        <!--左侧 start-->
+        <div class="Hot_cf_main_list_left">
+          <ul>
+            <li class="li_left"> <a href="{$t[linkurl]}" target="_blank"><img src="{$t[thumb]}" width="70" height="70" onerror="this.src='http://img1.gyyqcloud.com/rjc/resources/style/common/images/thumb.jpg'" /> </a></li>
+            <li class="li_right">
+              <h4><a class="hc" href="{$t[linkurl]}" target="_blank">{$t[company]}</a> <a class="hg" href="#"></a> <img src="/skin/default/image/vip_{$t[vip]}.gif" class="hg"/> </h4>
+              <p class="describe "> <strong>主营：</strong> <span class="Hot_color"></span> <span class="Hot_color"> {$t[business]}</span> </p>
+              <p class="mail"> 电话：{$t[telephone]} &nbsp;</p>
+              </p>
+              <p class="mail">地址: <strong>{$t[address]}</strong></p>
+            </li>
+          </ul>
+        </div>
+        <!--右侧 start--> 
+        <script>
+		        jQuery(function(){ 
+			       jQuery("#store_goods_img_{$k+1}").jCarouselLite({
+	                    btnNext: "#to_right_{$k+1}",
+　　                     btnPrev: "#to_left_{$k+1}", 
+	                    auto: null,
+	                    speed: 2000,
+	                    visible:5,
+				        scroll:1
+                    });			   
+			     })
+		       </script>
+        <div class="Hot_cf_main_list_right">
+          <div class="right_list_bt">
+            <div class="right_list" id="store_goods_img_{$k+1}" store_id="207" style="height:150px;">
+              <ul>
+               {php $un=$t[username];$tagsb=tag("table=services&condition=username='$un'&length=20&areaid=$cityid&pagesize=10&order=rand()&target=_blank&lazy=$lazy&template=null&debug=0");}
+                {loop $tagsb $i $t}
+                <li style="width:122px;height: 140px"> <a href="{$t[linkurl]}" target="_blank"> <img src="{$t[thumb]}" width="120" height="118" /> </a><span>￥{$t[price]}</span></li>
+                {/loop}
+              </ul>
+              	<a href="javascript:void(0);" id="to_left_{$k+1}" obj_id="207" type="left"  class="to_left" ></a>
+                <a href="javascript:void(0);" id="to_right_{$k+1}" obj_id="207" type="right"  class="to_right" ></a> 
+             </div>
+           </div>
+        </div>
+      </div>
+     {/loop}	
+      
+    </div>
+    <div class="fenye">
+      <div class="fenyes"> {$pages}　</div>
+    </div>
+    </form>
+  </div>
+</div>
+﻿<!-- softPond_footer Begin --> 
+<!-- ----end ------------------------- --> 
+ {template 'footer-mall'}
+</div>
+</body>
+</html>

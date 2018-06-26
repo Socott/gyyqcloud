@@ -1,0 +1,150 @@
+{template 'header-expertpool'}
+        <!-- public Header End -->
+<script type="text/javascript">
+ function openTab(url,isNewTab){
+	 if(isNewTab){
+		 window.open(url);
+	 }else{
+		 window.location = url;
+	 }
+ }
+ 
+ function isPersonal(){
+	 var flag = false;
+	 jQuery.ajax({
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		url : '${ctx}/isPernalLogin.ht',
+		success : function(dics){
+			flag = dics;
+		}
+		});
+	 return flag;
+ }
+ 
+ //全局搜索
+ function searchAll(){
+	 var param=jQuery("#searchAll").val();
+	 var href="professorService0736.html?searchAllParam="+param
+	 window.location.href = encodeURI(encodeURI(href));
+ }
+
+ 
+
+ jQuery(function(){
+         //返回顶部
+         jQuery('#goTop').click(function () {
+         	jQuery('body,html').stop().animate({scrollTop:0},300);
+             return false;
+         });
+     });
+     
+     function xiaonGroup(obj){
+     	var loginUserName = '';
+     	if(loginUserName!= null && loginUserName!= undefined && loginUserName!=''){
+     		nTalk.im_openInPageChat("yw_1000_" + obj);
+     	}else{
+     		var currentPath = window.location.href;
+     		doLogin(currentPath,false);
+     		}
+     	}
+
+ </script>
+ 
+</script>        
+
+     <!-- public Header End -->
+
+    <!-- 一对一服务Begin -->
+    <div class="expert_serForOne">
+        <div class="banner"></div>
+
+        <div class="serContent">
+            <div class="expertPond_publicHead">
+                <h4 class="cn">服务内容和模式</h4>
+                <h4 class="en">THE CONTENTS AND PATTERNS OF SERVICE</h4>
+            </div>
+            <div class="serviceTip">
+                <p>专注于“技术创新与管理优化“的专家支持服务</p>
+                <p>专家咨询  专家顾问  专家评审</p>
+            </div>
+            <div class="content clearfix">
+                <div class="list1">
+                    <h6>专家咨询</h6>
+                    <div class="table">
+                        <p>专家为您答疑解惑</p>
+                        <p>可选择远程交流</p>
+                        <p>或线下约见</p>
+                    </div>
+                </div>
+                <div class="list2">
+                    <h6>专家顾问</h6>
+                    <div class="table">
+                        <p>致力于为企业匹配撮合专家顾问</p>
+                        <p>打造属于企业的外部智囊团</p>
+                    </div>
+                </div>
+                <div class="list3">
+                    <h6>专家评审</h6>
+                    <div class="table">
+                        <p>提供相应专家</p>
+                        <p>为企业评审项目解决方案、招投标项目</p>
+                        <p>及可靠性验证</p>
+                        <p>提供盲选评审服务</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="expertRecommend">
+            <div class="expertPond_publicHead">
+                <h4 class="cn">专家推荐</h4>
+                <h4 class="en">EXPERT RECOMMENDATION</h4>
+            </div>
+            <ul class="recommendList clearfix">
+            {php 
+        $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');	$tags=tag("table=expertpool&length=20&condition=status>0&areaid=$cityid&pagesize=6&order=".$MOD[order]."&width=100&height=100&cols=6&target=_blank&lazy=$lazy&template=null&debug=0");}
+         {loop $tags $i $t}
+                     <li><a href="{$t[linkurl]}" class="imgShow"><img src="{$t[thumb]}"  alt="img" /></a>
+                        <div class="txtShow">
+                            <h6 class="name">{$t[title]} </h6>
+                            <p>职称：{$UNIT[$t[level]-1]}</p>
+                            <p>标签：{$t[brand]}</p>
+                            <p>地区：{area_pos($t[areaid], ' ', 2)}</p>
+                        </div>
+               	     </li>
+                    {/loop}          
+                         </ul>
+        </div>
+
+        <div class="serFlow">
+            <div class="expertPond_publicHead">
+                <h4 class="cn">服务流程</h4>
+                <h4 class="en">SERVICE PROCESS</h4>
+            </div>
+            <ul class="flowList clearfix">
+                <li class="list1">
+                    <p><span class="num">1</span>提出需求</p>
+                </li>
+                <li class="list2">
+                    <p><span class="num">2</span>专家经纪人协调</p>
+                </li>
+                <li class="list3">
+                    <p><span class="num">3</span>达成合作意向</p>
+                </li>
+                <li class="list4">
+                    <p><span class="num">4</span>支付保证金</p>
+                </li>
+                <li class="list5">
+                    <p><span class="num">5</span>安排日程</p>
+                </li>
+            </ul>
+            <a onClick="/expertpool/search.php?kw=" class="orderBtn">预约专家</a>
+        </div>
+    </div>
+    <!-- 一对一服务End -->
+{template 'footer-expertpool'}
+    </body>
+
+</html>

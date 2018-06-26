@@ -1,0 +1,94 @@
+{template 'header-expertpool'}
+        <!-- public Header End -->
+<script type="text/javascript">
+ 
+ //全局搜索
+ function searchAll(){
+	 var param=jQuery("#searchAll").val();
+	 var href="professorService0736.html?searchAllParam="+param
+	 window.location.href = encodeURI(encodeURI(href));
+ }
+
+ 
+
+ jQuery(function(){
+         //返回顶部
+         jQuery('#goTop').click(function () {
+         	jQuery('body,html').stop().animate({scrollTop:0},300);
+             return false;
+         });
+     });
+     
+     function xiaonGroup(obj){
+     	var loginUserName = '';
+     	if(loginUserName!= null && loginUserName!= undefined && loginUserName!=''){
+     		nTalk.im_openInPageChat("yw_1000_" + obj);
+     	}else{
+     		var currentPath = window.location.href;
+     		doLogin(currentPath,false);
+     		}
+     	}
+
+ </script>
+ 
+</script>        
+
+    <!-- public Header End -->
+
+    <!-- 定制沙龙Begin -->
+    <div class="expert_salon">
+        <div class="banner">
+            <a onclick ="/expertpool/search.php?kw=" class="orderBtn">预约专家</a>
+        </div>
+        <div class="makeSalon">
+            <div class="expertPond_publicHead">
+                <h4 class="cn">定制沙龙</h4>
+                <h4 class="en">CUSTOMIZE THE SALON</h4>
+            </div>
+            <p class="tip">具体沙龙主题根据企业的具体需求进行个性化定制</p>
+            <ul class="content clearfix">
+                <li class="list1">
+                    <h6>管理类主题</h6>
+                    <p>企业管理、股权分配</p>
+                </li>
+                <li class="list2">
+                    <h6>管理类主题</h6>
+                    <p>行业前景分析、技术项目分析论证等</p>
+                </li>
+                <li class="list3">
+                    <h6>管理类主题</h6>
+                    <p>商业模式、运营、产品分析等</p>
+                </li>
+                <li class="list4">
+                    <h6>政策应用类主题</h6>
+                    <p>企业科技政策应用<br>项目分析等</p>
+                </li>
+            </ul>
+        </div>
+        <div class="serFlow">
+            <div class="expertPond_publicHead">
+                <h4 class="cn">服务流程</h4>
+                <h4 class="en">CUSTOMIZE THE SALON</h4>
+            </div>
+            <div class="content clearfix">
+                <div class="style1">
+                    <span class="num">1</span>
+                    <span class="tip"></span>
+                    <p><span class="title">筹备沙龙</span>&emsp;提交服务需求• 确定双方合作• 确定沙龙主题• 联系安排专家</p>
+                </div>
+                <div class="style2">
+                    <span class="num">2</span>
+                    <span class="tip"></span>
+                    <p><span class="title">举办沙龙</span>&emsp;专家主题分享• 企业介绍• 针对性交流家</p>
+                </div>
+                <div class="style3">
+                    <span class="num">3</span>
+                    <span class="tip"></span>
+                    <p><span class="title">宣传沙龙</span>&emsp;宣传报道• 上架讲座课程</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 定制沙龙End -->
+{template 'footer-expertpool'}
+</html>

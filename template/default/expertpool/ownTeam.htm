@@ -1,0 +1,150 @@
+{template 'header-expertpool'}
+        <!-- public Header End -->
+<script type="text/javascript">
+
+
+ //全局搜索
+ function searchAll(){
+	 var param=jQuery("#searchAll").val();
+	 var href="professorService0736.html?searchAllParam="+param
+	 window.location.href = encodeURI(encodeURI(href));
+ }
+
+ 
+
+ jQuery(function(){
+         //返回顶部
+         jQuery('#goTop').click(function () {
+         	jQuery('body,html').stop().animate({scrollTop:0},300);
+             return false;
+         });
+     });
+     
+     function xiaonGroup(obj){
+     	var loginUserName = '';
+     	if(loginUserName!= null && loginUserName!= undefined && loginUserName!=''){
+     		nTalk.im_openInPageChat("yw_1000_" + obj);
+     	}else{
+     		var currentPath = window.location.href;
+     		doLogin(currentPath,false);
+     		}
+     	}
+
+ </script>
+ 
+</script>        
+
+         <!-- public Header End -->
+
+        <!-- 专属顾问团队Begin -->
+        <div class="expert-own-team">
+            <div class="team-banner">
+                <!-- banner背景图片 -->
+            </div>
+            <div class="team-problem">
+                <h5 class="problem-head">作为中小企业负责人你<span class="font-red">是否遇到这些问题？</span></h5>
+                <div class="problem-list">
+                    <span>困扰于找不到<br/>好的商业模式</span>
+                    <span>烦恼于没有合理<br/>的管理组织架构</span>
+                    <span>忧虑着如何进行<br/>产品品牌的推广</span>
+                </div>
+                <div class="problem-tip">
+                    <p>在此，专属顾问团为你所用！</p>
+                    <p>在知识经济共享的时代借用外部智慧，成就自身事业，让你不再是孤军作战！</p>
+                </div>
+            </div>
+            <div class="team-explain">
+                <a onclick ="/expertpool/search.php?kw=" class="now-order">预约专家</a>
+                <h5 class="explain-head">什么是独立顾问团</h5>
+                <div class="explain-content">
+                    <p>独立顾问团由多行业专家组成,</p>
+                    <p>为企业诊断剖析实质需求提供可操作性解决方案，解决和处理企业面临的</p>
+                    <p>最全面的、最尖锐的、最核心的、最综合的问题。</p>
+                </div>
+            </div>
+            <div class="team-object">
+                <div class="expertPond_publicHead">
+                    <h4 class="cn">服务对象和服务内容</h4>
+                    <h4 class="en">THE SERVICE OBJECT AND SERVICE CONTENT</h4>
+                </div>
+                <ul class="team-object-list">
+                    <li class="object-list-img">
+                        <img src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/images/expert_adviserTeamObj1.jpg" alt="show">
+                    </li>
+                    <li class="object-list-txt">
+                        <div class="object-name">
+                            <p>传统企业</p>
+                            <p class="object-tip">（转型或升级）</p>
+                        </div>
+                        <div class="object-content">
+                            <p>企业转型盈利模式设计品牌咨询、技术改造</p>
+                            <p>管理运营体系构建、管理组织架构设计等</p>
+                        </div>
+                    </li>
+                    <li class="object-list-txt">
+                        <div class="object-name">
+                            <p>传统企业</p>
+                        </div>
+                        <div class="object-content">
+                            <p>企业转型盈利模式设计品牌咨询、技术改造</p>
+                            <p>管理运营体系构建、管理组织架构设计等</p>
+                        </div>
+                    </li>
+                    <li class="object-list-img">
+                        <img src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/images/expert_adviserTeamObj1.jpg" alt="show">
+                    </li>
+
+                </ul>
+            </div>
+            <div class="team-mode">
+                <div class="expertPond_publicHead">
+                    <h4 class="cn">服务模式</h4>
+                    <h4 class="en">SERVICE MODE</h4>
+                </div>
+                <div class="team-mode-list">
+                    <div class="mode-demand">
+                        <span class="mode-icon">准确</span>
+                        <h5 class="mode-title">需求共识</h5>
+                        <p class="mode-content">专人指导，深度分析企业需求，知您所需明确方向</p>
+                    </div>
+                    <div class="mode-plan">
+                        <span class="mode-icon">深入</span>
+                        <h5 class="mode-title">方案共识</h5>
+                        <p class="mode-content">专人指导，深度分析企业需求，知您所需明确方向</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-flow">
+                <div class="expertPond_publicHead">
+                    <h4 class="cn">服务流程</h4>
+                    <h4 class="en">CUSTOMIZE THE SALON</h4>
+                </div>
+                <div class="team-flow-list clearfix">
+                    <div class="flow-list-1">
+                        <span class="flow-num">1</span>
+                        <span class="flow-tip"></span>
+                        <p class="flow-txt"><span class="flow-title">整合</span>企业提交需求，细化需求，形成初步需求方案</p>
+                    </div>
+                    <div class="flow-list-2">
+                        <span class="flow-num">2</span>
+                        <span class="flow-tip"></span>
+                        <p class="flow-txt"><span class="flow-title">诊断</span>专人剖析企业需求，与企业达成实质需求共识</p>
+                    </div>
+                    <div class="flow-list-3">
+                        <span class="flow-num">3</span>
+                        <span class="flow-tip"></span>
+                        <p class="flow-txt"><span class="flow-title">制定</span>专家团制定可操作性解决方案，达成执行方案共识</p>
+                    </div>
+                    <div class="flow-list-4">
+                        <span class="flow-num">4</span>
+                        <span class="flow-tip"></span>
+                        <p class="flow-txt"><span class="flow-title">实施</span>企业方案执行</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 专属顾问团队End -->
+
+      {template 'footer-expertpool'}
+    </body>
+</html>
