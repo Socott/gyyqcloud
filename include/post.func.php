@@ -783,4 +783,27 @@ function reload_question() {
 function sync_weibo($site, $moduleid, $itemid) {
 	return 'document.write(\'<img src="'.DT_PATH.'api/oauth/'.$site.'/post.php?auth='.encrypt($moduleid.'-'.$itemid, DT_KEY.'SYNC').'" width="1" height="1"/>\');';
 }
+
+/*
+ * 获取专家分类select
+ * @date: 2018-4-24
+ * @param: string $name, string $cate_id
+ * @return: string $select
+ */
+function get_expert_cate ($name='', $cate_id='') {
+    global $db;
+    $cate_id = explode(',', $cate_id);
+    $cate_id = $cate_id ? $cate_id : array();
+    $select = "<select name='{$name}' id='cate_id' multiple>";
+    $select .= "<option value=''>请选择</option>";
+
+    $r = $db->query("SELECT cate_id,title FROM {$db->pre}expert_category WHERE status=0");
+    while ($row = $db->fetch_array($r)) {
+        $selected = in_array($row['cate_id'], $cate_id) ? 'selected' : '';
+        $select .= "<option value={$row['cate_id']} {$selected}>{$row['title']}</option>";
+    }
+
+    $select .= '</select>';
+    return $select;
+}
 ?>

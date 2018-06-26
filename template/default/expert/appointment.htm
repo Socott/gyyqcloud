@@ -1,0 +1,217 @@
+{template 'header-mall'}
+<link rel="stylesheet" type="text/css" href="http://mall.zomzone.com/skin/default/style.css"/>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="http://mall.zomzone.com/skin/default/ie6.css"/>
+<![endif]-->
+
+<style type="text/css">
+	.m{ width:1200px;margin: 0 auto;}
+	td{ height:40px;}
+	td input[type="text"],td input[type="password"],td select{ border:1px solid #CCC; padding-left:3px; height:24px;}
+	.tl{width:150px;text-align:right;padding-right:20px;}
+	.reg_title {border-bottom:#CCCCCC 1px solid;font-weight:bold;padding:0 0 10px 10px;margin:15px 55px 0 55px;font-size:14px;color:#FF6600;}
+	.reg_inp {padding:3px 0 3px 0;}
+	.tips {position:absolute;z-index:1000;width:300px;background:url('image/tips_bg.gif') no-repeat 0 bottom;overflow:hidden;margin:-5px 0 0 -10px;}
+	.tips div{background:url('../member/image/tips_top.gif') no-repeat;line-height:22px;padding:8px 10px 8px 35px;}
+	.pos{ background:url('http://r.longygo.com/v1/images/header.png') 0 -35px;; height:41px; line-height:41px; font-size:14px;}
+</style>
+<div class="m">
+	<div class="left_box">
+		<div style="padding:20px 50px 20px 0px;">
+			<br/>
+			<iframe src="" name="send" id="send" style="display:none;"></iframe>
+			<form action="" method="post" target="send" onsubmit="return check();">
+				<input name="action" type="hidden" id="action" value=""/>
+				<input type="hidden" name="post[expert_id]" value="{$ex}" />
+				<input name="forward" type="hidden" value="{$forward}"/>
+				<div class="reg_title">帐户信息</div>
+				<table cellpadding="5" cellspacing="5" width="100%">
+					<tr>
+						<td class="tl">您选择的专家是 <span class="f_red">*</span></td>
+						<td style="color: #000;">
+							{$expert_name}
+						</td>
+					</tr>
+				</table>
+				<table cellpadding="5" cellspacing="5" width="100%">
+					<tr onmouseover="Ds('tusername');" onmouseout="Dh('tusername');">
+						<td class="tl">您的当前情况 <span class="f_red">*</span></td>
+						<td width="220"><textarea type="text" class="reg_inp" style="width:450px;" name="post[situation]" id="situation" onblur="validator('situation');" autocomplete="off" rows="5"></textarea>
+						</td>
+						<td>
+							<div class="tips" id="tsituation" style="display:none;">
+								<div>个字符，</div>
+							</div>
+							<span id="dsituation" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+					<tr onmouseover="Ds('tdemand');" onmouseout="Dh('tdemand');">
+						<td class="tl">您的需求 <span class="f_red">*</span></td>
+						<td width="220" style="padding:10px 0;"><textarea type="text" class="reg_inp" style="width:450px;" name="post[demand]" id="demand" onblur="validator('demand');" autocomplete="off" rows="5"></textarea>
+						</td>
+						<td>
+							<div class="tips" id="tdemand" style="display:none;">
+								<div>个字符，</div>
+							</div>
+							<span id="ddemand" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+
+
+				</table>
+
+				<table cellpadding="5" cellspacing="5" width="100%">
+
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">您的预算  <span class="f_red">*</span></td>
+						<td><input type="text" class="reg_inp" style="width:200px;" name="post[budget]" id="budget"/></td>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入整数, 单位为元</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">截止日期  <span class="f_red">*</span></td>
+						<td><input type="date" class="reg_inp" style="width:200px;" name="post[end_time]" id="budget"/></td>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">您的姓名  <span class="f_red">*</span></td>
+						<td><input type="text" class="reg_inp" style="width:200px;" name="post[name]" id="budget"/></td>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入整数, 单位为元</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">您的电话  <span class="f_red">*</span></td>
+						<td><input type="text" class="reg_inp" style="width:200px;" name="post[tel]" id="budget"/></td>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入整数, 单位为元</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">您的单位 &nbsp;</td>
+						<td><input type="text" class="reg_inp" style="width:200px;" name="post[company]" id="budget"/></td>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入整数, 单位为元</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+					<tr onmouseover="Ds('tbudget');" onmouseout="Dh('tbudget');">
+						<td class="tl">所在地区  <span class="f_red">*</span></td>
+						<td><select name="post[province]" id="province">
+								<option value="">省份</option>
+							</select>
+							<select name="post[city]" id="city">
+								<option value="">城市</option>
+							</select>
+						<td>
+							<div class="tips" id="tbudget" style="display:none;">
+								<div>请输入整数, 单位为元</div>
+							</div>
+							<span id="dbudget" class="f_red"></span>&nbsp;
+						</td>
+					</tr>
+				</table>
+
+				<div id="company_detail">
+					<table cellpadding="5" cellspacing="5" width="100%">
+					<tr>
+						<td class="tl">&nbsp;</td>
+						<td width="300"><input type="checkbox" checked="checked" onclick="if(this.checked){Ds('sbm');}else{Dh('sbm');}"/> <a href="?read=1" target="_blank" class="b">我已阅读并同意服务条款</a></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr id="sbm">
+						<td class="tl"></td>
+						<td>
+							<input type="submit" name="submit" value="立即预约" style="cursor:pointer;background:#77C019;color:#FFFFFF;font-size:14px;width:120px;line-height:32px;border:none;border-radius:4px;text-align:center;"/>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/lang/zh-cn/lang.js"></script>
+<script type="text/javascript" src="/file/script/config.js"></script>
+<script type="text/javascript" src="/file/script/common.js"></script>
+<script type="text/javascript" src="/file/script/city.js"></script>
+<script type="text/javascript" src="/file/script/page.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/guest.js"></script>
+<script type="text/javascript">
+	Dd('province').onchange = function () {
+		showChild(this, Dd('city'), cityArr);
+	}
+	Dd('province').onchange();
+
+	if(Dd('username').value == '') Dd('username').focus();
+	{if $MOD[question_register]}Dd('answer').className = 'reg_inp';{/if}
+	{if $MOD[captcha_register]}Dd('captcha').className = 'reg_inp';{/if}
+	var vid = '';
+	function dtrim(id) {
+		var str = Dd(id).value.trim();
+		if(Dd(id).value != str) Dd(id).value = str;
+	}
+	function validator(id) {
+		vid = id;
+		dtrim(id);
+		makeRequest('moduleid={$moduleid}&action=member&job='+id+'&value='+Dd(id).value, AJPath, '_validator');
+	}
+	function _validator() {
+		if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+			Dd('d'+vid).innerHTML = xmlHttp.responseText ? '<img src="{DT_SKIN}image/check_error.gif" align="absmiddle"/> '+xmlHttp.responseText : '<img src="{DT_SKIN}image/check_right.gif" align="absmiddle"/> ';
+		}
+	}
+	function err_msg(str, id) {
+		Dd('d'+id).innerHTML = '<img src="{DT_SKIN}image/check_'+(str ? 'error' : 'right')+'.gif" align="absmiddle"/> '+str;
+	}
+	function validate(type) {
+		if(type == 'cpassword') {
+
+		} else if(type == 'truename') {
+			dtrim(type);
+			if(Dd('truename').value.length < 2) {
+				err_msg('请输入真实姓名', type);
+			} else {
+				err_msg('', type);
+			}
+		} else if(type == 'telephone') {
+			dtrim(type);
+			if(Dd('telephone').value.match(/^[0-9\-\(\)\+\.]{7,}$/)) {
+				err_msg('', type);
+			} else {
+				err_msg('请输入公司电话', type);
+			}
+		}
+	}
+
+	function Df(ID) {
+		Dd(ID).focus();
+	}
+	function check() {
+
+		return true;
+	}
+
+
+</script>
+{template 'footer-mall'}

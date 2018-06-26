@@ -1235,4 +1235,20 @@ function d301($url) {
 	dhttp(301, 0);
 	dheader($url);
 }
+
+/*
+ * cate_id转换为cate_name
+ * @date: 2018-4-24
+ * @param: string $cate_id
+ * @return: string $cate_name
+ */
+function cate_id_name ($cate_id, $arr) {
+
+    $cate_id = explode(',', $cate_id);
+    foreach ($cate_id as $v) {
+        $cate_name[] = $arr[$v];
+    }
+
+    return implode('&ensp;', $cate_name);
+}
 ?>

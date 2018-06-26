@@ -1,0 +1,22 @@
+{template 'header-mall'}
+<link rel="stylesheet" type="text/css" href="http://r.longygo.com/v1/css/search-2015.css" />
+<div class="hot-supply">
+	<div class="hd">
+		<!-- 这里要注意，是连接到商城得官方 -->
+		<a href="#" class="fr f14 mr15"></a>专家列表</div>
+	<div class="bd clearfix" style="padding-left:60px;">
+
+		<ul class="picList clearfix">
+			{loop $tags $k $v}
+			<li>
+				<a href="info.php?id={$v['id']}" class="pic" ><img src="{$v['head']}"></a>
+				<p>
+					<a href="../product/t1.html" target="_blank">{$v['name']}</a>
+				</p>
+				<p class="gray9 f12">{$v['cate_name']}</p>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+</div>
+{template 'footer-mall'}
