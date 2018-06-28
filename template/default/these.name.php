@@ -9,7 +9,6 @@ $names = array (
   'company' => '公司模板',
   'down' => '下载模板',
   'exhibit' => '展会模板',
-  'expert' => '专家模板',
   'extend' => '功能扩展',
   'footer' => '全站页脚',
   'group' => '团购模板',

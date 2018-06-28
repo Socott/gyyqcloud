@@ -234,7 +234,10 @@
                                                 </a>
                                             </div>
                                             <div class="unit_conname">
-                                                <a href="{$member[linkurl]}" target="_blank" title="{$t[company]}">{$t[company]}</a>
+                                            {if !$t[username]} 
+                                            <a href="#" target="_blank" title="[未注册]">[未注册]</a>
+                                            {else}
+                                            <a href="/index.php?homepage={$t[username]}" target="_blank" title="{$t[company]}">{$t[company]}</a>{/if}
                                             </div>
                                             <div class="unit_approve clearfix">
                                                 <div><span class="company_level" data-level="2" title="质量认证"></span></div>

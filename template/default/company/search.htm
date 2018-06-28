@@ -1,94 +1,171 @@
-{template 'header'}
-<div class="m">
-<div class="m_l_1 f_l">
-	<div class="left_box">		
-		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; <a href="{$MOD[linkurl]}search.php">搜索</a></div>
-		<div class="fsearch">
-			<form action="{$MOD[linkurl]}search.php" id="fsearch">
-			<table cellpadding="5" cellspacing="3">
-			<tr>
-			<td width="80" align="right">关 键 词：</td>
-			<td colspan="3">
-			<input type="text" size="60" name="kw" value="{$kw}" class="pd3"/>&nbsp;
-			{$vip_select}&nbsp;
-			</td>
-			</tr>
-			<tr>
-			<td align="right">公司类型：</td>
-			<td>{$type_select}</td>
-			<td align="right">所属行业：</td>
-			<td>{$category_select}</td>
-			</tr>
-			<tr>
-			<td align="right">经营模式：</td>
-			<td>{$mode_select}</td>
-			<td align="right">所在地区：</td>
-			<td>{$area_select}</td>
-			</tr>
-			
-			<tr>
-			<td align="right">公司规模：</td>
-			<td>{$size_select}</td>
-			<td align="right">注册资本：</td>
-			<td>
-			<input type="text" size="8" name="mincapital" value="{$mincapital}"/> ~ <input type="text" size="8" name="maxcapital" value="{$maxcapital}"/> 万</td>
-			</tr>
-			<tr>
-			<td></td>
-			<td colspan="3">
-			<input type="image" src="{DT_SKIN}image/btn_search.gif"/>&nbsp;&nbsp;
-			<a href="{$MOD[linkurl]}search.php"><img src="{DT_SKIN}image/btn_reset_search.gif"/></a>	
-			</td>
-			</tr>
-			</table>
-			</form>
-		</div>
-		{if $page==1 && $kw}
-		{ad($moduleid,$catid,$kw,6)}
-		{load('m'.$moduleid.'_k'.urlencode($kw).'.htm')}
-		{/if}
-		{if $tags}
-		{template 'list-company', 'tag'}
-		{else}
-		{template 'noresult', 'message'}
-		{/if}
-	</div>
+{template 'header-mall'}
+<!--{php $tagsad=tag("table=ad&condition=pid=29&pagesize=10&template=null");}-->
+{loop $tagsad $i $t}		
+<!--div class="ad_wrap pr"> <a href="{$t[url]}" target="_blank"><img src="{$t[image_src]}" width="1200"></a>
+  <div style="position:absolute; right:0px; bottom:0px;"><img src="http://r.longygo.com/v1/images/pclog.png"></div>
+</div-->
+{/loop}
+<link rel="stylesheet" type="text/css" href="http://r.longygo.com/v1/css/search-2015.css?t=20160425" />
+<link rel="stylesheet" type="text/css" href="http://r.longygo.com/v1/css/css/jquery-ui-autocomplete.css" />
+<style>
+.m{margin-top:10px;width:1200px;}
+.table_search { border:1px solid #cccccc; padding:10px; border-top:none;}
+.table_search td{ height:20px; padding-top:10px; padding-bottom:10px;}
+.table_search input[type="text"],.table_search select{ height:30px; line-height:30px; border:1px solid #ccc; padding-left:5px; border-radius:5px;}
+.mt20{ margin-top:0;}
+.interest-container{ margin-bottom:0;}
+</style>
+<!--面包屑开始-->
+<div class="crumbs clearfix">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')}
+  <div class="fr gray9 f12"> 共找到 <span class="fb red">{$items}</span> 家<span class="fb red">{$MOD[name]}</span>供应商 </div>
 </div>
-<div class="m_n f_l">&nbsp;</div>
-<div class="m_r_1 f_l">
-	{if $kw}
-	<div class="box_head"><div><strong>相关搜索</strong></div></div>
-	<div class="box_body">
-		<div class="sch_site">
-			<ul>
-			{loop $MODULE $mod}{if $mod[moduleid]>3 && $mod[moduleid]!=$moduleid && !$mod[islink]}<li><a href="{$mod[linkurl]}search.php?kw={urlencode($kw)}">在 <span class="f_red">{$mod[name]}</span> 找 {$kw}</a></li>{/if}{/loop}
-			</ul>
-		</div>
-		<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and word<>'$kw' and keyword like '%$keyword%'&pagesize=10&order=total_search desc&template=list-search_relate", -2)}-->
-	</div>
-	<div class="b10">&nbsp;</div>
-	{/if}
-	<div class="sponsor">{ad($moduleid,$catid,$kw,7)}</div>
-	<div class="box_head"><div><strong>今日搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400&pagesize=10&order=today_search desc&key=today_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本周搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*7&pagesize=10&order=week_search desc&key=week_search&template=list-search_rank")}-->
-		</div>		
-	</div>
-	<div class="b10">&nbsp;</div>
-	<div class="box_head"><div><strong>本月搜索排行</strong></div></div>
-	<div class="box_body">
-		<div class="rank_list">
-			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*30&pagesize=10&order=month_search desc&key=month_search&template=list-search_rank")}-->
-		</div>		
-	</div>
+<!--面包屑结束--> 
+<!--主要内容开始-->
+<div class="s-main clearfix">
+  <div class="filter-bar clearfix mt20">
+    <ul class="filter-sorting">
+      <li class="cur"> <a href="javascript:sortBy('default')">默认排序</a> </li>
+      <!--li > <a href="javascript:sortBy('credit')">信用指数<i class="arrow-b"></i></a> </li>
+      <li > <a href="javascript:sortBy('createTime')">入驻时间<i class="arrow-t"></i></a> </li-->
+    </ul>
+  </div>
+  <!--筛选栏结束--> 
+  
+  <!--公司列表开始-->
+  <div class="s-list s-company-list">
+    <div class="fsearch">
+      <form action="{$MOD[linkurl]}search.php" id="fsearch">
+        <table width="100%" cellpadding="5" cellspacing="0" class="table_search">
+          <tr>
+            <td width="80" align="right" style="border-top:none">关 键 词：</td>
+            <td style="border-top:none"><input type="text" size="60" name="kw" value="{$kw}" class="pd3"/>
+              &nbsp;
+              {$vip_select}&nbsp; </td>
+          </tr>
+          <tr>
+            <td align="right">公司类型：</td>
+            <td>{$type_select}&nbsp; 经营模式：{$mode_select}&nbsp; 公司规模：{$size_select}&nbsp; 注册资本：
+              <input type="text" size="8" name="mincapital" value="{$mincapital}"/>
+              ~
+              <input type="text" size="8" name="maxcapital" value="{$maxcapital}"/>
+            万</td>
+          </tr>
+          <tr>
+            <td align="right">所在地区：</td>
+            <td>{$area_select}&nbsp; 所属行业：{$category_select}<input type="image" src="{DT_SKIN}image/btn_search.gif"/> &nbsp;&nbsp; <a href="{$MOD[linkurl]}search.php"><img src="{DT_SKIN}image/btn_reset_search.gif"/></a></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <ul>
+      {loop $tags $k $t}
+      <li class="item">
+        <div class="description">
+          <div class="til"> <a href="{$t[linkurl]}" class="title" target="_blank">{$t[company]} [{area_pos($t[areaid], '/', 2)}]</a> {if $t[vip]}<img src="{DT_SKIN}image/vip_{$t[vip]}.gif" alt="{VIP}" title="{VIP}:{$t[vip]}级" align="absmiddle"/> {/if}<a href="{$t[linkurl]}" target="_blank"><strong class="px14"></strong></a> </div>
+          <div class="info">{$t[business]}</div>
+          <div class="other">
+            <ul class="clearfix">
+          
+              <li>经营模式：<span class="gray9">生产型</span> {if $t[mode]}({$t[mode]})&nbsp;&nbsp;{/if}
+                {if $t[validated]}[已核实]{else}[未核实]{/if}</li>
+              <li>入驻时间：<span class="gray9">{timetodate($t[totime], 'Y-m-d')}</span></li>
+              <li>主营产品：<span class="gray9">{$t[sell]}</span></li>
+              <li>信用指数：
+                <div class="credit"> <em style="width:47%"></em> </div>
+              </li>
+              {if $t[homepage]}
+  			  <li>官方网站：<a href="{$t[homepage]}" class="title" target="_blank" style="font-size:12px;">访问官网</a></li>
+              {/if}
+              
+            </ul>
+          </div>
+        </div>
+        <div class="pic_list">
+          <ul>
+            {loop $t[product] $p $v}
+            <li>
+              <div class="pic"> <a href="/mall/show-{$v[itemid]}.html" target="_blank"><img src="{$v[thumb]}"></a> </div>
+              <p> <a href="/mall/show-{$v[itemid]}.html" target="_blank">{$v[title]}</a></p>
+            </li>
+            {/loop}
+          </ul>
+        </div>
+      </li>
+      {/loop}	
+    </ul>
+  </div>
+  <!--公司列表结束--> 
+  
+  <!--分页-->
+  <div class="paging mb30">{if $showpage && $pages}<div class="pages">{$pages}</div>{/if}</div>
+  <!--分页--> 
 </div>
+<!--主要内容结束--> 
+
+<!--您可能还感兴趣-->
+<div class="interest-container">
+  <div class="wrap clearfix">
+    <div class="ww60 fl">
+      <div class="f16 blue">您可能还感兴趣的其他内容</div>
+      <div class="interest-left-box"> 
+        <!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and word<>'$kw' and keyword like '%$keyword%'&pagesize=10&order=total_search desc&template=list-search_relate", -2)}--> 
+      </div>
+    </div>
+    <div class="ww40 fl">
+      <div class="interest-right-box"> 龙易购为您找到<span>{$items}</span>个最新厂家，包括了供应商的简介，图片，销量，主营产品等全方位信息，为您订购{cat_pos($CAT, '、')}产品提供全方位的厂家参考。 </div>
+    </div>
+  </div>
+  <div class="letter-tabnav wrap clearfix">
+    <dl>
+      <dt>企业拼音搜索：</dt>
+      {loop $LETTER $L}
+      <dd> <a  href='{rewrite('?mid='.$M['moduleid'].'&kw='.$L)}' {if $letter==$L}class='cur'{else}L1{/if}>&nbsp;{$L}&nbsp;</a></dd>
+      {/loop}
+    </dl>
+  </div>
 </div>
-{template 'footer'}
+
+<!--底部开始--> 
+<script type="text/javascript">
+	function selectSearchType(type) {
+		if (type == 'prod') {
+			$("#product").attr("class","cur");
+			$("#company").removeAttr("class");
+			$("#buy").removeAttr("class");
+			$("#searchType").val("prod");
+		} else if (type == 'comp') {
+			$("#product").removeAttr("class");
+			$("#company").attr("class","cur");
+			$("#buy").removeAttr("class");
+			$("#searchType").val("comp");
+		} else {
+			$("#product").removeAttr("class");
+			$("#company").removeAttr("class");
+			$("#buy").attr("class","cur");
+			$("#searchType").val("buy");
+		}
+	}
+	var searchType = "comp";
+	if (searchType != "" && searchType != "prod")
+		selectSearchType(searchType);
+	
+	$(document).ready(function(){
+		$(".filter_more_btn").click(function(){//点击til
+			$('.filter_more').slideToggle("slow");//当前的下一个显示或隐藏
+			if($(this).hasClass("up")){//如果有UP的样式
+				$(this).removeClass("up");//就移除
+			}else{
+				$(this).addClass("up");//如果没有就加上
+			}
+		  });
+		  
+		  $(".category-more-btn").click(function(){//点击til
+			$(this).parents(".item").find('.category-more-con').slideToggle("slow")
+		  });
+	});
+</script> 
+<!--底部结束--> 
+<script type="text/javascript" src="http://r.longygo.com/v1/js/common.js"></script> 
+<script type="text/javascript" src="http://r.longygo.com/v1/js/search_comm.js"></script> 
+<script type="text/javascript" src="http://r.longygo.com/v1/js/supply_search.js"></script> 
+{template 'footer-mall'}

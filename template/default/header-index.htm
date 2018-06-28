@@ -40,7 +40,7 @@
 			            <div class="pull-left">
 			                <ul class="az-horizontal-nav az-horizontal-nav-left">
                                 {if $_userid}
-                                <li id="business"><span>{$_username},欢迎来到重庆工业互联网云平台!</span></li>
+                                <li id="business"><span>{$_username},欢迎来到龙智造工业云平台!</span></li>
                                 <li><a href="{$MODULE[2][linkurl]}">个人中心</a></li>
                                 <li><a href="{$MODULE[2][linkurl]}logout.php">退出</a></li>
                                 {else}
@@ -123,7 +123,6 @@
 	                                <li><a href="/buy/" target="_blank" class="prominent">云协作<img src="http://img1.gyyqcloud.com/res/images/930/nav_hot_img.png" alt="nav_hot_img" class="nav_hot_img"></a></li>
 	                                <li><a href="/cloudproduce/cloudDesign.php" target="_blank">云设计</a></li>
 	                                <li><a href="/cloudproduce/cloudProduction.php" target="_blank" class="prominent">云生产<img src="http://img1.gyyqcloud.com/res/images/930/nav_hot_img.png" alt="nav_hot_img" class="nav_hot_img" /></a></li>
-	                                <li><a href="/industry/" target="_blank">云资源</a></li>
 	                            </ul>
 	                        </li>
 	                        <li>
@@ -137,7 +136,7 @@
 	                        <li class="hidden-xs">
 	                            <a href="/services/index.php" target="_blank">找服务</a>
 	                            <ul class="header-dropdown-content">
-                                    {php $tags=tag("table=category&condition=moduleid=24&areaid=$cityid&pagesize=10&template=null&debug=0");}
+                                    {php $tags=tag("table=category&condition=moduleid=24 and parentid=0&areaid=$cityid&pagesize=10&template=null&debug=0");}
                 					{loop $tags $i $t}
 	                                <li><a href="/services/{$t[linkurl]}" target="_blank">{$t[catname]}</a></li>
 	                                {/loop}

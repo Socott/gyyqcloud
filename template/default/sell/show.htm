@@ -1,10 +1,12 @@
 {template 'cloudproduce/header'}
 <link href="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/css/proDetails.css" rel="stylesheet" type="text/css">
+<link href="http://img1.gyyqcloud.com/industry/pages/industrialMall/css/demandDetail/clound_reset.css" rel="stylesheet" type="text/css">
+<link href="http://img1.gyyqcloud.com/industry/pages/industrialMall/css/demandDetail/yzzReleaseDetail.css" rel="stylesheet" type="text/css">
 <div class="proDetails_box">
 	<div class="proDetails_intro">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')} &raquo; </div>
 	<div class="indusMall_proDetails">
 		<div id="preview">
-			<div class="jqzoom" id="spec-n1"> <img height="350" src="{$albums[0]}" jqimg="https://oby0yx23h.qnssl.com//upload/600203/600203_160129171429.jpeg" width="500"> </div>
+			<div class="jqzoom" id="spec-n1"> <img height="350" src="{$albums[0]}" width="500"> </div>
 			<div id="spec-n5">
 				<div class="control" id="spec-left"> <img src="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/image/left.gif"> </div>
 				<div id="spec-list">
@@ -202,13 +204,13 @@
 			</div>
 		</div>
 	</div>
-	<!--a style="widht:100%; height:140px;cursor:pointer;" id="releaseDetailAdInfo" class="adInfo" data-adPlateId="2" data-typr="1"> <img alt="" src="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/images/footer.jpg"> </a--> </div>
+	<!--a style="widht:100%; height:140px;cursor:pointer;" id="releaseDetailAdInfo" class="adInfo" data-adPlateId="2" data-typr="1"> <img alt="" src="http://img1.gyyqcloud.com/cocenter/pages/cloud1.0/yzz/images/footer.jpg"> </a--> </div></div></div>
 <script>
 	function priceQuery () {
 		layer.open({
 			type: 2,
 			content: "/sell/inquiry.php?itemid={$itemid}",
-			area: ['1000px', '800px']
+			area: ['1000px', '600px']
 		});
 	}
 </script>

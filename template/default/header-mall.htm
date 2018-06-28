@@ -54,6 +54,7 @@
 <style type="text/css">
 .main_nav .nav_r {width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ff500b;}
 .main_nav .nav_r li a {color: #000;font-size: 16px;padding: 0 20px;height: 40px;line-height: 40px;display: block;}
+.main_nav .nav_r li a:hover {color: #FFF;}
 .main_nav {background: none;}
 .navCur a,.navCur a:hover{ color:#FFF!important}
 </style>
@@ -197,7 +198,7 @@ slideAd('MyMoveAd',3);
                     document.body.appendChild(linka);
                     linka.click();
                 } else
-                    window.location.href = "/mall/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
+                    window.location.href = "/industry/search.php?list=0&kw="+encodeURIComponent(q)+"&fields=0&catid=0&areaid=0&minprice=&maxprice=&order=0&x=44&y=19";
             } else if (searchType == "comp") {
                 if(isIe) {
                     var linka = document.createElement('a');
