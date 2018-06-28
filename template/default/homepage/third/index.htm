@@ -1,0 +1,110 @@
+{template 'header', $template}
+
+
+
+
+<div class="shop_template_banner_img" style="width:100%; height:auto;text-align:center;overflow:hidden; zoom:1">
+  <div class="flexslider st_fullscreen">
+		 <div id="slide_banner">
+		{if !$banner2&&!$banner3&&!$banner4&&!$banner5}<a href="###"><img src="http://r.longygo.com/v1/images/1450863509.jpg" width="100%" height="" alt=""/></a>{/if}
+		{if $banner2}<a href="###"><img src="{$banner2}" width="100%" height="" alt=""/></a>{/if}
+		{if $banner3}<a href="###"><img src="{$banner3}" width="100%" height="" alt=""/></a>{/if}
+		{if $banner4}<a href="###"><img src="{$banner4}" width="100%" height="" alt=""/></a>{/if}
+		{if $banner5}<a href="###"><img src="{$banner5}" width="100%" height="" alt=""/></a>{/if}
+		</div>
+  </div>
+</div>
+{load('slide.js')}
+<script type="text/javascript">new dslide('slide_banner');</script>
+ 
+<?php
+isset($typeid) or $typeid = 0;
+$_file = $file;
+$_TYPE = get_type('mall-'.$userid);
+$_TP = $_TYPE ? sort_type($_TYPE) : array();
+?>
+
+<div class="global_w main">
+  <div class="custom_temp_w custom_content">
+    <div class="custom_main">
+      <div class="custom_temp_editor">
+        <div class="st_mbox mod-combineProductFull">
+          <div class="st_sub_title">
+            <h3>产品组合</h3>
+          </div>
+          <div class="st_mc">
+            <div class="st_mt_ext">
+              <div class="st_mt_ext_body"> <a class="more" href="{userurl($username, 'file=mall', $domain)}"> 更多 &gt; </a> </div>
+            </div>
+            <div class="content clearfix com-prod">
+              <ul class="category">
+			  {loop $_TP[0] $v $t}
+                <li data-cid="23" class="f-tab-t {if $v==0}current{/if}"><span>{$t[typename]}</span> </li>
+              {/loop}
+              </ul>
+<div class="offerlist">
+	  {loop $_TP[0] $v $t}
+       <ul class="f-tab-b clearfix " {if $v==0}style="display: block;"{else}style="display: none;"{/if}>
+	   <!--{php $tags=tag("moduleid=16&condition=status>2 and mycatid=".$t[typeid]." and username='$username'&pagesize=5&order=edittime desc&fields=itemid,title,linkurl,thumb,edittime,sales,price&template=null&debug=0");}-->
+	   {loop $tags $v2 $t}
+		  <li>
+			<dl>
+			  <dt class="vertical-img"><a target="_blank" title="{$t[title]}" href="{if $homeurl}{$t[linkurl]}{else}{userurl($username, 'file=mall&itemid='.$t['itemid'], $domain)}{/if}"><img alt="{$t[title]}" src="{$t[thumb]}"></a></dt>
+			  <dd class="price ">{if $t[price]>0}{$DT[money_sign]}{$t[price]}{/if}
+    {if $t[price]==0}{$DT[money_sign]}面议{/if}</dd>
+			  <dd class="title"><a target="_blank" title="{$t[title]}" href="{if $homeurl}{$t[linkurl]}{else}{userurl($username, 'file=mall&itemid='.$t['itemid'], $domain)}{/if}">{$t[title]}</a></dd>
+			  <dd class="sale"><span>已售出<strong>{$t[sale]}</strong>件</span></dd>
+			</dl>
+		  </li>
+		  {/loop}  
+	  </ul> 
+	  {/loop}                                                    
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="st_mbox st_mbox2 clearfix">
+        {template '_left', $template}
+      
+        <div class="rc_box">
+          <div class="st_mbox1 st_mr st_mr_pop_product">
+            <div class="st_mt">
+              <h3>精选推荐</h3>
+            </div>
+            <div class="st_mc clearfix">
+              <div class="st_mt_ext">
+                <div class="st_mt_ext_body"> <a class="more" href="{userurl($username, 'file=mall', $domain)}"> 更多 &gt;&gt; </a> </div>
+              </div>
+              <ul class="clearfix">
+			  <!--{php $tags=tag("moduleid=16&condition=status>2 and username='$username'&pagesize=16&order=edittime desc&fields=itemid,title,linkurl,thumb,edittime,sales,price&template=null&debug=0");}-->
+{loop $tags $i $t}
+                <li>
+                  <div class="image"> <a target="_blank" title="{$t[title]}" href="{if $homeurl}{$t[linkurl]}{else}{userurl($username, 'file=mall&itemid='.$t['itemid'], $domain)}{/if}"> <img alt="{$t[title]}" src="{$t[thumb]}" width="150" height="150"> </a> </div>
+                  <div class="price"> <em>
+				  {if $t[price]>0}{$DT[money_sign]}{$t[price]}{/if}
+    {if $t[price]==0}{$DT[money_sign]}面议{/if}</em> </div>
+                  <div class="title"> <a target="_blank" title="{$t[title]}" href="{if $homeurl}{$t[linkurl]}{else}{userurl($username, 'file=mall&itemid='.$t['itemid'], $domain)}{/if}" width="150" height="150">{$t[title]}</a> </div>
+                  <div class="booked-count"> 已售出<span class="booked-counts">{$t[sales]}</span>件 </div>
+                </li>
+				{/loop}
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+        $('.category').find('.f-tab-t').mouseenter(function(){
+            var index=$(this).index();
+            var cid=$(this).data('cid');
+            $(this).parent().next().find('ul').hide().eq(index).show();
+            $(this).addClass('current').siblings().removeClass('current');
+           
+        });
+
+</script>
+{template 'footer', $template}

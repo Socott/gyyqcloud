@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+        <meta charset="utf-8">
+        <title>专家池-企业服务动态</title>
+        <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPondReset.css" />
+        <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPondCommon.css" />
+        <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPond.css" />
+        <script type="text/javascript" src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/js/jquery.pseudo.js"></script>
+        <!-- banner js调用 Begin -->
+        <link  type="text/css" rel="stylesheet" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPond_banner.css">
+        <script type="text/javascript" src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/js/expertPond_banner.js"></script>
+    </head>
+    <body>
+<div class="header">
+            <div class="headTop">
+                <div class="cWidth">
+                    <div class="welcomeBox">
+                        <span class="loginBefor">
+                         {if $_userid}
+                         <span>{$_truename}，欢迎来到重庆工业云！</span>
+                          <a href="{$MODULE[2][linkurl]}">个人中心</a>
+                          <a href="{$MODULE[2][linkurl]}logout.php">退出</a>
+                         {else}
+                         <span>您好，欢迎来到重庆工业云！</span>
+    				 	 <a href="/member/login.php">请登录</a>&nbsp;|
+                         <a href="/member/register.php">免费注册</a>
+                         {/if}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="headLink">
+                <div class="logoBox">
+                    <img src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/images/expertPond_logo.jpg" usemap="#planetmap" />
+                    <map name="planetmap" id="planetmap">
+                      <area href="http://www.gyyqcloud.com/" shape="rect" coords="0,0,170,48" alt="云网">
+                      <area href="http://img1.gyyqcloud.com/expertpool/" shape="rect" coords="180,14,300,42" alt="专家池">
+                    </map>
+                </div>
+                <div class="searchBox">
+                <form action="/expertpool/search.php" method="get"  id="searchForm">
+                    <input type="text" value="" id="searchAll" name="kw"/>
+                    <a href="javascript:searchForm.submit();" class="searchBtn"></a>
+                    </form>
+                </div>
+                <ul class="navBox clearfix">
+                    <li>
+                        <a href="/expertpool/" class="now">首页</a>
+                    </li>
+                    <li>
+                        <a href="/expertpool/">专家助力</a>
+                        <ul class="child">
+                            <li>
+                                <a href="search.php?kw=">专家搜索</a>
+                            </li>
+                            <li>
+                                <a href="serviceForOne.php">一对一服务</a>
+                            </li>
+                            <li>
+                                <a href="serviceSalon.php">企业定制沙龙</a>
+                            </li>
+                            <li>
+                                <a href="ownTeam.php">专属顾问团</a>
+                            </li>
+                            <!--li>
+                                <a href="enterpriseService.php">企业服务动态</a>
+                            </li-->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/softpool/" >软件池</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">云制造</a>
+                        <ul class="child">
+                          <li><a href="/buy/" target="_blank" spm="index.nav">云协作</a></li>
+                          <li><a href="/cloudproduce/cloudDesign.php" target="_blank" spm="index.nav">云设计</a></li>
+                          <li><a href="/cloudproduce/cloudProduction.php" target="_blank" spm="index.nav">云生产</a></li>
+                          <li><a href="/softpool/" target="_blank" spm="index.nav">云资源</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>

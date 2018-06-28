@@ -1,0 +1,74 @@
+
+<style type="text/css">
+.footer .link-box ul li.title {
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 0;
+    text-align: left;
+}
+.footer .link-box ul li {
+    padding-bottom: 5px;
+    text-align: center;
+    color: #bfbfbf;
+    text-align: left;
+}
+</style>
+<div>
+ <!-- public footer Begin -->
+        <div class="footer" style=" height:220px;">
+            <div class="cWidth">
+                <div class="link-box">
+                    <ul class="list1">
+                        <li class="title">关于我们</li>
+                                {php $helplist = get_maincat(39176, 27, 1);}
+                                {loop $helplist $i $c}
+                                {if $i<=4}
+                                <dd><a href="/help/{$c[linkurl]}" class="eif-header-nav-one">{$c[catname]}</a></dd>
+                                {/if}
+                                {/loop}
+                    </ul>
+                    <ul class="list2">
+                        <li class="title">快速链接</li>
+             {php $links=tag("table=link&condition=1=1&areaid=$cityid&order=rand()&pagesize=4&template=null&debug=0");}
+             {loop $links $i $t}<li> <a href="{$t[linkurl]}">{$t[title]}</a> </li>{/loop}
+                    </ul>
+                    <ul class="list3">
+                        <li class="title">客户服务支持</li>
+                    {php $helplist = get_maincat(39159, 27, 1);}
+          			{loop $helplist $i $c}
+                    {if $i<=4}
+                    <dd><a href="/help/{$c[linkurl]}" class="eif-header-nav-one">{$c[catname]}</a></dd>
+                    {/if}
+                    {/loop}
+                    </ul>
+                    <ul class="list4">
+                        <li class="title">联系我们</li>
+                        <li>
+                            <p>电话：400-008-2859 </p>
+                            <p>地址：重庆市大足区</p>
+                            <p>昌州街国际会展中心2层</p>
+                        </li>
+                    </ul>
+                    <ul class="list5">
+                        <li class="title">
+                            <a class="s1" href="http://fir.im/htcloud">云平台微信</a>
+                            <span class="s2">关注云网</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site">
+                <p>Copyright@2018&nbsp;&nbsp;龙智造工业云平台&nbsp;&nbsp;All Rights Reserved&emsp;|&emsp;渝ICP备18001657号     渝公网安备1101082014254</p>
+            </div>
+        </div>
+        <!-- public footer End -->
+    </div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9f06159b24ce69b0821563b109488f2a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>

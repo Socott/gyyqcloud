@@ -1,22 +1,130 @@
-{template 'header-mall'}
-<link rel="stylesheet" type="text/css" href="http://r.longygo.com/v1/css/search-2015.css" />
-<div class="hot-supply">
-	<div class="hd">
-		<!--  这里要注意，是连接到商城得官方 -->
-		<a href="#" class="fr f14 mr15"></a>专家列表</div>
-	<div class="bd clearfix" style="padding-left:60px;">
+ {template 'header-expertpool'} 
+  <script type="text/javascript">
+        	//专家类别点击
+            function parentCategoryClk(obj){
+            	var id = jQuery(obj).attr("value");
+            	jQuery("#catid").val(id);
+				if(id==39139)
+				{
+					$("#category2").show();$("#category3").hide();
+				}
+				if(id==39140)
+				{
+					$("#category2").hide();$("#category3").show();
+				}
+            }
+            //行业领域点击
+            function categoryClk(obj){
+            	jQuery("#categorySpan [href]").removeClass();
+            	jQuery(obj).addClass('now');
+            	var id=jQuery(obj).attr("value")
+            	jQuery("#catid").val(id);
+            }
+            //专家职称点击
+            function dicClk(obj){
+            	var id=jQuery(obj).attr("value");
+            	jQuery("#level").val(id);
+            } 
+        </script>
+<!-- 当前位置 Begin -->
+<div class="expertPond_nowPos"> <span>您的位置：</span> <a href="#">首页</a>&nbsp;- <a href="#">专家助力</a> &nbsp;- <a>专家搜索</a> </div>
+<!-- 当前位置 End --> 
 
-		<ul class="picList clearfix">
-			{loop $tags $k $v}
-			<li>
-				<a href="info.php?id={$v['id']}" class="pic" ><img src="{$v['head']}"></a>
-				<p>
-					<a href="../product/t1.html" target="_blank">{$v['name']}</a>
-				</p>
-				<p class="gray9 f12">{$v['cate_name']}</p>
-			</li>
-			{/loop}
-		</ul>
-	</div>
+<!-- 搜索专家筛选框Begin -->
+<form action="?" method="get" id="ListForm" >
+  <div class="expert-filter">
+    <ul class="filter-content">
+      <li id="li_pcat_id">
+        <h6 class="filter-title">专家类别：</h6>
+        <a href="javascript:void(0);"  onclick="parentCategoryClk(this);" class="now">全部</a> 
+        <a href="javascript:void(0);" value="39139" onClick="parentCategoryClk(this);">技术类</a> 
+        <a href="javascript:void(0);" value="39140" onClick="parentCategoryClk(this);">管理类</a>
+        <input type="hidden" id="catid" name="catid" value="">
+        <input type="hidden" id="searchAllParam" name="searchAllParam" value="">
+      </li>
+      {php $mid = $moduleid;}
+      <li id='category2'>
+        <h6 class="filter-title">行业领域：</h6>
+        <span id="categorySpan"><a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
+        {php $sub = get_maincat(39139, $mid, 1);}
+        {loop $sub $j $s}
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
+        {/loop}</span>
+      </li>
+      <li id='category3' style="display:none">
+        <h6 class="filter-title">行业领域：</h6>
+        <span id="categorySpan">
+        <a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
+        {php $sub = get_maincat(39140, $mid, 1);}
+        {loop $sub $j $s}
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
+        {/loop}
+        </span>
+      </li>
+      <li id="li_dic_id">
+        <h6 class="filter-title">专家职称：</h6>
+        <a href="javascript:void(0);" onClick="dicClk(this);">全部</a> 
+              {php  $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}
+              {loop $UNIT $j $s}
+        <a href="javascript:void(0);" value="{$j+1}" onClick="dicClk(this);">{$s}</a> {/loop}
+        <input name="level" type="hidden" id="level" value=""/>
+      </li>
+      <li>
+        <h6 class="filter-title">专家名称：</h6>
+        <input type="text" id="title" name="title" value="">
+      </li>
+      <li>
+        <h6 class="filter-title">职业标签：</h6>
+        <input type="text" id="brand" name="brand" value="">
+      </li>
+    </ul>
+    <!-- <input type="submit" value="搜索" class="filter-btn" style="cursor:pointer;"/> --> 
+    <a href="javascript:jQuery('#ListForm').submit();" class="filter-btn">搜索</a>
+    <input type="hidden" name="currentPage" id="currentPage"  value="1"/>
+  </div>
+</form>
+<!-- 搜索专家筛选框End --> 
+<!-- 专家查询列表Begin -->
+<div id="entList"> 
+  
+  <!-- 搜索结果 Begin -->
+  <div class="expert-search-result">
+    <div class="result-head">
+      <h5>搜索结果</h5>
+      <span class="result-num">共计{$items}条</span> </div>
+    <ul class="result-list clearfix">
+            <!--{php 
+        $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}--> 
+    {loop $tags $k $t}
+      <li> 
+        <a href="info.php?id={$t[id]}" class="imgShow"> <img src="{$t[head]}" alt="img" /> </a>
+           <div class="result-txt">
+              <div class="txtShow">
+                <h6 class="name">{$t[name]}</h6>
+                <p>职称：{$t[title]}</p>
+                <p>标签：{$t[name]}</p>
+                <p>地区：{$t[province]}{$t[city]}</p>
+              </div>
+            </div>
+      </li>
+      {/loop}
+      	
+    </ul>
+    
+    <!-- 页码 Begin -->
+    <div class="expertPond_pageBox">{$pages}</div>
+    <!-- 页码 End --> 
+  </div>
+  <!-- 搜索结果 End --> 
 </div>
-{template 'footer-mall'}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+                $('.expert-filter a').click(function() {
+                    $(this).addClass('now').siblings('a').removeClass('now');
+                });
+});
+</script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script> 
+{template 'footer-expertpool'}
+</body></html>

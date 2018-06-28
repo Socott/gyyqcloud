@@ -1,0 +1,46 @@
+{template 'header', $template}
+<link rel="stylesheet" type="text/css" href="{DT_STATIC}{$MODULE[4][moduledir]}/skin/common.css"/>
+<link rel="stylesheet" type="text/css" href="{$HSPATH}style.css"/>
+<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/lsgpublic/user_templates_default8/space.css"/>
+<style type="text/css">
+.top{ height:auto;}
+#mid_div {width: 300px;height: 300px;cursor: crosshair;padding: 5px;border: #CCCCCC 1px solid;background: #F3F3F3;}
+</style>
+{if $HOME[overroll]}
+
+{else}
+<script language="javascript">alert('该用户尚未设置全景，目前将采用模拟案例展示');</script>
+{/if}
+ <div class="global_w main">
+  <div class="custom_temp_w custom_content">
+    <div class="custom_main">
+       <iframe src="{if $HOME[overroll]}{$HOME[overroll]}{else}http://720yun.com/t/211j57efvy8?pano_id=8586885{/if}" frameborder="0" scrolling="no" width="100%" height="800"></iframe>
+    </div>
+  </div>
+</div>
+ {template 'footer', $template}	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+
+	
+ 

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1200px"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>{if $seo_title}{$seo_title}{else}{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}{$COM[company]}{/if}</title>
+{if $head_keywords}<meta name="keywords" content="{$head_keywords}"/>{/if}
+{if $head_description}<meta name="description" content="{$head_description}"/>{/if}
+<meta name="copyright" content="LSG" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/lsgpublic/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/lsgpublic/css/public.css">
+<link rel="stylesheet" href="http://img1.gyyqcloud.com/lsgpublic/css/shop.css">
+<link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/lsgpublic/user_templates_default8/space.css"/>
+{if !DT_DEBUG}<script type="text/javascript">window.onerror= function(){return true;}</script>{/if}
+<script type="text/javascript" src="{DT_STATIC}lang/{DT_LANG}/lang.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/jquery.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/homepage.js"></script>
+{if $lazy}<script type="text/javascript" src="{DT_STATIC}file/script/jquery.lazyload.js"></script>{/if}
+<script type="text/javascript">
+{if $head_mobile && $EXT[mobile_goto]}
+GoMobile('{$head_mobile}');
+{/if}
+{if $itemid && $DT[anticopy]}
+document.oncontextmenu=function(e){return false;};
+document.onselectstart=function(e){return false;};
+{/if}
+</script>
+{if $css}<style type="text/css">{$css}</style>{/if}
+<style>
+.main{background: url("http://img1.gyyqcloud.com/lsgpublic/images/1450864034.jpg") center top repeat-y;}
+.st_ml_supplier_info .footer {
+    padding: 10px 11px;
+    border-top: 1px solid #e9deb9;
+    width: 186px;
+    margin-left: -15px;
+}
+.main {
+    position: relative;
+    overflow: hidden;
+    min-height: 800px;
+}
+.top{ height:auto; color:#666666}
+</style>
+</head>
+<div class="top_bar">
+<div class="top_bar_wrap clearfix">
+		<div class="login fl ml20"  id="destoon_member">您好，欢迎来到龙智造 <span style="padding-left: 15px;">&nbsp;</span>
+			<a href="/member/login.php" rel="nofollow" class="gray3" target="_blank">请登录</a>
+			<a href="/member/register.php" target="_blank" rel="nofollow" class="orange ml10">免费注册</a>
+		</div>
+		<div class="login fl ml20" id="loginHeaderDiv" style="display:none;">
+			<span>您好 <a style="color:#f38a03;" href='#' target='_blank' rel="nofollow"><span id="userNameSpan"></span></a>，欢迎来到龙易购！
+		  <a href="/member/my.php" target="_blank" class="blue">商务中心</a>&nbsp;&nbsp;&nbsp;
+		  <a href="/member/logout.php" rel="nofollow" class="blue ml10">安全退出</a>
+		</div>
+		<div class="nav fr">
+			<ul>
+				<li class="item"><a href="/" rel="nofollow" target="_blank" class="father">返回首页</a></li>
+				<li class="item myselect">
+					<a href="/member/my.php" class="father father_border">我的龙智造<i class="ico arrow"></i></a>
+					<div class="child clearfix" style="width:180px;">
+						<dl>
+							<dt>采购</dt>
+							<dd><a href="/member/my.php?mid=6&action=add" target="_blank" rel="nofollow">发布求购</a></dd>
+							<dd><a href="/member/message.php?action=outbox&typeid=2" target="_blank" rel="nofollow">收到的报价</a></dd>
+							<dd><a href="/member/message.php?action=outbox&typeid=1" target="_blank" rel="nofollow">发出的询价</a></dd>
+						</dl>
+						 <dl class="ml20">
+							<dt>销售</dt>
+							<dd><a href="/member/my.php?mid=16&action=add" target="_blank" rel="nofollow">发布产品</a></dd>
+							<dd><a href="/member/message.php?action=inbox&typeid=1" target="_blank" rel="nofollow">精选求购</a></dd>
+							<dd><a href="/member/message.php?action=inbox&typeid=1" target="_blank" rel="nofollow">收到的询盘</a></dd>
+						</dl>
+					</div>
+				</li>
+				<li class="item"><a href="http://r.longygo.com/v1/buyerZhiDa/index.html" rel="nofollow" target="_blank" class="father">买家直达</a></li>
+				<li class="item"><a href="http://r.longygo.com/v1/goldShop/index.html" rel="nofollow" target="_blank" class="father">皇冠店铺</a></li>
+				<!--li class="item"><a href="http://r.longygo.com/v1/paid/paid_show0ad4.html" rel="nofollow" target="_blank" class="father">龙金宝</a></li-->
+				<!-- <li class="item"><a href="http://tjr.taojindi.com/" rel="nofollow" target="_blank" class="father">我要贷款</a></li> -->
+				<li class="item help">
+					<a href="/news/list.php?catid=23509&help=list-help" target="_blank" rel="nofollow" class="father father_border">帮助中心<i class="ico arrow"></i></a>
+					<div class="child clearfix"  style="width:100px;">
+						<dl>
+							<dd><a href="/news/list.php?catid=23510&help=list-help" target="_blank" rel="nofollow">买家入门</a></dd>
+							<dd><a href="/news/list.php?catid=23511&help=list-help" target="_blank" rel="nofollow">卖家入门</a></dd>
+							<dd><a href="/news/list.php?catid=23512&help=list-help" target="_blank" rel="nofollow">常见问题</a></dd>
+						</dl>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="top" style="padding:0">
+  <div class="shop_template_top custom_temp_w">
+    <div class="custom_temp_img_container -relative"> 
+	{if $banner1}<div class="logo"><img src="{$banner1}" draggable="false" class="custom_temp_img" alt="{$COM[company]}" onerror='this.src=""http://r.longygo.com/v1/images/default_logo.png"' ></div>{else}<div class="logo">
+	<img src="http://r.longygo.com/v1/images/default_logo.png" draggable="false" class="custom_temp_img" alt="{$COM[company]}" >{/if}
+	</div>
+  </div>
+  <div class="shop_template_nav custom_temp_w">
+    <div class="shop_template_nav_content"> 
+	<a href="{$COM[linkurl]}" ><b>首&nbsp;&nbsp;页</b></a> 
+	{loop $MENU $k $v}
+	<a href="{$v[linkurl]}" {if $file==$menu_file[$k]} class="check" {else}menu_li{/if}><b>{$v[name]}</b></a> 
+	{/loop}
+    {if $COM['homepage']}<a href="{$COM[homepage]}" ><b>企业官网</b></a> {/if}
+	</div>
+    <div class="custom_temp_img_container -relative"> <img src="http://img1.gyyqcloud.com/lsgpublic/user_templates_default8/img/shop_template_nav_bg.jpg" draggable="false" class="custom_temp_img"> </div>
+  </div>
+</div>
+
+<link href="http://r.longygo.com/v1/css/base.css" type="text/css" rel="stylesheet" />
+<link href="http://r.longygo.com/v1/css/common0816.css" type="text/css" rel="stylesheet" />
+<link href="http://r.longygo.com/v1/css/index7560.css" type="text/css" rel="stylesheet" />

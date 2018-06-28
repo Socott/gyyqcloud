@@ -1,76 +1,36 @@
-{template 'header-mall'}
-<link rel="stylesheet" type="text/css" href="http://r.longygo.com/v1/css/search-2015.css" />
-<style>
-	.main {
-		width: 1198px;
-		margin: 50px auto;
-	}
-	.main .head,.main .info{
-		float: left;
-		margin-left: 50px;
-	}
-	.intro {
-		padding-top: 30px;
-	}
-	.info p {
-		font-weight: bold;
-
-	}
-	.main .intro {
-		clear: both;
-		margin: 30px 50px;
-		color: #373737;
-	}
-	.main .intro .title {
-		 margin-top: 20px;
-		 font-size: 18px;
-	 }
-	.main .intro .txt {
-		text-indent: 2em;
-		font: 12px/28px 'simsun';
-	}
-	.book {
-		clear: both;
-		position: relative;
-		left: 50px;
-		top: 30px;
-	}
-	.book button {
-		width: 130px;
-		background: #ED6E00;
-		border: none;
-		color: #fff;
-		height: 34px;
-		border-radius: 5px;
-		cursor: pointer;
-		font: normal 15px/34px 'Microsoft yahei';
-	}
-
-</style>
-<div class="main">
-	<div class="head">
-		<img src="{$r['head']}" alt="">
-	</div>
-	<div class="info">
-		<p style="font-size:18px;color:#373737;">{$r['name']}</p>
-		<p>所在地区:  {$r['province']} {$r['city']}</p>
+{template 'header-expertpool'}
+ <style>.txtShow a{ color:#FFF;}</style>
+<div class="expert_expertDetail">
+  <div class="banner">
+    <div class="cWidth">
+      <div class="imgShow"> <img src="{$r[head]}"  alt="img" /> <span class="bgPos"></span> </div>
+      <!--{php 
+                    $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}-->
+      <div class="txtShow">
+        <p class="name">{$title}</p>
+        <p>所在地区:  {$r['province']} {$r['city']}</p>
 		<p>类别领域:  {$r['cate_name']}</p>
-		<p>职业标签:  {$r['tags']}</p>
-		<p>从业工龄:  {$r['work_year']} 年</p>
-	</div>
-	<div class="book"><button id="book">约见TA</button></div>
-	<div class="intro">
+        <div class="mark">
+          <h6>职业标签：</h6>
+          <span>  {$r['tags']}</span></div>
+        <p>从业工龄：  {$r['work_year']}年</p>
+        <p>专家职称：  {$r['title']}</p>
+        <div class="btn"> <a id="book" href="appointment.php?ex={$r['id']}" >约见TA</a> <a  href="javascript:SendFav();"  class="collect" >点击收藏</a> </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 当前位置 Begin -->
+  <div class="expertPond_nowPos"> <span>您的位置：</span> <a href="/expertpool/">首页</a>&nbsp;- <a href="search.php?kw=">专家助力</a>&nbsp;- <a href="javascript:void(0);">专家详情</a> </div>
+  <!-- 当前位置 End -->
+  <div class="detailContent">	<div class="intro">
 		<p class="title">关于TA</p>
 		<p class="txt">{$r['introduction']}</p>
 		<p class="title">技术优势</p>
 		<p class="txt">{$r['advantage']}</p>
 		<p class="title">主要成果案例</p>
 		<p class="txt">{$r['cases']}</p>
-	</div>
+	</div></div>
 </div>
-<script>
-	Dd('book').onclick = function () {
-		location.href = "appointment.php?ex={$r['id']}";
-	}
-</script>
-{template 'footer-mall'}
+<!-- 专家详情 End --> 
+{template 'footer-expertpool'}

@@ -1,4 +1,5 @@
-<div class="g-ft" style="padding-bottom:0; text-align:center">
+<div class="g-ft" style="padding-bottom:0">
+            
             <div class="g-ft-us clearfix">
                 <ul class="us-list1">
                     <li class="us-tit">常见问题</li>
@@ -13,12 +14,12 @@
                 </ul>
                 <ul class="us-list2">
                     <li class="us-tit">关于我们</li>
-                    {php $helplist = get_maincat(39176, 27, 1);}
-          			{loop $helplist $i $c}
-                    {if $i<=4}
-                    <li><a href="/help/{$c[linkurl]}" class="eif-header-nav-one">{$c[catname]}</a></li>
-                    {/if}
-                    {/loop}
+                                {php $helplist = get_maincat(39176, 27, 1);}
+                                {loop $helplist $i $c}
+                                {if $i<=4}
+                                <li><a href="/help/{$c[linkurl]}" class="eif-header-nav-one">{$c[catname]}</a></li>
+                                {/if}
+                                {/loop}
                 </ul>
                 <ul class="us-list3">
                     <li class="us-tit">便捷入口</li>
@@ -27,7 +28,7 @@
                 </ul>
                 <ul class="us-list4">
                     <li class="us-tit">客户服务</li>
-                                {php $helplist = get_maincat(39183, 27, 1);}
+                                {php $helplist = get_maincat(39182, 27, 1);}
                                 {loop $helplist $i $c}
                                 {if $i<=4}
                                 <li><a href="/help/{$c[linkurl]}">{$c[catname]}</a></li>
@@ -41,26 +42,17 @@
                     <li class="us-code">
                         <div class="f_left" style="float:left;">
                             <img src="http://img1.gyyqcloud.com/res/images/htyw_appcba9.png?20170302" alt="code">
-                            <p>企业微信</p>
+                            <p>龙智造工业云平台微信</p>
                         </div>
                         <div class="f_right" style="float:right;">
                             <img src="http://img1.gyyqcloud.com/res/images/htyw_ewmbd21.png?20170213" alt="code">
-                            <p>云平台微信</p>
+                            <p>企业微信</p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <p class="g-ft-cprt">Copyright@2018&nbsp;&nbsp;重庆工业互联网云平台&nbsp;All Rights Reserved&nbsp;渝ICP备18001657号</p>
+            <p class="g-ft-cprt" style="text-align:center">Copyright@2018 龙智造工业云平台&nbsp;All Rights Reserved&nbsp;渝ICP备18001657号 渝公网安备11010802022625</p>
         </div>
-
-<script type="text/javascript">
-{if $destoon_task}
-show_task('{$destoon_task}');
-{else}
-{php include DT_ROOT.'/api/task.inc.php';}
-{/if}
-{if $lazy}$(function(){$("img").lazyload();});{/if}
-</script>
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -70,5 +62,3 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-</body>
-</html>
