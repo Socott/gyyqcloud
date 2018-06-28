@@ -3,20 +3,15 @@
 
 
 
-
-
-
-
-
 <div class="banner" data-animate-options="{'animate':'fadeIn','delay':0}" spm="index.banner" id="index_banner">
   <div id="banner_swiper" class="swiper-container">
     <div class="swiper-wrapper">
-     {php $tags=tag("table=ad&condition=pid=72&areaid=$cityid&pagesize=5&template=null&debug=0");}
-     {loop $tags $i $t}
+      {php $tags=tag("table=ad&condition=pid=72&areaid=$cityid&pagesize=5&template=null&debug=0");}
+      {loop $tags $i $t}
       <div class="swiper-slide" style="background-color: ;">
         <div class="slide_banner"> <a target="_blank" href="{$t[url]}"> <img src="{$t[image_src]}" alt="{$t[title]}"> </a> </div>
       </div>
-	{/loop}
+      {/loop}
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>
@@ -34,10 +29,10 @@
           <ul class="clearfix">
             <li class="workBench_gyl"> <a href="/softpool/" target="_blank" spm="ywgzs.workbench">
               <div>软件池</div>
-              </a> </li>
+            </a> </li>
             <li class="workBench_yxzx"> <a href="/scene/market.php" target="_blank" spm="ywgzs.workbench">
               <div>营销中心</div>
-              </a> </li>
+            </a> </li>
           </ul>
           <div class="workbench-link"> <a href="/scene/media.php" target="_blank" spm="index.workbench">媒体中心服务</a> </div>
         </div>
@@ -89,20 +84,20 @@
             <div class="portlet-body">
               <div class="report pull-left">
                 <ul class="news-tab" id="news-tab">
-                {php $tags=tag("table=category&condition=moduleid=21 and parentid=39039&areaid=$cityid&pagesize=4&template=null&debug=0");}
-                {loop $tags $i $t}
+                  {php $tags=tag("table=category&condition=moduleid=21 and parentid=39039&areaid=$cityid&pagesize=4&template=null&debug=0");}
+                  {loop $tags $i $t}
                   <li {if $i==0}class="active"{/if}> <a href="/news/{$t[linkurl]}" data-target="#news_2" target="_blank">{$t[catname]}</a> </li>
-                 {/loop}
+                  {/loop}
                 </ul>
                 <div class="news-content">
-                
-                {loop $tags $i $t}
-                 
+
+                  {loop $tags $i $t}
+
                   <div id="news_{$i+1}" class="news-panel active">
                     <ul>
-                    {php $catid=$t[catid];}
-                    {php $tags1=tag("table=article_21&condition=catid=$catid and thumb<>'' &areaid=$cityid&pagesize=1&order=rand()&template=null&debug=0");}
-                    {loop $tags1 $i $t}
+                      {php $catid=$t[catid];}
+                      {php $tags1=tag("table=article_21&condition=catid=$catid and thumb<>'' &areaid=$cityid&pagesize=1&order=rand()&template=null&debug=0");}
+                      {loop $tags1 $i $t}
                       <li>
                         <div class="news-item news-detailed clearfix"> <a href="/news/{$t[linkurl]}" class="pull-left" target="_blank">
                           <div class="pull-left detailed_img"> <img src="{$t[thumb]}" alt="" /> </div>
@@ -110,7 +105,7 @@
                             <h5 title="{$t[title]}">{$t[title]}</h5>
                             <p>{$t[introduce]}</p>
                           </div>
-                          </a> </div>
+                        </a> </div>
                       </li>
                       {/loop}
                       {php $tags2=tag("table=article_21&condition=catid=$catid &areaid=$cityid&order=rand()&pagesize=7&template=null&debug=0");}
@@ -118,14 +113,14 @@
                       <li>
                         <div class="news-item clearfix"> <a href="/news/{$t[linkurl]}" class="pull-left" target="_blank" title=" {$t[title]}"> {$t[title]}</a> </div>
                       </li>
-					  {/loop}
+                      {/loop}
                     </ul>
                   </div>
-                  
+
                   {/loop}
-                  
-                  
-                  
+
+
+
                 </div>
               </div>
               <div class="video pull-left">
@@ -135,19 +130,19 @@
                 </ul>
                 <div class="video-content">
                   <ul class="az-average-2">
-                  	{php $tags2=tag("table=article_21&condition=catid=$catid  and thumb<>''&areaid=$cityid&order=rand()&pagesize=3&template=null&debug=0");}
-                  	{loop $tags2 $i $t}
-                    <li> 
+                    {php $tags2=tag("table=article_21&condition=catid=$catid  and thumb<>''&areaid=$cityid&order=rand()&pagesize=3&template=null&debug=0");}
+                    {loop $tags2 $i $t}
+                    <li>
                       <a href="/news/{$t[linkurl]}" target="_blank">
-                      <div class="video-box" style="height:141px;">
-                        <div class="video-img"> <img src="{$t[thumb]}" alt=""> </div>
-                        <div class="video-name"> <span title="{$t[title]}">{$t[title]}</span> </div>
-                      </div>
-                      </a> 
+                        <div class="video-box" style="height:141px;">
+                          <div class="video-img"> <img src="{$t[thumb]}" alt=""> </div>
+                          <div class="video-name"> <span title="{$t[title]}">{$t[title]}</span> </div>
+                        </div>
+                      </a>
                     </li>
                     {/loop}
 
-                    
+
                   </ul>
                 </div>
               </div>
@@ -176,22 +171,22 @@
             </div>
             <div class="portlet-body">
               <div class="sharing-list">
-      			{php $type=array('1','2','3','4','5','6');}
+                {php $type=array('1','2','3','4','5','6');}
                 {loop $type $k $t}
                 <table>
                   <tbody>
-                  	{php $dtype=$type[$k];}
-                    {php $tags=tag("table=buy_6&length=44&condition=status>0 &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}
-                    {loop $tags $kk $tt}
-                    <tr>
-                      <td><span> <a href="/buy/{$tt[linkurl]}" target="_blank" title="{$tt[title]}">{$tt[title]}</a> </span> </td>
-                      <td>{if ($tt[fee]>0)}<span class="days">{$tt[fee]}</span>元{/if} {if ($tt[fee]==0)}<span class="days">面议</span>{/if}</td>
-                      <td>{if ($tt[fee]>0)}<a href="/sell/{$tt[linkurl]}" target="_blank">立即购买</a> {/if}{if ($tt[fee]==0)}<a href="#" target="_blank" onclick="priceQuery('/buy/price.php?itemid={$tt['itemid']}');return false;">立即报价</a> {/if}</td>
-                    </tr>
-                    {/loop} 
+                  {php $dtype=$type[$k];}
+                  {php $tags=tag("table=buy_6&length=44&condition=status>0 &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}
+                  {loop $tags $kk $tt}
+                  <tr>
+                    <td><span> <a href="/buy/{$tt[linkurl]}" target="_blank" title="{$tt[title]}">{$tt[title]}</a> </span> </td>
+                    <td>{if ($tt[fee]>0)}<span class="days">{$tt[fee]}</span>元{/if} {if ($tt[fee]==0)}<span class="days">面议</span>{/if}</td>
+                    <td>{if ($tt[fee]>0)}<a href="/sell/{$tt[linkurl]}" target="_blank">立即购买</a> {/if}{if ($tt[fee]==0)}<a href="#" target="_blank" onclick="priceQuery('/buy/price.php?itemid={$tt['itemid']}');return false;">立即报价</a> {/if}</td>
+                  </tr>
+                  {/loop}
                   </tbody>
                 </table>
-                {/loop} 
+                {/loop}
 
 
               </div>
@@ -216,34 +211,34 @@
             </div>
             <div class="portlet-body">
               <div class="sharing-list">
-      			{php $type=array('1','2','3','4','5','6');}
+                {php $type=array('1','2','3','4','5','6');}
                 {loop $type $k $t}
                 <table>
                   <tbody>
-                  	{php $dtype=$type[$k];}
-                    {php $tags=tag("table=sell_5&length=44&condition=status>0 &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}
-                    {loop $tags $kk $tt}
-                    <tr>
-                      <td><span> <a href="/sell/{$tt[linkurl]}" target="_blank" title="{$tt[title]}">{$tt[title]}</a> </span> </td>
-                      <td>{if ($tt[fee]>0)}<span class="days">{$tt[fee]}</span>元{/if} {if ($tt[fee]==0)}<span class="days">面议</span>{/if}</td>
-                      <td>{if ($tt[fee]>0)}<a href="/sell/{$tt[linkurl]}" target="_blank">立即购买</a> {/if}{if ($tt[fee]==0)}<a href="#" target="_blank" onclick="priceQuery('/sell/inquiry.php?itemid={$tt['itemid']}');return false;">立即询价</a> {/if}</td>
-                    </tr>
-                    {/loop} 
+                  {php $dtype=$type[$k];}
+                  {php $tags=tag("table=sell_5&length=44&condition=status>0 &areaid=$cityid&pagesize=4&order=rand()&cols=2&template=null&debug=0");}
+                  {loop $tags $kk $tt}
+                  <tr>
+                    <td><span> <a href="/sell/{$tt[linkurl]}" target="_blank" title="{$tt[title]}">{$tt[title]}</a> </span> </td>
+                    <td>{if ($tt[fee]>0)}<span class="days">{$tt[fee]}</span>元{/if} {if ($tt[fee]==0)}<span class="days">面议</span>{/if}</td>
+                    <td>{if ($tt[fee]>0)}<a href="/sell/{$tt[linkurl]}" target="_blank">立即购买</a> {/if}{if ($tt[fee]==0)}<a href="#" target="_blank" onclick="priceQuery('/sell/inquiry.php?itemid={$tt['itemid']}');return false;">立即询价</a> {/if}</td>
+                  </tr>
+                  {/loop}
                   </tbody>
                 </table>
-                {/loop} 
-            <script src="{DT_STATIC}file/layer/layer.js"></script>
-            <script type="text/javascript">
-	        function priceQuery (url) {
-		        layer.open({
-			        type: 2,
-			        content: url,
-			        area: ['1000px', '600px']
-		        });
-		        return false;
-	        }
-			</script>
-                </div>
+                {/loop}
+                <script src="{DT_STATIC}file/layer/layer.js"></script>
+                <script type="text/javascript">
+                  function priceQuery (url) {
+                    layer.open({
+                      type: 2,
+                      content: url,
+                      area: ['1000px', '600px']
+                    });
+                    return false;
+                  }
+                </script>
+              </div>
             </div>
           </div>
           <div class="new_year_dog"></div>
@@ -261,75 +256,75 @@
             <div class="portlet-body">
               <table class="module-table">
                 <tbody>
-                  <tr>
-                    <td rowspan="2" class="feature-cell"><a target="_blank" href="/parts/">
-                      <div class="feature-box">
-                        <div class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <p class="feature-desc">模型库</p>
-                          <p class="feature-desc"><span id="dev_count">9998</span><span class="unit">个</span></p>
-                        </div>
-                        <div style="top:154px;" class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <p class="feature-desc">专利库</p>
-                          <p class="feature-desc"><span id="dev_online_count">89001</span><span class="unit">个</span></p>
-                        </div>
+                <tr>
+                  <td rowspan="2" class="feature-cell"><a target="_blank" href="/parts/">
+                    <div class="feature-box">
+                      <div class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <p class="feature-desc">模型库</p>
+                        <p class="feature-desc"><span id="dev_count">9998</span><span class="unit">个</span></p>
                       </div>
-                      </a> </td>
-                    <td align="left" class="project-cell" ><a href="/news/show.php?itemid=168" target="_blank">
-                      <div class="icon-box icon-1">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class=""  data-animate-options="{'animate':'fadeIn','delay':0}">ARM MCU开发方案</h3>
-                        <p class=""  data-animate-options="{'animate':'fadeIn','delay':0}">轻松接入设备</p>
+                      <div style="top:154px;" class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <p class="feature-desc">专利库</p>
+                        <p class="feature-desc"><span id="dev_online_count">89001</span><span class="unit">个</span></p>
                       </div>
-                      </a> </td>
-                    <td class="project-cell"><a href="/news/show.php?itemid=169" target="_blank">
-                      <div class="icon-box icon-2">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="long" data-animate-options="{'animate':'fadeIn','delay':0}">便携锂电池充电方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">智慧互联，精益生产</p>
-                      </div>
-                      </a> </td>
-                  </tr>
-                  <tr>
-                    <td class="project-cell"><a href="/news/show.php?itemid=170" target="_blank">
-                      <div class="icon-box icon-3">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">生物电势解决方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">一切由数字驱动</p>
-                      </div>
-                      </a> </td>
-                    <td class="project-cell"><a href="/news/show.php?itemid=171" target="_blank">
-                      <div class="icon-box icon-4">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">家电1kW开关控制方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">开启智慧新时代</p>
-                      </div>
-                      </a> </td>
-                  </tr>
-                  <tr>
-                    <td><a href="/news/show.php?itemid=175" target="_blank">
-                      <div class="text-box">
-                        <h3>机加行业智能化改造案例</h3>
-                        <p>让制造更简单</p>
-                      </div>
-                      </a> </td>
-                    <td><a href="/news/show.php?itemid=176" target="_blank">
-                      <div class="text-box">
-                        <h3>多种行业智能化车间案例</h3>
-                        <p>多种创新，多种智能</p>
-                      </div>
-                      </a> </td>
-                    <td><a href="/news/show.php?itemid=177" target="_blank">
-                      <div class="text-box">
-                        <h3>医疗行业数字化车间案例</h3>
-                        <p>为医疗赋能智造</p>
-                      </div>
-                      </a> </td>
-                  </tr>
+                    </div>
+                  </a> </td>
+                  <td align="left" class="project-cell" ><a href="/news/show.php?itemid=168" target="_blank">
+                    <div class="icon-box icon-1">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class=""  data-animate-options="{'animate':'fadeIn','delay':0}">ARM MCU开发方案</h3>
+                      <p class=""  data-animate-options="{'animate':'fadeIn','delay':0}">轻松接入设备</p>
+                    </div>
+                  </a> </td>
+                  <td class="project-cell"><a href="/news/show.php?itemid=169" target="_blank">
+                    <div class="icon-box icon-2">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="long" data-animate-options="{'animate':'fadeIn','delay':0}">便携锂电池充电方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">智慧互联，精益生产</p>
+                    </div>
+                  </a> </td>
+                </tr>
+                <tr>
+                  <td class="project-cell"><a href="/news/show.php?itemid=170" target="_blank">
+                    <div class="icon-box icon-3">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">生物电势解决方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">一切由数字驱动</p>
+                    </div>
+                  </a> </td>
+                  <td class="project-cell"><a href="/news/show.php?itemid=171" target="_blank">
+                    <div class="icon-box icon-4">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">家电1kW开关控制方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">开启智慧新时代</p>
+                    </div>
+                  </a> </td>
+                </tr>
+                <tr>
+                  <td><a href="/news/show.php?itemid=175" target="_blank">
+                    <div class="text-box">
+                      <h3>机加行业智能化改造案例</h3>
+                      <p>让制造更简单</p>
+                    </div>
+                  </a> </td>
+                  <td><a href="/news/show.php?itemid=176" target="_blank">
+                    <div class="text-box">
+                      <h3>多种行业智能化车间案例</h3>
+                      <p>多种创新，多种智能</p>
+                    </div>
+                  </a> </td>
+                  <td><a href="/news/show.php?itemid=177" target="_blank">
+                    <div class="text-box">
+                      <h3>医疗行业数字化车间案例</h3>
+                      <p>为医疗赋能智造</p>
+                    </div>
+                  </a> </td>
+                </tr>
                 </tbody>
               </table>
-              <div class="module-headline"> 
-    				{php $tags2=tag("table=article_21&condition=catid=$catid  &areaid=$cityid&order=rand()&pagesize=1&template=null&debug=0");}
-                  	{loop $tags2 $i $t}<a href="/news/{$t[linkurl]}" target="_blank">{$t[title]}</a>{/loop} 
+              <div class="module-headline">
+                {php $tags2=tag("table=article_21&condition=catid=$catid  &areaid=$cityid&order=rand()&pagesize=1&template=null&debug=0");}
+                {loop $tags2 $i $t}<a href="/news/{$t[linkurl]}" target="_blank">{$t[title]}</a>{/loop}
               </div>
             </div>
           </div>
@@ -347,74 +342,74 @@
             <div class="portlet-body">
               <table class="module-table">
                 <tbody>
-                  <tr>
-                    <td rowspan="2" class="feature-cell"><a target="_blank" href="#">
-                      <div class="feature-box">
-                        <div class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <p class="feature-desc">单品SKU</p>
-                          <p class="feature-desc"><span id="bigdata_count">28510</span><span class="unit">个</span></p>
-                        </div>
-                        <div style="top:154px;" class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <p class="feature-desc">已完成订单</p>
-                          <p class="feature-desc"><span id="bigdata_col_count">23581</span><span class="unit">笔</span></p>
-                        </div>
+                <tr>
+                  <td rowspan="2" class="feature-cell"><a target="_blank" href="#">
+                    <div class="feature-box">
+                      <div class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <p class="feature-desc">单品SKU</p>
+                        <p class="feature-desc"><span id="bigdata_count">28510</span><span class="unit">个</span></p>
                       </div>
-                      </a> </td>
-                    <td class="bigdata-cell"><a href="/news/show.php?itemid=178" target="_blank">
-                      <div class="icon-box icon-1">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">传动混合动力系统开发方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">支持高达2个WVGA分辨率显示</p>
+                      <div style="top:154px;" class="feature-info text-center" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <p class="feature-desc">已完成订单</p>
+                        <p class="feature-desc"><span id="bigdata_col_count">23581</span><span class="unit">笔</span></p>
                       </div>
-                      </a> </td>
-                    <td class="bigdata-cell"><a href="/news/show.php?itemid=173" target="_blank">
-                      <div class="icon-box icon-2">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">高效单色和高纯白光量子点研制</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">适用于LED高效可控发光领域</p>
-                      </div>
-                      </a> </td>
-                  </tr>
-                  <tr>
-                    <td class="bigdata-cell"><a href="/news/show.php?itemid=172" target="_blank">
-                      <div class="icon-box icon-3">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">锂电池隔膜材料解决方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">延长电池循环寿命</p>
-                      </div>
-                      </a> </td>
-                    <td class="bigdata-cell"><a href="/news/show.php?itemid=174" target="_blank">
-                      <div class="icon-box icon-4">
-                        <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
-                        <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">四路DC电源监视器解决方案</h3>
-                        <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">笔记本,平板计算,网络,汽车,云计算</p>
-                      </div>
-                      </a> </td>
-                  </tr>
-                  <tr>
-                    <td><a href="/news/show.php?itemid=179" target="_blank">
-                      <div class="text-box blue-navy">
-                        <h3>装备制造行业解决方案</h3>
-                        <p>业务全程的无障碍沟通</p>
-                      </div>
-                      </a> </td>
-                    <td><a href="/news/show.php?itemid=180" target="_blank">
-                      <div class="text-box blue-navy">
-                        <h3>三相电机控制新产品和方案</h3>
-                        <p>应用在工业机器人等</p>
-                      </div>
-                      </a> </td>
-                    <td><a href="/news/show.php?itemid=181" target="_blank">
-                      <div class="text-box blue-navy">
-                        <h3>马达控制电源板解决方案</h3>
-                        <p>实现预防性维护</p>
-                      </div>
-                      </a> </td>
-                  </tr>
+                    </div>
+                  </a> </td>
+                  <td class="bigdata-cell"><a href="/news/show.php?itemid=178" target="_blank">
+                    <div class="icon-box icon-1">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">传动混合动力系统开发方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">支持高达2个WVGA分辨率显示</p>
+                    </div>
+                  </a> </td>
+                  <td class="bigdata-cell"><a href="/news/show.php?itemid=173" target="_blank">
+                    <div class="icon-box icon-2">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">高效单色和高纯白光量子点研制</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">适用于LED高效可控发光领域</p>
+                    </div>
+                  </a> </td>
+                </tr>
+                <tr>
+                  <td class="bigdata-cell"><a href="/news/show.php?itemid=172" target="_blank">
+                    <div class="icon-box icon-3">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">锂电池隔膜材料解决方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">延长电池循环寿命</p>
+                    </div>
+                  </a> </td>
+                  <td class="bigdata-cell"><a href="/news/show.php?itemid=174" target="_blank">
+                    <div class="icon-box icon-4">
+                      <div class="icon-bg" data-animate-options="{'animate':'fadeInLeftTiny','delay':0}"></div>
+                      <h3 class="" data-animate-options="{'animate':'fadeIn','delay':0}">四路DC电源监视器解决方案</h3>
+                      <p class="" data-animate-options="{'animate':'fadeIn','delay':0}">笔记本,平板计算,网络,汽车,云计算</p>
+                    </div>
+                  </a> </td>
+                </tr>
+                <tr>
+                  <td><a href="/news/show.php?itemid=179" target="_blank">
+                    <div class="text-box blue-navy">
+                      <h3>装备制造行业解决方案</h3>
+                      <p>业务全程的无障碍沟通</p>
+                    </div>
+                  </a> </td>
+                  <td><a href="/news/show.php?itemid=180" target="_blank">
+                    <div class="text-box blue-navy">
+                      <h3>三相电机控制新产品和方案</h3>
+                      <p>应用在工业机器人等</p>
+                    </div>
+                  </a> </td>
+                  <td><a href="/news/show.php?itemid=181" target="_blank">
+                    <div class="text-box blue-navy">
+                      <h3>马达控制电源板解决方案</h3>
+                      <p>实现预防性维护</p>
+                    </div>
+                  </a> </td>
+                </tr>
                 </tbody>
               </table>
               <div class="module-headline">     				{php $tags2=tag("table=article_21&condition=catid=$catid  &areaid=$cityid&order=rand()&pagesize=1&template=null&debug=0");}
-                  	{loop $tags2 $i $t}<a href="/news/{$t[linkurl]}" target="_blank">{$t[title]}</a>{/loop}  </div>
+                {loop $tags2 $i $t}<a href="/news/{$t[linkurl]}" target="_blank">{$t[title]}</a>{/loop}  </div>
             </div>
           </div>
         </li>
@@ -424,133 +419,133 @@
               <div class="az-scalable-box">
                 <div class="scalable-img"> {ad(20)}</div>
               </div>
-              </a> </li>
+            </a> </li>
             <li> <a target="_blank">
               <div class="az-scalable-box">
                 <div class="scalable-img">{ad(21)}</div>
               </div>
-              </a> </li>
+            </a> </li>
             <li> <a target="_blank">
               <div class="az-scalable-box">
                 <div class="scalable-img">{ad(22)}</div>
               </div>
-              </a> </li>
+            </a> </li>
             <li> <a target="_blank">
               <div class="az-scalable-box">
                 <div class="scalable-img">{ad(23)}</div>
               </div>
-              </a> </li>
+            </a> </li>
             <li> <a target="_blank">
               <div class="az-scalable-box">
                 <div class="scalable-img">{ad(24)}</div>
               </div>
-              </a> </li>
+            </a> </li>
           </ul>
         </div>
-<li class="module-item industrial-software" data-animate-options="{'animate':'fadeIn','delay':0}">
-                    <div class="az-portlet white" spm="index.industrial" id="index_industrial">
-                        <div class="portlet-header">
-                            <div class="portlet-title">
-                                <ul class="module-title">
-                                    <li class="title">
-                                        <a href="/softpool/" target="_blank" spm="index.industrial">云制造软件</a>
-                                    </li>
-                                    <li class="more">
-                                        <p><a href="/softpool/" target="_blank" spm="index.industrial">更多</a>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <ul class="az-average-5">
-                              {php $tags=tag("table=ad&condition=pid=73&areaid=$cityid&pagesize=10&template=null&debug=0");}
-                              {loop $tags $i $t}
-                                <li>
-                                    <div class="software-item">
-                                        <a href="{$t[url]}" target="_blank" spm="index.industrial">
-                                            <div class="software-icon">
-                                                <img src="{$t[image_src]}" alt="">
-                                            </div>
-                                            <div class="software-name">
-                                                <span>{$t[title]}</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </li>
-                             {/loop}
-                            </ul>
-                        </div>
-                    </div>
+        <li class="module-item industrial-software" data-animate-options="{'animate':'fadeIn','delay':0}">
+          <div class="az-portlet white" spm="index.industrial" id="index_industrial">
+            <div class="portlet-header">
+              <div class="portlet-title">
+                <ul class="module-title">
+                  <li class="title">
+                    <a href="/softpool/" target="_blank" spm="index.industrial">云制造软件</a>
+                  </li>
+                  <li class="more">
+                    <p><a href="/softpool/" target="_blank" spm="index.industrial">更多</a>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="portlet-body">
+              <ul class="az-average-5">
+                {php $tags=tag("table=ad&condition=pid=73&areaid=$cityid&pagesize=10&template=null&debug=0");}
+                {loop $tags $i $t}
+                <li>
+                  <div class="software-item">
+                    <a href="{$t[url]}" target="_blank" spm="index.industrial">
+                      <div class="software-icon">
+                        <img src="{$t[image_src]}" alt="">
+                      </div>
+                      <div class="software-name">
+                        <span>{$t[title]}</span>
+                      </div>
+                    </a>
+                  </div>
                 </li>
+                {/loop}
+              </ul>
+            </div>
+          </div>
+        </li>
         <li class="module-item resource-sharing" data-animate-options="{'animate':'fadeIn','delay':0}">
-                    <div class="az-portlet white" spm="index.resource" id="idnex_resource">
-                        <div class="portlet-header">
-                            <div class="portlet-title">
-                                <ul class="module-title">
-                                    <li class="title">
-                                        <a href="/industry/" target="_blank" spm="index.resource">资源共享</a>
-                                    </li>
-                                    <li class="more">
-                                        <a href="/industry/" target="_blank" spm="index.resource">更多</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <ul class="az-average-2">
-                                <li>
-                                    <a href="#" target="_blank" spm="index.resource">
-                                        <div class="resource-item clearfix">
-                                            <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_3.png" alt="">
-                                            </div>
-                                            <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <span>易物中心</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/expertpool/" target="_blank" spm="index.resource">
-                                        <div class="resource-item clearfix">
-                                            <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_2.png" alt="">
-                                            </div>
-                                            <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <span>专家池</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank" spm="index.resource">
-                                        <div class="resource-item clearfix">
-                                            <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_1.png" alt="">
-                                            </div>
-                                            <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <span>租赁中心</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.3dzao.cn/" target="_blank" spm="index.resource">
-                                        <div class="resource-item clearfix">
-                                            <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_4.png" alt="">
-                                            </div>
-                                            <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
-                                                <span>3D打印资源</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+          <div class="az-portlet white" spm="index.resource" id="idnex_resource">
+            <div class="portlet-header">
+              <div class="portlet-title">
+                <ul class="module-title">
+                  <li class="title">
+                    <a href="/industry/" target="_blank" spm="index.resource">资源共享</a>
+                  </li>
+                  <li class="more">
+                    <a href="/industry/" target="_blank" spm="index.resource">更多</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="portlet-body">
+              <ul class="az-average-2">
+                <li>
+                  <a href="#" target="_blank" spm="index.resource">
+                    <div class="resource-item clearfix">
+                      <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_3.png" alt="">
+                      </div>
+                      <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <span>易物中心</span>
+                      </div>
                     </div>
+                  </a>
                 </li>
+                <li>
+                  <a href="/expertpool/" target="_blank" spm="index.resource">
+                    <div class="resource-item clearfix">
+                      <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_2.png" alt="">
+                      </div>
+                      <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <span>专家池</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" target="_blank" spm="index.resource">
+                    <div class="resource-item clearfix">
+                      <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_1.png" alt="">
+                      </div>
+                      <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <span>租赁中心</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.3dzao.cn/" target="_blank" spm="index.resource">
+                    <div class="resource-item clearfix">
+                      <div class="resource-icon pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/resource_img_4.png" alt="">
+                      </div>
+                      <div class="resource-name pull-left" data-animate-options="{'animate':'fadeIn','delay':0}">
+                        <span>3D打印资源</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
     <div id="banner_swiper_ad" style="overflow: hidden;position: relative">
@@ -597,79 +592,79 @@
                   <div class="make-left-container"> <a href="/cloudproduce/" target="_blank">
                     <h5>能力协同</h5>
                     <p>智能制造云平台</p>
-                    </a> </div>
+                  </a> </div>
                 </div>
                 <div class="make-right pull-left">
                   <ul class="clearfix">
                     <li> <a href="/sell/search.php" target="_blank">
                       <h5>云协作</h5>
                       <p>供需精准对接</p>
-                      </a> </li>
+                    </a> </li>
                     <li> <a href="/cloudproduce/cloudDesign.php" target="_blank">
                       <h5>云设计</h5>
                       <p>在线协同设计</p>
-                      </a> </li>
+                    </a> </li>
                     <li> <a href="/cloudproduce/cloudProduction.php" target="_blank">
                       <h5>云生产</h5>
                       <p>让生产更智能</p>
-                      </a> </li>
+                    </a> </li>
                     <li> <a href="/softpool/" target="_blank">
                       <h5>云资源</h5>
                       <p>快捷高效低成本</p>
-                      </a> </li>
+                    </a> </li>
                   </ul>
                 </div>
               </div>
               <div>
                 <table>
                   <tbody>
-                    <tr>
-                      <td rowspan="2" class="make-product-wrapper-1"><div class="make-product" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <ul class="product-list">
-                          
-                            {php $tags=tag("table=buy_6&length=44&condition=thumb<>'' and status>0 &areaid=$cityid&pagesize=3&order=rand()&cols=2&template=null&debug=0");}
-                             {loop $tags $kk $tt}
-                            <li {if $kk==0}class="active"{/if}>
-                              <div class="product-adv">
-                                <div class="product-img"> <a target="_blank" href="/buy/{$tt[linkurl]}"> <img src="{$tt[thumb]}" alt=""> </a> </div>
-                                <div class="product-info"> <span class="product-name" title="{$tt[title]}">{$tt[title]}</span> <span class="product-meta">还剩：
+                  <tr>
+                    <td rowspan="2" class="make-product-wrapper-1"><div class="make-product" data-animate-options="{'animate':'fadeIn','delay':0}">
+                      <ul class="product-list">
+
+                        {php $tags=tag("table=buy_6&length=44&condition=thumb<>'' and status>0 &areaid=$cityid&pagesize=3&order=rand()&cols=2&template=null&debug=0");}
+                        {loop $tags $kk $tt}
+                        <li {if $kk==0}class="active"{/if}>
+                          <div class="product-adv">
+                            <div class="product-img"> <a target="_blank" href="/buy/{$tt[linkurl]}"> <img src="{$tt[thumb]}" alt=""> </a> </div>
+                            <div class="product-info"> <span class="product-name" title="{$tt[title]}">{$tt[title]}</span> <span class="product-meta">还剩：
                                   <mark id="time1">{timetodate($tt[addtime],'Y-m-d')}</mark>
                                   </span>
-                                  <ul class="product-action">
-                                    <li class="purchase"> <a target="_blank" href="/buy/{$tt[linkurl]}">立即报价</a> </li>
-                                    <li class="more"> <a target="_blank" href="/buy/">更多</a> </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-       {/loop}
-        
-                          </ul>
-                          <div class="product-picture-btn prev"></div>
-                          <div class="product-picture-btn next"></div>
-                        </div></td>
-                      <td rowspan="2" class="make-product-wrapper-2"><div class="make-product" data-animate-options="{'animate':'fadeIn','delay':0}">
-                          <ul class="product-list">
-                                              {php $tags=tag("table=buy_6&length=44&condition=thumb<>'' and status>0 &areaid=$cityid&pagesize=3&order=rand()&cols=2&template=null&debug=0");}
-                    {loop $tags $kk $tt}
-                            <li {if $kk==0}class="active"{/if}>
-                              <div class="product-adv">
-                                <div class="product-img"> <a target="_blank" href="/buy/{$tt[linkurl]}"> <img src="{$tt[thumb]}" alt=""> </a> </div>
-                                <div class="product-info"> <span class="product-name" title="{$tt[title]}">{$tt[title]}</span> 		                                 <span class="product-meta">价格：<mark>{if ($tt[fee]==0)}面议{else}{$tt[fee]}{/if}</mark></span>
-                                  <ul class="product-action">
-                                    <li class="purchase"> <a target="_blank" href="/buy/{$tt[linkurl]}">立即购买</a> </li>
-                                    <li class="more"> <a target="_blank" href="/buy/">更多</a> </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-  {/loop}
+                              <ul class="product-action">
+                                <li class="purchase"> <a target="_blank" href="/buy/{$tt[linkurl]}">立即报价</a> </li>
+                                <li class="more"> <a target="_blank" href="/buy/">更多</a> </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                        {/loop}
 
-                          </ul>
-                          <div class="product-picture-btn prev"></div>
-                          <div class="product-picture-btn next"></div>
-                        </div></td>
-                    </tr>
+                      </ul>
+                      <div class="product-picture-btn prev"></div>
+                      <div class="product-picture-btn next"></div>
+                    </div></td>
+                    <td rowspan="2" class="make-product-wrapper-2"><div class="make-product" data-animate-options="{'animate':'fadeIn','delay':0}">
+                      <ul class="product-list">
+                        {php $tags=tag("table=buy_6&length=44&condition=thumb<>'' and status>0 &areaid=$cityid&pagesize=3&order=rand()&cols=2&template=null&debug=0");}
+                        {loop $tags $kk $tt}
+                        <li {if $kk==0}class="active"{/if}>
+                          <div class="product-adv">
+                            <div class="product-img"> <a target="_blank" href="/buy/{$tt[linkurl]}"> <img src="{$tt[thumb]}" alt=""> </a> </div>
+                            <div class="product-info"> <span class="product-name" title="{$tt[title]}">{$tt[title]}</span> 		                                 <span class="product-meta">价格：<mark>{if ($tt[fee]==0)}面议{else}{$tt[fee]}{/if}</mark></span>
+                              <ul class="product-action">
+                                <li class="purchase"> <a target="_blank" href="/buy/{$tt[linkurl]}">立即购买</a> </li>
+                                <li class="more"> <a target="_blank" href="/buy/">更多</a> </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                        {/loop}
+
+                      </ul>
+                      <div class="product-picture-btn prev"></div>
+                      <div class="product-picture-btn next"></div>
+                    </div></td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
@@ -697,13 +692,13 @@
                     <div class="service-icon"> <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/rzfw_module_1.png" alt=""> </div>
                     <div class="service-name"> <span>质量认证</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
                 <li> <a href="#" target="_blank">
                   <div class="service-item" data-animate-options="{'animate':'fadeInDownTiny','delay':0}">
                     <div class="service-icon"> <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/rzfw_module_2.png" alt=""> </div>
                     <div class="service-name"> <span>征信服务</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
               </ul>
             </div>
           </div>
@@ -726,28 +721,28 @@
                     <div class="section-line blue"></div>
                     <div class="service-name"> <span>工业互联网金融</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
                 <li> <a href="/scene/media.php" target="_blank">
                   <div class="service-item" data-animate-options="{'animate':'fadeIn','delay':0}">
                     <div class="service-icon"> <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/zzfw_module_2.png" alt=""> </div>
                     <div class="section-line blue"></div>
                     <div class="service-name"> <span>媒体服务</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
                 <li> <a href="/scene/yxzs.php" target="_blank">
                   <div class="service-item" data-animate-options="{'animate':'fadeIn','delay':0}">
                     <div class="service-icon"> <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/zzfw_module_3.png" alt=""> </div>
                     <div class="section-line blue"></div>
                     <div class="service-name"> <span>工业企业运行指数</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
                 <li> <a href="/scene/market.php" target="_blank">
                   <div class="service-item" data-animate-options="{'animate':'fadeIn','delay':0}">
                     <div class="service-icon"> <img src="http://img1.gyyqcloud.com/res/pages/index/images/930/zzfw_module_4.png" alt=""> </div>
                     <div class="section-line blue"></div>
                     <div class="service-name"> <span>营销中心</span> </div>
                   </div>
-                  </a> </li>
+                </a> </li>
               </ul>
             </div>
           </div>
@@ -759,15 +754,15 @@
 <script type="text/javascript" src="{DT_STATIC}file/script/index.js"></script>
 <script type="text/javascript" src="{DT_STATIC}file/script/marquee.js"></script>
 <script type="text/javascript">
-new dmarquee(22, 10, 3000, 'site_stats');
-new dmarquee(22, 30, 3000, 'company');
-if(get_cookie('auth')) {
-	$('.iuser_l')[0].title = '商务中心';
-	$('.iuser_l')[0].href = '{$MODULE[2][linkurl]}';
-	$('.iuser_l')[0].className = 'iuser_u';
-	$('.iuser_r')[0].title = '完善我的会员资料';
-	$('.iuser_r')[0].href = '{$MODULE[2][linkurl]}edit.php';
-	$('.iuser_r')[0].className = 'iuser_e';
-}
+  new dmarquee(22, 10, 3000, 'site_stats');
+  new dmarquee(22, 30, 3000, 'company');
+  if(get_cookie('auth')) {
+    $('.iuser_l')[0].title = '商务中心';
+    $('.iuser_l')[0].href = '{$MODULE[2][linkurl]}';
+    $('.iuser_l')[0].className = 'iuser_u';
+    $('.iuser_r')[0].title = '完善我的会员资料';
+    $('.iuser_r')[0].href = '{$MODULE[2][linkurl]}edit.php';
+    $('.iuser_r')[0].className = 'iuser_e';
+  }
 </script>
 {template 'footer-index'}
