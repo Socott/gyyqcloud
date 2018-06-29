@@ -44,9 +44,9 @@
 	   if(searchType=="软件"){
 		  $("#rjForm").attr("action","/softpool/search.php");
 	   }else if(searchType=="能力"){
-		  $("#rjForm").attr("action","/sell/search.php");
+		  $("#rjForm").attr("action","/sell/list.php");
 	   }else if(searchType=="需求"){
-		 $("#rjForm").attr("action","/buy/search.php");
+		 $("#rjForm").attr("action","/buy/list.php");
 	   }else if(searchType=="服务"){
 		  $("#rjForm").attr("action","/services/search.php");
 	   }else if(searchType=="专家"){
@@ -147,7 +147,7 @@
           </div>
           <div class="submit">
             <input type="button"  onclick="ch();" value="" />
-            <form action="#" id="rjForm" method="get">
+            <form action="#" id="rjForm" method="get" target="proIfram">
               <input  type="hidden" id="kw" value="" name="kw"/>
             </form>
           </div>

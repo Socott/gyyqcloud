@@ -212,6 +212,7 @@
 			{if $MG[address_limit]>-1 || $show_menu}
 			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="addr"><span class="f_r"><a href="address.php?action=add" class="m">添加</a></span><a href="address.php" class="{if $MG[address_limit]>-1}n{else}f{/if}">收货地址</a></li>
 			{/if}
+			<li class="side_a" onMouseOver="v(this.id);" onMouseOut="t(this.id);" id="credit"><span class="f_r"><a href="credit.php?action=index" class="m">查看</a></span><a href="credit.php?action=index" class="{if $_userid}n{else}f{/if}">积分管理</a></li>
 		</ul>
 	</div>
 {/if}

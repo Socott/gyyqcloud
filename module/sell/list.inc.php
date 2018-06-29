@@ -22,7 +22,7 @@ if ($vip) $condition .= " AND vip=$vip";
 //分类
 if ($typeid && $typeid != '-1') $condition .= " AND typeid=$typeid";
 //搜索
-$input = trim($input);
+$input = trim($input) ? trim($input) : $kw;
 if ($input) $condition .= " and (locate('{$input}',company) or locate('{$input}',title))";
 
 $c_condition = '1';

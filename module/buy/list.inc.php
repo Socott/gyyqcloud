@@ -192,6 +192,7 @@ if($truename){
     $condition .= " AND truename <> '匿名'";
 }
 //关键词搜索
+$keyWord = $keyWord ? $keyWord : $kw;
 if($keyWord){
     $condition .= " AND keyword like '%$keyWord%'";
 }
