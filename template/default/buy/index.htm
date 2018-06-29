@@ -44,7 +44,9 @@
         .rank2{
             background: url("/file/image/rank_bottom_img_1.png") no-repeat center !important;
         }
-
+        .flag{
+            color: #ff711b;
+        }
 
 
     </style>
@@ -117,12 +119,12 @@
         <div class="container">
             <div class="search_sort_box">
                 <div class="search_func">
-                    <div class="active"><a href="javascript:;" onClick="" class="flag ">综合排序</a></div>
+                    <div class="active"><span href="javascript:;" onClick="ranking(this);" class="{if $addtime == 'desc'}flag{/if}" >综合排序</span></div>
                     <div class="flag">
                         <div class="course_rank" id="start">
                             <span class="ordertxt">发布时间</span>
                                 <i class="rank_top{if $addtime == 'asc'} rank1{/if}"></i>
-                                <i class="rank_bottom{if $addtime == 'desc'} rank2{/if}"></i>
+                                <i class="rank_bottom{if $addtime == 'descs'} rank2{/if}"></i>
                         </div>
                     </div>
                    <!-- <div class="flag">
@@ -236,7 +238,7 @@
                                                 </a>
                                             </div>
                                             <div class="unit_conname">
-                                            {if !$t[username]} 
+                                            {if !$t[username]}
                                             <a href="#" target="_blank" title="[未注册]">[未注册]</a>
                                             {else}
                                             <a href="/index.php?homepage={$t[username]}" target="_blank" title="{$t[company]}">{$t[company]}</a>{/if}
@@ -250,7 +252,7 @@
                                         </div>
                                     </div>
                       </div>
-                         {/loop} 
+                         {/loop}
                   </div>
                     {if $showpage && $pages}<div class='pages'>{$pages}</div>{/if}
 
@@ -291,7 +293,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--
         <div class="search_recommend">
         <div class="container">
@@ -353,7 +355,7 @@
             </div>
         </div>
     </div>
-    
+
     -->
         <script type="text/javascript">
             if({$areaid}){var areaid = {$areaid};}else{var areaid = 0;}//地区
@@ -384,13 +386,24 @@
             $("#comtype_filter").hover(function () {
                 $('.comTypefilterList').toggle();
             });
+            //综合排序
+            function ranking(that){
+                //判断是否已经点击
+                addtime = 'desc';
+                if(!$(that).hasClass('flag')){
+                    $(that).addClass('flag');
+                }
+                setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
+
+            }
+
             //发布时间
             $("#start").on('click',function () {
                 if($('#start .rank_bottom').hasClass("rank2")){
                     addtime = 'asc';
                     setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
                 }else{
-                    addtime = 'desc';
+                    addtime = 'descs';
                     setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
                 }
             });
@@ -554,7 +567,7 @@
 
 <script src="http://img1.gyyqcloud.com/res/js/search_mobile.js"></script>
 <link rel="stylesheet" type="text/css" href="{DT_SKIN}style.css"/>
-<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script> 
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
 {template 'footer-index'}
 </body>
 </html>

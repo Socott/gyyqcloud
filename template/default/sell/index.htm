@@ -43,10 +43,15 @@
 		background-color: #fff;
 		width: 150px;
 	}
-	.rank{
-		left: 60px;
-		-webkit-filter: drop-shadow(32px 0 #FF0000);
-	}
+    .rank1{
+        background: url("/file/image/rank_top_img_1.png") no-repeat center !important;
+    }
+    .rank2{
+        background: url("/file/image/rank_bottom_img_1.png") no-repeat center !important;
+    }
+    .flag{
+        color: #ff711b;
+    }
 
 </style>
 {template 'header-search-inc'}
@@ -117,12 +122,12 @@
         <div class="container">
             <div class="search_sort_box">
                 <div class="search_func">
-                    <div class="active"><a href="javascript:;" onClick="" class="flag ">综合排序</a></div>
+                    <div class="active"><span href="javascript:;" onClick="ranking()" class="{if $addtime == 'desc'}flag{/if}" >综合排序</span></div>
                     <div class="flag">
                         <div class="course_rank" id="start">
                             <span class="ordertxt">发布时间</span>
-	                        <i class="rank_top {if $addtime == 'asc'}rank{/if}"></i>
-	                        <i class="rank_bottom {if $addtime != 'asc'}rank{/if}"></i>
+                            <i class="rank_top{if $addtime == 'asc'} rank1{/if}"></i>
+                            <i class="rank_bottom{if $addtime == 'descs'} rank2{/if}"></i>
                         </div>
                     </div>
                     <!--<div class="flag">
@@ -257,7 +262,7 @@
                                         </div>
                                     </div>
                       </div>
-                         {/loop} 
+                         {/loop}
                   </div>
 	                {if $showpage && $pages}<div class='pages'>{$pages}</div>{/if}
 
@@ -431,7 +436,7 @@
 
             })
         </script>
- 
+
 </div>
 <script src="http://img1.gyyqcloud.com/res/js/search/search.js"></script>
 <script src="http://img1.gyyqcloud.com/res/js/search_mobile.js"></script>
@@ -493,22 +498,27 @@
 		typeid = $(obj).attr("value");
 		setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
 	}
+
+    //综合排序
+    function ranking(that){
+        //判断是否已经点击
+        addtime = 'desc';
+        if(!$(that).hasClass('flag')){
+            $(that).addClass('flag');
+        }
+        setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
+
+    }
 	//发布时间
-	$("#start").on('click',function () {
-		if($('#start .rank_bottom').hasClass("rank")){
-			console.log(1);
-			$('#start .rank_bottom').removeClass("rank");
-			$('#start .rank_top').addClass("rank");
-			addtime = 'asc';
-			setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
-		}else{
-			console.log(2);
-			$('#start .rank_bottom').addClass("rank");
-			$('#start .rank_top').removeClass("rank");
-			addtime = 'desc';
-			setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
-		}
-	});
+    $("#start").on('click',function () {
+        if($('#start .rank_bottom').hasClass("rank2")){
+            addtime = 'asc';
+            setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
+        }else{
+            addtime = 'descs';
+            setUrl(areaid,catid,empfilter,comTypefilter,addtime,typeid);
+        }
+    });
 	//截止时间
 	$("#end").on('click',function () {
 		if($('#end .rank_bottom').hasClass("rank")){
@@ -554,7 +564,7 @@
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="{DT_SKIN}style.css"/>
-<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script> 
+<script type="text/javascript" src="{DT_STATIC}file/script/page.js"></script>
 {template 'footer-index'}
 </body>
 </html>

@@ -65,7 +65,14 @@ if ($c_condition != '1') {
 //时间排序
 $createTimeOrder = $endtimeOrder = 'desc';
 
-if ($addtime) $createTimeOrder = $addtime;
+if ($addtime) {
+    if($addtime == 'descs'){
+        $createTimeOrder = 'desc';
+    }else{
+        $createTimeOrder = $addtime;
+    }
+
+}
 if ($endtime) $endtimeOrder = $endtime;
 $orderby = "editdate $createTimeOrder";
 

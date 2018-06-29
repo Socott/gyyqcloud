@@ -43,7 +43,11 @@ if($comTypefilter){//企业类型
     $condition .= " AND company IN ($company)";
 }
 if($addtime){
-    $MOD['order'] = " addtime $addtime";
+    if($addtime == 'descs'){
+        $MOD['order'] = " addtime desc";
+    }else{
+        $MOD['order'] = " addtime $addtime";
+    }
 }
 
 $member_set = include DT_ROOT.'/file/setting/module-2.php';
