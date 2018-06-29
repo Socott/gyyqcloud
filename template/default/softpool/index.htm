@@ -1,6 +1,6 @@
 {template 'header-softpool'}
 	<!--轮播图begin-->
-	<div class="softPond_indexBanner">
+	<div class="softPond_indexBanner" style="height:495px;">
 		<div class="flexslider">
 			<ul class="slides">
                  {php $tags=tag("table=ad&condition=pid=31&areaid=$cityid&pagesize=5&template=null&debug=0");}
@@ -9,14 +9,14 @@
 					{/loop}	 
 			</ul>
 		</div>
-		<div class="bannerLeft">
+		<div class="bannerLeft" style="height:495px;">
         	{php $mid = $moduleid;}
 			{php $child = get_maincat(0, $mid, 1);}
               {loop $child $i $c} 
 			  <div class="list">
 				<h4 class="title">
 					<a href="{$MODULE[$mid][linkurl]}{$c[linkurl]}">{$c[catname]}</a>
-					<div class="children">
+					<div class="children" style="height:495px;">
                     	{php $sub = get_maincat($c[catid], $mid, 1);}
                         {loop $sub $j $s}
 						  <a href="{$MODULE[$mid][linkurl]}{$s[linkurl]}">{$s[catname]}</a>
@@ -30,8 +30,24 @@
 				</ul>
 				</div>
                {/loop}
-            
-            
+
+				<div class="list">
+					<h4 class="title">
+						<a href="{$MODULE[$mid][linkurl]}list.php">更多</a>
+						<!--<div class="children" style="height:495px;overflow:auto;">
+							{loop $child $i $c}
+								{php $sub = get_maincat($c[catid], $mid, 1);}
+								{loop $sub $j $s}
+								<a style="width:130px;" href="{$MODULE[$mid][linkurl]}{$s[linkurl]}">{$s[catname]}</a>
+								{/loop}
+							{/loop}
+						</div>-->
+					</h4>
+					<ul>
+
+					</ul>
+				</div>
+
 	
 			 		</div>
 		<div class="bannerRight">

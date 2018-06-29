@@ -38,15 +38,18 @@
    });
    //搜索功能
    function ch(){
+	   $('#rjForm').attr('target', null);
 	   var searchKeyWord=jQuery("#searchKeyWord").val().trim();
 	   searchKeyWord=encodeURI(searchKeyWord);
 	   var searchType=$("#selectType").html();
 	   if(searchType=="软件"){
 		  $("#rjForm").attr("action","/softpool/search.php");
 	   }else if(searchType=="能力"){
-		  $("#rjForm").attr("action","/sell/search.php");
+		  $("#rjForm").attr("action","/sell/list.php");
+		   $('#rjForm').attr('target', "proIfram");
 	   }else if(searchType=="需求"){
-		 $("#rjForm").attr("action","/buy/search.php");
+		 $("#rjForm").attr("action","/buy/list.php");
+		   $('#rjForm').attr('target', "proIfram");
 	   }else if(searchType=="服务"){
 		  $("#rjForm").attr("action","/services/search.php");
 	   }else if(searchType=="专家"){
