@@ -2,6 +2,7 @@
 defined('IN_DESTOON') or exit('Access Denied');
 login();
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
+$MOD['linkurl'] = $CFG['url'].'member/grade.php';
 $MG['homepage'] && $MG['home'] or dalert(lang('message->without_permission_and_upgrade'), $MOD['linkurl']);
 require DT_ROOT.'/include/post.func.php';
 include load('homepage.lang');
