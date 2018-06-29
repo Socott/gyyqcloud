@@ -2,7 +2,8 @@
 defined('IN_DESTOON') or exit('Access Denied');
 login();
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
-$MG['homepage'] && $MG['style'] or dalert(lang('message->without_permission_and_upgrade'), 'goback');
+$MOD['linkurl'] = $CFG['url'].'member/grade.php';
+$MG['homepage'] && $MG['style'] or dalert(lang('message->without_permission_and_upgrade'), $MOD['linkurl']);
 require DT_ROOT.'/include/post.func.php';
 require MD_ROOT.'/style.class.php';
 $do = new style();
