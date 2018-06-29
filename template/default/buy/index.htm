@@ -38,9 +38,11 @@
             background-color: #fff;
             width: 150px;
         }
-        .rank{
-            left: 60px;
-            -webkit-filter: drop-shadow(32px 0 #FF0000);
+        .rank1{
+            background: url("/file/image/rank_top_img_1.png") no-repeat center !important;
+        }
+        .rank2{
+            background: url("/file/image/rank_bottom_img_1.png") no-repeat center !important;
         }
 
 
@@ -119,8 +121,8 @@
                     <div class="flag">
                         <div class="course_rank" id="start">
                             <span class="ordertxt">发布时间</span>
-                                <i class="rank_top {if $addtime == 'asc'}rank{/if}"></i>
-                                <i class="rank_bottom {if $addtime == 'desc'}rank{/if}"></i>
+                                <i class="rank_top{if $addtime == 'asc'} rank1{/if}"></i>
+                                <i class="rank_bottom{if $addtime == 'desc'} rank2{/if}"></i>
                         </div>
                     </div>
                    <!-- <div class="flag">
@@ -384,14 +386,10 @@
             });
             //发布时间
             $("#start").on('click',function () {
-                if($('#start .rank_bottom').hasClass("rank")){
-                    $('#start .rank_bottom').removeClass("rank");
-                    $('#start .rank_top').addClass("rank");
+                if($('#start .rank_bottom').hasClass("rank2")){
                     addtime = 'asc';
                     setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
                 }else{
-                    $('#start .rank_bottom').addClass("rank");
-                    $('#start .rank_top').removeClass("rank");
                     addtime = 'desc';
                     setUrl(areaid,catid,empfilter,comTypefilter,addtime,page);
                 }

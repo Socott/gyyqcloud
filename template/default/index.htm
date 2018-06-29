@@ -82,15 +82,13 @@
             <div class="portlet-body">
               <div class="report pull-left">
                 <ul class="news-tab" id="news-tab">
-                  {php $tags=tag("table=category&condition=moduleid=21 and parentid=39039&areaid=$cityid&pagesize=4&template=null&debug=0");}
+                  {php $tags=tag("table=category&condition=moduleid=21 and parentid=39039&areaid=$cityid&pagesize=3&template=null&debug=0");}
                   {loop $tags $i $t}
                   <li {if $i==0}class="active"{/if}> <a href="/news/{$t[linkurl]}" data-target="#news_2" target="_blank">{$t[catname]}</a> </li>
                   {/loop}
                 </ul>
                 <div class="news-content">
-
                   {loop $tags $i $t}
-
                   <div id="news_{$i+1}" class="news-panel active">
                     <ul>
                       {php $catid=$t[catid];}
