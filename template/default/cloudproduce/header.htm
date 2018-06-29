@@ -38,6 +38,7 @@
    });
    //搜索功能
    function ch(){
+	   $('#rjForm').attr('target', null);
 	   var searchKeyWord=jQuery("#searchKeyWord").val().trim();
 	   searchKeyWord=encodeURI(searchKeyWord);
 	   var searchType=$("#selectType").html();
@@ -45,8 +46,10 @@
 		  $("#rjForm").attr("action","/softpool/search.php");
 	   }else if(searchType=="能力"){
 		  $("#rjForm").attr("action","/sell/list.php");
+		   $('#rjForm').attr('target', "proIfram");
 	   }else if(searchType=="需求"){
 		 $("#rjForm").attr("action","/buy/list.php");
+		   $('#rjForm').attr('target', "proIfram");
 	   }else if(searchType=="服务"){
 		  $("#rjForm").attr("action","/services/search.php");
 	   }else if(searchType=="专家"){
@@ -147,7 +150,7 @@
           </div>
           <div class="submit">
             <input type="button"  onclick="ch();" value="" />
-            <form action="#" id="rjForm" method="get" target="proIfram">
+            <form action="#" id="rjForm" method="get">
               <input  type="hidden" id="kw" value="" name="kw"/>
             </form>
           </div>
