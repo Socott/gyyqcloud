@@ -7,7 +7,7 @@ $seo_file = 'index';
 include DT_ROOT.'/include/seo.inc.php';
 $destoon_task = "moduleid=$moduleid&html=index";
 if($EXT['mobile_enable']) $head_mobile = $EXT['mobile_url'].mobileurl($moduleid, 0, 0, $page);
-
+$url = 'index';
 $year=date('Y',time());
 $month=date('m',time());
 $date=date('d',time());

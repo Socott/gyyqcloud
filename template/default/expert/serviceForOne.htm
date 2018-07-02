@@ -110,7 +110,7 @@
                         <div class="txtShow">
                             <h6 class="name">{$t[title]} </h6>
                             <p>职称：{$UNIT[$t[level]-1]}</p>
-                            <p>标签：{$t[brand]}</p>
+                            <p style="height:auto">标签：{$t[brand]}</p>
                             <p>地区：{area_pos($t[areaid], ' ', 2)}</p>
                         </div>
                	     </li>
@@ -123,7 +123,7 @@
                 <h4 class="cn">服务流程</h4>
                 <h4 class="en">SERVICE PROCESS</h4>
             </div>
-            <ul class="flowList clearfix">
+            <ul class="flowList clearfix" style="margin:0px">
                 <li class="list1">
                     <p><span class="num">1</span>提出需求</p>
                 </li>
@@ -140,7 +140,7 @@
                     <p><span class="num">5</span>安排日程</p>
                 </li>
             </ul>
-            <a onClick="/expertpool/search.php?kw=" class="orderBtn">预约专家</a>
+            <a href="/expert/list.php?kw=" class="orderBtn">预约专家</a>
         </div>
     </div>
     <!-- 一对一服务End -->

@@ -12,6 +12,11 @@
         <!-- banner js调用 Begin -->
         <link  type="text/css" rel="stylesheet" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPond_banner.css">
         <script type="text/javascript" src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/js/expertPond_banner.js"></script>
+        <style>
+            li{
+                margin: 0px 15px !important;
+            }
+        </style>
     </head>
     <body>
 <div class="header">
@@ -41,27 +46,30 @@
                     </map>
                 </div>
                 <div class="searchBox">
-                <form action="/expertpool/search.php" method="get"  id="searchForm">
-                    <input type="text" value="" id="searchAll" name="kw"/>
+                <form action="/expert/list.php" method="get"  id="searchForm">
+                    <input type="text"  id="searchAll" name="kw" value="{$kw}"/>
                     <a href="javascript:searchForm.submit();" class="searchBtn"></a>
                     </form>
                 </div>
-                <ul class="navBox clearfix">
+                <ul class="navBox clearfix" style="padding-top: 12px;padding-right: 100px;!important;">
                     <li>
-                        <a href="/expertpool/" class="now">首页</a>
+                        <a href="/expert/" {if $url=='index'}class="now"{/if}>首页</a>
                     </li>
-                   <li>
-                        <a href="/softpool/" >专家搜索</a>
+                    <li>
+                        <a href="list.php?kw=" {if $url=='list'}class="now"{/if}>专家搜索</a>
                     </li>
-                   <li>
-                        <a href="/softpool/" >一对一服务</a>
+                    <li>
+                        <a href="serviceForOne.php" {if $url=='serviceForOne'}class="now"{/if}>一对一服务</a>
                     </li>
-                   <li>
-                        <a href="/softpool/" >企业定制沙龙</a>
+                    <li>
+                        <a href="serviceSalon.php" {if $url=='serviceSalon'}class="now"{/if}>企业定制沙龙</a>
                     </li>
-                   <li>
-                        <a href="/softpool/" >专属顾问团</a>
+                    <li>
+                        <a href="ownTeam.php" {if $url=='ownTeam'}class="now"{/if}>专属顾问团</a>
                     </li>
+                  <!--  <li>
+                        <a href="enterpriseService.php" {if $url=='enterpriseService'}class="now"{/if}>企业服务动态</a>
+                    </li>-->
                 </ul>
             </div>
         </div>

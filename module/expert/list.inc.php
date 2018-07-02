@@ -16,9 +16,23 @@ unset($CAT['moduleid']);
 extract($CAT);
 
 $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
-$condition = 'status!=0';
-if(!empty($catid)) 
-$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+$condition = 'status !=0';
+if(!empty($catid)) {
+    $condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+    $parentid = ($CAT['child']) ? '': $CAT['parentid'];
+}
+if($levels){
+    $condition .= ' AND level='.$levels;
+}
+if($title){
+    $condition .= " AND title LIKE '%$title%'";
+}
+if($brand){
+    $condition .= " AND brand LIKE '%$brand%'";
+}
+if($kw){
+    $condition .= " AND keyword LIKE '%$kw%'";
+}
 if($cityid) {
 	$areaid = $cityid;
 	$ARE = $AREA[$cityid];
@@ -44,13 +58,14 @@ $r = $db->query("SELECT cate_id,title FROM {$db->pre}expert_category WHERE statu
 while ($row = $db->fetch_array($r)) {
     $arr[$row['cate_id']] = $row['title'];
 }
-
-$result = $db->query("SELECT * FROM {$table} WHERE status=0 ORDER BY create_time desc LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+$result = $db->query("SELECT * FROM {$table} WHERE $condition ORDER BY editdate desc LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 while($r = $db->fetch_array($result)) {
     $r['cate_name'] = cate_id_name($r['cate_id'], $arr);
     $tags[] = $r;
 }
 $db->free_result($result);
+
+$url = 'list';
 
 $showpage = 1;
 $datetype = 5;
