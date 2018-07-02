@@ -53,15 +53,16 @@
             <!--{php 
         $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');	$tags=tag("table=expert&condition=&length=20&condition=1=1&areaid=$cityid&pagesize=6&order=".$MOD[order]."&width=100&height=100&cols=6&target=_blank&lazy=$lazy&template=null&debug=0");}--> 
             {loop $tags $i $t}
-            <li> <a href="info.php?id={$t[id]}" class="imgShow"> <img src="{$t[head]}" alt="img" /> </a>
+            <li> <a href="{$t[linkurl]}" class="result-img"> <img src="{$t[thumb]}" style="height: 180px;width: 180px"/> </a>
               <div class="txtShow">
-                <h6 class="name">{$t[name]}</h6>
-                <p>职称：{$t[title]}</p>
-                <p>标签：{$t[name]}</p>
-                <p>地区：{$t[province]}{$t[city]}</p>
+                <h6 class="name">{$t[title]}</h6>
+                <p>职称：{$UNIT[$t[level]-1]}</p>
+                <p style="height: auto">标签：{$t[brand]}</p>
+                <p>地区：{area_pos($t[areaid], ' ', 2)}</p>
               </div>
             </li>
             {/loop}
+
           </ul>
         </div>
         <!-- 热门专家 End -->
