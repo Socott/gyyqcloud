@@ -2,7 +2,8 @@
 defined('IN_DESTOON') or exit('Access Denied');
 login();
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
-$MG['cash'] or dalert(lang('message->without_permission_and_upgrade'), 'goback');
+$upgrade_url = $CFG['url'].'/member/grade.php';
+$MG['cash'] or dalert(lang('message->without_permission_and_upgrade'), $upgrade_url);
 require DT_ROOT.'/include/post.func.php';
 $member = $db->get_one("SELECT company,truename,vbank,money,bank,banktype,branch,account FROM {$DT_PRE}member WHERE userid=$_userid");
 $BANKS = explode('|', trim($MOD['cash_banks']));

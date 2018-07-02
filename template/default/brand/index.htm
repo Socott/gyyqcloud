@@ -11,7 +11,7 @@
             			 {php if(!$catid) $catid=39156;}
                          {php $tags=tag("moduleid=$moduleid&condition=catid=$catid and status=3 &areaid=$cityid&&catid=".$c[catid]."&pagesize=".$MOD[page_icat]."&order=".$MOD[order]."&width=120&height=40&cols=2&target=_blank&lazy=$lazy&template=null&debug=0");}
          		  {loop $tags $i $t}
-                                             <a href="#{$t[linkurl]}">
+                                             <a href="{$t[linkurl]}">
                                                 <img src="{$t[thumb]}" alt="list" />
                                                 <span>{$t[title]}</span>
                                             </a>
