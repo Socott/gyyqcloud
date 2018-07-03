@@ -82,6 +82,7 @@
         <ul class="clearfix">
          {php $pid=$c[catid];}
          {php $tagsss=tag("table=services&condition=catid in (select catid from gyy_category where parentid=$pid)&pagesize=4&template=null&debug=0");}
+		 {php if(empty($tagsss)){$arrchildid=tag("table=category&condition=parentid=$pid&fields=GROUP_CONCAT('',arrchildid) as t&pagesize=1&template=null&debug=0");$arrchildid=$arrchildid[0][t];$tagsss=tag("table=services&condition=catid in ($arrchildid)&pagesize=4&template=null&debug=0");}}
          {loop $tagsss $d $f}
         <li><a href="{$f[linkurl]}"><img src="{$f[thumb]}" style="display: inline;" alt="soft"><p>{mb_substr($f[title],0,10,'utf-8')}</p></a></li>
         {/loop}
