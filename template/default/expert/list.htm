@@ -97,12 +97,12 @@
       <!--{php
   $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}-->
       {loop $tags $k $t}
-      <li> <a href="{$t[linkurl]}" class="result-img"> <img src="{$t[thumb]}"/> </a>
+      <li> <a href="info.php?id={$t[id]}" class="result-img"> <img src="{$t[head]}"/> </a>
         <div class="result-txt">
-          <h5 class="name">{$t[title]}</h5>
-          <span class="job">{$UNIT[$t[level]-1]}</span>
-          <p>所在地区：{area_pos($t[areaid], ' ', 2)}</p>
-          <p>职业标签： <span> {$t[brand]}</span> </p>
+          <h5 class="name">{$t[name]}</h5>
+          <span class="job">工作经验{$t[work_year]}年</span>
+          <p>所在地区：{$t[province]} {$t[city]}</p>
+          <p>职业标签： <span> {$t[tags]}</span> </p>
           <p>类别领域{$t[tags]}</p>
         </div>
       </li>
