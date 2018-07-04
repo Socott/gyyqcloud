@@ -10,8 +10,8 @@ $menus = array (
     //array('未通过商品', '?moduleid='.$moduleid.'&action=reject'),
     //array('回收站', '?moduleid='.$moduleid.'&action=recycle'),
     //array('移动分类', '?moduleid='.$moduleid.'&action=move'),
-	array('添加分类', '?moduleid='.$moduleid.'&file=category&action=add'),
-    array("分类列表", "?file=category&moduleid=$moduleid"),
+	//array('添加分类', '?moduleid='.$moduleid.'&file=category&action=add'),
+    array("分类列表", "?file=category&mid=26"),
     array('预约列表', '?moduleid='.$moduleid.'&file=appointment')
 );
 

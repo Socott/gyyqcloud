@@ -7,12 +7,11 @@
 				if(id==39139)
 				{
 					$("#category2").show();$("#category3").hide();
-				}else if(id==39140)
+				}
+				if(id==39140)
 				{
 					$("#category2").hide();$("#category3").show();
-				}else{
-                    $("#category2").hide();$("#category3").hide();
-                }
+				}
             }
             //行业领域点击
             function categoryClk(obj){
@@ -24,7 +23,7 @@
             //专家职称点击
             function dicClk(obj){
             	var id=jQuery(obj).attr("value");
-            	jQuery("#levels").val(id);
+            	jQuery("#title").val(id);
             } 
         </script>
 <!-- 当前位置 Begin -->
@@ -37,46 +36,47 @@
     <ul class="filter-content">
       <li id="li_pcat_id">
         <h6 class="filter-title">专家类别：</h6>
-        <a href="javascript:void(0);"  onclick="parentCategoryClk(this);" {if $catid == 0}class="now"{/if} >全部</a>
-        <a href="javascript:void(0);" value="39139" onClick="parentCategoryClk(this);" {if $catid == 39139 || $parentid == 39139}class="now"{/if}>技术类</a>
-        <a href="javascript:void(0);" value="39140" onClick="parentCategoryClk(this);" {if $catid == 39140 || $parentid == 39140}class="now"{/if}>管理类</a>
-        <input type="hidden" id="catid" name="catid" value="{$catid}">
+        <a href="javascript:void(0);"  onclick="parentCategoryClk(this);" class="now">全部</a> 
+        <a href="javascript:void(0);" value="39139" onClick="parentCategoryClk(this);">技术类</a> 
+        <a href="javascript:void(0);" value="39140" onClick="parentCategoryClk(this);">管理类</a>
+	      <input type="hidden" id="catid" name="catid" value="">
+        <input type="hidden" id="cate_id" name="cate_id" value="">
         <input type="hidden" id="searchAllParam" name="searchAllParam" value="">
       </li>
       {php $mid = $moduleid;}
-      <li id='category2' {if $catid == 39139 || $parentid == 39139}style="display:block"{else}style="display:none"{/if}>
+      <li id='category2'>
         <h6 class="filter-title">行业领域：</h6>
-        <span id="categorySpan"><a href="javascript:void(0);" onclick="categoryClk(this);" {if $catid == 39139 || !$catid || $catid == 39140 ||$parentid == 39140}class="now"{/if}> 全部</a>
+        <span id="categorySpan"><a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
         {php $sub = get_maincat(39139, $mid, 1);}
         {loop $sub $j $s}
-        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}" {if $s[catid] == $catid }class="now"{/if}>{$s[catname]}</a>
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
         {/loop}</span>
       </li>
-      <li id='category3' {if $catid == 39140 || $parentid == 39140}style="display:block"{else}style="display:none"{/if}>
+      <li id='category3' style="display:none">
         <h6 class="filter-title">行业领域：</h6>
         <span id="categorySpan">
-        <a href="javascript:void(0);" onclick="categoryClk(this);" {if $catid == 39140 || !$catid || $parentid == 39139 || $catid == 39139}class="now"{/if}> 全部</a>
+        <a href="javascript:void(0);" onclick="categoryClk(this);"> 全部</a>
         {php $sub = get_maincat(39140, $mid, 1);}
         {loop $sub $j $s}
-        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}" {if $s[catid] == $catid}class="now"{/if}>{$s[catname]}</a>
+        <a href="javascript:void(0);" onclick="categoryClk(this);" value="{$s[catid]}">{$s[catname]}</a>
         {/loop}
         </span>
       </li>
       <li id="li_dic_id">
         <h6 class="filter-title">专家职称：</h6>
-        <a href="javascript:void(0);" onClick="dicClk(this);" {if !$levels}class="now"{/if} >全部</a>
+        <a href="javascript:void(0);" onClick="dicClk(this);">全部</a> 
               {php  $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}
               {loop $UNIT $j $s}
-        <a href="javascript:void(0);" value="{$j+1}" onClick="dicClk(this);" {if $levels == $j+1}class="now"{/if} >{$s}</a> {/loop}
-        <input name="levels" type="hidden" id="levels" value="{$levels}"/>
+        <a href="javascript:void(0);" value="{$s}" onClick="dicClk(this);">{$s}</a> {/loop}
+        <input name="title" type="hidden" id="title" value=""/>
       </li>
       <li>
         <h6 class="filter-title">专家名称：</h6>
-        <input type="text" id="title" name="title" value="{$title}">
+        <input type="text" id="name" name="name" value="{$name}">
       </li>
       <li>
         <h6 class="filter-title">职业标签：</h6>
-        <input type="text" id="brand" name="brand" value="{$brand}">
+        <input type="text" id="tags" name="stags" value="{$stags}">
       </li>
     </ul>
     <!-- <input type="submit" value="搜索" class="filter-btn" style="cursor:pointer;"/> --> 
@@ -94,22 +94,23 @@
       <h5>搜索结果</h5>
       <span class="result-num">共计{$items}条</span> </div>
     <ul class="result-list clearfix">
-      <!--{php
-  $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}-->
-      {loop $tags $k $t}
-      <li> <a href="info.php?id={$t[id]}" class="result-img"> <img src="{$t[head]}"/> </a>
-        <div class="result-txt">
-          <h5 class="name">{$t[name]}</h5>
-          <span class="job">工作经验{$t[work_year]}年</span>
-          <p>所在地区：{$t[province]} {$t[city]}</p>
-          <p>职业标签： <span> {$t[tags]}</span> </p>
-          <p>类别领域{$t[tags]}</p>
-        </div>
+            <!--{php 
+        $UNIT = array('正高', '副高', '中级', '初级', '院士', '其他');}--> 
+    {loop $tags $k $t}
+      <li> 
+        <a href="info.php?id={$t[id]}" class="imgShow"> <img height="133" src="{$t[head]}" alt="img" /> </a>
+           <div class="result-txt">
+              <div class="txtShow">
+                <h6 class="name">{$t[name]}</h6>
+                <p>职称：{$t[title]}</p>
+                <p title="{$t['tags']}">标签：{$t['tags']}</p>
+                <p>地区：{$t[province]} {$t[city]}</p>
+              </div>
+            </div>
       </li>
       {/loop}
-
+      	
     </ul>
-
     
     <!-- 页码 Begin -->
     <div class="expertPond_pageBox">{$pages}</div>

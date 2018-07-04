@@ -2,6 +2,7 @@
 defined('IN_DESTOON') or exit('Access Denied');
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
 if(!$ex) include load('403.inc');
+$_userid or dalert('请登录后预约', $CFG['url'].'member/login.php');
 require DT_ROOT.'/include/post.func.php';
 include load('search.lang');
 include MD_ROOT.'/appointment.class.php';
@@ -20,6 +21,7 @@ if ($submit) {
     if (!preg_match('/^1\d{10}$/', $post['tel'])) dalert('请输入11位电话');
     if (!$post['province']) dalert('请选择省份');
 
+    $post['userid'] = $_userid;
     if ($do->add($post)) {
         die("<script>alert('添加成功');parent.window.location.href='/expert/list.php';</script>");
     }

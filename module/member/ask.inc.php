@@ -2,7 +2,7 @@
 defined('IN_DESTOON') or exit('Access Denied');
 login();
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
-$upgrade_url = $CFG['url'].'/member/grade.php';
+$upgrade_url = $CFG['url'].'member/grade.php';
 $MG['ask'] or dalert(lang('message->without_permission_and_upgrade'), $upgrade_url);
 require DT_ROOT.'/include/post.func.php';
 $TYPE = get_type('ask', 1);

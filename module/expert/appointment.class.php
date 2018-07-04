@@ -14,7 +14,7 @@ class Appointment {
 		$this->table = $DT_PRE.'expert_appointment';
 		$this->split = $MOD['split'];
 		$this->db = $db;
-		$this->fields = array('id','expert_id', 'situation', 'demand','budget','end_time','name','tel','company','province','city','create_time','update_time');
+		$this->fields = array('id', 'userid', 'expert_id', 'situation', 'demand','budget','end_time','name','tel','company','province','city','create_time','update_time');
     }
 
     function expert($moduleid) {
