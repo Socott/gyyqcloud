@@ -158,7 +158,7 @@
 	<script type="text/javascript">s('trade');m('action');</script>
 	{elseif $step == 'detail'}
 	{if !in_array($td[status], array(8, 9))}
-	<table cellpadding="0" cellspacing="0" align="center">
+	<!--table cellpadding="0" cellspacing="0" align="center">
 	<tr align="center" class="f_gray">
 	<td>买家下单</td>
 	<td id="pay_n">买家付款</td>
@@ -178,7 +178,7 @@
 	<td><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/state_1.gif" id="state_4"/></td>
 	<td><img src="{DT_STATIC}{$MODULE[2][moduledir]}/image/state_1.gif" id="state_5"/></td>
 	</tr>
-	</table>
+	</table-->
 	</div>
 	<script type="text/javascript">
 	var s1 = Dd('state_2').src;
@@ -247,7 +247,7 @@
 	</tr>
 	{/if}
 	</table>
-	<div class="t2">快递信息</div>
+	<div class="t2">联系信息</div>
 	<table cellspacing="1" cellpadding="8" class="tb">
 	<tr>
 	<td class="tl">邮编</td>
@@ -282,7 +282,7 @@
 	<td class="tl">快递类型</td>
 	<td class="tr">{$td[send_type]}</td>
 	</tr>
-	<tr>
+	<!--tr>
 	<td class="tl">快递单号</td>
 	<td class="tr">{$td[send_no]}{if $td[send_type] && $td[send_no]} &nbsp;<a href="###" class="t" onclick="Ds('express_t');$('#express').load(AJPath+'?action=express&moduleid=2&auth={$auth}');">[快递追踪]</a>{/if}</td>
 	</tr>
@@ -293,7 +293,7 @@
 	<tr>
 	<td class="tl">快递状态</td>
 	<td class="tr">{$_send_status[$td[send_status]]}</td>
-	</tr>
+	</tr-->
 	{/if}
 	</table>
 	<div class="t2">价格信息</div>
@@ -333,10 +333,10 @@
 	<td class="tr">{$td[send_time]}</td>
 	</tr>
 	{/if}
-	<tr>
+	<!--tr>
 	<td class="tl">订单状态</td>
 	<td class="tr">{$_status[$td[status]]}</td>
-	</tr>
+	</tr-->
 	{if $td[buyer_reason]}
 	<tr>
 	<td class="tl">退款理由</td>
@@ -352,6 +352,7 @@
 	<tr>
 	<td class="tl"> </td>
 	<td class="tr">
+		<!--
 	{if $td[seller] == $_username}
 		{if $td[status] == 0}
 		<input type="button" value=" 确 认 " class="btn_g" onclick="Go('?itemid={$td[itemid]}&action=update&step=edit_price&confirm=1');"/> &nbsp; 
@@ -364,6 +365,7 @@
 		{/if}
 	{/if}
 	<input type="button" value=" 返 回 " class="btn" onclick="history.back(-1);"/>
+	-->
 	</td>
 	</tr>
 	</table>
@@ -1135,13 +1137,13 @@ window.setInterval(
 <table cellpadding="0" cellspacing="0">
 <tr>
 <td class="{if !in_array($nav, array(0,1,2,3,4,5,6))}nav_2{else}nav_1{/if}"><a href="?action={$action}">全部订单</a></td>
-<td class="{if $nav==0}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=0">待确认 <span>({php echo $db->count($table, "buyer='$_username' AND status=0");})</span></a></td>
-<td class="{if $nav==1}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=1">待付款 <span>({php echo $db->count($table, "buyer='$_username' AND status=1");})</span></a></td>
-<td class="{if $nav==2}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=2">待发货 <span>({php echo $db->count($table, "buyer='$_username' AND status=2");})</span></a></td>
-<td class="{if $nav==3}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=3">待收货 <span>({php echo $db->count($table, "buyer='$_username' AND status=3");})</span></a></td>
-<td class="{if $nav==5}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=5">待退款 <span>({php echo $db->count($table, "buyer='$_username' AND status=5");})</span></a></td>
-<td class="{if $nav==6}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=6">已退款 <span>({php echo $db->count($table, "buyer='$_username' AND status=6");})</span></a></td>
-<td class="{if $nav==4}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=4">待评价 <span>({php echo $db->count($table, "buyer='$_username' AND status=4 AND seller_star=0");})</span></a></td>
+<td class="{if $nav==0}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=0">待确认 <span>({php echo $db->count($table, "buyer='$_username' AND status=0");})</span></a--></td>
+<td class="{if $nav==1}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=1">待付款 <span>({php echo $db->count($table, "buyer='$_username' AND status=1");})</span></a--></td>
+<td class="{if $nav==2}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=2">待发货 <span>({php echo $db->count($table, "buyer='$_username' AND status=2");})</span></a--></td>
+<td class="{if $nav==3}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=3">待收货 <span>({php echo $db->count($table, "buyer='$_username' AND status=3");})</span></a--></td>
+<td class="{if $nav==5}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=5">待退款 <span>({php echo $db->count($table, "buyer='$_username' AND status=5");})</span></a--></td>
+<td class="{if $nav==6}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=6">已退款 <span>({php echo $db->count($table, "buyer='$_username' AND status=6");})</span></a--></td>
+<td class="{if $nav==4}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=4">待评价 <span>({php echo $db->count($table, "buyer='$_username' AND status=4 AND seller_star=0");})</span></a--></td>
 <td>&nbsp;</td>
 </tr>
 </table>
@@ -1252,13 +1254,13 @@ window.setInterval(
 <table cellpadding="0" cellspacing="0">
 <tr>
 <td class="{if !in_array($nav, array(0,1,2,3,4,5,6))}nav_2{else}nav_1{/if}"><a href="?action={$action}">全部订单</a></td>
-<td class="{if $nav==0}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=0">待确认 <span>({php echo $db->count($table, "seller='$_username' AND status=0");})</span></a></td>
-<td class="{if $nav==1}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=1">待付款 <span>({php echo $db->count($table, "seller='$_username' AND status=1");})</span></a></td>
-<td class="{if $nav==2}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=2">待发货 <span>({php echo $db->count($table, "seller='$_username' AND status=2");})</span></a></td>
-<td class="{if $nav==3}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=3">待收货 <span>({php echo $db->count($table, "seller='$_username' AND status=3");})</span></a></td>
-<td class="{if $nav==5}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=5">待退款 <span>({php echo $db->count($table, "seller='$_username' AND status=5");})</span></a></td>
-<td class="{if $nav==6}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=6">已退款 <span>({php echo $db->count($table, "seller='$_username' AND status=6");})</span></a></td>
-<td class="{if $nav==4}nav_2{else}nav_1{/if}"><a href="?action={$action}&nav=4">待评价 <span>({php echo $db->count($table, "seller='$_username' AND status=4 AND buyer_star=0");})</span></a></td>
+<td class="{if $nav==0}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=0">待确认 <span>({php echo $db->count($table, "seller='$_username' AND status=0");})</span></a--></td>
+<td class="{if $nav==1}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=1">待付款 <span>({php echo $db->count($table, "seller='$_username' AND status=1");})</span></a--></td>
+<td class="{if $nav==2}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=2">待发货 <span>({php echo $db->count($table, "seller='$_username' AND status=2");})</span></a--></td>
+<td class="{if $nav==3}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=3">待收货 <span>({php echo $db->count($table, "seller='$_username' AND status=3");})</span></a--></td>
+<td class="{if $nav==5}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=5">待退款 <span>({php echo $db->count($table, "seller='$_username' AND status=5");})</span></a--></td>
+<td class="{if $nav==6}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=6">已退款 <span>({php echo $db->count($table, "seller='$_username' AND status=6");})</span></a--></td>
+<td class="{if $nav==4}nav_2{else}nav_1{/if}"><!--a href="?action={$action}&nav=4">待评价 <span>({php echo $db->count($table, "seller='$_username' AND status=4 AND buyer_star=0");})</span></a--></td>
 </tr>
 </table>
 </div>
