@@ -84,7 +84,7 @@ $(function(){
                 <i class="delete_icon"></i> </div>
               <div class="item"> <s class="mm_icon"></s>
                 <input type="password" name="password" id="password" placeholder="密码" class="form-list-input" size="35"/>
-                <i class="delete_icon delete_yzm"></i> <img title="点击更换" spm="login.form_new" onclick="refreshImageCode();" id="imgcode" class="border"> <i class="delete_icon"></i>
+                <i class="delete_icon delete_yzm"></i> {if $MOD[captcha_login]}<img title="点击更换" spm="login.form_new" onclick="refreshImageCode();" id="imgcode" class="border"> <i class="delete_icon"></i>{/if}
                  </div>
               {if $MOD[captcha_login]}
               <div class="item last_item">
