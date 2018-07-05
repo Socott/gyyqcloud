@@ -32,15 +32,24 @@ show_menu($menus);
 </tr>
 
 <tr>
-<td class="tl"><span class="f_red">*</span> 选择分类</td>
-<td><?php echo get_expert_cate('post[cate_id][]', $cate_id);?><span id="dcate_id" class="f_red"></span></td>
+    <td class="tl"><span class="f_red">*</span> 专家分类</td>
+    <td><div id="catesch"></div><?php echo ajax_category_select('post[cate_id]', '选择分类', $catid, 26, 'size="2" style="height:120px;width:180px;"');?>
+        <br/><input type="button" value="搜索分类" onclick="schcate(<?php echo $moduleid;?>);" class="btn"/> <span id="dcatid" class="f_red"></span></td>
 <td>
 
 </td>
 </tr>
     <tr>
         <td class="tl"><span class="f_red">&ensp;</span> 职称</td>
-        <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <span id="dtitle" class="f_red"></span> <br/></td>
+        <td><select name="post[title]" id="title">
+                <option value="正高">正高</option>
+                <option value="副高">副高</option>
+                <option value="中级">中级</option>
+                <option value="初级">初级</option>
+                <option value="院士">院士</option>
+                <option value="其它">其它</option>
+            </select>
+            <span id="dtitle" class="f_red"></span> <br/></td>
     </tr>
 <tr>
     <td class="tl"><span class="f_red"> &ensp;</span> 职业标签</td>

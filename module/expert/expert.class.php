@@ -38,7 +38,6 @@ class expert {
 	function set($post, $add=false) {
 		global $MOD, $DT_TIME, $DT_IP, $_username, $_userid, $action;
 
-        $post['cate_id'] = implode(',', $post['cate_id']);
         $post['update_time'] = time();
         if ($add) $post['create_time'] = $post['update_time'];
 		return array_map("trim", $post);
@@ -61,16 +60,21 @@ class expert {
 		if($items < 1) return array();
 		$lists = $catids = $CATS = array();
 
-        $r = $this->db->query("SELECT cate_id,title FROM {$this->db->pre}expert_category WHERE status=0");
-        while ($row = $this->db->fetch_array($r)) {
-            $arr[$row['cate_id']] = $row['title'];
-        }
-        
 		$result = $this->db->query("SELECT * FROM {$this->table} WHERE $condition ORDER BY $order LIMIT $offset,$pagesize", $cache);
 		while($r = $this->db->fetch_array($result)) {
-			$r['cate_name'] = cate_id_name($r['cate_id'], $arr);
 			$lists[] = $r;
+            if ($r['cate_id']) $catids[] = $r['cate_id'];
 		}
+
+        $r = $this->db->query("SELECT catid,catname FROM {$this->db->pre}category WHERE catid in (".implode(',', $catids).")");
+        while ($row = $this->db->fetch_array($r)) {
+            $arr[$row['catid']] = $row['catname'];
+        }
+
+        foreach ($lists as &$v) {
+            $v['cate_name'] = $arr[$v['cate_id']];
+        }
+
 		return $lists;
 	}
 

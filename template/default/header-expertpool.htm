@@ -3,7 +3,13 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
         <meta charset="utf-8">
-        <title>专家池-企业服务动态</title>
+        <title>首页-专家池</title>
+    {if $head_keywords}
+    <meta name="keywords" content="{$head_keywords}"/>
+    {/if}
+    {if $head_description}
+    <meta name="description" content="{$head_description}"/>
+    {/if}
         <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPondReset.css" />
         <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPondCommon.css" />
         <link rel="stylesheet" type="text/css" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPond.css" />
@@ -12,9 +18,6 @@
         <!-- banner js调用 Begin -->
         <link  type="text/css" rel="stylesheet" href="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/css/expertPond_banner.css">
         <script type="text/javascript" src="http://img1.gyyqcloud.com/expert/resources/style/shop/professor/js/expertPond_banner.js"></script>
-<style type="text/css">
-.expert_serForOne .serFlow .flowList li {margin: 0 60px;}
-</style>
     </head>
     <body>
 <div class="header">
@@ -45,29 +48,26 @@
                 </div>
                 <div class="searchBox">
                 <form action="/expert/list.php" method="get"  id="searchForm">
-                    <input type="text"  id="searchAll" name="kw" value="{$kw}"/>
+                    <input type="text" value="" id="searchAll" name="kw"/>
                     <a href="javascript:searchForm.submit();" class="searchBtn"></a>
                     </form>
                 </div>
-                <ul class="navBox clearfix" style="padding-top: 12px;padding-right: 100px!important;position:absolute;left:350px">
+                <ul class="navBox clearfix">
                     <li>
-                        <a href="/expert/" {if $url=='index'}class="now"{/if}>首页</a>
+                        <a href="/expertpool/" class="now">首页</a>
                     </li>
-                    <li>
-                        <a href="list.php?kw=" {if $url=='list'}class="now"{/if}>专家搜索</a>
+                   <li>
+                        <a href="/softpool/" >专家搜索</a>
                     </li>
-                    <li>
-                        <a href="serviceForOne.php" {if $url=='serviceForOne'}class="now"{/if}>一对一服务</a>
+                   <li>
+                        <a href="/softpool/" >一对一服务</a>
                     </li>
-                    <li>
-                        <a href="serviceSalon.php" {if $url=='serviceSalon'}class="now"{/if}>企业定制沙龙</a>
+                   <li>
+                        <a href="/softpool/" >企业定制沙龙</a>
                     </li>
-                    <li>
-                        <a href="ownTeam.php" {if $url=='ownTeam'}class="now"{/if}>专属顾问团</a>
+                   <li>
+                        <a href="/softpool/" >专属顾问团</a>
                     </li>
-                  <!--  <li>
-                        <a href="enterpriseService.php" {if $url=='enterpriseService'}class="now"{/if}>企业服务动态</a>
-                    </li>-->
                 </ul>
             </div>
         </div>

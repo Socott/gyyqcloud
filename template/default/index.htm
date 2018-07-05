@@ -89,7 +89,7 @@
                 </ul>
                 <div class="news-content">
                   {loop $tags $i $t}
-                  <div id="news_{$i+1}" class="news-panel active">
+                  <div id="news_{$i+1}" class="news-panel {if $i==0}active{/if}"  {if $i!=0}style="float:left"{/if}>
                     <ul>
                       {php $catid=$t[catid];}
                       {php $tags1=tag("table=article_21&condition=catid=$catid and thumb<>'' &areaid=$cityid&pagesize=1&order=rand()&template=null&debug=0");}

@@ -16,23 +16,27 @@ unset($CAT['moduleid']);
 extract($CAT);
 
 $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
-$condition = 'status !=0';
-if(!empty($catid)) {
-    $condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
-    $parentid = ($CAT['child']) ? '': $CAT['parentid'];
+$condition = 'status=0';
+//if(!empty($catid))
+//$condition .= ($CAT['child']) ? " AND catid IN (".$CAT['arrchildid'].")" : " AND catid=$catid";
+if ($catid) {
+    $condition .= " and cate_id=$catid";
 }
-if($levels){
-    $condition .= ' AND level='.$levels;
+if ($title) {
+    $condition .= " and title='$title'";
 }
-if($title){
-    $condition .= " AND title LIKE '%$title%'";
+if ($name) {
+    $condition .= " and locate('$name',name)";
 }
-if($brand){
-    $condition .= " AND brand LIKE '%$brand%'";
+if ($stags) {
+    $condition .= " and locate('$stags',tags)";
 }
-if($kw){
-    $condition .= " AND keyword LIKE '%$kw%'";
+
+if ($kw) {
+    $condition .= " and (locate('$kw',name) or locate('$kw',tags) or locate('$kw',title)";
+    $condition .= " or locate('$kw',work_year) or locate('$kw',province) or locate('$kw',city))";
 }
+
 if($cityid) {
 	$areaid = $cityid;
 	$ARE = $AREA[$cityid];
@@ -54,18 +58,22 @@ $offset = ($page-1)*$pagesize;
 $pages = listpages($CAT, $items, $page, $pagesize);
 $tags = array();
 
-$r = $db->query("SELECT cate_id,title FROM {$db->pre}expert_category WHERE status=0");
-while ($row = $db->fetch_array($r)) {
-    $arr[$row['cate_id']] = $row['title'];
-}
-$result = $db->query("SELECT * FROM {$table} WHERE $condition ORDER BY editdate desc LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
+$result = $db->query("SELECT * FROM {$table} WHERE $condition ORDER BY create_time desc LIMIT {$offset},{$pagesize}", ($CFG['db_expires'] && $page == 1) ? 'CACHE' : '', $CFG['db_expires']);
 while($r = $db->fetch_array($result)) {
-    $r['cate_name'] = cate_id_name($r['cate_id'], $arr);
     $tags[] = $r;
+    if ($r['cate_id']) $catids[] = $r['cate_id'];
 }
-$db->free_result($result);
 
-$url = 'list';
+$r = $db->query("SELECT catid,catname FROM {$db->pre}category WHERE catid in (".implode(',', $catids).")");
+while ($row = $db->fetch_array($r)) {
+    $arr[$row['catid']] = $row['catname'];
+}
+
+foreach ($tags as &$v) {
+    $v['cate_name'] = $arr[$v['cate_id']];
+}
+
+$db->free_result($result);
 
 $showpage = 1;
 $datetype = 5;
