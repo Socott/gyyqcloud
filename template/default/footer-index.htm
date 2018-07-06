@@ -113,7 +113,7 @@
                 <div class="plus">
                     <ul class="az-inline-block-list footer-link-list">
                                     {php $links=tag("table=link&condition=1=1 &areaid=$cityid&order=rand()&pagesize=16&template=null&debug=0");}
-             {loop $links $i $t}<li> <a href="{$t[linkurl]}">{$t[title]}</a> </li>{/loop}
+             {loop $links $i $t}<li> <a href="{$t[linkurl]}" target="_blank">{$t[title]}</a> </li>{/loop}
 					</ul>
                 </div>
             </div>

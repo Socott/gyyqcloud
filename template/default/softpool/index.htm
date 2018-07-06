@@ -115,7 +115,6 @@
 			<div class="newApp">
 				<div id="floors_right">
 		<div load_url="floor_rightsoft_ajax.htm" id="131085" count="1" class="floor_right_soft"><div class="list"><div class="itemHead"><h3 class="title">热门应用</h3><a href="#" class="more">更多&gt;</a></div><ul>
-        
   			{php $tagsss=tag("table=softpool&condition=1=1&pagesize=6&order=rand()&template=null&debug=0");}
          {loop $tagsss $d $f}
         <li><a href="{$f[linkurl]}"><i>{$d+1}.</i>{$f[title]}</a><p class="enterName">服务商：<a href="#">{$f[company]}</a></p></li>
